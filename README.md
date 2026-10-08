@@ -56,6 +56,11 @@ leképezhető vele.
 > validates that a complete project lifecycle can be mapped with it. The
 > interface is in Hungarian. Built with Python and Streamlit.*
 
+**▶ [Élő demó: pm-all-showcase.streamlit.app](https://pm-all-showcase.streamlit.app/)** —
+kipróbálható böngészőben, telepítés nélkül. A pipák csak a saját
+böngészőmunkamenetedben élnek. Az első betöltés lassabb lehet: az ingyenes
+tárhely az inaktív appot alvó módba teszi.
+
 ![Áttekintés](docs/screenshots/01-attekintes.png)
 
 ## Mit fed le a keret?
