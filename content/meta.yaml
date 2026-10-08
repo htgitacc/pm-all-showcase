@@ -1,0 +1,245 @@
+# Globális metaadatok: bevezető, mintaprojekt, szótár.
+# A fázisok tartalma a content/phases/ mappában van.
+
+intro: |
+  Ez egy **checklist a klasszikus (waterfall) projektmenedzsmenthez**, a PMI/PMBOK öt
+  folyamatcsoportja szerint, kiegészítve egy hatodik, mérési szakasszal.
+
+  Minden fázisnál ugyanazt a hat kérdést járjuk körbe: **mi a dolgod, kikkel kell
+  leülnöd, kitől mit kérsz be és kinek mit adsz ki, miért felelsz, milyen dokumentumot
+  kell letenned az asztalra, és az miből áll össze.** Ahol egy kérdés az adott fázisban
+  nem értelmes, ott egyszerűen nem szerepel — nem töltjük ki üres szöveggel.
+
+  Minden dokumentumhoz tartozik egy **valóséletű, kitöltött minta** a Xyo Kft.
+  mintaprojektből. A minták markdown formátumban másolhatók és letölthetők.
+
+how_to_use: |
+  1. **Először olvasd végig a Mintaprojekt oldalt.** Minden példa erre a projektre
+     hivatkozik, így könnyebb követni, mint elvont sablonokat olvasni.
+  2. **Menj végig a fázisokon sorban.** A checklist elemei sorrendben állnak; a
+     :red-badge[kötelező] jelölésűek nélkül a fázis nem tekinthető lezártnak.
+  3. **Pipáld ki, ami kész.** A pipák a `data/progress.json` fájlba mentődnek, tehát
+     túlélik az app újraindítását.
+  4. **Nézd meg a Dokumentumtérképet**, ha elakadsz azon, hogy „ehhez most mi kell".
+     Ott látszik, melyik dokumentum miből áll össze.
+  5. **A minták letölthetők** egyesével vagy fázisonként zip-ben, a Letöltések oldalról.
+
+sample_project:
+  name: Xyo Kft. — Cloud Pilot
+  idea_doc: project_idea
+  tagline: Felhőalapú munkakörnyezet bevezetése 50 fő részére, migráció nélkül
+  description: |
+    A **Xyo Kft.** egy közepes méretű magyarországi vállalat. Az IT részleg cloud-first
+    irányt vesz: a cél egy **pilot környezet**, ahol 50 munkatárs élesben, kizárólag
+    felhőszolgáltatásokra támaszkodva dolgozik.
+
+    A projekt szándékosan **migráció nélküli**: nincs meglévő rendszer átköltöztetése,
+    minden elem új beszerzés. Ez jelentősen egyszerűsíti a tervezést — nincs
+    adatmigrációs kockázat, nincs párhuzamos üzem —, viszont a beszerzés és a
+    felhasználói felkészítés súlya megnő.
+
+    **Mi változik a résztvevőknek?** Az asztali gép helyett laptopot kapnak, hozzá egy
+    monitort haza (a cégnél már van). Otthonról mobilneten dolgoznak, aminek a
+    költségét a cég állja. A gépbe **Entra ID** azonosítóval lépnek be, a korábbi
+    fájlszervert **SharePoint és OneDrive** váltja ki, a távoli hozzáféréshez pedig
+    VPN áll rendelkezésre.
+
+    Ha a pilot beválik, a megoldás fokozatosan kiterjeszthető a cég többi részlegére —
+    ennek eldöntése a hatodik, mérési fázis feladata.
+  facts:
+    Projekt neve: Xyo Cloud Pilot
+    Projekt típusa: IT beszerzés és bevezetés (waterfall)
+    Érintett létszám: 50 fő (a teljes létszám kb. 240 fő)
+    Projekt időtartama: 2026.02.02 – 2026.06.30 (5 hónap)
+    Mérési időszak: 2026.07.01 – 2026.09.30 (3 hónap)
+    Jóváhagyott költségkeret: 52 000 000 Ft
+    Tervezett költség: 50 743 000 Ft (ebből tartalék 4 613 000 Ft)
+    Platform: Microsoft 365 Business Premium, Entra ID, Intune, SharePoint, OneDrive, Azure VPN Gateway
+    Migráció: nincs — minden elem új beszerzés
+  roles:
+    - name: Horváth Júlia
+      role: ügyvezető (CEO)
+      org: Xyo Kft.
+      note: A Projekt Irányító Bizottság (Steering Committee) elnöke, a fázis-kapuk döntéshozója.
+    - name: Kovács Anita
+      role: gazdasági igazgató (CFO), projektszponzor
+      org: Xyo Kft.
+      note: A költségkeret gazdája, ő írja alá a Projektalapító okiratot.
+    - name: Tóth Gergő
+      role: projektmenedzser
+      org: Xyo Kft.
+      note: A minta dokumentumokat végig ő jegyzi — ez a te szereped.
+    - name: Nagy Péter
+      role: IT osztályvezető, szakmai vezető
+      org: Xyo Kft.
+      note: A megoldás szakmai gazdája, az üzemeltetésbe vétel átvevője.
+    - name: Szabó Márk
+      role: rendszergazda (Microsoft 365 / Entra ID)
+      org: Xyo Kft.
+      note: A konfiguráció és a mérési adatok elsődleges forrása.
+    - name: Kiss Réka
+      role: Service Desk vezető
+      org: Xyo Kft.
+      note: A ticketadatok szolgáltatója, a támogatási folyamat gazdája.
+    - name: Varga Eszter
+      role: HR vezető
+      org: Xyo Kft.
+      note: A pilot résztvevőinek kijelölése, a home office szabályzat és az elégedettségmérés.
+    - name: Molnár Katalin
+      role: beszerzési vezető
+      org: Xyo Kft.
+      note: Az ajánlatkérés, a szállítóértékelés és a szerződéskötés felelőse.
+    - name: Balogh Tamás
+      role: pénzügyi kontroller
+      org: Xyo Kft.
+      note: A költségkövetés és a projekt pénzügyi zárásának felelőse.
+    - name: dr. Fekete Zsolt
+      role: adatvédelmi tisztviselő (DPO)
+      org: Xyo Kft.
+      note: A GDPR-megfelelés és az adatkezelési kérdések véleményezője.
+    - name: Cloudia Solutions Kft.
+      role: Microsoft CSP partner (bevezetés, licenc)
+      org: külső szállító
+      note: A felhőkörnyezet kialakítója, a licencek forgalmazója.
+    - name: TechLine Zrt.
+      role: hardverszállító (laptop, monitor, dokkoló)
+      org: külső szállító
+      note: Az eszközbeszerzés nyertes szállítója.
+
+glossary:
+  - hu: Projektalapító okirat
+    en: Project Charter
+    meaning: |
+      A projekt „születési anyakönyvi kivonata". Ez az egyetlen dokumentum, ami
+      hivatalosan **létrehozza** a projektet és **felhatalmazza** a projektmenedzsert
+      arra, hogy erőforrásokat használjon. Aláírás nélkül nincs projekt.
+    example: 2026.02.02-án írta alá Kovács Anita szponzor, 52 M Ft kerettel.
+  - hu: Érintett
+    en: Stakeholder
+    meaning: |
+      Bárki, aki hatással van a projektre, vagy akire a projekt hatással van. Nem csak
+      a főnökök: a végfelhasználó, a szállító, a Service Desk és az üzemi tanács is az.
+    example: A 50 pilot felhasználó, a Service Desk, a DPO és a két szállító.
+  - hu: Üzleti indoklás
+    en: Business Case
+    meaning: |
+      Az a dokumentum, ami megválaszolja: **miért érdemes ezt a pénzt elkölteni?**
+      Bemutatja a problémát, a megoldási lehetőségeket, a költséget, a hasznot és azt,
+      mi történik, ha nem csinálunk semmit.
+    example: A 15 M Ft/év elavulási és üzemeltetési költség kiváltása felhőszolgáltatással.
+  - hu: Hatókör
+    en: Scope
+    meaning: |
+      Pontosan mi tartozik a projektbe és mi nem. A „mi nem" legalább olyan fontos —
+      a legtöbb projekt azért csúszik, mert ezt nem írták le.
+    example: 'Benne: 50 fő felhőkörnyezete. Nincs benne: a gyártósori rendszerek.'
+  - hu: Munkalebontási szerkezet
+    en: WBS — Work Breakdown Structure
+    meaning: |
+      A projekt teljes munkájának lebontása egyre kisebb, kezelhető darabokra
+      (munkacsomagokra). Amit nem tettél bele a WBS-be, azt nem is fogod megcsinálni.
+    example: 1. Beszerzés → 1.2 Hardver → 1.2.3 Laptopok átvétele és leltárba vétele.
+  - hu: Alapterv / bázis
+    en: Baseline
+    meaning: |
+      A jóváhagyott hatókör, ütemterv és költségvetés **befagyasztott** változata.
+      Ehhez méred később az eltérést. Csak jóváhagyott változáskéréssel módosítható.
+    example: A 2026.03.13-i Planning-kapun jóváhagyott ütem- és költségbázis.
+  - hu: Kockázatnyilvántartás
+    en: Risk Register
+    meaning: |
+      Az összes azonosított kockázat listája: mi történhet, mekkora eséllyel, mekkora
+      kárral, ki figyeli, és mit teszünk ellene. Élő dokumentum, nem egyszeri feladat.
+    example: „A laptopszállítás csúszik" — közepes valószínűség, magas hatás, Molnár Katalin figyeli.
+  - hu: Feltevés
+    en: Assumption
+    meaning: |
+      Olyan állítás, amit igaznak veszel a tervezéskor, de nem ellenőrizted. Ha később
+      hamisnak bizonyul, kockázattá vagy problémává válik — ezért kell leírni.
+    example: „A dolgozói mobilcsomagok korlátlan adatforgalmat tartalmaznak."
+  - hu: Korlát
+    en: Constraint
+    meaning: |
+      Olyan adottság, amin nem tudsz változtatni, és szűkíti a mozgásteredet: határidő,
+      keretösszeg, jogszabály, rendelkezésre álló emberek.
+    example: A pilotnak a 2026. II. negyedév végéig le kell zárulnia.
+  - hu: RACI mátrix
+    en: RACI Matrix
+    meaning: |
+      Táblázat arról, hogy egy feladatnál ki a végrehajtó (Responsible), ki a
+      számonkérhető felelős (Accountable), kit kell megkérdezni (Consulted) és kit kell
+      tájékoztatni (Informed). Egy feladatnál pontosan **egy** A lehet.
+    example: A laptopbeszerzésnél R = Molnár Katalin, A = Kovács Anita, C = Nagy Péter, I = a pilot csapat.
+  - hu: Változáskérelem
+    en: Change Request
+    meaning: |
+      Formális kérés a jóváhagyott hatókör, ütem vagy költség módosítására. Enélkül
+      minden módosítás „hatókör-elszivárgás", amiért végül téged tesznek felelőssé.
+    example: '„A pilot bővítése 50-ről 65 főre" — hatás: +6,2 M Ft, +3 hét.'
+  - hu: Hatókör-elszivárgás
+    en: Scope Creep
+    meaning: |
+      Amikor a projekt észrevétlenül, apró „ez csak öt perc" kérésekkel nő túl az
+      eredeti hatókörön, változáskezelés nélkül. A leggyakoribb projekt-halálok.
+    example: „Ha már úgyis kiosztjuk a laptopokat, tegyünk rá tervezőszoftvert is."
+  - hu: Problémanapló
+    en: Issue Log
+    meaning: |
+      A **már bekövetkezett** problémák nyilvántartása. A kockázat még csak
+      fenyegetés, a probléma már megtörtént — ez a különbség a két napló között.
+    example: '„12 laptopnál hiányzik a dokkoló kábel" — nyitva, felelős: Szabó Márk.'
+  - hu: Elkészültségi érték
+    en: EVM — Earned Value Management
+    meaning: |
+      Módszer arra, hogy az ütemet és a költséget **együtt** nézd. Két kulcsszám:
+      SPI (ütemhatékonyság) és CPI (költséghatékonyság). 1,0 alatt baj van.
+    example: 2026 áprilisában SPI = 0,94 (kicsit csúszunk), CPI = 1,02 (a kereten belül vagyunk).
+  - hu: Átvételi kritérium
+    en: Acceptance Criteria
+    meaning: |
+      Előre leírt, **mérhető** feltételek, amelyek teljesülése esetén a megrendelő
+      köteles átvenni az eredményt. Enélkül az átadás vitába fullad.
+    example: „50 felhasználó közül 50 be tud lépni Entra ID-val és eléri a SharePoint tárhelyét."
+  - hu: Felhasználói átvételi teszt
+    en: UAT — User Acceptance Testing
+    meaning: |
+      Az a teszt, amit **a felhasználók** végeznek, nem a fejlesztők vagy a
+      rendszergazdák. Azt igazolja, hogy a megoldás a valós munkára alkalmas.
+    example: 10 fős tesztcsoport 2 héten át élesben dolgozott a felhőkörnyezetben.
+  - hu: Tanulságok naplója
+    en: Lessons Learned Register
+    meaning: |
+      Mi működött, mi nem, és mit csinálnánk másképp. Akkor ér valamit, ha **a projekt
+      közben folyamatosan** gyűjtöd, nem a végén próbálod visszaemlékezésből.
+    example: „A hardver szállítási határidőt túl optimistán terveztük — legközelebb +3 hét puffer."
+  - hu: Haszonrealizálás
+    en: Benefits Realisation
+    meaning: |
+      Annak igazolása, hogy a projekt **után** tényleg megjött-e az az üzleti haszon,
+      amiért elindítottuk. A projektzárás nem ugyanaz, mint a haszon megérkezése.
+    example: A 2026. III. negyedéves mérés dönti el, hogy a pilot kiterjeszthető-e.
+  - hu: Utólagos értékelés
+    en: PIR — Post-Implementation Review
+    meaning: |
+      A bevezetés után néhány hónappal tartott értékelés: elértük-e a célokat, mit
+      mutatnak a mérőszámok, és mi a javaslat a folytatásra.
+    example: 2026.10.09-i PIR a 3 hónapos mérési adatok alapján.
+  - hu: Fázis-kapu
+    en: Phase Gate
+    meaning: |
+      Döntési pont két fázis között: a döntéshozó megnézi, hogy a fázis eredményei
+      megvannak-e, és **engedélyezi vagy leállítja** a továbblépést.
+    example: A 2026.03.13-i Planning-kapun hagyta jóvá a Steering Committee a baselinet.
+  - hu: Projekt Irányító Bizottság
+    en: Steering Committee
+    meaning: |
+      A projekt döntéshozó testülete: a szponzor és a főbb érintettek vezetői.
+      Ide viszed azt, amiről nem dönthetsz magad (pénz, hatókör, határidő).
+    example: Horváth Júlia (elnök), Kovács Anita, Nagy Péter, Varga Eszter — havonta ülésezik.
+  - hu: Üzemeltetésbe adás
+    en: Operational Handover
+    meaning: |
+      A kész megoldás formális átadása az üzemeltetésnek: dokumentációval,
+      jogosultságokkal, támogatási folyamattal. Enélkül a projekt „nem ér véget",
+      mert téged hívnak minden hibánál.
+    example: 2026.06.26-án Nagy Péter vette át a Run-bookkal együtt.

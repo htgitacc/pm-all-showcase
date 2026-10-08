@@ -1,0 +1,577 @@
+id: closure
+number: 5
+title_hu: Zárás
+title_en: Closure
+tagline: A projekt formálisan véget ér, és valaki más veszi át a felelősséget.
+when: >
+  Az UAT elfogadásától a projekt formális lezárásáig.
+  A Xyo projektben: 2026.06.22 – 2026.06.30.
+
+purpose: |
+  A zárás nem attól történik meg, hogy elfogy a munka. **A projekt akkor zárul le,
+  ha valaki formálisan átveszi az eredményt, és a felelősség átkerül az
+  üzemeltetéshez.**
+
+  Ez a fázis rövid, de a legtöbb junior PM itt hibázik a legnagyobbat: a csapat már
+  a következő feladaton dolgozik, a lelkesedés elfogyott, és a zárás elmarad.
+  A következmény az, hogy **fél évvel később is téged hívnak minden hibánál** — mert
+  formálisan soha nem adtad át.
+
+  Két dolgot ne hagyj ki semmiképp: az **üzemeltetésbe adást** és a **tanulságok
+  rögzítését**. Az első téged szabadít fel, a második a következő projektet menti meg.
+
+pm_tasks:
+  - text: Ellenőrizd, hogy minden vállalt eredmény elkészült, és írasd alá az átvételt.
+    why: >
+      Az aláírt átvétel az egyetlen bizonyíték arra, hogy teljesítettél. Enélkül a
+      projekt megítélése bárki emlékezetén múlik.
+
+  - text: Add át a megoldást az üzemeltetésnek, dokumentációval és jogosultságokkal.
+    why: >
+      Ez szabadít fel téged. Amíg nincs formális üzemeltetésbe adás, minden hiba
+      a projekt — vagyis a te — problémád marad.
+  - text: Zárd le a szerződéseket és a pénzügyi elszámolást.
+    why: >
+      A nyitva maradt szerződés és a le nem zárt keret évekig kísért, és a kontroller
+      téged fog keresni vele.
+  - text: Tarts tanulságok workshopot, és rögzítsd az eredményét.
+    why: >
+      A szervezeti tanulás egyetlen mechanizmusa. Ha nem írod le, a következő projekt
+      pontosan ugyanezeket a hibákat követi el.
+  - text: Engedd el az erőforrásokat, és köszönd meg a munkát.
+    why: >
+      A projekttagoknak a vezetőjük felé is szükségük van visszajelzésre. Ez a
+      leggyakrabban kihagyott, mégis legolcsóbb PM-feladat.
+  - text: Archiváld a projekt dokumentumait, kereshető módon.
+    why: >
+      Egy audit vagy egy későbbi vita esetén percek alatt elő kell tudnod venni
+      bármelyik dokumentumot.
+  - text: Add át a mérési feladatot a hatodik fázis felelősének.
+    why: >
+      A projekt lezárul, de a haszon mérése még hónapokig tart. Ennek nevesített
+      gazdát kell kapnia, különben elsikkad.
+
+meetings:
+  - name_hu: Átadás-átvételi egyeztetés
+    name_en: Handover Meeting
+    purpose: A megoldás formális átadása az üzemeltetésnek.
+    when: 2026.06.26.
+    duration: 90 perc
+    participants:
+      - Nagy Péter, IT osztályvezető (átvevő)
+      - Szabó Márk, rendszergazda
+      - Kiss Réka, Service Desk
+      - Te, projektmenedzserként (átadó)
+    agenda:
+      - A dokumentáció átadása és átnézése
+      - Jogosultságok és adminisztrátori hozzáférések átadása
+      - A támogatási folyamat és az eszkalációs út tisztázása
+      - Nyitva maradt hibák és a javításuk határideje
+      - A garanciális és támogatási szerződések ismertetése
+    output: Aláírt üzemeltetésbe adási dokumentum (Run-book).
+    tip: >
+      Az átvevő **olvassa is át** a dokumentációt az aláírás előtt. Az „aláírom,
+      majd megnézem" átadás semmit nem ér, és két hét múlva visszahívnak.
+
+  - name_hu: Tanulságok workshop
+    name_en: Lessons Learned Workshop
+    purpose: Mi működött, mi nem, mit csinálnánk másképp.
+    when: 2026.06.29.
+    duration: 2 óra
+    participants:
+      - A teljes projektcsapat
+      - Kiss Réka, Service Desk
+      - Molnár Katalin, beszerzés
+      - Egy-két pilot felhasználó
+    agenda:
+      - Mi ment jól, amit meg kell ismételni
+      - Mi ment rosszul, és miért
+      - Mit csinálnánk másképp legközelebb
+      - Konkrét, átadható javaslatok a következő projektnek
+    output: Tanulságok naplója, konkrét javaslatokkal.
+    tip: >
+      Ne engedd, hogy hibakereséssé váljon. A kérdés nem az, hogy „ki rontotta el",
+      hanem hogy „mi tette lehetővé, hogy elromoljon".
+
+  - name_hu: Projektzáró ülés
+    name_en: Project Closure Meeting
+    purpose: A projekt formális lezárása a Steering Committee-vel.
+    when: 2026.06.30.
+    duration: 60 perc
+    participants:
+      - Projekt Irányító Bizottság teljes összetételben
+      - Te, projektmenedzserként
+    agenda:
+      - 'A záró jelentés bemutatása: célok, eredmények, eltérések'
+      - Pénzügyi elszámolás
+      - Nyitva maradt pontok és a felelősük
+      - A mérési fázis terve és felelőse
+      - Formális lezárási döntés
+    output: Aláírt projektzáró jelentés, lezárási döntés.
+    tip: >
+      Itt kérd meg a szponzort, hogy a csapat vezetői felé is jelezze vissza a
+      teljesítményt. Neked ez kerül a legkevesebbe, nekik viszont sokat jelent.
+
+data_in:
+  - from: Balogh Tamás, kontroller
+    what: A projekt teljes pénzügyi elszámolása, a le nem hívott keret összege
+    used_in: financial_closure
+  - from: Molnár Katalin, beszerzés
+    what: A szerződések teljesülési státusza, a garanciális feltételek
+    used_in: contract_closure
+  - from: Szabó Márk, rendszergazda
+    what: A végleges konfigurációs dokumentáció és az adminisztrátori hozzáférések
+    used_in: operational_handover
+  - from: A projektcsapat
+    what: Tanulságok, észrevételek, a workshop előtt írásban is
+    used_in: lessons_learned
+    note: Kérd be írásban előre — a workshopon a csendesebbek nem szólalnak meg.
+  - from: Kiss Réka, Service Desk
+    what: A hypercare időszak ticketstatisztikája
+    used_in: closure_report
+
+data_out:
+  - to: Nagy Péter, IT osztályvezető
+    what: A teljes üzemeltetési dokumentáció, jogosultságok, támogatási folyamat
+    when: Az átadás-átvételi egyezteten, 2026.06.26.
+  - to: Projekt Irányító Bizottság
+    what: Projektzáró jelentés és pénzügyi elszámolás
+    when: A záró ülés előtt 3 munkanappal
+  - to: A projekttagok szervezeti vezetői
+    what: Visszajelzés a projektben végzett munkáról
+    when: A projekt zárásakor
+    note: Rövid, néven nevezett, konkrét. Ez a leggyakrabban kihagyott PM-feladat.
+  - to: A hatodik fázis felelőse
+    what: A haszonrealizálási terv, a baseline adatok és a mérési felelősségek
+    when: A projekt zárásával egyidejűleg
+  - to: A pilot 50 résztvevője
+    what: Köszönet, a projekt eredménye, és hogy honnan kérhetnek ezután segítséget
+    when: A zárás napján
+
+data_restricted:
+  - what: A tanulságok workshopon elhangzott, személyre szóló kritikák
+    why: >
+      A Tanulságok naplójába a **rendszerszintű** tanulság kerül, ne a személyes
+      értékelés. Ha névvel kerül be, soha többé nem lesz őszinte workshopod.
+  - what: A szállítói teljesítmény részletes értékelése a szállítónak, szűretlenül
+    why: >
+      A belső értékelés a jövőbeli beszerzési döntést szolgálja. A szállító a
+      szerződéses teljesítésről kap visszajelzést, nem a belső pontszámokról.
+  - what: A projekt tényleges költséghatékonysági adatai a szállítóknak
+    why: >
+      A következő beszerzésben ez rontja a tárgyalási pozíciódat.
+
+responsibility:
+  summary: |
+    A zárásban a felelősséged az, hogy **a felelősség átkerüljön máshoz** — formálisan,
+    írásban, dokumentációval. Amíg ez nem történik meg, a projekt (és a hibái)
+    a tiéd maradnak, akkor is, ha a projekt papíron „kész".
+  items:
+    - what: Azért felelsz, hogy az átadás dokumentált és teljes legyen.
+      risk: >
+        Hiányos átadás után hónapokig téged hívnak minden hibánál, projektkeret és
+        felhatalmazás nélkül.
+    - what: Azért felelsz, hogy a nyitva maradt pontok felelőssel és határidővel záruljanak.
+      risk: >
+        A „majd megoldjuk" pontok gazdátlanul maradnak, és később a projekt
+        kudarcaként emlegetik őket.
+    - what: Azért felelsz, hogy a tanulságok írásban rögzüljenek.
+      risk: >
+        A le nem írt tanulság elvész. A következő projekt ugyanezeket a hibákat
+        fogja elkövetni — és lehet, hogy az is a tiéd lesz.
+    - what: Azért felelsz, hogy a mérési fázisnak legyen nevesített gazdája.
+      risk: >
+        Gazdátlan mérés nem történik meg, és fél év múlva senki nem fogja tudni
+        megmondani, sikeres volt-e a projekt.
+    - what: Nem felelsz a megoldás üzemeltetés közbeni hibáiért — az átadás után.
+      risk: >
+        De csak akkor, ha az átadás formális, aláírt és dokumentált volt.
+        Enélkül a gyakorlatban mégis téged keresnek.
+
+documents:
+  - id: final_acceptance
+    order: 1
+    name_hu: Átadás-átvételi jegyzőkönyv
+    name_en: Final Acceptance Certificate
+    mandatory: true
+    owner: A PM és a megrendelői oldal képviselője írja alá.
+    why: >
+      Ez igazolja, hogy a projekt **teljesítette, amit vállalt**. Az átvételi
+      kritériumokhoz mérve, tételesen. Ez a legfontosabb bizonyítékod arról, hogy a
+      munkát elvégezted.
+    contents:
+      - A szállított eredmények tételes listája
+      - Megfelelés az átvételi kritériumoknak, kritériumonként
+      - Nyitva maradt hibák, elfogadott javítási határidővel
+      - Fenntartások, ha vannak
+      - Aláírások és dátum
+    inputs: [quality_plan, uat_signoff, delivery_acceptance, quality_control_report]
+    feeds: [closure_report, operational_handover]
+    pitfall: >
+      Az átvételi kritériumokat **egyesével** vezesd végig, ne összefoglalva.
+      A „minden rendben" típusú átvétel vita esetén semmit nem bizonyít.
+
+    sample_file: docs/5-closure/01-atadas-atveteli-jegyzokonyv.md
+  - id: operational_handover
+    order: 2
+    name_hu: Üzemeltetésbe adás (Run-book)
+    name_en: Operational Handover / Run-book
+    mandatory: true
+    owner: A PM adja át, az IT osztályvezető veszi át.
+    why: >
+      **Ez a dokumentum szabadít fel téged.** Leírja, hogyan kell a megoldást
+      üzemeltetni, ki mit csinál hiba esetén, és hol vannak a hozzáférések. Enélkül
+      a projekt sosem ér véget a gyakorlatban.
+    contents:
+      - A megoldás felépítése és a konfiguráció (as-built hivatkozás)
+      - Adminisztrátori hozzáférések és a jelszókezelés rendje
+      - Rendszeres üzemeltetési feladatok (mentésellenőrzés, licenckezelés)
+      - 'Hibakezelés: tünet, ok, teendő, eszkalációs út'
+      - Támogatási és garanciális szerződések, elérhetőségek
+      - Ismert korlátok és nyitva maradt hibák
+    inputs: [as_built, security_baseline, rollback_plan, user_guide, training_material, final_acceptance]
+    feeds: [archive_index]
+    pitfall: >
+      A hibakezelési részt a Service Deskkel közösen írd. Amit te logikusnak találsz,
+      az nekik gyakran használhatatlan — ők a valós hívásokat ismerik.
+
+    sample_file: docs/5-closure/02-uzemeltetesbe-adas-runbook.md
+  - id: closure_report
+    order: 3
+    name_hu: Projektzáró jelentés
+    name_en: Project Closure Report
+    mandatory: true
+    owner: A PM írja, a Steering Committee fogadja el.
+    why: >
+      A projekt hivatalos mérlege: mit vállaltunk, mit teljesítettünk, hol tértünk el
+      és miért. **Ez a te értékelésed is** — ez alapján fogják megítélni a munkádat,
+      ezért írd meg gondosan és őszintén.
+    contents:
+      - A célok és a teljesülésük, célonként
+      - 'Ütem: terv vs. tény, az eltérések magyarázata'
+      - 'Költség: terv vs. tény, a tartalék felhasználása'
+      - 'Hatókör: mi változott és milyen döntés alapján'
+      - A főbb kockázatok és problémák, és a kezelésük
+      - Nyitva maradt pontok felelőssel és határidővel
+      - A mérési fázis terve és felelőse
+    inputs: [charter, status_report, steering_report, change_log, risk_report, evm_report, milestone_report, escalation_log, final_acceptance, decision_log, quality_control_report]
+    feeds: [pir, rollout_recommendation]
+    pitfall: >
+      Az eltéréseket **magyarázd meg, ne mentegesd**. A változásnaplóra és az
+      eszkalációs naplóra hivatkozva minden eltérés levezethető — ez a hitelesség.
+
+    sample_file: docs/5-closure/03-projektzaro-jelentes.md
+  - id: financial_closure
+    order: 4
+    name_hu: Pénzügyi zárás
+    name_en: Financial Closure
+    mandatory: true
+    owner: A kontroller készíti, a PM adja hozzá a projektadatokat.
+    why: >
+      Lezárja a projekt költségkeretét: minden számla beérkezett, minden
+      kötelezettségvállalás rendezve. **A le nem zárt keret évekig kísért**, és a
+      kontroller téged fog keresni vele.
+    contents:
+      - Tervezett és tényleges költség tételesen
+      - A tartalékkeret felhasználása
+      - Le nem hívott keret és annak sorsa
+      - A projekt utáni folyó (előfizetési) költség és annak új gazdája
+      - Nyitott számlák és kötelezettségvállalások
+    inputs: [budget, delivery_acceptance, contract]
+    feeds: [closure_report, rollout_recommendation]
+    pitfall: >
+      A projekt utáni **folyó költséget** nevesített gazdához kell rendelni. Ha ez
+      elmarad, jövőre senki nem tudja, kinek a kerete fizeti az előfizetést.
+
+    sample_file: docs/5-closure/04-penzugyi-zaras.md
+  - id: lessons_learned
+    order: 5
+    name_hu: Tanulságok naplója
+    name_en: Lessons Learned Register
+    mandatory: true
+    owner: A PM vezeti, a workshopon a csapat közösen tölti meg.
+    why: >
+      A szervezeti tanulás egyetlen mechanizmusa. **Akkor ér valamit, ha a projekt
+      közben folyamatosan gyűjtöd** — a záró workshopon már senki nem emlékszik a
+      márciusi problémákra.
+    contents:
+      - Tanulság leírása és a kiváltó helyzet
+      - Kategória (tervezés, beszerzés, kommunikáció, technika)
+      - Mi volt a hatása
+      - Konkrét javaslat a következő projektnek
+      - Kinek szól a javaslat
+    inputs: [issue_log, risk_report, change_log, escalation_log, bid_comparison, decision_log]
+    feeds: [pir, rollout_recommendation]
+    pitfall: >
+      A tanulság legyen **konkrét és átadható**. „Jobban kellett volna kommunikálni"
+      semmit nem ér; „a Service Desket 2 héttel az élesítés előtt kell felkészíteni"
+      viszont használható.
+
+    sample_file: docs/5-closure/05-tanulsagok-naploja.md
+  - id: contract_closure
+    order: 6
+    name_hu: Szerződészárás
+    name_en: Contract Closure
+    mandatory: true
+    owner: A beszerzés végzi, a PM igazolja a szakmai teljesülést.
+    why: >
+      Formálisan lezárja a szállítói jogviszonyt: minden teljesült, minden számla
+      rendezve, a garancia feltételei rögzítve. A nyitva maradt szerződés később
+      jogi és pénzügyi kockázat.
+    contents:
+      - A szerződések teljesülésének igazolása
+      - Kötbér vagy hibás teljesítés érvényesítése, ha volt
+      - A garanciális időszak kezdete és feltételei
+      - Szállítói teljesítményértékelés (belső használatra)
+      - A támogatási szerződés folytatásának rendje
+    inputs: [contract, delivery_acceptance]
+    feeds: [financial_closure, archive_index]
+    pitfall: >
+      A szállítói értékelést készítsd el akkor is, ha nem kérik. A következő
+      beszerzésnél ez lesz az egyetlen tényalapú információd a szállítóról.
+
+    sample_file: docs/5-closure/06-szerzodeszaras.md
+  - id: resource_release
+    order: 7
+    name_hu: Erőforrás-elengedés és visszajelzés
+    name_en: Resource Release
+    mandatory: false
+    owner: A PM készíti, a szervezeti vezetőknek küldi.
+    why: >
+      Formálisan lezárja a projekttagok részvételét, és **visszajelzést ad a
+      vezetőjüknek** a munkájukról. Ez a leggyakrabban kihagyott, mégis legolcsóbb
+      PM-feladat — és ez határozza meg, kit kapsz a következő projektedre.
+    contents:
+      - A projekttagok listája és a részvételük időszaka
+      - Rövid, konkrét visszajelzés személyenként
+      - Mikortól szabadulnak fel
+      - Köszönet
+    inputs: [resource_plan]
+    pitfall: >
+      Legyen konkrét. A „mindenki nagyszerű volt" körlevél senkinek nem segít;
+      a néven nevezett, konkrét teljesítmény viszont a következő értékelésébe is bekerül.
+
+    sample_file: docs/5-closure/07-eroforras-elengedes.md
+  - id: archive_index
+    order: 8
+    name_hu: Archiválási jegyzék
+    name_en: Archive Index
+    mandatory: true
+    owner: A PM készíti.
+    why: >
+      Megmutatja, **mi hol található** a projekt lezárása után. Audit vagy későbbi
+      vita esetén percek alatt elő kell tudnod venni bármelyik dokumentumot.
+    contents:
+      - A dokumentumok listája, verzióval és dátummal
+      - Tárolási hely és hozzáférési jogosultság
+      - Megőrzési idő dokumentumtípusonként
+      - Kinél van a hozzáférés a projekt után
+    inputs: [operational_handover, contract_closure, as_built]
+    pitfall: >
+      A megőrzési időt a szerződéses és a számviteli előírásokhoz igazítsd, ne
+      találomra. A szerződéses dokumentumokat általában sokkal tovább kell őrizni.
+
+    sample_file: docs/5-closure/08-archivalasi-jegyzek.md
+  - id: satisfaction_survey
+    order: 9
+    name_hu: Érintetti elégedettségi felmérés
+    name_en: Stakeholder Satisfaction Survey
+    mandatory: false
+    owner: A PM készíti; a HR segíthet a lebonyolításban.
+    why: >
+      Megmutatja, **hogyan élték meg** az érintettek a projektet — ami nem ugyanaz,
+      mint hogy teljesültek-e a mérőszámok. A hatodik fázis felhasználói kérdőívének
+      kiindulópontja is.
+    contents:
+      - Rövid, 5-8 kérdéses kérdőív
+      - Kommunikáció, felkészítés, támogatás, eredmény
+      - 'Nyitott kérdés: mit csináltunk volna másképp'
+      - Az eredmények összesítése
+    inputs: [stakeholder_register, comm_plan]
+    feeds: [lessons_learned, user_survey]
+    pitfall: >
+      Tartsd rövidre és névtelenre. A 20 kérdéses, azonosítható kérdőívet vagy nem
+      töltik ki, vagy nem őszintén.
+
+    sample_file: docs/5-closure/09-elegedettsegi-felmeres.md
+checklist:
+  - id: clo-01
+    text: Vezesd végig az átvételi kritériumokat egyesével, és írasd alá az átadás-átvételt.
+    mandatory: true
+    doc_ref: final_acceptance
+    why: >
+      Ez az egyetlen bizonyíték arra, hogy teljesítettél. A „minden rendben" típusú
+      átvétel vita esetén semmit nem ér.
+    how:
+      - Kritériumonként vezesd végig, megfelelt / nem felelt meg jelöléssel.
+      - A nyitva maradt hibákat elfogadott javítási határidővel rögzítsd.
+
+  - id: clo-02
+    text: Készítsd el a Run-bookot, és add át a megoldást az üzemeltetésnek.
+    mandatory: true
+    doc_ref: operational_handover
+    why: >
+      Ez szabadít fel téged. Amíg nincs formális átadás, minden hiba a te problémád marad.
+    how:
+      - A hibakezelési részt a Service Deskkel közösen írd.
+      - Add át az adminisztrátori hozzáféréseket, dokumentáltan.
+      - Az átvevő olvassa is át aláírás előtt.
+    tip: >
+      Ha az átvevő nem hajlandó aláírni, az azt jelenti, hogy valami hiányzik.
+      Derítsd ki, mi az — ne kerüld meg az aláírást.
+
+  - id: clo-03
+    text: Zárd le a szerződéseket, és készíttess szállítói teljesítményértékelést.
+    mandatory: true
+    doc_ref: contract_closure
+    why: >
+      A nyitva maradt szerződés jogi és pénzügyi kockázat; az értékelés pedig a
+      következő beszerzés egyetlen tényalapú információja.
+    how:
+      - Igazold a szakmai teljesülést, a beszerzés zárja a jogviszonyt.
+      - Rögzítsd a garanciális időszak kezdetét és feltételeit.
+
+  - id: clo-04
+    text: Végezd el a pénzügyi zárást, és nevezz meg gazdát a folyó költségnek.
+    mandatory: true
+    doc_ref: financial_closure
+    why: >
+      A felhő-előfizetés a projekt után is fut. Ha nincs gazdája, jövőre senki nem
+      tudja, kinek a kerete fizeti.
+    how:
+      - Minden számla beérkezését és rendezését ellenőrizd.
+      - Írd le a le nem hívott keret összegét és a sorsát.
+      - Add át a folyó költséget az IT üzemeltetés keretébe, írásban.
+
+  - id: clo-05
+    text: Tarts tanulságok workshopot, és rögzítsd az eredményét konkrét javaslatokkal.
+    mandatory: true
+    doc_ref: lessons_learned
+    why: >
+      A le nem írt tanulság elvész, és a következő projekt ugyanezeket a hibákat
+      követi el.
+    how:
+      - Kérd be a hozzászólásokat írásban is előre.
+      - 'Ne engedd hibakereséssé válni: „mi tette lehetővé", ne „ki rontotta el".'
+      - Minden tanulsághoz konkrét, átadható javaslat és címzett tartozzon.
+
+  - id: clo-06
+    text: Írd meg a projektzáró jelentést, és magyarázd meg az eltéréseket.
+    mandatory: true
+    doc_ref: closure_report
+    why: >
+      Ez a projekt hivatalos mérlege — és a te munkád értékelése is.
+    how:
+      - Célonként vezesd végig a teljesülést.
+      - Az eltéréseket a változásnaplóra és az eszkalációs naplóra hivatkozva vezesd le.
+      - A nyitva maradt pontokhoz rendelj felelőst és határidőt.
+
+  - id: clo-07
+    text: Add át a mérési feladatot a hatodik fázis nevesített felelősének.
+    mandatory: true
+    why: >
+      A projekt lezárul, de a haszon mérése hónapokig tart. Gazdátlan mérés nem
+      történik meg.
+    how:
+      - Add át a haszonrealizálási tervet és a baseline adatokat.
+      - Rögzítsd írásban, ki, mit, mikor mér.
+      - Írd bele a záró jelentésbe is.
+
+  - id: clo-08
+    text: Engedd el az erőforrásokat, és adj visszajelzést a vezetőiknek.
+    mandatory: false
+    doc_ref: resource_release
+    why: >
+      Ez határozza meg, kit kapsz a következő projektedre. A legolcsóbb PM-feladat,
+      amit a legtöbben kihagynak.
+    how:
+      - Néven nevezett, konkrét visszajelzés a szervezeti vezetőnek.
+      - Kérd meg a szponzort, hogy ő is jelezzen vissza.
+
+  - id: clo-09
+    text: Archiváld a dokumentumokat, és készíts archiválási jegyzéket.
+    mandatory: true
+    doc_ref: archive_index
+    why: >
+      Audit vagy vita esetén percek alatt elő kell tudnod venni bármelyik dokumentumot.
+    how:
+      - Verzióval és dátummal listázd a dokumentumokat.
+      - A megőrzési időt a szerződéses és számviteli előírásokhoz igazítsd.
+      - Rögzítsd, kinél lesz hozzáférés a projekt után.
+
+  - id: clo-10
+    text: Készíts rövid elégedettségi felmérést az érintettek körében.
+    mandatory: false
+    doc_ref: satisfaction_survey
+    why: >
+      Megmutatja, hogyan élték meg a projektet — ami nem ugyanaz, mint a mérőszámok.
+    how:
+      - 5-8 kérdés, névtelenül.
+      - 'Egy nyitott kérdés: mit csináltunk volna másképp.'
+
+  - id: clo-11
+    text: Tartsd meg a projektzáró ülést, és kérd a formális lezárási döntést.
+    mandatory: true
+    why: >
+      A projekt attól zárul le, hogy a döntéshozó kimondja — nem attól, hogy elfogy
+      a munka.
+    how:
+      - Küldd ki a záró jelentést 3 munkanappal az ülés előtt.
+      - A lezárási döntést és a dátumot rögzítsd írásban.
+
+gate:
+  summary: >
+    A projekt akkor zárható le, ha az eredmény formálisan átadásra került, a
+    pénzügyek és a szerződések rendezve vannak, a tanulságok rögzítve, és a
+    mérési fázisnak van nevesített gazdája.
+  criteria:
+    - Aláírt átadás-átvételi jegyzőkönyv, kritériumonkénti megfeleléssel.
+    - Aláírt üzemeltetésbe adás (Run-book), átadott adminisztrátori hozzáférésekkel.
+    - Lezárt szerződések, rögzített garanciális feltételekkel.
+    - Elvégzett pénzügyi zárás, a folyó költség nevesített gazdájával.
+    - Elfogadott projektzáró jelentés, magyarázott eltérésekkel.
+    - Rögzített tanulságok, konkrét, címzett javaslatokkal.
+    - Archiválási jegyzék, megőrzési időkkel.
+    - A mérési fázis terve és felelőse írásban átadva.
+  decision_by: >
+    Projekt Irányító Bizottság. A Xyo projektben a lezárás dátuma: 2026.06.30.
+
+# --------------------------------------------------------------------------
+# PRINCE2-kiegészítés
+# --------------------------------------------------------------------------
+prince2:
+  processes:
+    - code: CP
+      name: Projekt lezárása (Closing a Project)
+    - code: DP
+      name: Projekt irányítása (Directing a Project) — a Board engedélyezi a zárást
+  summary: >
+    Nagyon hasonló a PMI-hoz. A fő különbség, hogy PRINCE2-ben **a zárás is
+    engedélyhez kötött**: a Board dönti el, hogy a projekt lezárható-e — és
+    a **projekt idő előtti lezárása is szabályos kimenet**, ha az üzleti
+    indoklás közben megszűnt.
+  adds:
+    - what: Az idő előtti lezárás mint szabályos kimenet
+      why: >
+        Ha az 1. alapelv (folyamatos üzleti indokoltság) sérül, a projektet
+        le KELL állítani. PRINCE2-ben ez nem kudarc, hanem helyes döntés —
+        és van rá eljárás.
+    - what: Follow-on Action Recommendations
+      why: >
+        A nyitva maradt pontok formális átadása annak, aki a projekt után
+        kezeli őket. A Xyo zárásában ez a nyitott pontok táblázata volt.
+    - what: A Benefits Management Approach frissítése
+      why: >
+        A projekt zárásakor rögzítjük, ki és mikor méri majd a hasznokat.
+        A Xyo-nál ez a mérési felelősségek írásos átadása volt — a zárás
+        feltétele.
+  products:
+    - name_hu: Projektzáró jelentés
+      name_en: End Project Report
+      pmi: Projektzáró jelentés
+    - name_hu: Tanulságjelentés
+      name_en: Lessons Report
+      pmi: Tanulságok naplója
+    - name_hu: Utókövetési javaslatok
+      name_en: Follow-on Action Recommendations
+      pmi: (a záró jelentés nyitott pontjai)

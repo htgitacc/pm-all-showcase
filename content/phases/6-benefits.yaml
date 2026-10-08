@@ -1,0 +1,554 @@
+id: benefits
+number: 6
+title_hu: Haszonrealizálás és mérés
+title_en: Benefits Realisation (+1)
+tagline: Három hónap múlva bebizonyítjuk — vagy megcáfoljuk —, hogy megérte.
+when: >
+  A projekt lezárása után 3 hónapig, T0 baseline-nal és T+1 / T+2 / T+3 mérésekkel.
+  A Xyo projektben: 2026.07.01 – 2026.09.30, utólagos értékelés 2026.10.09.
+
+purpose: |
+  **A projektzárás nem ugyanaz, mint a siker.** A projekt akkor sikeres, ha a haszon,
+  amiért elindítottuk, tényleg megérkezik — ez pedig hónapokkal a zárás után derül ki.
+
+  Ez a szakasz szigorúan arra épül, amit az **első fázisban** írtunk le a
+  Haszonrealizálási tervben. Ha ott nem fogalmaztuk meg mérhetően, mit várunk, akkor
+  most nincs mit igazolni. **Ezért a mérés nem itt kezdődik, hanem a projekt legelején.**
+
+  A Xyo pilot esetében a tét konkrét: eldönteni, hogy a megoldás **kiterjeszthető-e**
+  a cég többi részlegére. Ehhez tényadat kell, nem benyomás.
+
+  ### A mérőszámok katalógusa — mit, miből, ki méri?
+
+  | Mérőszám | Adatforrás | Ki méri | Gyakoriság |
+  |---|---|---|---|
+  | Szolgáltatás-rendelkezésre állás (%) | M365 Service Health, Azure monitor | Szabó Márk, rendszergazda | havonta |
+  | Ticketszám kategóriánként | Service Desk ticketrendszer | Kiss Réka | havonta |
+  | Átlagos megoldási idő (MTTR) | Service Desk ticketrendszer | Kiss Réka | havonta |
+  | SharePoint / OneDrive adaptáció (aktív felhasználók %-a) | M365 Usage Report | Szabó Márk | havonta |
+  | Új gép beüzemelési ideje (óra/gép) | Intune Autopilot naplók | Szabó Márk | eseményenként |
+  | Fajlagos IT-költség (Ft/fő/hó) | Kontrolling, számlák | Balogh Tamás | havonta |
+  | MFA-lefedettség (%) és Secure Score | Entra ID / Defender riportok | Szabó Márk | havonta |
+  | Home office napok aránya | HR jelenléti rendszer | Varga Eszter | havonta |
+  | Adatvesztési / visszaállítási esetek száma | Service Desk + mentési naplók | Kiss Réka | havonta |
+  | Felhasználói elégedettség (1–5) | Rövid kérdőív | Varga Eszter | T0, T+1, T+3 |
+  | Munkakezdésig eltelt idő új belépőnél | HR + IT folyamat mérése | Varga Eszter | eseményenként |
+
+  **Fontos elv:** minden mérőszámnál kell **kiindulási érték (T0)**, **célérték** és
+  **nevesített felelős**. Amelyiknél ezek közül bármelyik hiányzik, azt a mérőszámot
+  inkább hagyd ki, mint hogy értelmezhetetlen adatot gyűjts.
+
+pm_tasks:
+  - text: Vedd át a mérési felelősséget, vagy add át nevesített gazdának.
+    why: >
+      A projekt lezárult, de a mérés még hónapokig tart. Ha ez nincs nevesítve,
+      egyszerűen nem fog megtörténni.
+  - text: Konkretizáld a haszonrealizálási tervet mérési adatlapokká.
+    why: >
+      Az első fázisban megfogalmazott haszon még általános. Most kell pontosan
+      megmondani, melyik riportból, melyik szűrővel, melyik napon olvassuk ki.
+  - text: Ellenőrizd, hogy a T0 baseline adatok megvannak és értelmezhetők.
+    why: >
+      Ha a kiindulási érték hiányzik, az egész mérés értelmét veszti. Ha most derül
+      ki, hogy hiányzik, még lehet közelítő értéket találni — később már nem.
+  - text: Gyűjtsd be a havi méréseket, és vesd össze a célértékekkel.
+    why: >
+      A havi ritmus mutatja meg a trendet. Egyetlen mérés önmagában félrevezető,
+      mert az élesítés utáni hetek mindig rosszabbak.
+  - text: Végeztess felhasználói elégedettségmérést.
+    why: >
+      A technikai mérőszámok nem mutatják meg, hogy a napi munka tényleg jobb lett-e.
+      Erre csak a felhasználót lehet megkérdezni.
+  - text: Készítsd el az utólagos értékelést (PIR), és tegyél javaslatot a folytatásra.
+    why: >
+      Ez a szakasz végterméke: egy tényalapú javaslat arról, hogy a pilot
+      kiterjeszthető-e, milyen feltételekkel.
+
+meetings:
+  - name_hu: Mérési indító egyeztetés
+    name_en: Measurement Kick-off
+    purpose: A mérési felelősségek és az adatforrások véglegesítése.
+    when: 2026.07.02, közvetlenül a projektzárás után.
+    duration: 60 perc
+    participants:
+      - Szabó Márk, rendszergazda (technikai mérőszámok)
+      - Kiss Réka, Service Desk (ticketadatok)
+      - Varga Eszter, HR (elégedettség, home office)
+      - Balogh Tamás, kontroller (költség)
+      - Nagy Péter, IT osztályvezető (a hasznok gazdája)
+    agenda:
+      - 'Mérőszámonként: forrás, szűrő, kiolvasás módja, felelős'
+      - A T0 baseline adatok ellenőrzése
+      - A havi adatszolgáltatás időpontja és formátuma
+      - Mi történik, ha egy adat nem áll rendelkezésre
+    output: Véglegesített KPI-adatlapok, nevesített felelősökkel.
+    tip: >
+      Egyeztessétek a **pontos szűrőfeltételeket** is. Ha az egyik hónapban másképp
+      kérdezed le a ticketeket, az egész idősor használhatatlan lesz.
+
+  - name_hu: Havi mérési egyeztetés
+    name_en: Monthly Benefits Review
+    purpose: Az adott havi mérési eredmények átbeszélése és értelmezése.
+    when: Minden hónap 5. munkanapján — 2026.08.06, 09.04, 10.06.
+    duration: 45 perc
+    participants:
+      - A mérési felelősök
+      - Nagy Péter, a hasznok gazdája
+      - Te, a mérés koordinátoraként
+    agenda:
+      - A havi értékek a célértékhez és a baseline-hoz mérve
+      - Magyarázat a jelentős eltérésekre
+      - Szükséges beavatkozás (pl. pótoktatás, konfigurációmódosítás)
+    output: Havi mérési riport.
+    tip: >
+      Ha egy mutató rossz, keresd meg az okát, ne csak jelentsd. A T+1 hónap
+      rossz értékei rendszerint a betanulási időszakot tükrözik, nem a megoldás hibáját.
+
+  - name_hu: Utólagos értékelő ülés (PIR)
+    name_en: Post-Implementation Review
+    purpose: A három hónap adatai alapján értékelni a projektet és dönteni a folytatásról.
+    when: 2026.10.09.
+    duration: 90 perc
+    participants:
+      - Projekt Irányító Bizottság
+      - Nagy Péter, a hasznok gazdája
+      - A mérési felelősök
+      - Te, projektmenedzserként (előterjesztő)
+    agenda:
+      - A várt és a tényleges hasznok összevetése, mérőszámonként
+      - A felhasználói elégedettség eredményei
+      - Ami nem teljesült, és annak oka
+      - 'Javaslat a kiterjesztésre: igen / nem / feltételekkel'
+    output: Utólagos értékelés (PIR) és kiterjesztési javaslat.
+    tip: >
+      A nem teljesült célokat ugyanolyan alaposan mutasd be, mint a teljesülteket.
+      A hitelesség itt dől el — és ettől függ, hogy a következő javaslatodat elhiszik-e.
+
+data_in:
+  - from: Szabó Márk, rendszergazda
+    what: M365 és Entra ID használati, biztonsági és rendelkezésre állási riportok
+    used_in: monthly_measurement_report
+    note: Mindig azonos szűrőkkel és azonos napon kérd le, különben nem összehasonlítható.
+  - from: Kiss Réka, Service Desk
+    what: Ticketszámok kategóriánként és a megoldási idők
+    used_in: monthly_measurement_report
+  - from: Balogh Tamás, kontroller
+    what: A tényleges havi IT-költés a pilot körre vetítve
+    used_in: monthly_measurement_report
+  - from: Varga Eszter, HR
+    what: Home office napok aránya, elégedettségi kérdőív eredménye
+    used_in: user_survey
+  - from: A projekt dokumentációjából
+    what: A T0 baseline mérési adatok
+    used_in: baseline_report
+    note: Ezt az első fázisban kellett begyűjteni. Ha most hiányzik, ez a legnagyobb baj.
+
+data_out:
+  - to: Projekt Irányító Bizottság
+    what: Havi mérési riport, majd az utólagos értékelés
+    when: Havonta a 10. munkanapig, a PIR 2026.10.09-én
+  - to: Nagy Péter, IT osztályvezető (a hasznok gazdája)
+    what: A mutatók részletes bontása és a beavatkozási javaslatok
+    when: Havonta
+  - to: A pilot 50 résztvevője
+    what: A mérési eredmények összefoglalója és a kérdőívre adott válaszok hatása
+    when: A T+3 mérés után
+    note: >
+      Ha kérdőívet töltetsz ki velük, mondd is el, mi lett az eredménye. Enélkül
+      legközelebb nem fogják kitölteni.
+  - to: A cég többi részlegének vezetői
+    what: A kiterjesztési javaslat és a tapasztalatok összefoglalója
+    when: A PIR után
+
+data_restricted:
+  - what: Egyéni felhasználói használati adatok (ki mennyit dolgozott, mikor lépett be)
+    why: >
+      Munkavállalói megfigyelésnek minősül. **Csak összesítve, csoportszinten**
+      publikálható, és csak a DPO által jóváhagyott célból.
+  - what: Az elégedettségi kérdőív egyedi válaszai, azonosítható formában
+    why: >
+      Ha a válaszadó azonosítható, soha többé nem kapsz őszinte választ.
+      Csak összesített eredményt közölj.
+  - what: Ticketadatok bejelentőre lebontva a szervezeti vezetőknek
+    why: >
+      A „ki hívta a legtöbbször a helpdesket" kimutatás teljesítményértékelésként
+      csapódik le, és elrettent a hibabejelentéstől.
+  - what: A mérési eredmények a szállítóknak, mielőtt a Steering elfogadta volna
+    why: >
+      A szállító a saját marketingjéhez használná, még mielőtt a cég értelmezte volna.
+
+responsibility:
+  summary: |
+    Ebben a szakaszban a felelősséged az **objektivitás**. Neked is érdeked, hogy a
+    projekted sikeresnek tűnjön — pontosan ezért kell a méréseket úgy felépíteni,
+    hogy ne rajtad múljon az eredmény.
+  items:
+    - what: Azért felelsz, hogy a mérési módszer előre rögzített és következetes legyen.
+      risk: >
+        Ha menet közben változtatsz a szűrőn vagy a számítási módon, az eredmény
+        manipulálhatónak tűnik — akkor is, ha nem az.
+    - what: Azért felelsz, hogy a nem teljesült célok is jelentésre kerüljenek.
+      risk: >
+        A kozmetikázott mérés akkor derül ki, amikor a kiterjesztés kudarcot vall.
+        Akkor viszont visszamenőleg minden riportodat megkérdőjelezik.
+    - what: Azért felelsz, hogy a mérési adatok gyűjtése ne sértse az adatvédelmet.
+      risk: >
+        Az egyéni szintű használati adat munkavállalói megfigyelés. Ennek jogi
+        következménye van, és személyesen is felelős lehetsz érte.
+    - what: Nem felelsz azért, hogy a hasznok tényleg megjöttek-e.
+      risk: >
+        Ez a hasznok gazdájának (Nagy Péter) és a szponzornak a felelőssége.
+        A tiéd az, hogy tisztán mérhető és értelmezhető képet adj róla.
+
+documents:
+  - id: benefits_realisation_plan
+    order: 1
+    name_hu: Haszonrealizálási terv (végleges)
+    name_en: Benefits Realisation Plan
+    mandatory: true
+    owner: A PM konkretizálja, a hasznok gazdája hagyja jóvá.
+    why: >
+      Az első fázisban készült terv operatív változata: itt már **mérőszám, forrás,
+      szűrő, felelős és dátum** szerepel, nem általános elvárás. Ez az egész
+      mérési szakasz vezérfonala.
+    contents:
+      - A várt hasznok listája, az eredeti terv szerint
+      - 'Haszononként: mérőszám, baseline, célérték, mérési időpontok'
+      - Az adat forrása és a kiolvasás pontos módja
+      - Felelős személy mérőszámonként
+      - Mi számít sikernek, mi részleges sikernek, mi kudarcnak
+    inputs: [benefits_plan, closure_report]
+    feeds: [kpi_sheet, monthly_measurement_report, pir]
+    pitfall: >
+      Írd le előre, **mi számít sikernek**. Ha ezt csak a mérés után definiáljátok,
+      az eredményt utólag bárki átértelmezheti.
+
+    sample_file: docs/6-benefits/01-haszonrealizalasi-terv-vegleges.md
+  - id: kpi_sheet
+    order: 2
+    name_hu: KPI-adatlap és mérési terv
+    name_en: KPI Definition Sheet and Measurement Plan
+    mandatory: true
+    owner: A PM készíti a mérési felelősökkel közösen.
+    why: >
+      Minden mérőszámhoz egy adatlap: pontosan **hogyan áll elő a szám**. Enélkül
+      három hónap múlva senki nem tudja reprodukálni, és a mérés vitathatóvá válik.
+    contents:
+      - A mérőszám neve és definíciója egy mondatban
+      - Számítási képlet, mértékegység
+      - 'Adatforrás: melyik rendszer, melyik riport, milyen szűrővel'
+      - A kiolvasás időpontja és felelőse
+      - Baseline érték, célérték, tűréshatár
+      - Ismert torzító tényezők (pl. szabadságolási időszak)
+    inputs: [benefits_plan, benefits_realisation_plan]
+    feeds: [baseline_report, monthly_measurement_report]
+    pitfall: >
+      A „torzító tényezők" mezőt ne hagyd üresen. A júliusi-augusztusi ticketszám
+      a szabadságok miatt önmagában alacsonyabb — ezt előre le kell írni.
+
+    sample_file: docs/6-benefits/02-kpi-adatlap.md
+  - id: baseline_report
+    order: 3
+    name_hu: Kiindulási (T0) mérési jegyzőkönyv
+    name_en: Baseline Measurement Report
+    mandatory: true
+    owner: A PM készíti, még a projekt indulása előtt.
+    why: >
+      **Ez a legfontosabb és a leggyakrabban kihagyott dokumentum az egész
+      módszertanban.** Rögzíti, hogy honnan indultunk. Enélkül semmilyen későbbi
+      mérés nem értelmezhető — nem lesz mihez hasonlítani.
+    contents:
+      - Mérőszámonként a projekt előtti érték
+      - A mérés időpontja és módszere
+      - Az adat forrása és a kiolvasás körülményei
+      - Ismert torzítások és hiányzó adatok
+      - 'Ha egy adat nem volt elérhető: mivel közelítettük és miért'
+    inputs: [benefits_plan, kpi_sheet]
+    feeds: [monthly_measurement_report, pir]
+    pitfall: >
+      Ezt a Kezdeményezés fázisban kell elkészíteni, nem itt. Ha most veszed elő
+      először, már késő — csak közelítő értéket tudsz utólag rekonstruálni.
+
+    sample_file: docs/6-benefits/03-t0-baseline-jegyzokonyv.md
+  - id: monthly_measurement_report
+    order: 4
+    name_hu: Havi mérési riport (T+1, T+2, T+3)
+    name_en: Monthly Benefits Measurement Report
+    mandatory: true
+    owner: A PM állítja össze a mérési felelősök adataiból.
+    why: >
+      A trend megmutatása. **Egyetlen mérés félrevezető**: az élesítés utáni hetek
+      mindig rosszabbak a betanulás miatt. A három hónap együtt ad értelmezhető képet.
+    contents:
+      - 'Mérőszámonként: baseline, célérték, aktuális érték, eltérés'
+      - Trendábra a T0-tól kezdve
+      - Az eltérések magyarázata
+      - Szükséges beavatkozások és felelősük
+      - Adathiányok jelzése
+    inputs: [kpi_sheet, baseline_report, benefits_realisation_plan]
+    feeds: [pir]
+    pitfall: >
+      A T+1 hónapot ne értékeld önmagában. Az élesítés utáni hónap ticketszáma
+      természetesen magas — ez a betanulás, nem a megoldás hibája.
+
+    sample_file: docs/6-benefits/04-havi-meresi-riportok.md
+  - id: user_survey
+    order: 5
+    name_hu: Felhasználói elégedettségi kérdőív
+    name_en: User Satisfaction Survey
+    mandatory: true
+    owner: A PM készíti, a HR bonyolítja le névtelenül.
+    why: >
+      A technikai mutatók nem mutatják meg, hogy a **napi munka tényleg jobb lett-e**.
+      Erről csak a felhasználó tud nyilatkozni — és a kiterjesztési döntésnél ez az
+      egyik legerősebb érv, akár mellette, akár ellene.
+    contents:
+      - 6-8 kérdés, 1-5 skálán
+      - Bejelentkezés, fájlkezelés, sebesség, otthoni munka, támogatás
+      - 'Egy nyitott kérdés: mi hiányzik, mi zavaró'
+      - Összesített eredmények és a T0 értékkel való összevetés
+    inputs: [training_plan, satisfaction_survey]
+    feeds: [pir, rollout_recommendation]
+    pitfall: >
+      Ugyanazt a kérdőívet töltesd ki T0-kor és T+3-kor. Ha a kérdések változnak,
+      az eredmények nem hasonlíthatók össze.
+
+    sample_file: docs/6-benefits/05-felhasznaloi-kerdoiv.md
+  - id: pir
+    order: 6
+    name_hu: Utólagos értékelés
+    name_en: PIR — Post-Implementation Review
+    mandatory: true
+    owner: A PM készíti, a Steering Committee fogadja el.
+    why: >
+      A mérési szakasz végterméke: **tényalapú válasz arra, hogy a projekt sikeres
+      volt-e**. Nem véleményt fogalmaz meg, hanem adatot mutat, és abból von le
+      következtetést.
+    contents:
+      - A vállalt hasznok és a tényleges eredmények mérőszámonként
+      - A felhasználói elégedettség eredménye
+      - Ami nem teljesült, és annak elemzett oka
+      - Nem várt hatások (pozitív és negatív)
+      - A projekt teljes költsége a tényleges haszonhoz mérve
+      - Következtetés és javaslat
+    inputs: [benefits_realisation_plan, baseline_report, monthly_measurement_report, user_survey, closure_report, lessons_learned]
+    feeds: [rollout_recommendation]
+    pitfall: >
+      A nem várt hatásokat is írd le. Gyakran ezek a legértékesebb megfigyelések —
+      például hogy a home office miatt megnőtt az írásbeli kommunikáció igénye.
+
+    sample_file: docs/6-benefits/06-pir.md
+  - id: rollout_recommendation
+    order: 7
+    name_hu: Kiterjesztési javaslat
+    name_en: Rollout Recommendation
+    mandatory: true
+    owner: A PM készíti, a Steering Committee dönt róla.
+    why: >
+      A pilot **egyetlen igazi célja** ez a döntés: kiterjeszthető-e a megoldás a
+      cég többi részlegére, milyen feltételekkel és milyen ütemben. Ez a dokumentum
+      lesz a következő projekt üzleti indoklásának alapja.
+    contents:
+      - A pilot eredményeinek összefoglalója
+      - 'Javaslat: kiterjesztés / feltételes kiterjesztés / elvetés'
+      - A kiterjesztés feltételei és előfeltételei
+      - Becsült költség és ütem a teljes szervezetre
+      - A pilotból tanult módosítások a következő körre
+      - Kockázatok nagyobb léptékben
+    inputs: [pir, lessons_learned, financial_closure, user_survey]
+    pitfall: >
+      A skálázási hatásokat vedd figyelembe. Ami 50 főnél működött, 240 főnél más
+      terhelést, más támogatási igényt és más licencköltséget jelent.
+
+    sample_file: docs/6-benefits/07-kiterjesztesi-javaslat.md
+checklist:
+  - id: ben-01
+    text: Ellenőrizd, hogy a T0 baseline adatok megvannak és értelmezhetők.
+    mandatory: true
+    doc_ref: baseline_report
+    why: >
+      Ha a kiindulási érték hiányzik, az egész mérés értelmét veszti. Most még
+      találhatsz közelítő értéket, később már nem.
+    how:
+      - Vedd elő a Kezdeményezés fázisban rögzített adatokat.
+      - Ellenőrizd, hogy ugyanazzal a módszerrel készültek, mint amivel most mérsz.
+      - Ha hiányzik valami, dokumentáld, mivel közelíted és miért.
+    tip: >
+      Ha most derül ki, hogy nem gyűjtöttél baseline-t, írd le ezt tanulságként.
+      Ez a leggyakoribb és legköltségesebb mulasztás a szakmában.
+
+  - id: ben-02
+    text: Konkretizáld a haszonrealizálási tervet, és rögzítsd, mi számít sikernek.
+    mandatory: true
+    doc_ref: benefits_realisation_plan
+    why: >
+      Ha a siker kritériumát csak a mérés után definiáljátok, az eredményt utólag
+      bárki átértelmezheti.
+    how:
+      - 'Haszononként: mérőszám, baseline, célérték, mérési időpont.'
+      - Írd le, mi számít sikernek, részleges sikernek és kudarcnak.
+      - Hagyasd jóvá a hasznok gazdájával.
+
+  - id: ben-03
+    text: Készíts KPI-adatlapot minden mérőszámhoz, a pontos szűrőfeltételekkel.
+    mandatory: true
+    doc_ref: kpi_sheet
+    why: >
+      Ha három hónap múlva senki nem tudja reprodukálni a számot, a mérés vitathatóvá válik.
+    how:
+      - Definíció, képlet, forrás, szűrő, kiolvasási időpont, felelős.
+      - Írd le az ismert torzító tényezőket is (szabadságolás, kampányidőszak).
+
+  - id: ben-04
+    text: Tartsd meg a mérési indító egyeztetést, és nevesítsd a felelősöket.
+    mandatory: true
+    why: >
+      Gazdátlan mérés nem történik meg. A projekt már lezárult, itt már nincs
+      projektlendület, ami átvinné a feladatot.
+    how:
+      - Mérőszámonként nevezz meg egy felelőst.
+      - Rögzítsd a havi adatszolgáltatás napját és formátumát.
+      - Beszéljétek meg, mi történik, ha egy adat nem elérhető.
+
+  - id: ben-05
+    text: Kérj DPO-jóváhagyást a mérési adatgyűjtésre, ha személyes adatot érint.
+    mandatory: true
+    why: >
+      Az egyéni szintű használati adat munkavállalói megfigyelésnek minősülhet.
+      Ennek jogi következménye van.
+    how:
+      - Írd le, milyen adatot, milyen célból, milyen bontásban gyűjtesz.
+      - Ahol lehet, csoportszintű összesítést használj egyéni adat helyett.
+      - Kérj írásos állásfoglalást dr. Fekete Zsolttól.
+
+  - id: ben-06
+    text: Gyűjtsd be a T+1 havi méréseket, és értelmezd a betanulási hatással együtt.
+    mandatory: true
+    doc_ref: monthly_measurement_report
+    why: >
+      Az élesítés utáni hónap értékei mindig rosszabbak. Ha ezt önmagában
+      értékeled, hamis képet adsz.
+    how:
+      - Minden mérőszámot ugyanazzal a szűrővel olvass ki, mint a baseline-t.
+      - Az eltéréseket magyarázd meg, ne csak jelezd.
+
+  - id: ben-07
+    text: Gyűjtsd be a T+2 méréseket, és avatkozz be, ahol a trend rossz irányba mutat.
+    mandatory: true
+    doc_ref: monthly_measurement_report
+    why: >
+      A második hónapra már látszik a trend. Ha ekkor sem javul valami, ott
+      beavatkozásra van szükség, nem türelemre.
+    how:
+      - Vesd össze a T+1 és T+2 értékeket, keresd a trendet.
+      - 'Ahol romlik: pótoktatás, konfigurációmódosítás, kommunikáció.'
+
+  - id: ben-08
+    text: Végeztess felhasználói elégedettségi kérdőívet, ugyanazokkal a kérdésekkel, mint T0-kor.
+    mandatory: true
+    doc_ref: user_survey
+    why: >
+      A technikai mutatók nem mutatják meg, hogy a napi munka jobb lett-e.
+      Változtatott kérdésekkel viszont nem összehasonlítható az eredmény.
+    how:
+      - 6-8 kérdés, 1-5 skálán, névtelenül, a HR-en keresztül.
+      - Egy nyitott kérdés is legyen.
+      - Kommunikáld vissza az eredményt a kitöltőknek.
+
+  - id: ben-09
+    text: Gyűjtsd be a T+3 méréseket, és zárd le az adatgyűjtést.
+    mandatory: true
+    doc_ref: monthly_measurement_report
+    why: >
+      Három hónap után az adatok már a stabil üzemet tükrözik, nem a bevezetés
+      utóhatását.
+    how:
+      - Teljes adatsor a T0-tól a T+3-ig, mérőszámonként.
+      - Jelezd az adathiányokat is, ne pótold becsléssel jelölés nélkül.
+
+  - id: ben-10
+    text: Készítsd el az utólagos értékelést (PIR), a nem teljesült célokkal együtt.
+    mandatory: true
+    doc_ref: pir
+    why: >
+      A hitelesség itt dől el. A kozmetikázott értékelés akkor derül ki, amikor a
+      kiterjesztés kudarcot vall — és akkor visszamenőleg minden riportodat
+      megkérdőjelezik.
+    how:
+      - 'Mérőszámonként vezesd végig: vállalás, tény, eltérés, ok.'
+      - Írd le a nem várt hatásokat is, pozitívat és negatívat.
+      - Vesd össze a teljes projektköltséget a tényleges haszonnal.
+
+  - id: ben-11
+    text: Tegyél javaslatot a kiterjesztésre, a skálázási hatások figyelembevételével.
+    mandatory: true
+    doc_ref: rollout_recommendation
+    why: >
+      A pilot egyetlen igazi célja ez a döntés. Ami 50 főnél működött, 240 főnél
+      más terhelést és más költséget jelent.
+    how:
+      - 'Javaslat: kiterjesztés / feltételes kiterjesztés / elvetés — indokolva.'
+      - Becsült költség és ütem a teljes szervezetre.
+      - A pilotból tanult módosítások a következő körre.
+
+  - id: ben-12
+    text: Kommunikáld vissza az eredményeket a pilot résztvevőinek is.
+    mandatory: false
+    why: >
+      Ha kérdőívet töltettél ki velük, de nem mondtad el az eredményt, legközelebb
+      nem fogják kitölteni.
+    how:
+      - 'Rövid összefoglaló: mit mértünk, mi jött ki, mi lesz ezután.'
+      - Emeld ki, min változtattatok a visszajelzéseik alapján.
+
+gate:
+  summary: >
+    A mérési szakasz akkor zárható le, ha a három hónap adatai együtt állnak, az
+    utólagos értékelés elkészült, és a Steering Committee döntött a kiterjesztésről.
+  criteria:
+    - Teljes adatsor T0-tól T+3-ig, mérőszámonként, dokumentált módszertannal.
+    - Elkészült és elfogadott utólagos értékelés (PIR), a nem teljesült célokkal együtt.
+    - Lezárt felhasználói elégedettségmérés, a T0 értékkel összevetve.
+    - Kiterjesztési javaslat, becsült költséggel és ütemmel.
+    - Írásos Steering-döntés a folytatásról.
+    - A mérési tanulságok visszavezetve a Tanulságok naplójába.
+  decision_by: >
+    Projekt Irányító Bizottság. A Xyo projektben az utólagos értékelés dátuma:
+    2026.10.09.
+
+# --------------------------------------------------------------------------
+# PRINCE2-kiegészítés
+# --------------------------------------------------------------------------
+prince2:
+  processes:
+    - code: —
+      name: A projekten kívül — a vállalati/programvezetés felelőssége
+  summary: >
+    **Ez a legnagyobb szemléleti különbség.** PRINCE2-ben a haszonmérés
+    **nem a projekt része**: a projekt lezárul, a mérés a vállalati vagy
+    programvezetés felelőssége, az Executive és a **Senior User**
+    közreműködésével. A projekt annyit tesz, hogy **megtervezi és átadja**
+    a mérést.
+  adds:
+    - what: A haszonmérés felelőse a Senior User, nem a projektmenedzser
+      why: >
+        A PM a projekt végén elmegy. A Senior User a szervezetben marad, és ő
+        felel azért, hogy a hasznok ténylegesen megjelenjenek. A Xyo-nál ezt
+        jól csináltuk: Nagy Péter lett „a hasznok gazdája", nem a PM.
+    - what: A Benefits Management Approach már a kezdeményezéskor elkészül
+      why: >
+        Nem a projekt végén találjuk ki, mit mérünk. A Xyo-nál a
+        Haszonrealizálási terv 2026.02.05-én készült el, a T0 mérés pedig
+        01.30-án — a Charter aláírása előtt.
+    - what: A mérés a projekten KÍVÜL folyik
+      why: >
+        Ez kényszeríti ki a felelősség tiszta átadását. Amíg a mérés
+        „a projekt része", könnyű ott felejteni a PM-en — és akkor
+        gazdátlanná válik, amint a PM új projektre kerül.
+  products:
+    - name_hu: Haszonkezelési megközelítés
+      name_en: Benefits Management Approach
+      pmi: Haszonrealizálási terv + KPI-adatlap
+    - name_hu: Projekt utáni haszonértékelés
+      name_en: Post-project benefits review
+      pmi: Utólagos értékelés (PIR)

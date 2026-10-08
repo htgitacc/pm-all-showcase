@@ -1,0 +1,582 @@
+id: monitoring
+number: 4
+title_hu: Felügyelet és kontroll
+title_en: Monitoring and Controlling
+tagline: Folyamatosan méred, hol tartasz a tervhez képest — és beavatkozol.
+when: >
+  A baseline jóváhagyásától a projekt zárásáig, **a Megvalósítással párhuzamosan**.
+  A Xyo projektben: 2026.03.16 – 2026.06.30.
+
+purpose: |
+  Ez a fázis **nem a Megvalósítás után jön, hanem vele együtt fut.** Amíg a csapat
+  dolgozik, te folyamatosan összeveted a tényt a tervvel, és eldöntöd, kell-e
+  beavatkozni.
+
+  A lényege egyetlen mondatban: **eltérés-kezelés.** Nem az a baj, ha eltérsz a
+  tervtől — az minden projektben megtörténik. Az a baj, ha az eltérést nem veszed
+  észre időben, vagy észreveszed, de nem jelented.
+
+  **Junior PM-ként itt a legnagyobb kísértés** a jó hír túlsúlyozása: a státuszriportot
+  zöldre írni, mert reméled, hogy jövő hétre behozzátok. Ezt hívják „vízesés-riportnak":
+  minden zöld, egészen a hónapig, amikor hirtelen pirosra vált. Ez a PM hitelességének
+  leggyorsabb elvesztése.
+
+pm_tasks:
+  - text: Mérd az előrehaladást a baseline-hoz képest, és számszerűsítsd az eltérést.
+    why: >
+      A „nagyjából jól állunk" nem információ. A döntéshozónak számra van szüksége
+      ahhoz, hogy dönteni tudjon.
+  - text: Készíts rendszeres státuszriportot, mindig ugyanabban a formában.
+    why: >
+      Az azonos szerkezet miatt a vezető ránézésre látja a változást. Ha minden héten
+      máshogy néz ki, senki nem fogja elolvasni.
+  - text: Kezeld a változáskérelmeket formálisan, hatásvizsgálattal.
+    why: >
+      Hatásvizsgálat nélkül jóváhagyott változás pontosan az, amitől a projektek
+      elcsúsznak — és a felelősség a PM-é lesz.
+  - text: Tartsd karban a kockázatnyilvántartást, ne csak nyisd meg.
+    why: >
+      A kockázatok változnak: van, ami elmúlik, van, ami valószínűbbé válik. A
+      februárban készült, azóta nem nézett lista semmit nem ér.
+  - text: Eszkalálj időben azt, amiről nem te döntesz.
+    why: >
+      Az eszkaláció nem kudarc, hanem a munkád része. A késve eszkalált probléma
+      viszont már a te hibád.
+  - text: Ellenőrizd a minőséget a szállítás során, ne csak az átvételkor.
+    why: >
+      Az átvételkor talált hiba javítása a legdrágább. A közbenső ellenőrzés
+      olcsóbb és nem terheli a határidőt.
+  - text: Kövesd a költést, és jelezd előre, ha a keret elfogyni készül.
+    why: >
+      A pénz elfogyását előre kell jelenteni, nem akkor, amikor már megtörtént.
+      Utólag már nincs mit dönteni.
+
+meetings:
+  - name_hu: Projekt Irányító Bizottság ülése
+    name_en: Steering Committee Meeting
+    purpose: Vezetői döntés a hatókört, költséget vagy határidőt érintő kérdésekben.
+    when: Havonta, minden hónap első szerdáján.
+    duration: 60 perc
+    participants:
+      - Horváth Júlia, ügyvezető (elnök)
+      - Kovács Anita, szponzor
+      - Nagy Péter, IT osztályvezető
+      - Varga Eszter, HR
+      - Te, projektmenedzserként (előterjesztő)
+    agenda:
+      - 'Státusz egy oldalon: ütem, költség, hatókör, kockázatok'
+      - Döntést igénylő változáskérelmek
+      - Eszkalált problémák
+      - Következő hónap mérföldkövei
+    output: Steering riport és írásos döntések a döntésnaplóba.
+    tip: >
+      Vidd magaddal a döntési javaslatot is, ne csak a problémát. A vezetők
+      döntéselőkészítést várnak, nem tanácstalanságot.
+
+  - name_hu: Változáskezelő egyeztetés
+    name_en: Change Control Meeting
+    purpose: A beérkezett változáskérelmek hatásvizsgálata és eldöntése.
+    when: Szükség szerint, de legalább kéthetente, ha van nyitott kérelem.
+    duration: 45 perc
+    participants:
+      - Te, projektmenedzserként
+      - Nagy Péter, szakmai vezető
+      - Balogh Tamás, kontroller (költséghatásnál)
+      - Kovács Anita, ha a kérelem meghaladja a te hatáskörödet
+    agenda:
+      - A kérelem tartalma és indoka
+      - 'Hatás: idő, költség, kockázat, minőség, hatókör'
+      - 'Döntés: jóváhagyás, elutasítás vagy elhalasztás'
+    output: Döntés a változásnaplóba, szükség esetén frissített baseline.
+    tip: >
+      A hatásvizsgálatot **mindig** végezd el, akkor is, ha a kérés apróságnak tűnik.
+      A „ez csak öt perc" kérésekből áll össze a hatókör-elszivárgás.
+
+  - name_hu: Kockázat-felülvizsgálat
+    name_en: Risk Review
+    purpose: A kockázatnyilvántartás átnézése, frissítése, új kockázatok felvétele.
+    when: Kéthetente, a heti státusz kibővítéseként.
+    duration: 30 perc
+    participants:
+      - A kockázatgazdák
+      - Te, projektmenedzserként
+    agenda:
+      - Változott-e valamelyik kockázat valószínűsége vagy hatása
+      - Bekövetkezett-e valamelyik (átkerül a problémanaplóba)
+      - Új kockázatok
+      - A válaszlépések státusza
+    output: Frissített kockázatnyilvántartás és kockázati riport.
+
+data_in:
+  - from: A munkacsomag-felelősök
+    what: Elkészültségi állapot és a hátralévő ráfordítás becslése
+    used_in: status_report
+    note: A „hátralévő becslés" pontosabb, mint az „elkészültségi százalék" — azt kérdezd.
+  - from: Balogh Tamás, kontroller
+    what: A tényleges költések és a kötelezettségvállalások aktuális állása
+    used_in: evm_report
+  - from: A szállítók
+    what: Teljesítési státusz és a szállítási dátumok változása
+    used_in: risk_report
+  - from: A kockázatgazdák
+    what: A kockázatok aktuális értékelése és a válaszlépések állása
+    used_in: risk_report
+  - from: Kiss Réka, Service Desk
+    what: Az élesített körben felmerült ticketek száma és típusa
+    used_in: quality_control_report
+
+data_out:
+  - to: Projekt Irányító Bizottság
+    what: 'Egyoldalas Steering riport: ütem, költség, hatókör, kockázatok, döntési kérdések'
+    when: Az ülés előtt 3 munkanappal
+    note: Egy oldal, mindig ugyanabban a szerkezetben.
+  - to: A projektcsapat és a kulcsérintettek
+    what: Heti státuszriport
+    when: Minden hétfőn délelőtt
+  - to: A pilot résztvevői
+    what: 'Rövid hírlevél: hol tart a projekt, mi jön a következő hetekben'
+    when: Kéthetente
+    note: Nem projektdokumentum, hanem közérthető tájékoztatás.
+  - to: A szállítók
+    what: A rájuk vonatkozó nyitott pontok és határidők
+    when: A kétheti szállítói státusz előtt
+
+data_restricted:
+  - what: A belső kockázatnyilvántartás nyers változata a szállítóknak
+    why: >
+      Gyakran tartalmaz a szállítóra vonatkozó, névvel ellátott kockázatot.
+      A szállítónak a rá vonatkozó, szerződéses elvárásokat kell megkapnia.
+  - what: Az egyes munkatársak teljesítményére vonatkozó megjegyzések a Steering riportban
+    why: >
+      A projektriport nem teljesítményértékelés. Ha személyre szóló kritika kerül bele,
+      elveszted a csapat bizalmát, és munkajogi kérdést is felvet.
+  - what: A tartalékkeret aktuális állása a szállítóknak és a csapatnak
+    why: >
+      Ha ismert, mennyi tartalék maradt, minden kérés éppen annyiba fog kerülni.
+  - what: A még el nem döntött változáskérelmek tartalma az érintett felhasználói körnek
+    why: >
+      Ha kiszivárog egy elutasítás előtt álló kérés, elvárás épül rá.
+      Kommunikálj döntés után.
+
+responsibility:
+  summary: |
+    Ebben a fázisban a felelősséged a **valósághű jelentés**. Nem az, hogy a projekt
+    ne térjen el a tervtől — el fog. Hanem az, hogy az eltérésről időben, pontosan és
+    számszerűen tudjon az, aki dönteni tud róla.
+  items:
+    - what: Azért felelsz, hogy a státuszriport a valóságot tükrözze.
+      risk: >
+        A szépített riport a PM hitelességének leggyorsabb elvesztése. Ha egyszer
+        kiderül, hogy zöldre írtál egy piros helyzetet, többé egyetlen riportodat
+        sem hiszik el.
+    - what: Azért felelsz, hogy minden változás formális eljárásban dőljön el.
+      risk: >
+        A hatásvizsgálat nélkül átengedett kérésekből áll össze a csúszás, és a
+        felelősség egyértelműen a PM-é.
+    - what: Azért felelsz, hogy időben eszkalálj.
+      risk: >
+        „Reméltem, hogy megoldódik" — ez a leggyakoribb és legrosszabb PM-magyarázat.
+        Az eszkaláció a munkád, nem a kudarcod.
+    - what: Azért felelsz, hogy a kockázatnyilvántartás élő maradjon.
+      risk: >
+        Ha bekövetkezik egy kockázat, amit két hónapja nem néztetek meg, az a te
+        mulasztásod, nem a szerencséé.
+    - what: Nem felelsz azért, hogy a szponzor jó döntést hoz-e a felmerült kérdésben.
+      risk: >
+        De felelsz azért, hogy minden szükséges információ — a rossz hírek is —
+        ott legyen előtte, írásban, a döntés pillanatában.
+
+documents:
+  - id: status_report
+    order: 1
+    name_hu: Státuszriport
+    name_en: Status Report
+    mandatory: true
+    owner: A PM készíti hetente.
+    why: >
+      A projekt rendszeres pulzusa. Mindig **ugyanabban a szerkezetben** készül, hogy
+      az olvasó ránézésre lássa, mi változott. Ez a legfontosabb rendszeres
+      kommunikációs eszközöd.
+    contents:
+      - Összefoglaló státusz (zöld / sárga / piros) és annak indoka
+      - 'Ütem: terv vs. tény, a mérföldkövek állása'
+      - 'Költség: felhasznált keret és előrejelzés'
+      - Elkészült és következő heti feladatok
+      - Top 3 kockázat és a nyitott problémák
+      - Amiben segítségre van szükség
+    inputs: [pmp, schedule, budget, work_package_assignment, risk_register, issue_log, comm_plan, meeting_minutes]
+    feeds: [steering_report, closure_report]
+    pitfall: >
+      A státusz akkor legyen sárga vagy piros, amikor a helyzet az. A hetekig zöld,
+      majd hirtelen piros riport a bizalom elvesztésének biztos receptje.
+
+    sample_file: docs/4-monitoring/01-statuszriport.md
+  - id: steering_report
+    order: 2
+    name_hu: Vezetői (Steering) riport
+    name_en: Steering Committee Report
+    mandatory: true
+    owner: A PM készíti az ülés előtt.
+    why: >
+      A Steering riport nem hosszabb státuszriport, hanem **döntéselőkészítő anyag**.
+      A vezetőt az érdekli, mit kell eldöntenie és mi a te javaslatod.
+    contents:
+      - 'Egyoldalas státusz: ütem, költség, hatókör, kockázat'
+      - Döntést igénylő kérdések, mindegyikhez javaslattal
+      - Eszkalált problémák és a kért beavatkozás
+      - A következő időszak mérföldkövei
+    inputs: [status_report, comm_plan, change_log, risk_report]
+    feeds: [decision_log, closure_report]
+    pitfall: >
+      Egy oldal. Ha kettő, a második oldalt nem olvassák el — és pont a döntési
+      kérdéseidet fogják kihagyni.
+
+    sample_file: docs/4-monitoring/02-steering-riport.md
+  - id: change_request
+    order: 3
+    name_hu: Változáskérelem
+    name_en: Change Request
+    mandatory: true
+    owner: Bárki benyújthatja; a PM végzi a hatásvizsgálatot.
+    why: >
+      Formálissá teszi a módosítást, és **kikényszeríti a hatásvizsgálatot**.
+      Enélkül a módosítás hatókör-elszivárgás, aminek a következményét rajtad kérik.
+    contents:
+      - Ki kéri, mikor, mit
+      - A kérés indoka
+      - 'Hatásvizsgálat: idő, költség, kockázat, minőség, hatókör'
+      - Alternatívák, ha vannak
+      - A PM javaslata
+      - Döntés, dátum, döntéshozó
+    inputs: [change_procedure]
+    feeds: [change_log, schedule, budget, scope_statement]
+    pitfall: >
+      A hatásvizsgálatba a **közvetett hatásokat** is vedd bele: az újratesztelést,
+      az oktatás bővítését, a dokumentáció frissítését. Ezekről szoktak megfeledkezni.
+
+    sample_file: docs/4-monitoring/03-valtozaskerelem.md
+  - id: change_log
+    order: 4
+    name_hu: Változásnapló
+    name_en: Change Log
+    mandatory: true
+    owner: A PM vezeti.
+    why: >
+      Egy helyen mutatja az összes kérelmet és a sorsukat. A projekt végén ez
+      magyarázza meg, **miért nem az lett, ami eredetileg tervben volt** — és ez a
+      magyarázat téged véd.
+    contents:
+      - Sorszám, tárgy, benyújtó, dátum
+      - Döntés (jóváhagyva / elutasítva / halasztva) és a döntéshozó
+      - A jóváhagyott hatás időben és költségben
+      - A baseline frissítésének ténye
+    inputs: [change_request, change_procedure]
+    feeds: [closure_report, lessons_learned, steering_report]
+    pitfall: >
+      Az elutasított kérelmeket is vezesd be. Az elutasítás dokumentálása pontosan
+      olyan fontos, mint a jóváhagyásé — sőt, vitánál még fontosabb.
+
+    sample_file: docs/4-monitoring/04-valtozasnaplo.md
+  - id: risk_report
+    order: 5
+    name_hu: Kockázati riport
+    name_en: Risk Report
+    mandatory: true
+    owner: A PM készíti a kockázat-felülvizsgálat után.
+    why: >
+      A kockázatnyilvántartás vezetői kivonata: mi változott, mi a legveszélyesebb
+      most, és mit teszünk ellene. Bizonyítja, hogy a kockázatkezelés **folyamatos**,
+      nem egyszeri feladat volt.
+    contents:
+      - A top kockázatok és a besorolásuk változása
+      - Új kockázatok az elmúlt időszakban
+      - Bekövetkezett kockázatok (átkerültek a problémanaplóba)
+      - A válaszlépések státusza
+      - Amihez vezetői döntés kell
+    inputs: [risk_register]
+    feeds: [steering_report, closure_report, lessons_learned]
+    pitfall: >
+      A besorolás **változását** mutasd, ne csak az aktuális állapotot. Az a fontos
+      információ, hogy egy kockázat romlik vagy javul.
+
+    sample_file: docs/4-monitoring/05-kockazati-riport.md
+  - id: evm_report
+    order: 6
+    name_hu: Ütem- és költségeltérés elemzés
+    name_en: EVM — Earned Value Analysis
+    mandatory: false
+    owner: A PM készíti a kontroller adataival.
+    why: >
+      Az ütemet és a költséget **együtt** nézi, és két számmal fejezi ki, hogy állsz:
+      SPI (ütemhatékonyság) és CPI (költséghatékonyság). **Téged úgy véd**, hogy az
+      eltérést objektíven, nem érzésre mutatja meg.
+    contents:
+      - Tervezett érték, elkészültségi érték, tényleges költség
+      - SPI és CPI mutatók időszakonként
+      - Előrejelzés a projekt végére
+      - Következtetés és javasolt beavatkozás
+    inputs: [schedule, budget]
+    feeds: [status_report, steering_report, closure_report]
+    pitfall: >
+      Ne akkor kezdj EVM-et számolni, amikor már baj van. A trend a lényeg — egyetlen
+      hónap mutatója önmagában semmit nem mond.
+
+    sample_file: docs/4-monitoring/06-evm-elemzes.md
+  - id: quality_control_report
+    order: 7
+    name_hu: Minőségellenőrzési jegyzőkönyv
+    name_en: Quality Control Report
+    mandatory: true
+    owner: A szakmai vezető készíti, a PM tartja nyilván.
+    why: >
+      Dokumentálja, hogy a szállítás közben — nem csak az átvételkor — ellenőriztétek
+      a minőséget. Az átvételkor talált hiba javítása a legdrágább.
+    contents:
+      - Mit ellenőriztünk, mikor, milyen módszerrel
+      - Az átvételi kritériumoknak való megfelelés
+      - Feltárt eltérések és a javítás határideje
+      - Újraellenőrzés eredménye
+    inputs: [quality_plan, test_report]
+    feeds: [final_acceptance, closure_report]
+    pitfall: >
+      Az ellenőrzés eredményét akkor is írd le, ha rendben volt. A „nem találtunk
+      hibát" is bizonyíték arra, hogy megnézted.
+
+    sample_file: docs/4-monitoring/07-minosegellenorzesi-jegyzokonyv.md
+  - id: milestone_report
+    order: 8
+    name_hu: Mérföldkő-riport
+    name_en: Milestone Report
+    mandatory: false
+    owner: A PM készíti mérföldkövenként.
+    why: >
+      A mérföldkövek elérésének formális visszaigazolása. Nagyobb projektnél ez
+      alapozza meg a részteljesítés elfogadását és a részszámlázást.
+    contents:
+      - A mérföldkő megnevezése és tervezett dátuma
+      - Tényleges dátum és az eltérés oka
+      - A mérföldkőhöz tartozó eredmények állapota
+      - Következmény az ütemtervre
+    inputs: [schedule]
+    feeds: [status_report, closure_report]
+    pitfall: >
+      A csúszás okát mindig írd le. Fél év múlva a záró jelentésben pontosan ezekre
+      lesz szükséged, és akkor már nem fogsz emlékezni.
+
+    sample_file: docs/4-monitoring/08-merfoldko-riport.md
+  - id: escalation_log
+    order: 9
+    name_hu: Eszkalációs napló
+    name_en: Escalation Log
+    mandatory: false
+    owner: A PM vezeti.
+    why: >
+      Rögzíti, mikor, mit és kinek jeleztél, és mi lett a válasz. **Ez az egyik
+      legerősebb védőiratod**: bizonyítja, hogy időben jelezted a problémát, akkor is,
+      ha a döntés késett vagy elmaradt.
+    contents:
+      - Az eszkalált probléma és a felmerülés dátuma
+      - Kinek, mikor, milyen formában jelezted
+      - A kért döntés vagy beavatkozás
+      - A válasz és annak dátuma
+      - A következmény
+    inputs: [issue_log, raci]
+    feeds: [lessons_learned, closure_report]
+    pitfall: >
+      Ha nem kaptál választ, azt is jegyezd fel dátummal, és küldj emlékeztetőt.
+      A válasz nélkül maradt eszkaláció is dokumentált eszkaláció.
+
+    sample_file: docs/4-monitoring/09-eszkalacios-naplo.md
+checklist:
+  - id: mon-01
+    text: Állítsd be a heti riportálási ritmust, és tartsd is be.
+    mandatory: true
+    doc_ref: status_report
+    why: >
+      A kiszámítható ritmus önmagában bizalmat épít. A rendszertelen riportálás
+      azt üzeni, hogy nincs kontroll.
+    how:
+      - Mindig ugyanaz a nap, ugyanaz a szerkezet.
+      - Rögzítsd a kommunikációs tervben, ki kapja meg.
+
+  - id: mon-02
+    text: Mérd az előrehaladást a baseline-hoz képest, számszerűen.
+    mandatory: true
+    why: >
+      A „nagyjából jól állunk" nem információ, és nem lehet rá döntést alapozni.
+    how:
+      - Ne elkészültségi százalékot kérdezz, hanem hátralévő ráfordítást.
+      - Vesd össze a tervvel, és számold ki az eltérést napokban és forintban.
+
+  - id: mon-03
+    text: Írj őszinte státuszt — akkor is, ha sárga vagy piros.
+    mandatory: true
+    doc_ref: status_report
+    why: >
+      A hetekig zöld, majd hirtelen piros riport a PM hitelességének leggyorsabb
+      elvesztése.
+    how:
+      - A státuszszínhez mindig írj indoklást és javasolt beavatkozást.
+      - A rossz hírt te mondd el először, ne mástól tudják meg.
+    tip: >
+      A rossz hír idővel nem lesz jobb, csak drágább. Amit ma sárgának írsz, arra
+      még van megoldás; amit egy hónap múlva pirosnak, arra már nincs.
+
+  - id: mon-04
+    text: Kezelj minden változáskérelmet formálisan, hatásvizsgálattal.
+    mandatory: true
+    doc_ref: change_request
+    why: >
+      A „ez csak öt perc" kérésekből áll össze a csúszás, és a felelősség a tiéd lesz.
+    how:
+      - Kérd írásban, akkor is, ha szóban vetették fel.
+      - 'Vizsgáld: idő, költség, kockázat, minőség, hatókör.'
+      - Vedd bele az újratesztelést és a dokumentációfrissítést is.
+
+  - id: mon-05
+    text: Vezesd a változásnaplót — az elutasított kérelmeket is.
+    mandatory: true
+    doc_ref: change_log
+    why: >
+      A projekt végén ez magyarázza meg, miért nem az lett, ami eredetileg tervben
+      volt. Vitánál az elutasítás dokumentálása még fontosabb.
+    how:
+      - 'Minden kérelemnél: döntés, döntéshozó, dátum, hatás.'
+      - Jóváhagyás után frissítsd a baselinet is.
+
+  - id: mon-06
+    text: Tarts kétheti kockázat-felülvizsgálatot, és frissítsd a nyilvántartást.
+    mandatory: true
+    doc_ref: risk_report
+    why: >
+      A februárban készült, azóta nem nézett kockázati lista semmit nem ér — és
+      bekövetkezéskor a te mulasztásod.
+    how:
+      - 'Nézzétek át: változott-e a valószínűség vagy a hatás.'
+      - A bekövetkezett kockázatot vezesd át a problémanaplóba.
+      - A besorolás változását mutasd a riportban.
+
+  - id: mon-07
+    text: Kövesd a költést, és jelezd előre, ha a keret elfogyni készül.
+    mandatory: true
+    doc_ref: status_report
+    why: >
+      A pénz elfogyását előre kell jelenteni. Utólag már nincs mit dönteni.
+    how:
+      - Havonta vesd össze a tényt a költségbázissal.
+      - Számolj előrejelzést a projekt végére, ne csak az aktuális állást nézd.
+
+  - id: mon-08
+    text: Számolj SPI és CPI mutatót, ha a projekt mérete indokolja.
+    mandatory: false
+    doc_ref: evm_report
+    why: >
+      Objektíven, nem érzésre mutatja meg, hogy hol tartasz. A trend a lényeg.
+    how:
+      - Havonta számold, és ábrázold idősorosan.
+      - 0,9 alatti értéknél írj javasolt beavatkozást is.
+
+  - id: mon-09
+    text: Ellenőrizd a minőséget szállítás közben, ne csak az átvételkor.
+    mandatory: true
+    doc_ref: quality_control_report
+    why: >
+      Az átvételkor talált hiba javítása a legdrágább, és a határidőt is veszélyezteti.
+    how:
+      - Az átvételi kritériumok alapján ellenőrizz, részteljesítésenként.
+      - Az eredményt akkor is írd le, ha rendben volt.
+
+  - id: mon-10
+    text: Igazold vissza a mérföldkövek elérését, és írd le a csúszás okát.
+    mandatory: false
+    doc_ref: milestone_report
+    why: >
+      A záró jelentésben pontosan ezekre az okokra lesz szükséged, és akkor már
+      nem fogsz emlékezni rájuk.
+    how:
+      - Terv és tény dátum, az eltérés oka, a következmény az ütemtervre.
+
+  - id: mon-11
+    text: Eszkalálj időben, és dokumentáld az eszkalációt.
+    mandatory: true
+    doc_ref: [issue_log, escalation_log]
+    why: >
+      Az eszkaláció a munkád része, nem kudarc. A késve eszkalált probléma viszont
+      már a te hibád.
+    how:
+      - 'Jelezd írásban: mi a probléma, mit kérsz, mikorra kell a döntés.'
+      - Ha nem kapsz választ, azt is jegyezd fel, és küldj emlékeztetőt.
+    tip: >
+      Az eszkalációnál mindig vidd a javaslatodat is. „Ez a probléma, ezt javaslom,
+      ehhez a te döntésed kell" — ez a jó eszkaláció.
+
+  - id: mon-12
+    text: Vidd a Steering riportot a havi ülésre, egy oldalon, döntési javaslatokkal.
+    mandatory: true
+    doc_ref: steering_report
+    why: >
+      A Steering riport döntéselőkészítő anyag. A vezetőt az érdekli, mit kell
+      eldöntenie és mi a te javaslatod.
+    how:
+      - Egy oldal, mindig azonos szerkezetben.
+      - Küldd ki 3 munkanappal az ülés előtt.
+      - A döntéseket rögzítsd a döntésnaplóba.
+
+gate:
+  summary: >
+    Ennek a fázisnak nincs önálló záró kapuja: a Megvalósítással együtt fut, és a
+    projekt zárásáig tart. Amit ellenőrizni kell: hogy a kontroll **működött-e**,
+    és hogy minden eltérésről van-e írásos nyoma.
+  criteria:
+    - Hiánytalan státuszriport-sorozat, a projekt teljes hosszára.
+    - Minden változás formális kérelemmel, hatásvizsgálattal és döntéssel dokumentálva.
+    - Naprakész kockázatnyilvántartás, a felülvizsgálatok nyomával.
+    - Minden eszkaláció dokumentálva, a válasszal (vagy annak hiányával) együtt.
+    - A tényleges költés összevetve a költségbázissal, magyarázott eltérésekkel.
+  decision_by: >
+    A Steering Committee a projektzáráskor, a záró jelentés részeként értékeli.
+
+# --------------------------------------------------------------------------
+# PRINCE2-kiegészítés
+# --------------------------------------------------------------------------
+prince2:
+  processes:
+    - code: CS
+      name: Szakasz irányítása (Controlling a Stage) — a PM oldala
+    - code: DP
+      name: Projekt irányítása (Directing a Project) — a Board oldala
+  summary: >
+    PRINCE2-ben a felügyelet **nem külön fázis**, hanem ugyanannak a dolognak
+    két oldala: a PM a CS-ben követi a haladást, a Board a DP-ben dönt.
+    A kettőt a **Highlight Report** köti össze — és ha baj van, az
+    **Exception Report**.
+  adds:
+    - what: Az állapotot a toleranciákhoz mérjük, nem a tervhez
+      why: >
+        A Board azt akarja tudni, hogy a PM a rá bízott sávon belül van-e még.
+        Amíg igen, nincs teendője.
+    - what: Exception Report — a tolerancia túllépésének ELŐREJELZÉSEKOR
+      why: >
+        Nem akkor szólunk, amikor túlléptük, hanem amikor előrejelezhető, hogy
+        túl fogjuk lépni. **Ennek nincs PMI-megfelelője**, és ez a legértékesebb
+        átvehető elem. A Xyo E-04 eszkalációja pontosan ezt csinálta.
+    - what: A Board négy válasza a kivételre
+      why: >
+        Elfogadja a helyzetet · kivételtervet kér · hatókörcsökkentést rendel el ·
+        leállítja a projektet. Ez minden eszkalációhoz jó vázlat.
+    - what: Project Assurance független ellenőrzése
+      why: >
+        A Board nem csak a PM riportjaira támaszkodik. A Xyo-nál ez hiányzott.
+  products:
+    - name_hu: Kiemelt állapotjelentés
+      name_en: Highlight Report
+      pmi: Státuszriport
+    - name_hu: Kivételjelentés
+      name_en: Exception Report
+      pmi: (nincs megfelelő)
+    - name_hu: Kivételterv
+      name_en: Exception Plan
+      pmi: (nincs — a módosított baseline áll hozzá legközelebb)
+    - name_hu: Problémajelentés
+      name_en: Issue Report
+      pmi: Változáskérelem

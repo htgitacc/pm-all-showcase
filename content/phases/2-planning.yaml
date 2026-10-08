@@ -1,0 +1,975 @@
+id: planning
+number: 2
+title_hu: Tervezés
+title_en: Planning
+tagline: Megszületik a terv, amihez később mindent mérünk.
+when: >
+  A Charter aláírásától a jóváhagyott alaptervig (baseline).
+  A Xyo projektben: 2026.02.03 – 2026.03.13.
+
+purpose: |
+  Itt dől el, hogy a projekt sikeres lesz-e. Waterfall projektben ez a leghosszabb és
+  legfontosabb gondolkodási szakasz: **most még olcsó hibázni**, később minden
+  változtatás pénzbe és időbe kerül.
+
+  A fázis végén létrejön a **baseline**: a jóváhagyott hatókör, ütemterv és
+  költségvetés befagyasztott változata. Ehhez fogsz mérni a projekt hátralévő
+  részében, és csak formális változáskéréssel módosítható.
+
+  **Junior PM-ként itt a legnagyobb kísértés** átugrani a részleteket, mert „már úgyis
+  tudjuk, mi lesz". Ne tedd: amit nem tervezel meg, azt improvizálni fogod, méghozzá
+  a legrosszabb pillanatban.
+
+pm_tasks:
+  - text: Bontsd le a teljes munkát munkacsomagokra (WBS).
+    why: >
+      A WBS az egész tervezés gerince. Az ütemterv, a költségvetés és a felelősségek
+      is ebből származnak — amit nem tettél bele, azt nem is fogják megcsinálni.
+  - text: Készítsd el az ütemtervet, és azonosítsd a kritikus utat.
+    why: >
+      Tudnod kell, mely feladatok csúszása tolja el a projekt végét, és melyeknél van
+      mozgástered. Enélkül minden csúszás egyformán ijesztőnek tűnik.
+  - text: Állítsd össze a részletes költségvetést és a tartalékkeretet.
+    why: >
+      A tartalék nem luxus, hanem tervezési eszköz. Ha nincs, minden apró probléma
+      azonnal a szponzorhoz megy döntésre.
+  - text: Azonosítsd, értékeld és rendeld felelőshöz a kockázatokat.
+    why: >
+      A kockázatkezelés az, amit a szervezet a PM-től leginkább elvár. Ha bekövetkezik
+      valami, amit nem is azonosítottál, azt neked róják fel.
+  - text: Tervezd meg a beszerzést a beszerzési szabályzattal együtt.
+    why: >
+      IT projektben a beszerzés a leggyakoribb csúszásforrás. A belső jóváhagyási körök
+      hosszabbak, mint bárki gondolja — ezekre külön időt kell tervezni.
+  - text: Írd le az átvételi kritériumokat, mérhetően.
+    why: >
+      Az átvétel akkor lesz vitamentes, ha előre, írásban rögzítettétek, mi számít
+      késznek. Az Execution végén már késő megbeszélni.
+  - text: Tervezd meg a felhasználói felkészítést és a bevezetés kommunikációját.
+    why: >
+      Egy IT bevezetés nem technikai, hanem szervezeti változás. A technológia
+      működni fog; az emberek elfogadása a kockázat.
+  - text: Vidd a teljes tervet jóváhagyásra, és fagyaszd be a baselinet.
+    why: >
+      Baseline nélkül nincs mihez mérni az eltérést, és a hatókör-elszivárgás
+      észrevétlenül történik meg.
+
+meetings:
+  - name_hu: Tervezési műhely (WBS-workshop)
+    name_en: Planning Workshop
+    purpose: A teljes projektmunka közös lebontása munkacsomagokra.
+    when: 2026.02.10-11 — két félnapos alkalom.
+    duration: 2 × 4 óra
+    participants:
+      - Nagy Péter, IT osztályvezető
+      - Szabó Márk, rendszergazda
+      - Molnár Katalin, beszerzés
+      - Kiss Réka, Service Desk
+      - Varga Eszter, HR
+      - Cloudia Solutions Kft. bevezetési konzultánsa
+    agenda:
+      - A Charter hatókörének átbeszélése
+      - A munka lebontása szintenként, közösen
+      - Minden munkacsomaghoz becsült ráfordítás és felelős
+      - A hiányzó kompetenciák azonosítása
+    output: WBS és WBS-szótár első változata.
+    tip: >
+      Fizikai vagy digitális post-itekkel dolgozzatok. Ha te írod egyedül a WBS-t,
+      a csapat nem fogja magáénak érezni, és minden becslést vitatni fog.
+
+  - name_hu: Kockázati műhely
+    name_en: Risk Workshop
+    purpose: A kockázatok közös azonosítása, értékelése és felelőshöz rendelése.
+    when: 2026.02.19, a WBS elkészülte után.
+    duration: 3 óra
+    participants:
+      - A teljes projektcsapat
+      - Kiss Réka (üzemeltetési kockázatok)
+      - dr. Fekete Zsolt (adatvédelmi kockázatok)
+      - Molnár Katalin (szállítói kockázatok)
+    agenda:
+      - Mi mehet félre? — szabad ötletelés, értékelés nélkül
+      - Valószínűség és hatás értékelése
+      - Válaszstratégia minden magas besorolású kockázathoz
+      - Kockázatgazdák kijelölése
+    output: Kockázatnyilvántartás első teljes változata.
+    tip: >
+      Az ötletelés szakaszában ne engedd, hogy valaki leértékeljen egy felvetést.
+      A „ez úgysem fog megtörténni" mondatok ölik meg a kockázati műhelyeket.
+
+  - name_hu: Becslési egyeztetés a szállítókkal
+    name_en: Vendor Estimation Session
+    purpose: Nagyságrendi árak és szállítási határidők megismerése a tervezéshez.
+    when: 2026.02.24-26.
+    duration: 90 perc / szállító
+    participants:
+      - Molnár Katalin, beszerzés (ő vezeti)
+      - Te, projektmenedzserként
+      - Nagy Péter szakmai kérdésekhez
+    agenda:
+      - Mennyiségi igény és funkcionális elvárások ismertetése
+      - Szállítási határidők, készlethelyzet
+      - Licencelési konstrukciók
+    output: A költségvetés és az ütemterv bemenete; a beszerzési terv pontosítása.
+    tip: >
+      Ez még nem ajánlatkérés. Ne adj ki keretösszeget, és jelezd, hogy tájékozódás
+      zajlik — különben a beszerzési szabályzatot sértheted meg.
+
+  - name_hu: Terv-jóváhagyó ülés (Planning-kapu)
+    name_en: Baseline Approval / Stage Gate
+    purpose: A teljes terv jóváhagyása és a baseline befagyasztása.
+    when: 2026.03.13.
+    duration: 90 perc
+    participants:
+      - Projekt Irányító Bizottság teljes összetételben
+      - Te, projektmenedzserként (te prezentálsz)
+    agenda:
+      - Hatókör, ütemterv, költségvetés bemutatása
+      - A főbb kockázatok és a válaszok
+      - A tartalékkeret felhasználásának szabálya
+      - Döntés a továbblépésről
+    output: Jóváhagyott baseline, írásos döntés.
+    tip: >
+      Vidd magaddal a legrosszabb forgatókönyvet is. Ha csak a rózsaszín változatot
+      mutatod, az első csúszásnál elveszted a hitelességedet.
+
+data_in:
+  - from: Molnár Katalin, beszerzés
+    what: A cég beszerzési szabályzata, értékhatárok és a jóváhagyási körök átfutási ideje
+    used_in: procurement_plan
+    note: A belső jóváhagyás átfutási ideje az egyik leggyakoribb rejtett csúszásforrás.
+  - from: Varga Eszter, HR
+    what: A pilot 50 fő végleges névsora, szervezeti egység szerinti bontásban
+    used_in: resource_plan
+    note: A kiosztás ütemezése ebből következik.
+  - from: Nagy Péter, IT osztályvezető
+    what: Technikai követelmények, hálózati és biztonsági elvárások
+    used_in: requirements_matrix
+    note: Kérd írásban, ne szóban — ez lesz a teszt alapja.
+  - from: Cloudia Solutions Kft.
+    what: Nagyságrendi árak, licenckonstrukciók, bevezetési ütemterv-javaslat
+    used_in: budget
+    note: Tájékozódás, nem ajánlat. Rögzítsd, hogy nem kötelező érvényű.
+  - from: dr. Fekete Zsolt, DPO
+    what: Állásfoglalás a hatásvizsgálat szükségességéről és az adattárolás helyéről
+    used_in: dpia
+  - from: Balogh Tamás, kontroller
+    what: A költségkövetés formátuma, a költséghelyek és a jelentési ciklus
+    used_in: budget
+    note: Az ő formátumában tervezz, különben minden riportot kétszer csinálsz meg.
+
+data_out:
+  - to: Projekt Irányító Bizottság
+    what: A teljes projektterv és a jóváhagyásra váró baseline
+    when: A jóváhagyó ülés előtt legalább 5 munkanappal
+  - to: A projektcsapat tagjai
+    what: A rájuk vonatkozó munkacsomagok, határidőkkel és elvárt eredménnyel
+    when: A baseline jóváhagyása után 3 munkanapon belül
+    note: Mindenki csak a sajátját kapja meg részletesen, ne a teljes 40 oldalt.
+  - to: A pilot 50 résztvevője
+    what: Mi fog velük történni, mikor, és mit kell tenniük
+    when: A baseline jóváhagyása után 1 héten belül
+    note: Egyszerű nyelven, egy oldalban. Ez nem projektdokumentum, hanem kommunikáció.
+  - to: dr. Fekete Zsolt, DPO
+    what: Az adatkezelési folyamat leírása véleményezésre
+    when: A hatásvizsgálat elkészítése előtt
+
+data_restricted:
+  - what: A belső költségbecslés a szállítók felé
+    why: >
+      Ha ismerik a becslésedet, az ajánlatuk ahhoz fog igazodni. A beszerzési
+      szabályzat is jellemzően tiltja.
+  - what: Az egyik szállító ajánlata vagy árszintje a másiknak
+    why: >
+      Üzleti titok, és tisztességtelen versenyelőnyt teremt. Jogi következménye is
+      lehet, és a felelősség a tiéd.
+  - what: A kockázatnyilvántartás nyers, belső változata a szállítóknak
+    why: >
+      Abban gyakran szerepel a „szállító nem teljesít" típusú kockázat, névvel.
+      A szállítónak a rá vonatkozó, szerződéses elvárásokat kell megkapnia.
+  - what: A pilot résztvevőinek személyes adatai a szállítóknak, adatkezelési megállapodás nélkül
+    why: >
+      GDPR-kötelezettség. Adatfeldolgozói szerződés nélkül nem adható át személyes adat.
+
+responsibility:
+  summary: |
+    A Tervezés fázisban azért felelsz, hogy a terv **reális és követhető** legyen.
+    Nem azért, hogy a terv tökéletes legyen — az soha nem az —, hanem azért, hogy az
+    eltérés **észrevehető** legyen, amikor bekövetkezik.
+  items:
+    - what: Azért felelsz, hogy a becslések forrása és módszere dokumentált legyen.
+      risk: >
+        Ha nem tudod megmondani, honnan jött egy szám, a felelősség automatikusan a
+        tiéd lesz, amikor kiderül, hogy rossz volt.
+    - what: Azért felelsz, hogy a tartalékkeret mértéke és felhasználási szabálya rögzítve legyen.
+      risk: >
+        Szabály nélküli tartalékot vagy soha nem mersz felhasználni, vagy két hét alatt
+        elfogy — mindkettő rossz.
+    - what: Azért felelsz, hogy minden azonosított kockázatnak legyen nevesített gazdája.
+      risk: >
+        A gazdátlan kockázat nem kockázat, hanem lista. Bekövetkezéskor rád mutatnak.
+    - what: Azért felelsz, hogy a hatókör és az átvételi kritériumok mérhetően legyenek leírva.
+      risk: >
+        „Működjön jól" alapon nem lehet átvenni semmit. Az átadás vitába fullad, és a
+        projekt formálisan sosem zárul le.
+    - what: Nem felelsz azért, hogy a szervezet betartja-e a saját beszerzési határidőit.
+      risk: >
+        Viszont felelsz azért, hogy ezt a kockázatot időben jelezd és beépítsd az
+        ütemtervbe. A „nem szóltam róla" nem védekezés.
+
+documents:
+  - id: pmp
+    order: 1
+    name_hu: Projektterv
+    name_en: Project Management Plan
+    mandatory: true
+    owner: A PM állítja össze, a Projekt Irányító Bizottság hagyja jóvá.
+    why: >
+      Ez a **gyűjtődokumentum**: összefogja az összes részterv tervét egy helyre. Nem
+      önálló tartalom, hanem az, ami megmondja, hol találod a hatókört, az ütemet, a
+      költséget és a szabályokat, és hogyan kapcsolódnak egymáshoz.
+    contents:
+      - A részterveк felsorolása és hivatkozása
+      - 'A baseline definíciója: mi van befagyasztva'
+      - 'A projekt irányítási rendje: ki mit dönt, milyen fórumon'
+      - A változáskezelés és az eszkaláció menete
+    inputs: [charter, assumption_log]
+    feeds: [work_package_assignment, status_report, change_procedure]
+    pitfall: >
+      Ne írj bele mindent szó szerint. A jó Projektterv 10-15 oldal, ami hivatkozik a
+      részletes dokumentumokra — nem egy 120 oldalas, olvashatatlan tömb.
+
+    sample_file: docs/2-planning/01-projektterv.md
+  - id: scope_statement
+    order: 2
+    name_hu: Hatókör-nyilatkozat
+    name_en: Scope Statement
+    mandatory: true
+    owner: A PM írja, a szponzor és a szakmai vezető hagyja jóvá.
+    why: >
+      Pontosan leírja, mit szállítunk és mit nem. A **„mi nincs benne" rész a
+      fontosabb** — ez az egyetlen fegyvered a hatókör-elszivárgás ellen.
+    contents:
+      - 'Termékleírás: mit kap a felhasználó a projekt végén'
+      - Szállítandó eredmények (deliverables) tételesen
+      - Átvételi kritériumok magas szinten
+      - Hatókörön kívüli elemek, tételesen
+      - Feltevések és korlátok
+    inputs: [charter]
+    feeds: [wbs, requirements_matrix, quality_plan, change_procedure]
+    pitfall: >
+      A „hatókörön kívül" listát a projekt közben is bővítsd. Amikor valaki felvet
+      valamit, amit nem vállalunk, azonnal írd bele — ez a legolcsóbb védekezés.
+
+    sample_file: docs/2-planning/02-hatokor-nyilatkozat.md
+  - id: wbs
+    order: 3
+    name_hu: Munkalebontási szerkezet
+    name_en: WBS — Work Breakdown Structure
+    mandatory: true
+    owner: A PM vezeti, a csapat közösen készíti workshopon.
+    why: >
+      A teljes projektmunka lebontása kezelhető munkacsomagokra. **Az ütemterv, a
+      költségvetés és a felelősségek mind ebből származnak** — ez a tervezés gerince.
+    contents:
+      - Hierarchikus lebontás 3-4 szinten
+      - A legalsó szint a munkacsomag (általában 8-80 óra munka)
+      - Minden elemnek egyedi azonosítója van
+    inputs: [scope_statement]
+    feeds: [wbs_dictionary, schedule, budget, resource_plan, raci, work_package_assignment]
+    pitfall: >
+      A WBS **eredményeket** tartalmaz, nem tevékenységeket. Nem „laptopok
+      megrendelése", hanem „50 db beüzemelt laptop". Így ellenőrizhető, hogy kész van-e.
+
+    sample_file: docs/2-planning/03-wbs.md
+  - id: wbs_dictionary
+    order: 4
+    name_hu: WBS-szótár
+    name_en: WBS Dictionary
+    mandatory: false
+    owner: A PM vezeti, a munkacsomag-felelősök töltik ki.
+    why: >
+      Minden munkacsomaghoz leírja, pontosan mit jelent, mi a kész állapot, ki a
+      felelős és mennyi a becsült ráfordítás. **Téged úgy véd**, hogy nem lehet
+      utólag mást érteni egy munkacsomag alatt.
+    contents:
+      - WBS-azonosító és megnevezés
+      - Mit tartalmaz és mit nem
+      - Kész-definíció (mikor tekintjük késznek)
+      - Felelős, becsült ráfordítás, függőségek
+    inputs: [wbs]
+    feeds: [schedule, work_package_assignment]
+    pitfall: >
+      A kész-definíció a legfontosabb mezője. Enélkül minden munkacsomag „majdnem
+      kész" marad a projekt 80%-ánál.
+
+    sample_file: docs/2-planning/04-wbs-szotar.md
+  - id: requirements_matrix
+    order: 5
+    name_hu: Követelmény-nyomonkövetési mátrix
+    name_en: Requirements Traceability Matrix
+    mandatory: false
+    owner: A PM vezeti, a szakmai vezető validálja.
+    why: >
+      Összeköti a követelményeket a megoldással és a tesztesetekkel: minden
+      követelményről látszik, **hol valósul meg és mi bizonyítja, hogy teljesült**.
+      Ez az a dokumentum, amivel az átvételkor lezárhatsz minden vitát.
+    contents:
+      - Követelmény azonosítója, leírása, forrása (ki kérte)
+      - Prioritás (kötelező / fontos / ha belefér)
+      - Melyik WBS-elem valósítja meg
+      - Melyik teszteset igazolja
+      - Státusz
+    inputs: [scope_statement, project_glossary]
+    feeds: [test_plan, quality_plan, uat_signoff]
+    pitfall: >
+      A „forrás" oszlopot ne hagyd üresen. Amikor egy követelmény drágának bizonyul,
+      tudni kell, kivel lehet róla tárgyalni.
+
+    sample_file: docs/2-planning/05-kovetelmeny-matrix.md
+  - id: schedule
+    order: 6
+    name_hu: Ütemterv és mérföldkőlista
+    name_en: Schedule and Milestone List
+    mandatory: true
+    owner: A PM készíti a munkacsomag-felelősök becsléseiből.
+    why: >
+      Megmutatja, mi mikor történik, mi mitől függ, és **mely feladatok csúszása
+      tolja el a projekt végét** (kritikus út). Enélkül nem tudod megítélni, melyik
+      csúszás komoly és melyik nem.
+    contents:
+      - Feladatok a WBS alapján, időtartammal
+      - Függőségek a feladatok között
+      - Kritikus út megjelölése
+      - Mérföldkövek dátummal
+      - Puffer / tartalékidő megjelölése
+    inputs: [wbs, wbs_dictionary]
+    feeds: [budget, resource_plan, status_report, milestone_report, evm_report]
+    pitfall: >
+      A szállítási határidőket és a belső jóváhagyási köröket is tervezd be feladatként.
+      A legtöbb IT projekt nem a munkán, hanem a várakozáson csúszik el.
+
+    sample_file: docs/2-planning/06-utemterv.md
+  - id: budget
+    order: 7
+    name_hu: Költségvetés és költségbázis
+    name_en: Budget / Cost Baseline
+    mandatory: true
+    owner: A PM készíti, a kontroller ellenőrzi, a szponzor hagyja jóvá.
+    why: >
+      A jóváhagyott költségkeret időben elosztva. Ehhez méred a tényleges költést, és
+      ez alapján tudod időben jelezni, ha elfogy a pénz — **mielőtt** elfogyna.
+    contents:
+      - Költségtételek a WBS szerint
+      - Egyszeri (CAPEX) és folyó (OPEX) bontás
+      - Időbeli elosztás (mikor mennyit költünk)
+      - Tartalékkeret mértéke és felhasználási szabálya
+      - Költséghelyek a kontroller formátuma szerint
+    inputs: [wbs, schedule, cost_benefit]
+    feeds: [procurement_plan, status_report, evm_report, financial_closure]
+    pitfall: >
+      A felhő nem egyszeri beruházás. A projekt utáni **folyó előfizetési költséget**
+      is mutasd meg, különben a projekt végén éri meglepetés a pénzügyet.
+
+    sample_file: docs/2-planning/07-koltsegvetes.md
+  - id: resource_plan
+    order: 8
+    name_hu: Erőforrásterv
+    name_en: Resource Plan
+    mandatory: true
+    owner: A PM készíti, a szervezeti vezetők hagyják jóvá a kapacitást.
+    why: >
+      Megmutatja, kire mikor és mennyi ideig van szükség. IT projektben szinte mindenki
+      **a napi munkája mellett** dolgozik a projekten — ezt írásban kell rögzíteni,
+      különben nem lesz kapacitás.
+    contents:
+      - Szerepkörök és nevesített személyek
+      - Ki mikor, hány százalékban dolgozik a projekten
+      - A szervezeti vezető írásos hozzájárulása
+      - Külső erőforrások és a szükséges kompetenciák
+      - Kapacitáshiányok és a kezelésük
+    inputs: [wbs, schedule]
+    feeds: [raci, resource_release, risk_register]
+    pitfall: >
+      Kérd a szervezeti vezető írásos jóváhagyását a kapacitásra. A szóbeli ígéret az
+      első üzemi tűzoltásnál elpárolog.
+
+    sample_file: docs/2-planning/08-eroforrasterv.md
+  - id: raci
+    order: 9
+    name_hu: Felelősségi mátrix (RACI)
+    name_en: RACI Matrix
+    mandatory: true
+    owner: A PM készíti, a Steering Committee hagyja jóvá.
+    why: >
+      Minden fontos feladatnál egyértelművé teszi, ki a végrehajtó, ki a felelős
+      döntéshozó, kit kell megkérdezni és kit tájékoztatni. **A legtöbb projektkonfliktus
+      abból ered, hogy ez nincs leírva.**
+    contents:
+      - Feladatok / munkacsomagok soronként
+      - Érintettek oszloponként
+      - R / A / C / I jelölés — feladatonként pontosan egy A
+    inputs: [wbs, stakeholder_register, resource_plan]
+    feeds: [comm_plan, work_package_assignment, escalation_log]
+    pitfall: >
+      Ha egy feladatnál két A van, az nem kettős felelősség, hanem nulla. Egy sorban
+      pontosan egy A szerepelhet.
+
+    sample_file: docs/2-planning/09-raci-matrix.md
+  - id: risk_register
+    order: 10
+    name_hu: Kockázatnyilvántartás
+    name_en: Risk Register
+    mandatory: true
+    owner: A PM vezeti; minden kockázatnak van nevesített gazdája.
+    why: >
+      Az összes ismert fenyegetés egy helyen, értékelve és felelőshöz rendelve.
+      **Élő dokumentum** — a projekt teljes hossza alatt frissül. Ez az egyik
+      legerősebb bizonyíték arra, hogy a PM elvégezte a munkáját.
+    contents:
+      - Azonosító, leírás, kategória
+      - Valószínűség és hatás, ebből számított besorolás
+      - Válaszstratégia (elkerülés / csökkentés / átadás / elfogadás) és konkrét lépések
+      - Kockázatgazda, határidő, státusz
+      - Bekövetkezési jelzés (mit figyelünk, ami előrevetíti)
+    inputs: [assumption_log, stakeholder_register, resource_plan]
+    feeds: [risk_report, status_report, issue_log, lessons_learned]
+    pitfall: >
+      A „bekövetkezési jelzés" mezőt szinte mindenki kihagyja, pedig ez teszi
+      használhatóvá a nyilvántartást. Enélkül csak utólag veszed észre a bajt.
+
+    sample_file: docs/2-planning/10-kockazatnyilvantartas.md
+  - id: comm_plan
+    order: 11
+    name_hu: Kommunikációs terv
+    name_en: Communications Plan
+    mandatory: true
+    owner: A PM készíti; a szervezeti kommunikációt a HR-rel egyeztetve.
+    why: >
+      Rögzíti, **kinek, mit, mikor, milyen csatornán** kommunikálunk. Egy IT
+      bevezetésnél a kommunikáció hiánya nagyobb kockázat, mint a technológia.
+    contents:
+      - 'Érintettenként: milyen információt igényel, milyen gyakran, milyen formában'
+      - A rendszeres riportok listája és a küldés időpontja
+      - A dokumentumok tárolási helye és hozzáférési rendje
+      - 'Eszkalációs út: mi az, amit azonnal jelenteni kell, és kinek'
+    inputs: [stakeholder_register, stakeholder_analysis, raci, kickoff_minutes]
+    feeds: [status_report, steering_report, training_plan]
+    pitfall: >
+      Írd bele a végfelhasználói kommunikációt is, ne csak a vezetői riportokat.
+      Az 50 pilot résztvevő tájékoztatása önálló feladat, felelőssel és határidővel.
+
+    sample_file: docs/2-planning/11-kommunikacios-terv.md
+  - id: procurement_plan
+    order: 12
+    name_hu: Beszerzési terv
+    name_en: Procurement Plan
+    mandatory: true
+    owner: A PM és a beszerzési vezető közösen; a beszerzés a folyamat gazdája.
+    why: >
+      Megtervezi, mit, mikor és milyen eljárással szerzünk be. IT projektben ez a
+      **leggyakoribb csúszásforrás**, mert a belső jóváhagyási körök átfutási ideje
+      rendszerint alultervezett.
+    contents:
+      - Beszerzési tételek, mennyiség és becsült érték
+      - Az alkalmazandó eljárás értékhatár szerint
+      - A jóváhagyási kör lépései és átfutási ideje
+      - Ütemezés visszafelé számolva a szükséges dátumtól
+      - Szerződéstípusok és a főbb szerződéses feltételek
+    inputs: [budget, schedule]
+    feeds: [vendor_criteria, rfp, contract]
+    pitfall: >
+      Számolj visszafelé: ha május 11-én kell a laptop, és a szállítás 6 hét, a
+      jóváhagyás 3 hét, az ajánlati szakasz 3 hét — akkor február végén el kell indulni.
+
+    sample_file: docs/2-planning/12-beszerzesi-terv.md
+  - id: vendor_criteria
+    order: 13
+    name_hu: Szállítóértékelési szempontrendszer
+    name_en: Vendor Evaluation Criteria
+    mandatory: false
+    owner: A PM és a beszerzés készíti, a Steering Committee hagyja jóvá.
+    why: >
+      **Az ajánlatok beérkezése előtt** rögzíti, mi alapján fogunk választani, és
+      milyen súllyal. Ez véd meg a legjobban a részrehajlás vádjától — és attól, hogy
+      utólag a szempontokat a kedvenc szállítóhoz igazítsák.
+    contents:
+      - Értékelési szempontok és súlyok (ár, határidő, referencia, támogatás)
+      - Kizáró feltételek
+      - Pontozási skála
+      - Az értékelő bizottság összetétele
+    inputs: [procurement_plan]
+    feeds: [rfp, bid_comparison]
+    pitfall: >
+      A súlyokat az ajánlatok kibontása **előtt** kell jóváhagyatni és dokumentálni.
+      Utólag módosítva az egész eljárás megtámadható.
+
+    sample_file: docs/2-planning/13-szallitoertekelesi-szempontrendszer.md
+  - id: quality_plan
+    order: 14
+    name_hu: Minőségterv és átvételi kritériumok
+    name_en: Quality Plan and Acceptance Criteria
+    mandatory: true
+    owner: A PM készíti, a szakmai vezető és a felhasználói képviselő hagyja jóvá.
+    why: >
+      Leírja, **mit jelent, hogy kész van**, és hogyan bizonyítjuk. Enélkül az átvétel
+      szubjektív vitába fullad, és a projekt formálisan sosem zárul le.
+    contents:
+      - Minőségi elvárások szállítandó eredményenként
+      - Mérhető átvételi kritériumok
+      - 'Az ellenőrzés módja: ki, mikor, mivel ellenőriz'
+      - A hibák súlyossági kategóriái és a kezelésük
+    inputs: [scope_statement, requirements_matrix, project_glossary]
+    feeds: [test_plan, quality_control_report, final_acceptance]
+    pitfall: >
+      Minden kritérium legyen **igen/nem eldönthető**. A „gyorsan induljon el a gép"
+      nem kritérium; a „bekapcsolástól bejelentkezésig legfeljebb 90 másodperc" az.
+
+    sample_file: docs/2-planning/14-minosegterv.md
+  - id: change_procedure
+    order: 15
+    name_hu: Változáskezelési eljárás
+    name_en: Change Management Procedure
+    mandatory: true
+    owner: A PM készíti, a Steering Committee hagyja jóvá.
+    why: >
+      Rögzíti, hogyan lehet a jóváhagyott terven módosítani. **Enélkül minden
+      módosítás hatókör-elszivárgás**, és a végén rajtad kérik számon a csúszást.
+    contents:
+      - Ki nyújthat be változáskérelmet és milyen formában
+      - A hatásvizsgálat menete (idő, költség, kockázat, minőség)
+      - Ki dönt, milyen értékhatárig
+      - A változásnapló vezetésének rendje
+      - Sürgős változás kezelése
+    inputs: [pmp, scope_statement]
+    feeds: [change_request, change_log]
+    pitfall: >
+      Írd bele a te saját döntési határodat is. Ha minden apróság a Steeringhez megy,
+      a projekt megáll; ha semmi, akkor túllépted a hatáskörödet.
+
+    sample_file: docs/2-planning/15-valtozaskezelesi-eljaras.md
+  - id: test_plan
+    order: 16
+    name_hu: Tesztterv (felhasználói átvételi teszt)
+    name_en: Test Plan / UAT Plan
+    mandatory: true
+    owner: A PM koordinálja, a szakmai vezető és a felhasználói képviselők készítik.
+    why: >
+      Megtervezi, hogyan bizonyítjuk, hogy a megoldás a **valós munkára alkalmas** —
+      nem csak technikailag működik. Ez az átvétel bizonyítéka.
+    contents:
+      - Teszt hatóköre, szakaszai (technikai teszt, UAT)
+      - Tesztesetek a követelményekhez rendelve
+      - A tesztelők köre és a felkészítésük
+      - Belépési és kilépési feltételek
+      - Hibakezelés és újratesztelés menete
+    inputs: [requirements_matrix, quality_plan]
+    feeds: [test_report, uat_signoff]
+    pitfall: >
+      Az UAT-t **valós felhasználók** végezzék, valós feladatokkal. Ha a rendszergazda
+      teszteli, csak azt tudod meg, hogy a rendszergazda tud vele dolgozni.
+
+    sample_file: docs/2-planning/16-tesztterv.md
+  - id: training_plan
+    order: 17
+    name_hu: Oktatási és adaptációs terv
+    name_en: Training and Adoption Plan
+    mandatory: true
+    owner: A PM készíti a HR-rel és a Service Deskkel közösen.
+    why: >
+      Egy IT bevezetés sikere nem a technológián, hanem az **emberek elfogadásán**
+      múlik. Ez a terv gondoskodik arról, hogy a felhasználók tudják és akarják is
+      használni az új környezetet.
+    contents:
+      - Célcsoportok és a nekik szükséges tudás
+      - Oktatási formák és ütemezés
+      - Segédanyagok és a támogatási csatorna
+      - „Bevezetés utáni" fokozott támogatás időszaka (hypercare)
+      - 'A változás kommunikációja: miért jó ez nekik'
+    inputs: [comm_plan, scope_statement]
+    feeds: [training_material, user_guide, user_survey]
+    pitfall: >
+      Tervezz **hypercare időszakot** az élesítés után: 2-3 hét fokozott támogatás.
+      Enélkül a Service Deskre zúdul minden, és a projekt rossz emlékként rögzül.
+
+    sample_file: docs/2-planning/17-oktatasi-terv.md
+  - id: dpia
+    order: 18
+    name_hu: Adatvédelmi hatásvizsgálat
+    name_en: DPIA — Data Protection Impact Assessment
+    mandatory: false
+    owner: A DPO készíti, a PM szolgáltat hozzá adatot.
+    why: >
+      GDPR-kötelezettség, ha a feldolgozás magas kockázatú. Felhős tárolásnál és
+      eszközfelügyeletnél (Intune) rendszerint felmerül. **Téged úgy véd**, hogy
+      írásban van: a kérdést feltetted, a DPO állást foglalt.
+    contents:
+      - A kezelt személyes adatok köre és a kezelés célja
+      - Adattárolás helye és az adatfeldolgozók
+      - Kockázatok és a csökkentésükre tett intézkedések
+      - A DPO álláspontja
+    inputs: [feasibility, scope_statement]
+    feeds: [security_baseline, contract]
+    pitfall: >
+      Akkor is kérj írásos DPO-állásfoglalást, ha a végkövetkeztetés az, hogy nem
+      kell hatásvizsgálat. A „nem kell" is dokumentálandó döntés.
+
+    sample_file: docs/2-planning/18-adatvedelmi-hatasvizsgalat.md
+  - id: security_baseline
+    order: 19
+    name_hu: Biztonsági alapkonfiguráció
+    name_en: Security Baseline
+    mandatory: false
+    owner: A rendszergazda és a szakmai vezető készíti.
+    why: >
+      Rögzíti, milyen biztonsági beállításokkal indul a környezet: MFA, feltételes
+      hozzáférés, eszköztitkosítás, jogosultsági szintek. Új környezetnél ezt
+      **induláskor** kell rendbe tenni, utólag sokkal drágább.
+    contents:
+      - Azonosítás és többtényezős hitelesítés szabályai
+      - Feltételes hozzáférési szabályok
+      - Eszköztitkosítás és eszközfelügyeleti beállítások
+      - Jogosultsági szintek és a kiosztás rendje
+      - Mentési és visszaállítási elvárások
+    inputs: [dpia]
+    feeds: [as_built, test_plan, operational_handover]
+    pitfall: >
+      A mentést ne feledd. Sokan azt hiszik, a felhő „magától menti" az adatokat —
+      a beállított megőrzési idő és a visszaállíthatóság külön feladat.
+
+    sample_file: docs/2-planning/19-biztonsagi-alapkonfiguracio.md
+  - id: rollback_plan
+    order: 20
+    name_hu: Visszaállási terv
+    name_en: Rollback / Contingency Plan
+    mandatory: false
+    owner: A PM és a szakmai vezető közösen.
+    why: >
+      Leírja, mit teszünk, ha az élesítés nem sikerül. A Xyo projektben a migráció
+      hiánya miatt viszonylag egyszerű (a régi gép megmarad), de **ezt is le kell
+      írni** — élesítés napján nem lehet improvizálni.
+    contents:
+      - Mikor mondjuk ki, hogy visszaállunk (döntési kritérium)
+      - Ki hozza meg a döntést
+      - A visszaállás lépései és időigénye
+      - Kit kell értesíteni
+    inputs: [schedule, risk_register]
+    feeds: [operational_handover]
+    pitfall: >
+      A döntési kritériumot előre kell megírni. Élesítés napján, nyomás alatt senki
+      nem tud higgadtan eldönteni, hogy „ez már elég nagy baj-e".
+
+    sample_file: docs/2-planning/20-visszaallasi-terv.md
+checklist:
+  - id: plan-01
+    text: Írd meg a Hatókör-nyilatkozatot, benne a tételes „hatókörön kívül" listával.
+    mandatory: true
+    doc_ref: scope_statement
+    why: >
+      A hatókör-elszivárgás elleni egyetlen valódi védekezés. Amit ide beírsz,
+      arra később hivatkozhatsz.
+    how:
+      - A Charter magas szintű hatóköréből indulj ki, és bontsd konkrét eredményekre.
+      - Külön fejezetben sorold fel, mi NEM része a projektnek.
+      - Hagyasd jóvá a szponzorral és a szakmai vezetővel.
+
+  - id: plan-02
+    text: Tartsatok WBS-workshopot, és bontsátok le a teljes munkát munkacsomagokra.
+    mandatory: true
+    doc_ref: wbs
+    why: >
+      Az ütemterv, a költségvetés és a felelősségek is a WBS-ből származnak.
+      Ha ez rossz, minden más is rossz lesz.
+    how:
+      - Két félnapos alkalom, a teljes szakmai csapattal.
+      - Eredményeket bonts, ne tevékenységeket.
+      - A legalsó szint 8-80 óra közötti munkacsomag legyen.
+
+  - id: plan-03
+    text: Töltsd ki a WBS-szótárat, benne minden munkacsomag kész-definíciójával.
+    mandatory: false
+    doc_ref: wbs_dictionary
+    why: >
+      A kész-definíció nélkül minden munkacsomag „majdnem kész" marad, és az
+      Execution végén derül ki, hogy semmi sincs befejezve.
+    how:
+      - A munkacsomag-felelősök töltsék ki, te ellenőrizd.
+      - 'Minden sorban legyen: mit tartalmaz, mit nem, mikor kész, ki a felelős.'
+
+  - id: plan-04
+    text: Vedd fel és rangsorold a követelményeket, kösd őket a WBS-hez.
+    mandatory: false
+    doc_ref: requirements_matrix
+    why: >
+      Az átvételkor ez bizonyítja, hogy minden vállalt követelmény teljesült — és
+      hogy amit nem vállaltunk, azt nem is kellett.
+    how:
+      - Minden követelménynél jegyezd fel, ki kérte.
+      - 'Rangsorolj: kötelező / fontos / ha belefér.'
+
+  - id: plan-05
+    text: Készítsd el az ütemtervet, és jelöld ki a kritikus utat.
+    mandatory: true
+    doc_ref: schedule
+    why: >
+      Tudnod kell, mely feladatok csúszása tolja el a projekt végét. Enélkül minden
+      csúszás egyformán riasztónak tűnik.
+    how:
+      - A becsléseket a munkacsomag-felelősöktől kérd, ne te találd ki.
+      - A szállítási időket és a jóváhagyási köröket is vedd fel feladatként.
+      - Számolj visszafelé a kemény határidőktől.
+    tip: >
+      Az ütemtervben legyen látható puffer. A rejtett puffer (mindenhova +20%) nem
+      kezelhető, és a csapat úgyis rájön.
+
+  - id: plan-06
+    text: Állítsd össze a költségvetést, és rögzítsd a tartalékkeret szabályát.
+    mandatory: true
+    doc_ref: budget
+    why: >
+      A tartalék nélkül minden apró probléma azonnal a szponzorhoz megy; szabály
+      nélkül pedig két hét alatt elfogy.
+    how:
+      - A WBS szerint bontsd tételekre, a kontroller formátumában.
+      - Mutasd külön az egyszeri és a folyó (előfizetési) költséget.
+      - Írd le, mekkora összegig használhatod fel a tartalékot magad.
+
+  - id: plan-07
+    text: Készítsd el az erőforrástervet, és szerezz írásos kapacitás-jóváhagyást.
+    mandatory: true
+    doc_ref: resource_plan
+    why: >
+      A projekten mindenki a napi munkája mellett dolgozik. Szóbeli ígéretből
+      az első üzemi tűzoltásnál nem lesz kapacitás.
+    how:
+      - Írd le, ki mikor hány százalékban dolgozik a projekten.
+      - Kérd a szervezeti vezető írásos hozzájárulását (e-mail elég).
+
+  - id: plan-08
+    text: Készítsd el a RACI mátrixot — feladatonként pontosan egy „A" felelőssel.
+    mandatory: true
+    doc_ref: raci
+    why: >
+      A projektkonfliktusok többsége abból ered, hogy nincs leírva, ki dönt.
+    how:
+      - A WBS munkacsomagjait vidd sorokba, az érintetteket oszlopokba.
+      - 'Ellenőrizd: minden sorban pontosan egy A van.'
+
+  - id: plan-09
+    text: Tartsatok kockázati műhelyt, és nyisd meg a Kockázatnyilvántartást.
+    mandatory: true
+    doc_ref: risk_register
+    why: >
+      Az azonosítatlan kockázat bekövetkezésekor rajtad kérik számon. A gazdátlan
+      kockázat pedig ugyanaz, mint az azonosítatlan.
+    how:
+      - Először szabad ötletelés, értékelés és kritika nélkül.
+      - Utána valószínűség × hatás értékelés.
+      - Minden magas besorolásúhoz konkrét válaszlépés és nevesített gazda.
+    tip: >
+      Írj minden kockázathoz „bekövetkezési jelzést" is: mi az a jel, amiből előre
+      látod, hogy bajban vagy. Ez teszi használhatóvá a nyilvántartást.
+
+  - id: plan-10
+    text: Készítsd el a kommunikációs tervet, a végfelhasználói kommunikációval együtt.
+    mandatory: true
+    doc_ref: comm_plan
+    why: >
+      Egy bevezetésnél a kommunikáció hiánya nagyobb kockázat, mint a technológia.
+    how:
+      - 'Érintettenként: mit, mikor, milyen csatornán.'
+      - Az 50 pilot résztvevő tájékoztatását külön tervezd meg.
+      - Írd le az eszkalációs utat is.
+
+  - id: plan-11
+    text: Készítsd el a beszerzési tervet, visszafelé számolva a szükséges dátumoktól.
+    mandatory: true
+    doc_ref: procurement_plan
+    why: >
+      IT projektben a beszerzés a leggyakoribb csúszásforrás, és a belső jóváhagyási
+      körök átfutási idejét szinte mindig alábecsülik.
+    how:
+      - Kérd el a beszerzési szabályzatot és a tényleges átfutási időket.
+      - 'Számolj visszafelé: szállítás + jóváhagyás + ajánlati szakasz.'
+      - Egyeztesd az ütemtervvel, és ha nem fér bele, most jelezd.
+
+  - id: plan-12
+    text: Hagyasd jóvá a szállítóértékelési szempontrendszert az ajánlatok beérkezése előtt.
+    mandatory: false
+    doc_ref: vendor_criteria
+    why: >
+      Ez véd meg a részrehajlás vádjától. Utólag módosított súlyokkal az egész
+      eljárás megtámadható.
+    how:
+      - Szempontok és súlyok rögzítése, kizáró feltételekkel.
+      - Steering Committee jóváhagyás, dátummal.
+
+  - id: plan-13
+    text: Írd le a mérhető átvételi kritériumokat a minőségtervben.
+    mandatory: true
+    doc_ref: quality_plan
+    why: >
+      Az átvétel akkor vitamentes, ha előre, írásban rögzítettétek, mi számít késznek.
+    how:
+      - Minden kritérium legyen igen/nem eldönthető.
+      - Rendelj hozzá ellenőrzési módot és felelőst.
+
+  - id: plan-14
+    text: Fektesd le a változáskezelési eljárást, benne a saját döntési határoddal.
+    mandatory: true
+    doc_ref: change_procedure
+    why: >
+      Enélkül minden módosítás hatókör-elszivárgás lesz, és a csúszást rajtad kérik számon.
+    how:
+      - Írd le a benyújtás, hatásvizsgálat és döntés menetét.
+      - Rögzítsd, milyen értékhatárig dönthetsz magad.
+
+  - id: plan-15
+    text: Készítsd el a teszttervet, valós felhasználókkal végzett UAT-vel.
+    mandatory: true
+    doc_ref: test_plan
+    why: >
+      Ha csak a rendszergazda teszteli, csak azt tudod meg, hogy ő tud vele dolgozni.
+    how:
+      - Tesztesetek a követelményekhez rendelve.
+      - Belépési és kilépési feltételek rögzítése.
+      - Tesztelők kijelölése és felkészítése.
+
+  - id: plan-16
+    text: Tervezd meg az oktatást és a bevezetés utáni fokozott támogatást (hypercare).
+    mandatory: true
+    doc_ref: training_plan
+    why: >
+      A technológia működni fog; az emberek elfogadása a valódi kockázat.
+    how:
+      - Célcsoportonként tervezz tartalmat és időpontot.
+      - Tervezz 2-3 hét hypercare-t az élesítés után.
+      - Egyeztesd a Service Deskkel a várható terhelést.
+
+  - id: plan-17
+    text: Kérj írásos DPO-állásfoglalást, és ha kell, készíttess adatvédelmi hatásvizsgálatot.
+    mandatory: false
+    doc_ref: dpia
+    why: >
+      Felhős tárolásnál és eszközfelügyeletnél rendszeresen felmerül. Az is
+      dokumentálandó döntés, ha nem kell.
+    how:
+      - Írd le a kezelt adatok körét és a tárolás helyét.
+      - Kérj írásos állásfoglalást dr. Fekete Zsolttól.
+
+  - id: plan-18
+    text: Rögzítsd a biztonsági alapkonfigurációt, a mentéssel és a visszaállítással együtt.
+    mandatory: false
+    doc_ref: security_baseline
+    why: >
+      Új környezetnél induláskor kell rendbe tenni; utólag sokkal drágább.
+    how:
+      - MFA, feltételes hozzáférés, eszköztitkosítás, jogosultsági szintek.
+      - Megőrzési idő és visszaállítási teszt megtervezése.
+
+  - id: plan-19
+    text: Írd meg a visszaállási tervet, benne az előre rögzített döntési kritériummal.
+    mandatory: false
+    doc_ref: rollback_plan
+    why: >
+      Élesítés napján, nyomás alatt senki nem tud higgadtan dönteni arról, hogy
+      „ez már elég nagy baj-e".
+    how:
+      - Írd le, mikor mondjuk ki a visszaállást, és ki dönt róla.
+      - Lépések, időigény, értesítendők.
+
+  - id: plan-20
+    text: Állítsd össze a Projekttervet mint gyűjtődokumentumot.
+    mandatory: true
+    doc_ref: pmp
+    why: >
+      Ez fogja össze a részterveket, és ez mondja meg, hogyan irányítjuk a projektet.
+    how:
+      - Hivatkozz a részletes dokumentumokra, ne másold be őket.
+      - 'Írd le az irányítási rendet: ki mit dönt, milyen fórumon.'
+
+  - id: plan-21
+    text: Vidd a tervet a Planning-kapura, és fagyaszd be a baselinet.
+    mandatory: true
+    why: >
+      Baseline nélkül nincs mihez mérni az eltérést, és a hatókör-elszivárgás
+      észrevétlenül történik meg.
+    how:
+      - Küldd ki az anyagot 5 munkanappal az ülés előtt.
+      - Mutasd be a legrosszabb forgatókönyvet is.
+      - A döntést és a dátumot rögzítsd írásban.
+
+gate:
+  summary: >
+    A Tervezés akkor zárható le, ha van jóváhagyott, befagyasztott hatókör, ütemterv
+    és költségvetés, és mindenki tudja, mi a dolga. Innentől minden módosítás csak
+    formális változáskéréssel történhet.
+  criteria:
+    - Jóváhagyott Hatókör-nyilatkozat, tételes „hatókörön kívül" listával.
+    - Teljes WBS és ütemterv, megjelölt kritikus úttal.
+    - Jóváhagyott költségvetés, rögzített tartalékkerettel és felhasználási szabállyal.
+    - RACI mátrix, feladatonként pontosan egy „A" felelőssel.
+    - Kockázatnyilvántartás, minden magas kockázathoz nevesített gazdával és válaszlépéssel.
+    - Írásban rögzített, mérhető átvételi kritériumok.
+    - Elfogadott változáskezelési eljárás, benne a PM döntési határával.
+    - Erőforrásterv, a szervezeti vezetők írásos kapacitás-jóváhagyásával.
+  decision_by: >
+    Projekt Irányító Bizottság. A Xyo projektben a baseline jóváhagyásának dátuma:
+    2026.03.13.
+
+# --------------------------------------------------------------------------
+# PRINCE2-kiegészítés
+# --------------------------------------------------------------------------
+prince2:
+  processes:
+    - code: IP
+      name: Projekt kezdeményezése (Initiating a Project)
+    - code: SB
+      name: Szakaszhatár kezelése (Managing a Stage Boundary)
+  summary: >
+    A PMI Tervezés fázisának nagy része PRINCE2-ben az IP folyamatba esik, és a
+    **PID-ben** ölt testet. **A legnagyobb eltérés:** a PRINCE2 nem tervezteti
+    meg előre részletesen a teljes projektet — csak a **projektszintű tervet**,
+    plusz a **következő szakasz** részletes tervét. A többi szakasz terve majd
+    a szakaszhatáron készül el.
+  adds:
+    - what: Háromszintű tervezés
+      why: >
+        Projektterv (a Boardnak) → szakaszterv (a PM-nek) → csapatterv (a Team
+        Managernek). Mindegyik más részletességgel és más közönségnek.
+    - what: Csak a következő szakaszt tervezzük részletesen
+      why: >
+        A távoli szakaszok részletes megtervezése úgyis elavul. A Xyo-nál ez
+        azt jelentette volna, hogy márciusban csak a beszerzési szakaszt
+        tervezzük ki teljesen, a kialakítás tervét áprilisban készítjük el.
+    - what: Termékalapú tervezés
+      why: >
+        Előbb a termékek és a termékleírások (mérhető minőségi kritériummal),
+        és csak utána a tevékenységek. A Xyo WBS-szótár kész-definíciója
+        lényegében ezt csinálta.
+    - what: A toleranciák kimondása hat területen
+      why: >
+        Idő, költség, hatókör, minőség, kockázat, haszon. A Charter hatásköri
+        szakasza ezt félig már megtette — a PRINCE2 teljessé teszi.
+  products:
+    - name_hu: Projektterv
+      name_en: Project Plan
+      pmi: Projektterv + Ütemterv + Költségvetés
+    - name_hu: Szakaszterv
+      name_en: Stage Plan
+      pmi: (nincs — a PMI egyben tervezi a projektet)
+    - name_hu: Termékleírások
+      name_en: Product Descriptions
+      pmi: WBS-szótár + átvételi kritériumok
+    - name_hu: Kockázatkezelési megközelítés
+      name_en: Risk Management Approach
+      pmi: (a Projektterv része)
+    - name_hu: Minőségkezelési megközelítés
+      name_en: Quality Management Approach
+      pmi: Minőségterv
+    - name_hu: Változáskezelési megközelítés
+      name_en: Change Control Approach
+      pmi: Változáskezelési eljárás
+    - name_hu: Kommunikációkezelési megközelítés
+      name_en: Communication Management Approach
+      pmi: Kommunikációs terv

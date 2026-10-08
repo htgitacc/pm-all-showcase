@@ -1,0 +1,369 @@
+# PRINCE2 — módszertani kiegészítés.
+# Ez a réteg NEM módosítja a PMI-gerincet: a 69 dokumentum, a checklist és a
+# dokumentumtérkép változatlan. A PRINCE2 külön oldalon és fázisonkénti,
+# jelölt blokkokban jelenik meg.
+
+primer_file: docs/prince2/00-prince2-osszefoglalo.md
+
+intro: |
+  A **PRINCE2** (*PRojects IN Controlled Environments*) egy **irányítási
+  módszer**: előírja, kik a szereplők, milyen döntési pontokon kell a
+  projektnek átmennie, és ki mit dönthet el.
+
+  **Nem versenyez a PMI-val.** A PMI azt mondja meg, *mit tudjon* a
+  projektmenedzser; a PRINCE2 azt, *hogyan irányítsuk* a projektet. A PRINCE2
+  szinte semmilyen technikát nem tartalmaz — nincs benne becslési módszer,
+  Gantt-diagram vagy elkészültségi érték. Ezeket a PMI eszköztárából kell hozni.
+
+  > **Ez a felület PMI/PMBOK alapú.** A PRINCE2 itt **kiegészítő rétegként**
+  > jelenik meg: a fázisoldalakon jelölt blokkban, itt pedig önálló
+  > összefoglalóval és négy mintadokumentummal. A PMI-gerinc változatlan.
+
+how_to_read: |
+  1. **Kezdd az összefoglalóval** (letölthető alább) — kb. 10 oldal, és
+     mindent tartalmaz, ami a fogalmak megértéséhez kell.
+  2. **A fázisoldalakon** a *PRINCE2-kiegészítés* blokk mutatja, hogy az adott
+     PMI-fázis melyik PRINCE2-folyamatnak felel meg, és mit tenne hozzá.
+  3. **A négy mintadokumentum** (lent) azt mutatja meg, hogyan nézne ki
+     ugyanez a Xyo-projekt PRINCE2 szerint.
+
+principles:
+  - name_hu: Folyamatos üzleti indokoltság
+    name_en: Continued business justification
+    text: >
+      Az üzleti indoklás élő dokumentum. Minden szakaszhatáron újra megkérdezzük:
+      megéri-e még? Ha nem, a projektet le kell állítani.
+  - name_hu: Tanulás a tapasztalatokból
+    name_en: Learn from experience
+    text: >
+      A tanulságokat a projekt elején keressük (korábbi projektekből), közben
+      gyűjtjük, a végén átadjuk.
+  - name_hu: Meghatározott szerepek és felelősségek
+    name_en: Defined roles and responsibilities
+    text: >
+      Mindenki tudja, ő mit dönthet el, és mit nem. Nevesített szerepek,
+      nem beosztások.
+  - name_hu: Szakaszokban történő irányítás
+    name_en: Manage by stages
+    text: >
+      A projektet irányítási szakaszokra bontjuk. Minden szakasz végén a
+      döntéshozó testület engedélyezi vagy leállítja a folytatást.
+  - name_hu: Kivételalapú irányítás
+    name_en: Manage by exception
+    text: >
+      A PM toleranciákat kap, és azokon belül önállóan dolgozik. Csak akkor kell
+      felfelé fordulnia, ha a tolerancia túllépése fenyeget.
+  - name_hu: Termékközpontúság
+    name_en: Focus on products
+    text: >
+      Nem tevékenységeket tervezünk, hanem termékeket (eredményeket), leírással
+      és minőségi kritériummal.
+  - name_hu: Testreszabás
+    name_en: Tailor to suit the project
+    text: >
+      A módszert a projekt méretéhez és kockázatához kell igazítani.
+      A „mindent dokumentálunk" nem PRINCE2, hanem félreértés.
+
+processes:
+  - code: SU
+    name_hu: Projekt előkészítése
+    name_en: Starting up a Project
+    who: leendő PM + Executive
+    what: >
+      Van-e értelme egyáltalán elindítani? Elkészül a Project Brief és a
+      kezdeményezési szakasz terve. Ez még nem a projekt — ez az előszoba.
+  - code: DP
+    name_hu: Projekt irányítása
+    name_en: Directing a Project
+    who: Project Board
+    what: >
+      Végig fut a projekt egészén. A Board engedélyez: kezdeményezést, projektet,
+      minden szakaszt, végül a zárást. Kivételes helyzetben itt dönt.
+  - code: IP
+    name_hu: Projekt kezdeményezése
+    name_en: Initiating a Project
+    who: Project Manager
+    what: >
+      Elkészül a PID — a projekt „szerződése". Ez maga is egy szakasz,
+      saját engedéllyel.
+  - code: CS
+    name_hu: Szakasz irányítása
+    name_en: Controlling a Stage
+    who: Project Manager
+    what: >
+      A napi munka: munkacsomagok kiadása, haladás követése, problémakezelés,
+      Highlight Report a Boardnak.
+  - code: MP
+    name_hu: Termékszállítás irányítása
+    name_en: Managing Product Delivery
+    who: Team Manager
+    what: >
+      A munkacsomag elfogadása, elkészítése, átadása. Checkpoint Report a PM-nek.
+  - code: SB
+    name_hu: Szakaszhatár kezelése
+    name_en: Managing a Stage Boundary
+    who: Project Manager
+    what: >
+      A szakasz lezárása: End Stage Report, a következő szakasz terve, és
+      a Business Case felülvizsgálata.
+  - code: CP
+    name_hu: Projekt lezárása
+    name_en: Closing a Project
+    who: Project Manager
+    what: >
+      Átadás, End Project Report, tanulságok, a haszonmérés terve.
+
+roles:
+  - role: Executive
+    role_hu: Ügyvezető szerep
+    represents: Az üzletet és a pénzt
+    responsible: >
+      Egyetlen ember. Ő birtokolja az üzleti indoklást, és ő hozza a végső
+      döntést. A Board nem demokrácia.
+    xyo: Kovács Anita, gazdasági igazgató
+  - role: Senior User
+    role_hu: Felhasználói vezető
+    represents: A felhasználókat
+    responsible: >
+      A megoldás használhatósága, és hogy a hasznok ténylegesen megjelenjenek.
+    xyo: Nagy Péter, IT osztályvezető — nálunk ő „a hasznok gazdája"
+  - role: Senior Supplier
+    role_hu: Szállítói vezető
+    represents: A szállítót, kivitelezőt
+    responsible: A megoldás megvalósíthatósága és leszállítása.
+    xyo: Cloudia Solutions Kft. ügyfélkapcsolati vezetője
+  - role: Project Manager
+    role_hu: Projektmenedzser
+    represents: —
+    responsible: A napi irányítás, a toleranciákon belül.
+    xyo: Tóth Gergő
+  - role: Team Manager
+    role_hu: Csapatvezető
+    represents: Egy szakértői csapatot
+    responsible: Egy-egy munkacsomag leszállítása.
+    xyo: Szabó Márk (belső), Cloudia projektvezető (külső)
+  - role: Project Assurance
+    role_hu: Projektbiztosítás
+    represents: A Boardot
+    responsible: >
+      Független ellenőrzés: a PM-től függetlenül nézi, hogy a projekt tényleg
+      úgy áll-e, ahogy a riport mondja.
+    xyo: "NEM VOLT — a legnagyobb hiányzó elem a valós projektben"
+  - role: Change Authority
+    role_hu: Változási hatáskör
+    represents: A Board delegáltja
+    responsible: A változáskérelmek eldöntése egy értékhatárig.
+    xyo: Tóth Gergő, 1 000 000 Ft-ig — ez már most PRINCE2-szerű delegálás
+  - role: Project Support
+    role_hu: Projekttámogatás
+    represents: —
+    responsible: Adminisztráció, dokumentumkezelés, eszközök.
+    xyo: Nincs — a projekt mérete nem indokolja
+
+tolerances:
+  intro: >
+    A Board minden szakaszhoz toleranciát ad. A PM ezeken belül önállóan
+    dolgozik — nem kell engedélyt kérnie. Ha a túllépés előrejelezhető,
+    Exception Reportot készít.
+  areas:
+    - area: Idő
+      xyo: ± 5 munkanap szakaszonként
+    - area: Költség
+      xyo: ± 5%, és a tartalékból 1 000 000 Ft / eset
+    - area: Hatókör
+      xyo: nulla — csak jóváhagyott változáskérelemmel
+    - area: Minőség
+      xyo: az átvételi kritériumok tűréshatára; S1 hibából nulla
+    - area: Kockázat
+      xyo: 6-os besorolás felett jelenteni kell
+    - area: Haszon
+      xyo: a mérőszámok kudarcküszöbe
+
+concept_map:
+  - pmi: Project Charter
+    prince2: (a PID része)
+    note: A PRINCE2 nem kezeli külön dokumentumként
+  - pmi: Project Management Plan
+    prince2: PID — Project Initiation Documentation
+    note: A Charter és a PM Plan együtt
+  - pmi: Sponsor (szponzor)
+    prince2: Executive
+    note: PRINCE2-ben egyetlen ember, ő hozza a végső döntést
+  - pmi: Steering Committee
+    prince2: Project Board
+    note: PRINCE2-ben kötelező szerepstruktúra
+  - pmi: Fázis-kapu (phase gate)
+    prince2: Szakaszhatár (stage boundary)
+    note: PRINCE2-ben kötelező, és a Business Case felülvizsgálatával jár
+  - pmi: Status Report
+    prince2: Highlight Report
+    note: A toleranciákhoz méri az állapotot, nem a tervhez
+  - pmi: (nincs megfelelő)
+    prince2: Exception Report
+    note: Tolerancia-túllépés fenyegetésekor — a legértékesebb átvehető elem
+  - pmi: (nincs megfelelő)
+    prince2: Project Assurance
+    note: Független ellenőrzés a Board nevében
+  - pmi: Deliverable
+    prince2: Product (termék)
+    note: PRINCE2-ben minden terméknek termékleírása van
+  - pmi: WBS
+    prince2: Terméklebontási szerkezet (PBS)
+    note: Termékalapú tervezés, nem tevékenységalapú
+  - pmi: Change Request
+    prince2: Issue
+    note: PRINCE2 egy folyamatban kezeli a változást és a problémát
+  - pmi: Issue Log
+    prince2: Issue Register
+    note: Lényegében azonos
+  - pmi: Risk Register
+    prince2: Risk Register
+    note: Azonos
+  - pmi: Lessons Learned Register
+    prince2: Lessons Log / Lessons Report
+    note: PRINCE2-ben a projekt elején is keresünk tanulságokat
+
+when_prince2:
+  - Több szervezet vagy szállító vesz részt
+  - Közszféra, pályázat, szabályozott környezet
+  - A döntéshozók távol vannak a napi munkától
+  - Bizonytalan a megtérülés — élő kérdés, hogy megéri-e még
+  - Hosszú, több szakaszban futó projekt
+  - Erős elszámoltathatósági igény
+
+when_pmi:
+  - A projektmenedzser eszköztárát kell fejleszteni
+  - Egy szervezeten belüli projekt, közeli szponzorral
+  - Technikai tervezési kérdések dominálnak
+  - Nemzetközi, USA-orientált környezet
+
+combined: |
+  **A leggyakoribb valós helyzet: mindkettőre szükség van.**
+
+  | Réteg | Honnan |
+  |---|---|
+  | Kormányzás: szerepek, szakaszok, toleranciák, üzleti indokoltság | **PRINCE2** |
+  | Technikák: becslés, ütemterv, kockázatelemzés, EVM, beszerzés | **PMI / PMBOK** |
+
+  Ez nem kompromisszum, hanem a két módszertan szándéka szerinti használat:
+  a PRINCE2 kifejezetten arra számít, hogy a technikákat máshonnan hozod.
+
+  **Amikor egyik sem való:** ha a követelmények menet közben derülnek ki és a
+  szállítás folyamatos (tipikusan szoftverfejlesztés), akkor agilis
+  keretrendszer illik jobban.
+
+xyo_stages:
+  intro: >
+    A Xyo Cloud Pilot PMI szerint készült, egyetlen formális kapuval
+    (Planning-kapu, 2026.03.13.). PRINCE2-ben négy irányítási szakasz lett
+    volna, mindegyik végén Board-döntéssel.
+  stages:
+    - num: 0
+      name: Előkészítés (SU)
+      period: 2025.11.10 – 2026.02.02.
+      gate: Project Brief → a Board engedélyezi a kezdeményezést
+    - num: 1
+      name: Kezdeményezés (IP)
+      period: 2026.02.02 – 03.13.
+      gate: PID → a Board engedélyezi a projektet és a 2. szakaszt
+    - num: 2
+      name: Beszerzés
+      period: 2026.03.16 – 04.17.
+      gate: End Stage Report + a Business Case felülvizsgálata
+    - num: 3
+      name: Kialakítás és teszt
+      period: 2026.04.20 – 06.19.
+      gate: End Stage Report → engedély a zárásra
+    - num: 4
+      name: Élesítés és zárás (CP)
+      period: 2026.06.22 – 06.30.
+      gate: End Project Report + a haszonmérés terve
+
+already_prince2:
+  intro: >
+    Öt dolgot a Xyo projektben már PRINCE2-szerűen csináltunk, anélkül hogy
+    tudtunk volna róla.
+  items:
+    - what: 'E-04 eszkaláció: nem döntést kértem, hanem előre jeleztem a kockázatot és vállaltam egy visszajelzési időpontot'
+      p2: Pontosan egy Exception Report logikája
+    - what: A WBS eredményeket tartalmaz, nem tevékenységeket („50 db beüzemelt laptop")
+      p2: Termékközpontúság (6. alapelv)
+    - what: A WBS-szótár kész-definíciója minden munkacsomaghoz
+      p2: A termékleírás minőségi kritériuma
+    - what: A tanulságokat menet közben gyűjtöttük (19-ből 14)
+      p2: Tanulás a tapasztalatokból (2. alapelv)
+    - what: A PM 1 000 000 Ft-ig önállóan dönt a változásokról
+      p2: Change Authority delegálás
+
+would_add:
+  intro: >
+    És négy dolgot tett volna hozzá, amiből az első valódi hiány volt.
+  items:
+    - what: Project Assurance — független ellenőrzés a Board nevében
+      gap: nagy
+      note: A Steering kizárólag a PM riportjaira támaszkodott
+    - what: Szakaszonkénti Business Case-felülvizsgálat
+      gap: közepes
+      note: A beszerzési megtakarítás után érdemes lett volna újra megnézni
+    - what: Formális szakaszhatárok 4 helyen 1 helyett
+      gap: közepes
+      note: Fegyelmezettebb, de egy 5 hónapos projektnél nehézkes is lehet
+    - what: Kimondott toleranciák hat területen
+      gap: kicsi
+      note: A Charter hatásköri szakasza ezt jórészt pótolta
+
+verdict: |
+  **Megérte volna a Xyo projektet PRINCE2 szerint csinálni? Részben.**
+
+  Egy 50 fős, 5 hónapos, 45 M Ft-os, egy szervezeten belüli projektnél a teljes
+  PRINCE2-apparátus **aránytalan lett volna** — és a 7. alapelv, a
+  **testreszabás**, kifejezetten tiltja is az ilyet.
+
+  **Amit érdemes lett volna átvenni:** a Project Assurance szerepet (akár egyetlen
+  független személyt), a szakaszonkénti Business Case-felülvizsgálatot, és a
+  kimondott toleranciákat.
+
+  **A kiterjesztési projektnél viszont** (190 fő, kb. 133 M Ft, három hullám,
+  2027 januártól szeptemberig) **a teljes PRINCE2-váz védhető** — ott már több
+  szakasz, nagyobb tét és hosszabb futásidő van, ahol a „megéri-e még?" kérdés
+  valóban élő.
+
+documents:
+  - id: p2_pid
+    order: 1
+    name_hu: Projekt-kezdeményezési dokumentáció
+    name_en: PID — Project Initiation Documentation
+    pmi: Project Charter + Projektterv együtt
+    why: >
+      A projekt „szerződése" a Project Manager és a Project Board között.
+      Tartalmazza a célokat, a hatókört, a szervezetet, a szakaszolást, a
+      toleranciákat, a megközelítéseket és a kontrollokat.
+    sample_file: docs/prince2/01-pid.md
+  - id: p2_highlight
+    order: 2
+    name_hu: Kiemelt állapotjelentés
+    name_en: Highlight Report
+    pmi: Státuszriport
+    why: >
+      Rendszeres jelentés a Boardnak — de a toleranciákhoz mérve, nem a tervhez.
+      Amíg a PM a sávon belül van, a Boardnak nincs teendője.
+    sample_file: docs/prince2/02-highlight-report.md
+  - id: p2_exception
+    order: 3
+    name_hu: Kivételjelentés
+    name_en: Exception Report
+    pmi: (nincs megfelelő)
+    why: >
+      Akkor készül, amikor előrejelezhető a tolerancia túllépése — nem akkor,
+      amikor már megtörtént. Négy döntési lehetőséget ad a Boardnak.
+      Ez a legértékesebb elem, amit a PRINCE2-től át lehet venni.
+    sample_file: docs/prince2/03-exception-report.md
+  - id: p2_endstage
+    order: 4
+    name_hu: Szakaszzáró jelentés
+    name_en: End Stage Report
+    pmi: Fázis-kapu (de az opcionális)
+    why: >
+      Minden szakaszhatáron kötelező. Kimutatja a szakasz teljesítményét a
+      toleranciákhoz mérve, és kötelezően felülvizsgálja az üzleti indoklást.
+    sample_file: docs/prince2/04-end-stage-report.md

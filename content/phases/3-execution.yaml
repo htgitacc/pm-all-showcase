@@ -1,0 +1,711 @@
+id: execution
+number: 3
+title_hu: Megvalósítás
+title_en: Execution
+tagline: A terv valósággá válik — és kiderül, mit terveztél rosszul.
+when: >
+  A baseline jóváhagyásától a felhasználói átvételi teszt lezárásáig.
+  A Xyo projektben: 2026.03.16 – 2026.06.19.
+
+purpose: |
+  Itt történik a tényleges munka: a beszerzés, a környezet kialakítása, az eszközök
+  kiosztása, az oktatás és a tesztelés. A pénz nagy része ebben a fázisban folyik el.
+
+  **A PM szerepe itt megváltozik**: már nem tervezel, hanem koordinálsz, akadályt
+  hárítasz el és döntéseket készítesz elő. A napod nagy részét az teszi ki, hogy
+  emberektől megkérdezed, hol tartanak, és megoldod, ami elakadt.
+
+  Ez a fázis és a Felügyelet fázis **időben átfedik egymást**: miközben a csapat
+  dolgozik, te folyamatosan méred az eltérést. A két fázis nem egymás után, hanem
+  párhuzamosan fut.
+
+pm_tasks:
+  - text: Add ki a munkacsomagokat írásban, elvárt eredménnyel és határidővel.
+    why: >
+      A szóban kiosztott feladatot mindenki máshogy érti. Az írásos kiadás nélkül
+      később nem tudod számonkérni.
+  - text: Vezesd le a beszerzési eljárást a beszerzéssel közösen.
+    why: >
+      A beszerzés a legnagyobb csúszáskockázat. A folyamat gazdája a beszerzési vezető,
+      de az ütemért te felelsz.
+  - text: Tarts rendszeres, rövid előrehaladási megbeszéléseket.
+    why: >
+      A heti 30 perces státusz többet ér, mint a havi kétórás. A problémákat korán
+      kell megtalálni, amikor még olcsó megoldani.
+  - text: Vezesd a problémanaplót, és hárítsd el az akadályokat.
+    why: >
+      Az akadályelhárítás a PM legértékesebb napi munkája. A csapat nem tud
+      megkerülni egy jóváhagyást vagy egy hiányzó hozzáférést — te viszont igen.
+  - text: Igazold a szállítói teljesítéseket az átvételi kritériumok alapján.
+    why: >
+      A teljesítésigazolás pénzügyi következménnyel jár. Csak azt igazold, amit
+      ellenőriztél — az aláírásod a felelősségvállalásod.
+  - text: Szervezd meg az oktatást és a felhasználói átvételi tesztet.
+    why: >
+      A tesztet nem lehet a végére hagyni. Ha az UAT az utolsó héten van, a talált
+      hibákra már nincs idő.
+  - text: Rögzítsd a döntéseket, ahogy megszületnek.
+    why: >
+      Három hónap múlva senki nem fog emlékezni, ki mit engedélyezett. A döntésnapló
+      a PM egyik legerősebb védőirata.
+  - text: Gyűjtsd a tanulságokat menet közben, ne a projekt végén.
+    why: >
+      A záró workshopon már senki nem emlékszik a márciusi problémákra. Ami akkor
+      fájt, azt akkor írd le.
+
+meetings:
+  - name_hu: Heti előrehaladási megbeszélés
+    name_en: Weekly Progress Meeting
+    purpose: Hol tartunk, mi akadt el, mire van szükség tőlem.
+    when: Minden kedden 9:00-tól, a fázis teljes hossza alatt.
+    duration: 30 perc
+    participants:
+      - A munkacsomag-felelősök
+      - Szabó Márk, rendszergazda
+      - Molnár Katalin, beszerzés (amíg a beszerzés fut)
+    agenda:
+      - Mi készült el a múlt héten
+      - Mi jön a jövő héten
+      - Mi akadt el, és mihez kell segítség
+    output: Frissített státusz, új problémabejegyzések a problémanaplóban.
+    tip: >
+      Tartsd 30 percben és állva vagy kamerával. A hosszú státuszmeetingre az emberek
+      nem készülnek fel, csak ülik az időt.
+
+  - name_hu: Ajánlatbontás és értékelés
+    name_en: Bid Opening and Evaluation
+    purpose: A beérkezett ajánlatok formai ellenőrzése és pontozása.
+    when: 2026.04.02 — az ajánlati határidő lejárta után.
+    duration: 3 óra
+    participants:
+      - Molnár Katalin, beszerzés (levezető)
+      - Az értékelő bizottság tagjai
+      - Nagy Péter szakmai értékeléshez
+      - Te, projektmenedzserként
+    agenda:
+      - Formai megfelelőség ellenőrzése
+      - Pontozás az előre jóváhagyott szempontrendszer szerint
+      - Az értékelés jegyzőkönyvezése
+      - Javaslat a döntéshozónak
+    output: Ajánlat-összehasonlító táblázat és értékelési jegyzőkönyv.
+    tip: >
+      A szempontrendszeren az ajánlatok ismeretében **ne változtassatok**. Ha kiderül,
+      hogy hiányos volt, azt jegyzőkönyvezni kell, nem csendben módosítani.
+
+  - name_hu: Szállítói projektstátusz
+    name_en: Vendor Status Meeting
+    purpose: A szállítói teljesítés követése és az akadályok tisztázása.
+    when: Kéthetente, a szerződéskötéstől az átadásig.
+    duration: 45 perc
+    participants:
+      - A szállító projektvezetője
+      - Te, projektmenedzserként
+      - Nagy Péter vagy Szabó Márk szakmai kérdésekhez
+    agenda:
+      - Szállítási és teljesítési státusz
+      - Nyitott kérdések és döntést igénylő pontok
+      - Kockázatok a szállítói oldalon
+    output: Jegyzőkönyv, frissített szállítási dátumok.
+    tip: >
+      Minden szállítói ígéretet írj le és küldj vissza írásban. A „megpróbáljuk
+      áprilisra" mondatból két hónap múlva „megígértük áprilisra" lesz — vagy nem.
+
+  - name_hu: UAT nyitó- és záróegyeztetés
+    name_en: UAT Kick-off and Sign-off
+    purpose: A felhasználói átvételi teszt indítása, majd az eredmény elfogadása.
+    when: 2026.05.11 (nyitó) és 2026.06.19 (záró).
+    duration: 60 perc alkalmanként
+    participants:
+      - A 10 fős tesztcsoport
+      - Nagy Péter, szakmai vezető
+      - Kiss Réka, Service Desk
+      - Te, projektmenedzserként
+    agenda:
+      - A tesztesetek és a hibabejelentés módjának ismertetése
+      - 'A záró alkalmon: talált hibák, azok súlyossága, a maradék hibák kezelése'
+      - Döntés az átvételről
+    output: Tesztjegyzőkönyv és aláírt UAT-elfogadás.
+    tip: >
+      A záró egyeztetésen írásban rögzítsétek a **maradék, nem javított hibákat** is,
+      elfogadott kezelési móddal. Enélkül azok később „elmaradt munkaként" térnek vissza.
+
+data_in:
+  - from: Cloudia Solutions Kft. és TechLine Zrt.
+    what: Ajánlatok, majd szállítási visszaigazolások és teljesítési jelentések
+    used_in: bid_comparison
+  - from: Szabó Márk, rendszergazda
+    what: A kialakított környezet konfigurációs adatai és a beállítások dokumentációja
+    used_in: as_built
+    note: Kérd folyamatosan, ne a végén. Utólag senki nem emlékszik, miért úgy állították be.
+  - from: A munkacsomag-felelősök
+    what: Heti előrehaladás, elkészültségi százalék, akadályok
+    used_in: status_report
+  - from: A 10 fős tesztcsoport
+    what: Teszteredmények és hibabejelentések
+    used_in: test_report
+  - from: Varga Eszter, HR
+    what: Az oktatásokon való részvétel visszaigazolása
+    used_in: training_material
+
+data_out:
+  - to: A munkacsomag-felelősök
+    what: 'Írásos munkacsomag-kiadás: elvárt eredmény, határidő, kész-definíció'
+    when: A baseline jóváhagyása után 3 munkanapon belül
+  - to: A szállítók
+    what: Ajánlatkérési dokumentáció, majd megrendelés és teljesítésigazolás
+    when: A beszerzési terv ütemezése szerint
+  - to: A pilot 50 résztvevője
+    what: Mikor kapják meg az eszközt, mit kell tenniük, hol kérhetnek segítséget
+    when: Az eszközkiosztás előtt legalább 1 héttel
+    note: Egyszerű nyelven. Ez a leggyakrabban elfelejtett kommunikáció.
+  - to: Kiss Réka, Service Desk
+    what: A várható ticketterhelés, az új hibatípusok és a megoldási útmutató
+    when: Az élesítés előtt legalább 2 héttel
+    note: A Service Desket az élesítés előtt kell felkészíteni, nem utána.
+  - to: Balogh Tamás, kontroller
+    what: Teljesítésigazolások és a tényleges költések
+    when: Folyamatosan, a számlák beérkezésekor
+
+data_restricted:
+  - what: A még el nem bírált ajánlatok tartalma bárki felé az értékelő bizottságon kívül
+    why: >
+      Az eljárás tisztaságát sérti, és megtámadhatóvá teszi a döntést. A felelősség
+      a bizottságé és a tiéd.
+  - what: A vesztes ajánlattevő árai a nyertesnek (vagy fordítva)
+    why: Üzleti titok. Kiadása jogi következménnyel járhat.
+  - what: A pilot résztvevőinek eszközhasználati és bejelentkezési adatai a vezetőiknek
+    why: >
+      Ez munkavállalói megfigyelésnek minősülhet. Csak a DPO által jóváhagyott
+      célból és összesített formában adható ki.
+  - what: A tesztelés során talált hibák részletes listája a felhasználói körnek
+    why: >
+      A nyers hibalista bizalmat rombol, és félreértelmezik. Az összefoglalót és a
+      kezelési tervet kommunikáld, ne a nyerslistát.
+
+responsibility:
+  summary: |
+    Ebben a fázisban a felelősséged **a koordináció és a dokumentáltság**, nem a
+    szakmai kivitelezés. Nem neked kell tudnod beállítani az Entra ID-t — neked azt
+    kell tudnod, hogy be van-e állítva, ki állította be, és mi bizonyítja.
+  items:
+    - what: Azért felelsz, hogy a teljesítésigazolás valós ellenőrzés alapján szülessen.
+      risk: >
+        Az aláírásoddal pénzügyi kötelezettséget ismersz el. Ha ellenőrzés nélkül
+        írod alá és később hiány derül ki, az a te felelősséged.
+    - what: Azért felelsz, hogy a döntések és a szállítói ígéretek írásban rögzüljenek.
+      risk: >
+        A szóbeli megállapodás vita esetén nem létezik. Aki nem írt le semmit,
+        az mindig alul marad.
+    - what: Azért felelsz, hogy a problémák időben eszkalálódjanak.
+      risk: >
+        A késve jelentett probléma kétszer akkora kárt okoz, és a késedelem
+        egyértelműen a PM hibája.
+    - what: Azért felelsz, hogy a felhasználók fel legyenek készítve az élesítésre.
+      risk: >
+        Ha nincs oktatás és nincs támogatás, a technikailag hibátlan bevezetés is
+        kudarcként rögzül a szervezet emlékezetében.
+    - what: Nem felelsz a szállító szakmai munkájának minőségéért.
+      risk: >
+        De felelsz azért, hogy az átvételi kritériumok alapján ellenőrizd, és hogy
+        a hiányt írásban, határidővel kifogásold.
+
+documents:
+  - id: work_package_assignment
+    order: 1
+    name_hu: Munkacsomag-kiadás
+    name_en: Work Package Assignment
+    mandatory: true
+    owner: A PM adja ki, a munkacsomag-felelős veszi át.
+    why: >
+      Írásban rögzíti, ki mit vállal, mikorra, és mi számít késznek. **A szóban
+      kiosztott feladatot mindenki máshogy érti** — ez a dokumentum ezt előzi meg.
+    contents:
+      - WBS-azonosító és a munkacsomag megnevezése
+      - Elvárt eredmény és kész-definíció
+      - Határidő és becsült ráfordítás
+      - 'Függőségek: mi kell hozzá, kitől'
+      - A felelős visszaigazolása
+    inputs: [pmp, wbs, wbs_dictionary, raci]
+    feeds: [status_report, issue_log]
+    pitfall: >
+      Kérj visszaigazolást. Az elküldött, de vissza nem igazolt munkacsomag ugyanolyan
+      bizonytalan, mintha szóban mondtad volna.
+
+    sample_file: docs/3-execution/01-munkacsomag-kiadas.md
+  - id: rfp
+    order: 2
+    name_hu: Ajánlatkérési dokumentáció
+    name_en: RFP / RFQ — Request for Proposal / Quotation
+    mandatory: true
+    owner: A beszerzés adja ki, a PM és a szakmai vezető készíti a tartalmát.
+    why: >
+      Ez határozza meg, mire kérünk ajánlatot és milyen feltételekkel. **Amit ide nem
+      írsz bele, azt nem is fogod megkapni** — és utólag már csak felárral.
+    contents:
+      - Mennyiségi és műszaki követelmények
+      - Szállítási és teljesítési határidők
+      - Az elvárt támogatás és garancia
+      - Az értékelés szempontjai és a beadás módja
+      - Szerződéses alapfeltételek, adatkezelési elvárások
+    inputs: [procurement_plan, vendor_criteria]
+    feeds: [bid_comparison, contract]
+    pitfall: >
+      Az adatkezelési (GDPR) és a támogatási feltételeket már az ajánlatkérésbe írd
+      bele. Szerződéskötéskor ezekről már nem tudsz kedvezően alkudni.
+
+    sample_file: docs/3-execution/02-ajanlatkeresi-dokumentacio.md
+  - id: bid_comparison
+    order: 3
+    name_hu: Ajánlat-összehasonlítás és értékelési jegyzőkönyv
+    name_en: Bid Comparison and Evaluation Report
+    mandatory: true
+    owner: Az értékelő bizottság; a beszerzés vezeti a folyamatot.
+    why: >
+      Dokumentálja, hogy a döntés **előre rögzített, objektív szempontok alapján**
+      született. Ez az egyetlen védelem a részrehajlás vádja ellen — és ilyen vád
+      IT beszerzésnél gyakran felmerül.
+    contents:
+      - Beérkezett ajánlatok és a formai megfelelőség
+      - Pontozás szempontonként, súlyozva
+      - Az értékelés indoklása szövegesen
+      - Javaslat a döntéshozónak
+      - A bizottság tagjainak aláírása
+    inputs: [rfp, vendor_criteria]
+    feeds: [contract, lessons_learned]
+    pitfall: >
+      A pontozás mellé mindig írj **szöveges indoklást** is. A puszta számsor
+      megtámadható; az indokolt döntés sokkal nehezebben.
+
+    sample_file: docs/3-execution/03-ajanlat-osszehasonlitas.md
+  - id: contract
+    order: 4
+    name_hu: Szerződés és megrendelés
+    name_en: Contract / Purchase Order
+    mandatory: true
+    owner: A beszerzés és a jogi terület; a PM adja a szakmai tartalmat.
+    why: >
+      Ez teszi kikényszeríthetővé a szállítói vállalást. **A te feladatod, hogy az
+      átvételi kritériumok és a határidők bekerüljenek** — a jogász nem tudja, mit
+      jelent, hogy „működik".
+    contents:
+      - Tárgy, mennyiség, ár, fizetési ütemezés
+      - Teljesítési határidők és mérföldkövek
+      - Átvételi kritériumok (a minőségtervből)
+      - Kötbér és hibás teljesítés következményei
+      - Támogatás, garancia, adatfeldolgozói megállapodás
+    inputs: [bid_comparison, procurement_plan, dpia, quality_plan]
+    feeds: [delivery_acceptance, contract_closure]
+    pitfall: >
+      Az átvételi kritériumokat a szerződésbe is emeld be. Ha csak a te
+      minőségtervedben szerepelnek, a szállítót nem kötelezik semmire.
+
+    sample_file: docs/3-execution/04-szerzodes.md
+  - id: delivery_acceptance
+    order: 5
+    name_hu: Szállítói teljesítésigazolás / átvételi jegyzőkönyv
+    name_en: Delivery Acceptance Certificate
+    mandatory: true
+    owner: A PM és a szakmai átvevő írja alá; a szállító ellenjegyzi.
+    why: >
+      Ez az alapja a számla kifizetésének. **Csak azt igazold, amit ellenőriztél** —
+      az aláírásod pénzügyi felelősségvállalás.
+    contents:
+      - Mit vettünk át, mennyiségben és tételesen
+      - Az ellenőrzés módja és eredménye
+      - Feltárt hiányok és hibák, javítási határidővel
+      - Fenntartások, ha vannak
+      - Aláírások és dátum
+    inputs: [contract, quality_plan]
+    feeds: [financial_closure, final_acceptance, issue_log]
+    pitfall: >
+      Ha hiány van, ne írd alá „fenntartással" magyarázat nélkül. Írd le tételesen,
+      mi hiányzik és mikorra pótolják — különben a fenntartás semmit nem ér.
+
+    sample_file: docs/3-execution/05-teljesitesigazolas.md
+  - id: as_built
+    order: 6
+    name_hu: Konfigurációs (as-built) dokumentáció
+    name_en: As-Built / Configuration Documentation
+    mandatory: true
+    owner: A rendszergazda készíti, a szakmai vezető ellenőrzi.
+    why: >
+      Leírja, **hogyan lett ténylegesen kialakítva** a környezet — nem hogyan
+      terveztük. Az üzemeltetésbe adás alapja; enélkül minden hibánál a projektcsapatot
+      hívják vissza.
+    contents:
+      - Bérlői (tenant) beállítások, tartományok
+      - Entra ID csoportok, jogosultsági szintek, feltételes hozzáférés
+      - Intune eszközprofilok és alkalmazáscsomagok
+      - SharePoint és OneDrive szerkezet, megosztási szabályok
+      - VPN konfiguráció és hálózati beállítások
+      - Mentési és megőrzési beállítások
+    inputs: [security_baseline]
+    feeds: [operational_handover, user_guide, archive_index]
+    pitfall: >
+      Írasd folyamatosan, ne a végén. A projekt utolsó hetében senki nem emlékszik,
+      miért állítottak be valamit úgy, ahogy — és pont az az indoklás lesz később fontos.
+
+    sample_file: docs/3-execution/06-as-built-dokumentacio.md
+  - id: test_report
+    order: 7
+    name_hu: Tesztjegyzőkönyv
+    name_en: Test Report
+    mandatory: true
+    owner: A PM állítja össze a tesztelők bejelentéseiből.
+    why: >
+      Bizonyítja, hogy a megoldást **ellenőrizték**, és megmutatja, mi működik és
+      mi nem. Ez az átvételi döntés tényalapja.
+    contents:
+      - Tesztelt esetek, a követelményekhez rendelve
+      - Eredmény esetenként (megfelelt / nem felelt meg)
+      - Talált hibák súlyosság szerint
+      - Javított és nyitva maradt hibák
+      - 'Következtetés: átvehető-e'
+    inputs: [test_plan]
+    feeds: [uat_signoff, quality_control_report, issue_log]
+    pitfall: >
+      A nyitva maradt hibákat ne söpörd a szőnyeg alá. Ha írásban van, hogy tudsz
+      róluk és mikor javítjátok, az védelem; ha nincs, az elhallgatás.
+
+    sample_file: docs/3-execution/07-tesztjegyzokonyv.md
+  - id: uat_signoff
+    order: 8
+    name_hu: Felhasználói átvételi elfogadás
+    name_en: UAT Sign-off
+    mandatory: true
+    owner: A felhasználói képviselő és a szakmai vezető írja alá.
+    why: >
+      A felhasználók írásos nyilatkozata, hogy a megoldás a **valós munkára
+      alkalmas**. Enélkül az élesítés után bármikor mondhatja bárki, hogy „ez így
+      használhatatlan".
+    contents:
+      - A tesztelt hatókör
+      - A tesztelők nyilatkozata az alkalmasságról
+      - Elfogadott, de javításra váró hibák listája határidővel
+      - Aláírások
+    inputs: [test_report, requirements_matrix, test_plan]
+    feeds: [final_acceptance]
+    pitfall: >
+      Az aláírók legyenek valódi felhasználók, ne csak vezetők. A vezetői aláírás
+      nem helyettesíti azt, hogy a napi munkát végzők kipróbálták.
+
+    sample_file: docs/3-execution/08-uat-elfogadas.md
+  - id: training_material
+    order: 9
+    name_hu: Oktatási anyag és jelenléti ív
+    name_en: Training Material and Attendance Record
+    mandatory: true
+    owner: A PM koordinálja; az anyagot a szállító vagy a rendszergazda készíti.
+    why: >
+      Az anyag a felhasználók önálló segítsége, a jelenléti ív pedig **bizonyíték**
+      arra, hogy a felkészítés megtörtént. Vitás helyzetben ez zárja le a
+      „nem tanítottak meg rá" érvet.
+    contents:
+      - Oktatási tematika célcsoportonként
+      - Diasor vagy segédlet
+      - Az oktatás időpontjai és a jelenléti ívek
+      - A hiányzók pótlásának módja
+    inputs: [training_plan]
+    feeds: [user_guide, operational_handover, user_survey]
+    pitfall: >
+      A hiányzók pótlását is dokumentáld. Rendszerint ők lesznek azok, akik az
+      élesítés után a legtöbb ticketet adják.
+
+    sample_file: docs/3-execution/09-oktatasi-anyag.md
+  - id: issue_log
+    order: 10
+    name_hu: Problémanapló
+    name_en: Issue Log
+    mandatory: true
+    owner: A PM vezeti, naponta frissíti.
+    why: >
+      A **már bekövetkezett** problémák nyilvántartása — szemben a kockázattal, ami
+      még csak fenyegetés. Megmutatja, hogy a problémát észrevetted, kezelted, és
+      mikor zártad le.
+    contents:
+      - Azonosító, leírás, felmerülés dátuma
+      - Hatás a hatókörre, ütemre, költségre
+      - Felelős és határidő
+      - Kezelési lépések és státusz
+      - Kapcsolódó kockázat, ha volt ilyen
+    inputs: [risk_register, work_package_assignment, delivery_acceptance, test_report]
+    feeds: [status_report, escalation_log, lessons_learned]
+    pitfall: >
+      Ha egy probléma abból lett, amit korábban kockázatként azonosítottál, hivatkozz
+      rá. Ez bizonyítja, hogy előre láttad és jelezted.
+
+    sample_file: docs/3-execution/10-problemanaplo.md
+  - id: decision_log
+    order: 11
+    name_hu: Döntésnapló
+    name_en: Decision Log
+    mandatory: true
+    owner: A PM vezeti.
+    why: >
+      Rögzíti, **ki, mikor, mit döntött és milyen alapon**. Három hónap múlva senki
+      nem fog emlékezni rá — ez az egyik legerősebb védőirat a PM kezében.
+    contents:
+      - Azonosító, a döntés tárgya és dátuma
+      - Ki döntött (név, szerep)
+      - A döntés indoka és a mérlegelt alternatívák
+      - Hatás a projektre
+      - Hol dokumentált (meeting, e-mail, változáskérelem)
+    inputs: [kickoff_minutes, meeting_minutes]
+    feeds: [closure_report, lessons_learned]
+    pitfall: >
+      A folyosón vagy chatben született döntést is vezesd be. Éppen azok a döntések a
+      legveszélyesebbek, amelyekről nem készült jegyzőkönyv.
+
+    sample_file: docs/3-execution/11-dontesnaplo.md
+  - id: meeting_minutes
+    order: 12
+    name_hu: Meeting jegyzőkönyvek
+    name_en: Meeting Minutes
+    mandatory: true
+    owner: A PM vagy a kijelölt jegyzőkönyvvezető.
+    why: >
+      Nem szó szerinti leirat, hanem a **döntések, a nyitott kérdések és a
+      felelősök** rögzítése. Ez tartja együtt a projekt emlékezetét.
+    contents:
+      - Időpont, résztvevők, hiányzók
+      - Megbeszélt témák röviden
+      - Meghozott döntések
+      - Feladatok felelőssel és határidővel
+      - Nyitva maradt kérdések
+    feeds: [decision_log, status_report]
+    pitfall: >
+      Küldd ki 2 munkanapon belül. A késve kiküldött jegyzőkönyvet senki nem
+      korrigálja, mert már nem emlékszik — és így hibás emlék rögzül.
+
+    sample_file: docs/3-execution/12-meeting-jegyzokonyvek.md
+  - id: user_guide
+    order: 13
+    name_hu: Felhasználói gyorssegédlet
+    name_en: User Quick Guide
+    mandatory: false
+    owner: A rendszergazda vagy a szállító készíti, a PM lektorálja.
+    why: >
+      Egy 2-4 oldalas, képernyőképes segédlet a leggyakoribb feladatokhoz.
+      **Mérhetően csökkenti a Service Desk terhelését** az élesítés utáni hetekben.
+    contents:
+      - Első bejelentkezés és MFA beállítása
+      - Fájlok mentése OneDrive-ra, megosztás
+      - VPN-kapcsolat indítása
+      - Mit tegyek, ha nem működik — kit hívjak
+    inputs: [training_material, as_built]
+    feeds: [operational_handover]
+    pitfall: >
+      Írd meg magyarul, képernyőképekkel, és tedd oda, ahol keresni fogják.
+      A SharePointon eldugott PDF-et senki nem találja meg.
+
+    sample_file: docs/3-execution/13-felhasznaloi-gyorssegedlet.md
+checklist:
+  - id: exec-01
+    text: Add ki írásban a munkacsomagokat, és kérj visszaigazolást.
+    mandatory: true
+    doc_ref: work_package_assignment
+    why: >
+      A szóban kiosztott feladatot mindenki máshogy érti, és nem is kérhető számon.
+    how:
+      - 'Minden kiadásban legyen: elvárt eredmény, kész-definíció, határidő, függőségek.'
+      - Kérj visszaigazolást a felelőstől.
+
+  - id: exec-02
+    text: Indítsd el a beszerzési eljárást az ajánlatkérési dokumentációval.
+    mandatory: true
+    doc_ref: rfp
+    why: >
+      A beszerzés a leghosszabb átfutású elem. Ha ez késik, minden más is késni fog.
+    how:
+      - A műszaki és mennyiségi elvárásokat a szakmai vezetővel véglegesítsd.
+      - Az adatkezelési és támogatási feltételeket már ide írd bele.
+      - A beszerzési vezető adja ki, ne te.
+
+  - id: exec-03
+    text: Bonyolítsátok le az ajánlatbontást és az értékelést, jegyzőkönyvvel.
+    mandatory: true
+    doc_ref: bid_comparison
+    why: >
+      Ez véd a részrehajlás vádjától, ami IT beszerzésnél gyakran felmerül.
+    how:
+      - Az előre jóváhagyott szempontrendszer szerint pontozzatok.
+      - A pontszámok mellé írjatok szöveges indoklást is.
+      - A bizottság minden tagja írja alá.
+
+  - id: exec-04
+    text: Kössétek meg a szerződést, benne az átvételi kritériumokkal és a kötbérrel.
+    mandatory: true
+    doc_ref: contract
+    why: >
+      Ha az átvételi kritériumok csak a te tervedben vannak, a szállítót nem kötelezik.
+    how:
+      - Emeld át a minőségtervből a mérhető kritériumokat.
+      - Ellenőrizd, hogy van adatfeldolgozói megállapodás.
+      - Rögzítsd a fizetési ütemezést a mérföldkövekhez kötve.
+
+  - id: exec-05
+    text: Alakíttasd ki a felhőkörnyezetet, és írasd folyamatosan az as-built dokumentációt.
+    mandatory: true
+    doc_ref: as_built
+    why: >
+      Az üzemeltetésbe adás alapja. A projekt végén már senki nem emlékszik a
+      beállítások indokára.
+    how:
+      - Heti rendszerességgel kérd be a konfigurációs változásokat Szabó Márktól.
+      - A biztonsági alapkonfigurációtól való minden eltérést indokoltass meg.
+
+  - id: exec-06
+    text: Tarts heti előrehaladási megbeszélést, és vezesd a problémanaplót.
+    mandatory: true
+    doc_ref: issue_log
+    why: >
+      A problémákat korán kell megtalálni, amikor még olcsó megoldani.
+    how:
+      - '30 perc, három kérdés: mi kész, mi jön, mi akadt el.'
+      - Minden akadályt vezess be a problémanaplóba felelőssel és határidővel.
+
+  - id: exec-07
+    text: Vedd át a szállításokat, és csak ellenőrzés után írj alá teljesítésigazolást.
+    mandatory: true
+    doc_ref: delivery_acceptance
+    why: >
+      Az aláírásod pénzügyi felelősségvállalás. Ellenőrzés nélkül aláírt igazolásért
+      te felelsz.
+    how:
+      - Tételes mennyiségi és minőségi ellenőrzés az átvételi kritériumok alapján.
+      - Hiány esetén tételesen írd le, mi hiányzik és mikorra pótolják.
+
+  - id: exec-08
+    text: Tartsd meg az oktatásokat, és dokumentáld a jelenlétet, a pótlással együtt.
+    mandatory: true
+    doc_ref: training_material
+    why: >
+      A jelenléti ív zárja le a „nem tanítottak meg rá" érvet. A hiányzók adják majd
+      a legtöbb ticketet.
+    how:
+      - Célcsoportonként külön tematika.
+      - A hiányzóknak pótló alkalom, dokumentálva.
+
+  - id: exec-09
+    text: Készíttess felhasználói gyorssegédletet a leggyakoribb feladatokhoz.
+    mandatory: false
+    doc_ref: user_guide
+    why: >
+      Mérhetően csökkenti a Service Desk terhelését az élesítés utáni hetekben.
+    how:
+      - 2-4 oldal, képernyőképekkel, magyarul.
+      - Tedd oda, ahol keresni fogják, és mondd is el, hol van.
+
+  - id: exec-10
+    text: Készítsd fel a Service Desket az élesítés előtt legalább két héttel.
+    mandatory: true
+    why: >
+      Ha a Service Desk felkészületlen, a technikailag hibátlan bevezetés is
+      kudarcként rögzül.
+    how:
+      - Add át a várható hibatípusokat és a megoldási útmutatót.
+      - Egyeztessétek a várható ticketterhelést és a kapacitást.
+
+  - id: exec-11
+    text: Bonyolítsátok le a felhasználói átvételi tesztet valós felhasználókkal.
+    mandatory: true
+    doc_ref: test_report
+    why: >
+      Ha csak a rendszergazda teszteli, csak azt tudod meg, hogy ő tud vele dolgozni.
+    how:
+      - 10 fős tesztcsoport, valós munkafeladatokkal, 2 héten át.
+      - A hibákat súlyosság szerint kategorizáld.
+      - A javítás után teszteltesd újra az érintett eseteket.
+
+  - id: exec-12
+    text: Írasd alá az UAT-elfogadást, benne a maradék hibák kezelési tervével.
+    mandatory: true
+    doc_ref: uat_signoff
+    why: >
+      Enélkül az élesítés után bármikor mondhatja bárki, hogy „ez így használhatatlan".
+    how:
+      - Az aláírók valódi felhasználók legyenek, ne csak vezetők.
+      - A nem javított hibákat írásban, elfogadott határidővel rögzítsétek.
+
+  - id: exec-13
+    text: Vezesd a döntésnaplót és a meeting jegyzőkönyveket folyamatosan.
+    mandatory: true
+    doc_ref: [decision_log, meeting_minutes]
+    why: >
+      Három hónap múlva senki nem emlékszik, ki mit engedélyezett. Ez az egyik
+      legerősebb védőiratod.
+    how:
+      - 'Minden döntésnél: ki, mikor, mit, milyen alapon.'
+      - A chatben vagy folyosón született döntéseket is vezesd be.
+
+  - id: exec-14
+    text: Gyűjtsd a tanulságokat menet közben, ne a projekt végén.
+    mandatory: false
+    why: >
+      A záró workshopon már senki nem emlékszik a márciusi problémákra.
+    how:
+      - 'Tarts egy futó jegyzetet: mi működött, mi nem, mit csinálnánk másképp.'
+      - 'A heti megbeszélés végén kérdezd meg: van-e tanulság a héten?'
+
+gate:
+  summary: >
+    A Megvalósítás akkor zárható le, ha minden szállítandó eredmény elkészült,
+    ellenőrizve lett, és a felhasználók írásban elfogadták. Ami nem készült el,
+    arra legyen írásos, elfogadott kezelési terv.
+  criteria:
+    - Minden munkacsomag lezárva vagy dokumentáltan átütemezve.
+    - Aláírt szállítói teljesítésigazolások, tételes hiánylistával.
+    - Elkészült és ellenőrzött as-built dokumentáció.
+    - Lezárt tesztjegyzőkönyv és aláírt UAT-elfogadás.
+    - Megtartott oktatások, dokumentált jelenléttel és pótlással.
+    - Felkészített Service Desk, átadott hibakezelési útmutatóval.
+    - Naprakész problémanapló és döntésnapló.
+  decision_by: >
+    Szakmai vezető (Nagy Péter) és a felhasználói képviselet; a Steering Committee
+    tudomásul veszi. A Xyo projektben: 2026.06.19.
+
+# --------------------------------------------------------------------------
+# PRINCE2-kiegészítés
+# --------------------------------------------------------------------------
+prince2:
+  processes:
+    - code: CS
+      name: Szakasz irányítása (Controlling a Stage) — a PM oldala
+    - code: MP
+      name: Termékszállítás irányítása (Managing Product Delivery) — a csapat oldala
+  summary: >
+    A PMI Megvalósítás PRINCE2-ben **két folyamatra bomlik, felelősség szerint**.
+    A **CS a projektmenedzseré**: munkacsomagot ad ki, követi a haladást,
+    kezeli a problémákat. Az **MP a Team Manageré**: elfogadja a munkacsomagot,
+    elkészíti, átadja. **A kettő között formális átadás-átvétel van.**
+  adds:
+    - what: A munkacsomag formális elfogadása
+      why: >
+        Nem elég kiadni: a Team Manager **elfogadja** — vagy visszautasítja, ha
+        a feltételek nem teljesíthetők. A Xyo-nál a munkacsomag-visszaigazolás
+        lényegében ezt csinálta, és rögtön elő is hozott egy problémát (P-01).
+    - what: Checkpoint Report a Team Managertől
+      why: >
+        Rendszeres jelentés a csapattól a PM-nek — a Highlight Report alatti
+        szint. A Xyo heti előrehaladási megbeszélése ezt pótolta szóban.
+    - what: Termék akkor kész, ha a termékleírást teljesíti
+      why: >
+        Nem a felelős véleménye dönt, hanem az előre rögzített minőségi
+        kritérium. A Xyo kész-definíciói pontosan így működtek.
+    - what: Minőségi napló (Quality Register)
+      why: >
+        Minden minőségellenőrzés bekerül, akkor is, ha rendben volt.
+        A Xyo minőségellenőrzési jegyzőkönyve ezt az elvet követte.
+  products:
+    - name_hu: Munkacsomag
+      name_en: Work Package
+      pmi: Munkacsomag-kiadás
+    - name_hu: Ellenőrzőpont-jelentés
+      name_en: Checkpoint Report
+      pmi: (nincs — a heti státusz pótolja)
+    - name_hu: Minőségi napló
+      name_en: Quality Register
+      pmi: Minőségellenőrzési jegyzőkönyv
+    - name_hu: Problémanyilvántartás
+      name_en: Issue Register
+      pmi: Problémanapló + Változásnapló együtt

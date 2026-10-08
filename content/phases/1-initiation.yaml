@@ -1,0 +1,734 @@
+id: initiation
+number: 1
+title_hu: Kezdeményezés
+title_en: Initiation
+tagline: A projekt megszületik és felhatalmazást kap.
+when: >
+  Attól a pillanattól, hogy valaki felveti az ötletet, addig, amíg a szponzor alá nem
+  írja a Projektalapító okiratot. A Xyo projektben: 2025.11.10 – 2026.02.02.
+
+purpose: |
+  Ebben a fázisban még **nem tervezel** — azt döntitek el, hogy egyáltalán legyen-e
+  projekt, mi a célja, mekkora a kerete, és ki a felelőse. A fázis végén a projekt
+  hivatalosan létezik, és neked van felhatalmazásod dolgozni rajta.
+
+  **Junior PM-ként itt szokott a legnagyobb hiba történni:** az emberek elkezdenek
+  dolgozni, mielőtt bárki aláírt volna bármit. Aztán amikor kiderül, hogy nincs pénz
+  vagy nincs ember, nincs mire hivatkoznod. Ez a fázis pontosan erről szól: hogy
+  **legyen mire hivatkoznod**.
+
+pm_tasks:
+  - text: Vedd át és értelmezd az igényt, majd fordítsd le projektnyelvre.
+    why: >
+      Az ötlet szinte mindig homályos („legyünk felhőben"). A te dolgod, hogy ebből
+      mérhető cél, hatókör és nagyságrendi költség legyen.
+  - text: Azonosítsd a szponzort — azt az egy embert, aki a pénzről dönt.
+    why: >
+      Szponzor nélkül nincs projekt, csak jó szándék. Ha nem tudod megnevezni, ki írja
+      alá a Chartert, még nem tartasz a Kezdeményezés végén.
+  - text: Gyűjtsd össze az érintetteket, és beszélj velük egyesével.
+    why: >
+      Aki kimarad a listáról, az később problémaként vagy ellenállásként fog megjelenni.
+      A Service Deskkel és a HR-rel a legtöbb junior PM elfelejt beszélni.
+  - text: Készítsd elő és írasd alá a Projektalapító okiratot.
+    why: >
+      Ez ad neked jogot arra, hogy emberek idejét és a cég pénzét használd. Ez a te
+      legfontosabb védőiratod a projekt teljes hossza alatt.
+  - text: Fogalmazd meg, mit várunk a projekttől — mérhetően.
+    why: >
+      A hatodik, mérési fázis csak akkor tud bármit igazolni, ha **most** leírjuk, mit
+      tekintünk sikernek. Utólag megfogalmazott célt bármikor bárki vitathat.
+  - text: Rögzítsd, amit csak feltételezel, de nem ellenőriztél.
+    why: >
+      A feltevések a későbbi kockázatok magjai. Ha leírod őket, a szponzor is látja,
+      milyen bizonytalanságokra épül a terv.
+  - text: Szervezd meg és vezesd le a kick-off meetinget.
+    why: >
+      Ez az első alkalom, hogy mindenki ugyanazt hallja ugyanabban a szobában.
+      Innentől nem mondhatja senki, hogy „nem tudtam róla".
+
+meetings:
+  - name_hu: Igényfelvételi beszélgetés
+    name_en: Intake / Discovery Meeting
+    purpose: >
+      Megérteni, mi a valódi üzleti probléma az ötlet mögött, és mekkora nagyságrendről
+      beszélünk.
+    when: Az ötlet felmerülése után 1-2 héten belül, még bármilyen dokumentum előtt.
+    duration: 60–90 perc
+    participants:
+      - Az ötletgazda — a Xyo esetében Nagy Péter, IT osztályvezető
+      - A leendő szponzor — Kovács Anita, gazdasági igazgató
+      - Te, projektmenedzserként
+    agenda:
+      - 'Mi a probléma, amit meg akarunk oldani? (nem: milyen megoldást akarunk)'
+      - Mi történik, ha nem csinálunk semmit?
+      - Milyen nagyságrendű keretről beszélünk?
+      - Van-e kemény határidő, és miért éppen az?
+    output: Jegyzet, amiből az Üzleti indoklás első vázlata elkészül.
+    tip: >
+      Ne a megoldásról beszéljetek, hanem a problémáról. Ha rögtön a termékről kezdesz
+      egyeztetni, később nem lesz mihez mérni, hogy sikerült-e.
+
+  - name_hu: Érintett-interjúk
+    name_en: Stakeholder Interviews
+    purpose: >
+      Egyesével megismerni, kinek mi az érdeke, mitől fél, és mit vár a projekttől.
+    when: A Charter aláírása előtt, párhuzamosan az Érintettek nyilvántartásának összeállításával.
+    duration: 30 perc / fő
+    participants:
+      - Minden azonosított kulcsérintett, külön-külön
+      - 'Kiemelten: Kiss Réka (Service Desk), Varga Eszter (HR), dr. Fekete Zsolt (DPO)'
+    agenda:
+      - Mit jelent neked ez a projekt? Mit nyersz vagy veszítesz vele?
+      - Mit kell tőled kérnem, és mikor?
+      - Mi az, amitől leginkább tartasz?
+    output: Az Érintettek nyilvántartása és a Hatalom-érdek mátrix bemenete.
+    tip: >
+      Négyszemközt sokkal őszintébb válaszokat kapsz, mint egy közös meetingen.
+      Az ellenállást itt kell megtalálni, nem az Execution fázisban.
+
+  - name_hu: Charter-jóváhagyó egyeztetés
+    name_en: Charter Approval Meeting
+    purpose: A Projektalapító okirat átbeszélése és aláírása.
+    when: 2026.02.02 — a Kezdeményezés fázis utolsó eseménye.
+    duration: 60 perc
+    participants:
+      - Kovács Anita, szponzor (ő ír alá)
+      - Horváth Júlia, ügyvezető
+      - Nagy Péter, IT osztályvezető
+      - Te, projektmenedzserként
+    agenda:
+      - A cél, a hatókör és a hatókörön kívüli elemek átbeszélése
+      - Keretösszeg és mérföldkövek jóváhagyása
+      - A projektmenedzser hatáskörének rögzítése (mit dönthetsz el magad)
+      - Aláírás
+    output: Aláírt Projektalapító okirat.
+    tip: >
+      Kérd, hogy a Charterben nevesítve legyen, mekkora összeghatárig dönthetsz magad.
+      Ez később rengeteg felesleges kört megspórol.
+
+  - name_hu: Kick-off meeting
+    name_en: Kick-off Meeting
+    purpose: >
+      Mindenkinek egyszerre elmondani, mi a projekt célja, ki mit csinál, és mi
+      következik. Ez a projekt hivatalos nyitánya.
+    when: 2026.02.09 — a Charter aláírása után egy héttel.
+    duration: 90 perc
+    participants:
+      - A teljes projektcsapat
+      - Kovács Anita szponzor (nyitóbeszéd — kérd meg rá!)
+      - A pilotban részt vevő szervezeti egységek vezetői
+      - A Service Desk és a HR képviselője
+    agenda:
+      - A szponzor 5 perces nyitása — miért fontos ez a cégnek
+      - A projekt célja, hatóköre és ami kimarad
+      - Mérföldkövek és a következő 4 hét
+      - Ki kicsoda, kihez mivel lehet fordulni
+      - 'Kommunikáció: hol lesznek a dokumentumok, milyen gyakran lesz státusz'
+      - Kérdések
+    output: Kick-off jegyzőkönyv, kiküldve minden résztvevőnek és a hiányzóknak is.
+    tip: >
+      A szponzor jelenléte itt nem formalitás. Ha ő nyitja meg, a szervezet komolyan
+      veszi; ha nem jön el, mindenki azt olvassa ki belőle, hogy ez nem prioritás.
+
+data_in:
+  - from: Nagy Péter, IT osztályvezető
+    what: A jelenlegi géppark életkora, állapota és a következő 2 év csereigénye
+    used_in: business_case
+    note: Számszerű lista, ne szöveges becslés — ez lesz a „mi történik, ha nem teszünk semmit" alapja.
+  - from: Balogh Tamás, pénzügyi kontroller
+    what: A jelenlegi IT üzemeltetési költségek (szerver, licenc, támogatás) éves bontásban
+    used_in: business_case
+    note: Ez adja a megtérülés-számítás viszonyítási alapját.
+  - from: Kovács Anita, szponzor
+    what: A rendelkezésre álló keretösszeg és a jóváhagyási szint
+    used_in: charter
+    note: Kérd írásban — e-mail is elég, de legyen nyoma.
+  - from: Varga Eszter, HR vezető
+    what: A pilotban részt vevő 50 fő kijelölésének szempontjai, a home office szabályzat státusza
+    used_in: charter
+    note: A névsor még nem kell, csak a szempontrendszer és a szabályzat állapota.
+  - from: Kiss Réka, Service Desk vezető
+    what: A jelenlegi ticketszámok kategóriánként, az elmúlt 12 hónapra
+    used_in: benefits_plan
+    note: Ez lesz a mérési alapérték (baseline) forrása — kérd be már most, ne a végén.
+  - from: dr. Fekete Zsolt, DPO
+    what: 'Előzetes állásfoglalás: kell-e adatvédelmi hatásvizsgálat a felhős tárolás miatt'
+    used_in: assumption_log
+    note: Ha kell, az a Tervezés fázis egyik feladata lesz — jobb most tudni róla.
+
+data_out:
+  - to: Kovács Anita, szponzor
+    what: Üzleti indoklás és a Projektalapító okirat tervezete
+    when: A jóváhagyó egyeztetés előtt legalább 3 munkanappal
+    note: Adj időt az olvasásra — a meetingen felolvasott dokumentumot senki nem hagy jóvá jól.
+  - to: Projekt Irányító Bizottság
+    what: A projekt egyoldalas összefoglalója (cél, keret, ütem, fő kockázatok)
+    when: A Charter aláírása után 1 héten belül
+    note: Egy oldal. Vezetői szinten a hosszabb anyagot nem olvassák el.
+  - to: A teljes projektcsapat és a pilot résztvevői
+    what: Kick-off jegyzőkönyv és a projekt céljának összefoglalója
+    when: A kick-off után 2 munkanapon belül
+    note: A hiányzóknak is küldd ki, ugyanabban a körlevélben.
+  - to: Cloudia Solutions Kft. és TechLine Zrt. (potenciális szállítók)
+    what: Nagyságrendi piaci tájékozódás (RFI) — mennyiség és funkcionális igény
+    when: Az Üzleti indoklás készítése közben
+    note: Csak nagyságrend, konkrét keretösszeg nélkül.
+
+data_restricted:
+  - what: A jóváhagyott keretösszeg a szállítók felé
+    why: >
+      Ha tudják, mennyi a kereted, az ajánlatuk pontosan annyi lesz. Az árat a
+      versenynek kell kialakítania, nem a te költségvetésednek.
+  - what: A pilotban részt vevő 50 fő névsora a projekt döntése előtt
+    why: >
+      Amíg a HR és a vezetők nem véglegesítették, a féllistából sértődés és
+      folyosói pletyka lesz. Csak a kijelölési szempontokat kommunikáld.
+  - what: A jelenlegi üzemeltetési költségek részletes bontása a szállítóknak
+    why: >
+      Ebből visszaszámolható a fizetési hajlandóságod, és üzleti szempontból is
+      bizalmas adat.
+  - what: Az érintett-interjúkon elhangzott személyes vélemények, névvel
+    why: >
+      Ha kiderül, ki mit mondott rólad vagy a projektről, soha többé nem kapsz őszinte
+      választ. Az Érintettek nyilvántartásába az információ kerül, ne az idézet.
+
+responsibility:
+  summary: |
+    Ebben a fázisban még nincs eredményed, amit felmutathatnál — **az egyetlen
+    védelmed a dokumentáltság.** Amiért itt felelsz, az nem a projekt sikere, hanem
+    az, hogy a döntéshozó **jó információ alapján** dönthessen.
+  items:
+    - what: Azért felelsz, hogy a szponzor reális képet kapjon a költségről és az időigényről.
+      risk: >
+        Ha felfelé kerekíted a hasznot és lefelé a költséget, a projekt elindul, de a
+        közepén elfogy a pénz — és az már a te hibád lesz, nem azé, aki aláírta.
+    - what: Azért felelsz, hogy a projekt írásos felhatalmazással induljon.
+      risk: >
+        Aláírt Charter nélkül dolgozó PM-nek nincs hivatkozási alapja, amikor
+        erőforrást kér vagy nemet mond egy kérésre.
+    - what: Azért felelsz, hogy az érintettek köre teljes legyen.
+      risk: >
+        A kimaradt érintett (klasszikusan: üzemi tanács, DPO, Service Desk) a
+        legrosszabb pillanatban, az Execution közepén jelenik meg vétójoggal.
+    - what: Azért felelsz, hogy a siker mérőszámai már most rögzüljenek.
+      risk: >
+        Ha a projekt végén kezditek megbeszélni, mit tekintetek sikernek, a projekt
+        megítélése az aznapi hangulaton fog múlni.
+    - what: Nem felelsz azért, hogy a projekt üzletileg jó döntés-e.
+      risk: >
+        Ez a szponzor felelőssége. A tiéd az, hogy az összes információ, ami a
+        döntéshez kell, ott legyen előtte írásban.
+
+documents:
+  - id: project_idea
+    order: 1
+    name_hu: Projekt ötlet / igénybejelentés
+    name_en: Project Request / Idea
+    mandatory: true
+    owner: Az ötletgazda írja, a PM strukturálja. Befogadja a szponzor.
+    why: >
+      Ez a legelső írásos nyom a projektről. Rögzíti, **kitől, mikor és milyen igény**
+      érkezett — ez később megvéd attól, hogy a projekt céljait menet közben
+      visszamenőleg átírják. A Xyo projektben ez a dokumentum tartalmazza azt a
+      kontextust, amiből az egész terv kinő.
+    contents:
+      - Ki és mikor vetette fel az igényt
+      - Milyen üzleti problémára válasz
+      - Mit szeretnénk elérni, nagyvonalakban
+      - Milyen ismert korlátok vannak (idő, pénz, létszám)
+      - Mit tudunk már most biztosan kizárni a hatókörből
+    feeds: [business_case, feasibility]
+    pitfall: >
+      Sok helyen ez a dokumentum egy szóbeli felvetés marad. Írasd le — akár te írod
+      meg és küldöd vissza jóváhagyásra az ötletgazdának.
+    sample_file: docs/1-initiation/01-projekt-otlet.md
+
+  - id: business_case
+    order: 2
+    name_hu: Üzleti indoklás
+    name_en: Business Case
+    mandatory: true
+    owner: A PM állítja össze, a szponzor hagyja jóvá.
+    why: >
+      Ez válaszolja meg a legfontosabb kérdést: **miért éri meg ezt a pénzt elkölteni?**
+      Ez az egyetlen dokumentum, ami komolyan veszi a „ne csináljunk semmit"
+      lehetőséget is. A Charter erre épül, és a hatodik fázis mérései ezt igazolják
+      vagy cáfolják.
+    contents:
+      - A probléma és a jelenlegi helyzet számokkal
+      - A vizsgált lehetőségek (köztük a „ne csináljunk semmit" is)
+      - Az ajánlott megoldás és annak indoklása
+      - Költségek (egyszeri és folyó) és a várt hasznok
+      - Megtérülés és a főbb kockázatok
+    inputs: [project_idea]
+    feeds: [charter, cost_benefit, benefits_plan]
+    pitfall: >
+      A leggyakoribb hiba a haszon „puha" megfogalmazása („hatékonyabbak leszünk").
+      Ha nem tudod számmal kifejezni, a hatodik fázisban nem tudod majd igazolni sem.
+    sample_file: docs/1-initiation/02-uzleti-indoklas.md
+
+  - id: cost_benefit
+    order: 3
+    name_hu: Költség-haszon elemzés
+    name_en: Cost-Benefit Analysis
+    mandatory: false
+    owner: A PM készíti a kontroller adataival, a pénzügy ellenőrzi.
+    why: >
+      Az Üzleti indoklás pénzügyi részének kibontása külön dokumentumba. Akkor kérik,
+      ha a keretösszeg nagy, vagy ha több lehetőség között kell dönteni. **Téged úgy
+      véd**, hogy a számítás módszere írásban van — nem a memóriádra hivatkozol, ha
+      később megkérdőjelezik a megtérülést.
+    contents:
+      - Egyszeri (CAPEX) és folyó (OPEX) költségek tételesen, 3 éves kitekintéssel
+      - A hasznok pénzben kifejezve, ahol lehet
+      - Megtérülési idő és egyszerű ROI
+      - 'Érzékenységvizsgálat: mi van, ha 20%-kal drágább lesz'
+    inputs: [business_case]
+    feeds: [charter, budget]
+    pitfall: >
+      Ne felejtsd el a folyó költségeket. A felhő nem egyszeri beruházás: az előfizetés
+      a projekt után is fut, és ezt sok junior PM kihagyja a számításból.
+    sample_file: docs/1-initiation/03-koltseg-haszon-elemzes.md
+
+  - id: feasibility
+    order: 4
+    name_hu: Megvalósíthatósági tanulmány
+    name_en: Feasibility Study
+    mandatory: false
+    owner: A PM koordinálja, a szakmai vezető (Nagy Péter) tölti meg tartalommal.
+    why: >
+      Azt vizsgálja, hogy a megoldás **egyáltalán megvalósítható-e** technikailag,
+      szervezetileg, jogilag és pénzügyileg. Akkor készül, ha a technológia új a
+      cégnek — a Xyo esetében pontosan ez a helyzet, ezért érdemes megcsinálni.
+    contents:
+      - Technikai megvalósíthatóság (van-e sávszélesség, kompetencia, kompatibilitás)
+      - Szervezeti megvalósíthatóság (elfogadja-e a szervezet, van-e kapacitás)
+      - Jogi és megfelelőségi szempontok (GDPR, adattárolás helye)
+      - Pénzügyi megvalósíthatóság
+      - Következtetés és feltételek
+    inputs: [project_idea]
+    feeds: [business_case, charter, dpia]
+    pitfall: >
+      Ha a tanulmány következtetése „megvalósítható", de van hozzá öt feltétel, azokat
+      a feltételeket át kell emelni a Feltevés- és korlátnaplóba. Különben elvesznek.
+    sample_file: docs/1-initiation/04-megvalosithatosagi-tanulmany.md
+
+  - id: charter
+    order: 5
+    name_hu: Projektalapító okirat
+    name_en: Project Charter
+    mandatory: true
+    owner: A PM írja, a szponzor írja alá. Ez a fázis legfontosabb dokumentuma.
+    why: >
+      Ez hozza létre hivatalosan a projektet, és ez ad **neked** felhatalmazást arra,
+      hogy erőforrásokat használj. Ha egy vitában nincs mögötted aláírt Charter, akkor
+      nincs mögötted semmi. Ez a legfontosabb védőirat a PM kezében.
+    contents:
+      - A projekt célja és üzleti indoka (2-3 mondat)
+      - Mérhető célok és sikerkritériumok
+      - Magas szintű hatókör — és külön, tételesen, ami NINCS benne
+      - Mérföldkövek és keretösszeg
+      - A projektmenedzser neve és **hatásköre** (mekkora összegig dönthet)
+      - Fő érintettek, feltevések, korlátok, magas szintű kockázatok
+      - Aláírások
+    inputs: [business_case, cost_benefit, feasibility]
+    feeds: [stakeholder_register, assumption_log, benefits_plan, kickoff_minutes, pmp, scope_statement]
+    pitfall: >
+      A leggyakrabban kihagyott rész a **hatókörön kívüli elemek** felsorolása és a PM
+      hatáskörének rögzítése. Pontosan ez a két rész véd meg később a legtöbb vitától.
+    sample_file: docs/1-initiation/05-projektalapito-okirat.md
+
+  - id: stakeholder_register
+    order: 6
+    name_hu: Érintettek nyilvántartása
+    name_en: Stakeholder Register
+    mandatory: true
+    owner: A PM vezeti, folyamatosan frissíti a projekt teljes hossza alatt.
+    why: >
+      Egy helyen tartja, hogy **ki számít** a projektben, mi az érdeke, mekkora a
+      befolyása, és hogyan kell vele kommunikálni. A Kommunikációs terv teljes
+      egészében erre épül.
+    contents:
+      - Név, szerep, szervezet, elérhetőség
+      - Érdek és elvárás — mit akar a projekttől
+      - Befolyás és érdekeltség szintje (magas/közepes/alacsony)
+      - Hozzáállás (támogató / semleges / ellenálló)
+      - 'Kommunikációs igény: mit, milyen gyakran, milyen csatornán'
+    inputs: [charter]
+    feeds: [stakeholder_analysis, comm_plan, raci, risk_register]
+    pitfall: >
+      Ne csak vezetőket írj bele. A pilot végfelhasználói, a Service Desk és a
+      szállítók kapcsolattartói is érintettek — és gyakran ők döntik el a projekt sorsát.
+    sample_file: docs/1-initiation/06-erintettek-nyilvantartasa.md
+
+  - id: stakeholder_analysis
+    order: 7
+    name_hu: Hatalom-érdek mátrix
+    name_en: Power-Interest Grid / Stakeholder Analysis
+    mandatory: false
+    owner: A PM készíti, jellemzően magának és a szponzornak.
+    why: >
+      Segít eldönteni, **kire mennyi időt fordíts**. Nem mindenkivel kell ugyanúgy
+      kommunikálni: van, akit szorosan kezelni kell, és van, akit elég tájékoztatni.
+      Ez a dokumentum a legjobb védekezés a „senki nem szólt nekem" típusú panasz ellen.
+    contents:
+      - 'Négy negyed: szorosan kezelendő / elégedetten tartandó / tájékoztatandó / figyelendő'
+      - Minden érintett besorolása és a hozzá tartozó stratégia
+      - Az ellenállók kezelésének konkrét terve
+    inputs: [stakeholder_register]
+    feeds: [comm_plan]
+    pitfall: >
+      Ez érzékeny dokumentum — ne osszad meg tágabb körben. Senki nem szereti magáról
+      olvasni, hogy „alacsony érdekeltségű, elég tájékoztatni".
+    sample_file: docs/1-initiation/07-hatalom-erdek-matrix.md
+
+  - id: assumption_log
+    order: 8
+    name_hu: Feltevés- és korlátnapló
+    name_en: Assumption and Constraint Log
+    mandatory: true
+    owner: A PM vezeti, a projekt teljes hossza alatt frissíti.
+    why: >
+      Rögzíti, mit vettél igaznak anélkül, hogy ellenőrizted volna. Ha egy feltevés
+      később hamisnak bizonyul, ez a napló bizonyítja, hogy **jelezted a
+      bizonytalanságot** — nem elhallgattad. Ez az egyik legerősebb védőiratod.
+    contents:
+      - Sorszám, a feltevés vagy korlát leírása
+      - Típus (feltevés / korlát), kategória
+      - Ki állította, mikor
+      - Ellenőrzés módja és határideje, felelős
+      - Státusz (nyitva / igazolt / megdőlt) és a következmény
+    inputs: [charter, feasibility]
+    feeds: [risk_register, pmp]
+    pitfall: >
+      A napló akkor ér valamit, ha minden feltevéshez tartozik **ellenőrzési határidő
+      és felelős**. Enélkül csak egy lista arról, hogy mit nem tudunk.
+    sample_file: docs/1-initiation/08-feltevesek-korlatok-naploja.md
+
+  - id: benefits_plan
+    order: 9
+    name_hu: Haszonrealizálási terv (kezdeti)
+    name_en: Benefits Management Plan
+    mandatory: true
+    owner: A PM készíti, a szponzor hagyja jóvá; a hasznok gazdája az üzleti vezető.
+    why: >
+      **Ez a hatodik, mérési fázis alapdokumentuma.** Itt fogalmazzuk meg előre, mit
+      várunk a projekttől és hogyan fogjuk mérni. Ha ez most nem készül el, a projekt
+      végén nem tudod majd bizonyítani, hogy sikeres volt — csak állítani.
+    contents:
+      - A várt hasznok, mérhető formában megfogalmazva
+      - 'Minden haszonhoz: mérőszám, kiindulási érték (baseline), célérték, mérési időpont'
+      - Az adat forrása és a mérésért felelős személy
+      - Mikor várható a haszon megjelenése (a projekt vége után hány hónappal)
+      - A hasznok gazdája — ki felel azért, hogy tényleg megjöjjön
+    inputs: [business_case, charter]
+    feeds: [benefits_realisation_plan, kpi_sheet, baseline_report]
+    pitfall: >
+      A baseline mérést **a projekt indulása előtt** kell elvégezni. Ha elfelejted, nem
+      lesz mihez hasonlítani a végeredményt, és az egész mérés értelmét veszti.
+    sample_file: docs/1-initiation/09-haszonrealizalasi-terv.md
+
+  - id: kickoff_minutes
+    order: 10
+    name_hu: Kick-off jegyzőkönyv
+    name_en: Kick-off Meeting Minutes
+    mandatory: true
+    owner: A PM írja és küldi ki 2 munkanapon belül.
+    why: >
+      Bizonyítja, hogy **mindenki ugyanazt az információt kapta meg** ugyanabban az
+      időpontban. Innentől senki nem hivatkozhat arra, hogy nem tudott a projektről,
+      a szerepéről vagy a határidőkről.
+    contents:
+      - Időpont, helyszín, jelenlévők és hiányzók
+      - Az elhangzott célok, hatókör és mérföldkövek összefoglalója
+      - Felmerült kérdések és a rájuk adott válaszok
+      - Nyitva maradt kérdések felelőssel és határidővel
+      - A következő lépések
+    inputs: [charter, stakeholder_register]
+    feeds: [decision_log, comm_plan]
+    pitfall: >
+      A jegyzőkönyv nem szó szerinti leirat. A lényeg a **döntések, a nyitott kérdések
+      és a felelősök** — ezt a három dolgot keresi benne mindenki.
+    sample_file: docs/1-initiation/10-kick-off-jegyzokonyv.md
+
+  - id: project_glossary
+    order: 11
+    name_hu: Projektszótár
+    name_en: Project Glossary
+    mandatory: false
+    owner: A PM vezeti, bárki javasolhat bele új fogalmat.
+    why: >
+      Egy IT projektben az üzleti és a technikai oldal más nyelvet beszél. A szótár
+      megelőzi azokat a félreértéseket, amikre csak az átvételkor derül fény —
+      például, hogy a „felhasználó" a HR-nek munkavállalót, az IT-nak fiókot jelent.
+    contents:
+      - Fogalom magyarul és angolul
+      - Mit jelent ebben a projektben (nem általában)
+      - Ki a fogalom gazdája, ha vita van róla
+    inputs: [charter]
+    feeds: [requirements_matrix, quality_plan]
+    pitfall: >
+      Csak azokat a fogalmakat vedd be, amelyek körül **tényleg volt félreértés**.
+      A 200 elemes, senki által nem olvasott szótár rosszabb, mint a semmi.
+    sample_file: docs/1-initiation/11-projektszotar.md
+
+checklist:
+  - id: init-01
+    text: Vedd át írásban az igényt, és készítsd el a Projekt ötlet dokumentumot.
+    mandatory: true
+    doc_ref: project_idea
+    why: >
+      Ez az első írásos nyom. Innentől van dátumod és nevesített ötletgazdád arra,
+      hogy a projekt miért indult el.
+    how:
+      - Ülj le az ötletgazdával (Nagy Péter) 60-90 percre.
+      - Kérdezz a problémáról, ne a megoldásról.
+      - Írd meg a dokumentumot, és küldd vissza neki jóváhagyásra.
+    tip: >
+      Ha csak szóban kaptad az igényt, te írd le és kérdezd meg: „jól értettem?"
+      Ez a legolcsóbb módja annak, hogy legyen írásos alapod.
+
+  - id: init-02
+    text: Azonosítsd és erősítsd meg a szponzort.
+    mandatory: true
+    why: >
+      A szponzor az, aki a pénzről dönt és aki aláír. Ha nem tudod megnevezni, még
+      nincs projekt, csak egy ötlet.
+    how:
+      - Tisztázd, kinek a költségkeretéből megy a projekt.
+      - Kérdezd meg tőle közvetlenül, vállalja-e a szponzori szerepet.
+      - Rögzítsd írásban (elég egy e-mail visszaigazolás).
+
+  - id: init-03
+    text: Gyűjtsd össze a jelenlegi helyzet számadatait.
+    mandatory: true
+    why: >
+      Az Üzleti indoklás és a későbbi mérések alapja. Amit most nem gyűjtesz be, azt
+      hat hónap múlva már nem tudod visszamenőleg előállítani.
+    how:
+      - Géppark életkora és csereigénye — Nagy Pétertől.
+      - Éves IT üzemeltetési költségek — Balogh Tamástól.
+      - Service Desk ticketszámok az elmúlt 12 hónapra — Kiss Rékától.
+    tip: >
+      A ticketadatokat kérd be már most, akkor is, ha még nincs mérési terved.
+      Ez lesz a baseline, és később nehezebb hozzájutni.
+
+  - id: init-04
+    text: Készítsd el az Üzleti indoklást, benne a „ne csináljunk semmit" változattal.
+    mandatory: true
+    doc_ref: business_case
+    why: >
+      Ez a döntés alapja. A „ne csináljunk semmit" változat nélkül nincs mihez
+      viszonyítani a javasolt megoldást.
+    how:
+      - Írd le a problémát számokkal, ne jelzőkkel.
+      - Vizsgálj legalább három lehetőséget, köztük a semmittevést.
+      - Számold ki mindegyik költségét 3 éves távlatban.
+
+  - id: init-05
+    text: Ha a technológia új a cégnek, készíts megvalósíthatósági tanulmányt.
+    mandatory: false
+    doc_ref: feasibility
+    why: >
+      A Xyo esetében a felhő teljesen új terület. Jobb most kideríteni, hogy a
+      mobilnetes sávszélesség vagy a kompetenciahiány gond lesz-e, mint az Execution
+      közepén.
+    how:
+      - Kérj szakmai véleményt Nagy Pétertől és egy külső szakértőtől.
+      - 'Nézd meg a jogi oldalt is: hol tárolódnak az adatok, kell-e DPIA.'
+      - A tanulmány feltételeit vezesd át a Feltevés- és korlátnaplóba.
+
+  - id: init-06
+    text: Készíts költség-haszon elemzést, ha a keretösszeg indokolja.
+    mandatory: false
+    doc_ref: cost_benefit
+    why: >
+      Nagyobb összegnél a pénzügy külön, részletes számítást vár. Az is véd, ha
+      írásban van, milyen feltételezésekkel számoltál.
+    how:
+      - Bontsd egyszeri és folyó költségekre, 3 évre előre.
+      - 'Számolj érzékenységvizsgálatot: mi van, ha 20%-kal drágább.'
+
+  - id: init-07
+    text: Készítsd el a Projektalapító okiratot, és írasd alá a szponzorral.
+    mandatory: true
+    doc_ref: charter
+    why: >
+      Ez teremti meg hivatalosan a projektet, és ez ad neked felhatalmazást. Aláírás
+      előtt ne kezdj erőforrást lekötni.
+    how:
+      - Írd bele tételesen, mi NINCS a hatókörben.
+      - Kérd, hogy szerepeljen a te döntési hatásköröd összeghatárral.
+      - Küldd ki 3 munkanappal a jóváhagyó egyeztetés előtt.
+    tip: >
+      Ha a szponzor „majd később aláírjuk, kezdjetek neki" választ ad, az piros zászló.
+      Udvariasan, de ragaszkodj az aláíráshoz.
+
+  - id: init-08
+    text: Állítsd össze az Érintettek nyilvántartását, és beszélj velük egyesével.
+    mandatory: true
+    doc_ref: stakeholder_register
+    why: >
+      Az érintett, akiről nem tudsz, nem tűnik el — csak később jelenik meg, rosszabb
+      időpontban és nagyobb kárral.
+    how:
+      - Menj végig a szervezeti ábrán, aztán a folyamaton is (ki nyúl hozzá?).
+      - 'Ne feledd: Service Desk, HR, DPO, üzemi tanács, szállítók.'
+      - 30 perces interjúk, négyszemközt.
+
+  - id: init-09
+    text: Készítsd el a Hatalom-érdek mátrixot, és tervezd meg az ellenállók kezelését.
+    mandatory: false
+    doc_ref: stakeholder_analysis
+    why: >
+      Véges az időd. Ez segít eldönteni, kire fordíts belőle sokat és kire keveset.
+    how:
+      - Sorold be minden érintettet befolyás és érdekeltség szerint.
+      - Az ellenállókhoz írj konkrét lépést, ne csak annyit, hogy „kezelni kell".
+
+  - id: init-10
+    text: Nyisd meg a Feltevés- és korlátnaplót, és töltsd fel az ismert tételekkel.
+    mandatory: true
+    doc_ref: assumption_log
+    why: >
+      Amit most feltételezel, az később kockázat lesz. Ha leírtad, jelezted;
+      ha nem, elhallgattad.
+    how:
+      - Minden feltevéshez írj ellenőrzési módot, felelőst és határidőt.
+      - A Charterből és a megvalósíthatósági tanulmányból emeld át a tételeket.
+
+  - id: init-11
+    text: Fogalmazd meg mérhetően, mit várunk a projekttől — készítsd el a Haszonrealizálási tervet.
+    mandatory: true
+    doc_ref: benefits_plan
+    why: >
+      A hatodik fázis mérései ehhez képest fognak igazolni vagy cáfolni. Utólag
+      megfogalmazott célt bárki vitathat.
+    how:
+      - Minden haszonhoz rendelj mérőszámot, baseline-t, célértéket és határidőt.
+      - Nevezz meg felelőst minden méréshez — ne maradjon gazdátlan.
+    tip: >
+      Ha egy hasznot nem tudsz mérőszámmal leírni, akkor vagy nem is haszon, vagy
+      nem gondoltad még végig eléggé.
+
+  - id: init-12
+    text: Végezd el a kiindulási (baseline) méréseket, még a projekt indulása előtt.
+    mandatory: true
+    doc_ref: baseline_report
+    why: >
+      Ez az egyetlen alkalom, amikor a „projekt előtti" állapot mérhető. Ha elmulasztod,
+      a hatodik fázis mérése értelmezhetetlen lesz.
+    how:
+      - Ticketszámok, üzemeltetési költség, gépbeüzemelési idő rögzítése.
+      - Rövid elégedettségi kérdőív a leendő pilot résztvevőknek.
+    tip: >
+      Ez a leggyakrabban kihagyott lépés az egész projektben. Ha csak egy dolgot
+      viszel el ebből a fázisból, ez legyen az. A Kiindulási (T0) mérési
+      jegyzőkönyv a 6. fázis dokumentumai között található, mert ott használod
+      fel — de **most** kell elkészítened. A Xyo projektben: 2026.01.30.
+
+  - id: init-13
+    text: Szervezd meg és tartsd meg a kick-off meetinget, majd küldd ki a jegyzőkönyvet.
+    mandatory: true
+    doc_ref: kickoff_minutes
+    why: >
+      Ez a projekt hivatalos nyitánya. Innentől mindenki ugyanazt tudja, és ez
+      bizonyítható.
+    how:
+      - Kérd meg a szponzort egy 5 perces nyitóra.
+      - A jegyzőkönyvet 2 munkanapon belül küldd ki, a hiányzóknak is.
+    tip: >
+      A kick-off az egyetlen kezdeményezési lépés, ami átnyúlik a fázis-kapun:
+      a kapura csak a kitűzött időpont és a kiküldött meghívó kell, maga a
+      meeting a Charter aláírása utáni első héten van. A Xyo projektben a kapu
+      2026.02.02-án, a kick-off 02.09-én.
+
+  - id: init-14
+    text: Indíts projektszótárt, ha az üzleti és a technikai oldal máshogy beszél.
+    mandatory: false
+    doc_ref: project_glossary
+    why: >
+      A félreértések nagy része fogalmi. Olcsóbb most tisztázni, mint az átvételkor.
+    how:
+      - Csak a ténylegesen félreértett fogalmakat vedd be.
+      - Jelöld meg, ki a fogalom gazdája.
+
+  - id: init-15
+    text: Vidd a Charter-jóváhagyást a fázis-kapura, és kérd a döntést a továbblépésről.
+    mandatory: true
+    why: >
+      A Tervezés fázis munkája erőforrást igényel. Csak akkor kezdd el, ha erre
+      megvan a formális engedély.
+    how:
+      - Egyoldalas összefoglaló a Steering Committee-nek.
+      - Rögzítsd írásban a döntést és a dátumát.
+
+gate:
+  summary: >
+    A Kezdeményezés akkor zárható le, ha a projekt hivatalosan létezik, van
+    felhatalmazott projektmenedzsere, ismert a kerete, és rögzítve van, mit tekintünk
+    sikernek. Enélkül a Tervezés fázisba fektetett munka bármikor kidobható.
+  criteria:
+    - Aláírt Projektalapító okirat, benne a keretösszeggel és a PM hatáskörével.
+    - Jóváhagyott Üzleti indoklás, amiben a „ne csináljunk semmit" változat is szerepel.
+    - Teljes Érintettek nyilvántartása, a Service Deskkel, a HR-rel és a DPO-val együtt.
+    - Haszonrealizálási terv mérőszámokkal, célértékekkel és nevesített felelősökkel.
+    - Elvégzett és dokumentált kiindulási (baseline) mérések.
+    - Kitűzött kick-off — időpont, meghívottak és napirend rögzítve, a meghívó kiküldve.
+    - Megnyitott Feltevés- és korlátnapló, ellenőrzési határidőkkel.
+  decision_by: >
+    Projekt Irányító Bizottság — elnök: Horváth Júlia ügyvezető. A Xyo projektben a
+    döntés dátuma: 2026.02.02.
+
+# --------------------------------------------------------------------------
+# PRINCE2-kiegészítés (nem módosítja a PMI-tartalmat, csak melléteszi)
+# --------------------------------------------------------------------------
+prince2:
+  processes:
+    - code: SU
+      name: Projekt előkészítése (Starting up a Project)
+    - code: IP
+      name: Projekt kezdeményezése (Initiating a Project)
+    - code: DP
+      name: Projekt irányítása (Directing a Project) — itt indul
+  summary: >
+    PRINCE2-ben ez a fázis két külön dologra bomlik. Az **SU (előkészítés) még
+    nem a projekt**, csak azt dönti el, van-e értelme elindítani — a végterméke
+    a Project Brief. Az **IP (kezdeményezés) viszont már maga is egy irányítási
+    szakasz**, saját Board-engedéllyel, és a végterméke a PID.
+  adds:
+    - what: Az előkészítés és a kezdeményezés szétválasztása
+      why: >
+        A Charter aláírása előtti munka PRINCE2-ben külön, engedélyezett
+        szakasz. Így a Board arról is dönt, hogy egyáltalán érdemes-e
+        tervezésre időt fordítani.
+    - what: A Project Board felállítása nevesített szerepekkel
+      why: >
+        Executive (egyetlen ember, ő dönt), Senior User (a hasznok gazdája),
+        Senior Supplier (a szállító). A Xyo-nál ez Kovács Anita, Nagy Péter és
+        a Cloudia Solutions lett volna.
+    - what: Project Assurance kijelölése
+      why: >
+        Független ellenőrzés a Board nevében, a PM-től függetlenül.
+        A valós projektben ez hiányzott — ez a legnagyobb PRINCE2-hiány.
+    - what: Tanulságok keresése a projekt ELEJÉN
+      why: >
+        A 2. alapelv szerint a Lessons Log már itt megnyílik, korábbi
+        projektek tanulságaival. A PMI ezt a záráshoz köti.
+  products:
+    - name_hu: Projekt-előkészítő anyag
+      name_en: Project Brief
+      pmi: (nincs pontos megfelelő — a Charter előtti anyag)
+    - name_hu: Projekt-kezdeményezési dokumentáció
+      name_en: PID
+      pmi: Project Charter + Projektterv együtt
+    - name_hu: Üzleti indoklás
+      name_en: Business Case
+      pmi: Üzleti indoklás — de PRINCE2-ben élő dokumentum
+    - name_hu: Haszonkezelési megközelítés
+      name_en: Benefits Management Approach
+      pmi: Haszonrealizálási terv
+    - name_hu: Tanulságok naplója
+      name_en: Lessons Log
+      pmi: Tanulságok naplója — de PRINCE2-ben már itt megnyílik
