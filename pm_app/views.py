@@ -67,15 +67,13 @@ def sample_project() -> None:
 
     if project.get("facts"):
         st.subheader("A projekt alapadatai")
-        st.dataframe(
+        render.text_table(
             [{"Megnevezés": key, "Érték": value} for key, value in project["facts"].items()],
-            hide_index=True,
-            width="stretch",
         )
 
     if project.get("roles"):
         st.subheader("Szerepkörök és nevek (a mintában végig ezeket használjuk)")
-        st.dataframe(
+        render.text_table(
             [
                 {
                     "Név": row["name"],
@@ -85,8 +83,6 @@ def sample_project() -> None:
                 }
                 for row in project["roles"]
             ],
-            hide_index=True,
-            width="stretch",
         )
 
     idea_doc = content.load_doc_index().get(project.get("idea_doc", ""))
@@ -396,13 +392,11 @@ def prince2() -> None:
         if tol:
             st.subheader("Toleranciák — a kivételalapú irányítás gyakorlata")
             st.markdown(tol.get("intro", ""))
-            st.dataframe(
+            render.text_table(
                 [
                     {"Terület": row["area"], "A Xyo projekten így nézne ki": row["xyo"]}
                     for row in tol.get("areas", [])
                 ],
-                hide_index=True,
-                width="stretch",
             )
 
     # -- Folyamatok --------------------------------------------------------
@@ -419,7 +413,7 @@ def prince2() -> None:
     # -- Szerepek ----------------------------------------------------------
     with tab_szerep:
         st.subheader("Ki kicsoda a PRINCE2-ben")
-        st.dataframe(
+        render.text_table(
             [
                 {
                     "Szerep": row["role"],
@@ -430,8 +424,6 @@ def prince2() -> None:
                 }
                 for row in data.get("roles", [])
             ],
-            hide_index=True,
-            width="stretch",
             height=340,
         )
         st.info(
@@ -454,7 +446,7 @@ def prince2() -> None:
                 for r in rows
                 if needle in f"{r['pmi']} {r['prince2']} {r.get('note', '')}".lower()
             ]
-        st.dataframe(
+        render.text_table(
             [
                 {
                     "PMI / PMBOK": r["pmi"],
@@ -463,8 +455,6 @@ def prince2() -> None:
                 }
                 for r in rows
             ],
-            hide_index=True,
-            width="stretch",
             height=480,
         )
 
@@ -487,7 +477,7 @@ def prince2() -> None:
         stages = data.get("xyo_stages", {})
         st.subheader("Hogyan nézne ki a Xyo projekt PRINCE2 szerint?")
         st.markdown(stages.get("intro", ""))
-        st.dataframe(
+        render.text_table(
             [
                 {
                     "#": row["num"],
@@ -497,20 +487,16 @@ def prince2() -> None:
                 }
                 for row in stages.get("stages", [])
             ],
-            hide_index=True,
-            width="stretch",
         )
 
         already = data.get("already_prince2", {})
         st.subheader("Amit már PRINCE2-szerűen csináltunk")
         st.caption(already.get("intro", ""))
-        st.dataframe(
+        render.text_table(
             [
                 {"Amit tettünk": r["what"], "PRINCE2-ben ez…": r["p2"]}
                 for r in already.get("items", [])
             ],
-            hide_index=True,
-            width="stretch",
         )
 
         adds = data.get("would_add", {})

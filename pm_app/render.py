@@ -9,6 +9,16 @@ import streamlit as st
 from pm_app import config, content, downloads, progress
 
 
+def text_table(rows: list[dict], height: int | None = None) -> None:
+    """Hosszabb szöveget tartalmazó tábla.
+
+    Az `st.dataframe` rács-alapú, a cellaszöveget nem tördeli, hanem levágja;
+    az `st.table` HTML-táblát rajzol, amely a szűk oszlopban több sorba tör.
+    A `height` görgethető, rögzített magasságú keretet ad (pl. a hosszú fogalomtárhoz).
+    """
+    st.table(rows, hide_index=True, height=height if height else "content")
+
+
 # --------------------------------------------------------------------------- fejléc
 
 def phase_header(phase: dict) -> None:
@@ -101,7 +111,7 @@ def data_flow_block(phase: dict) -> None:
 
     if data_in:
         st.markdown("**Amit be kell kérned:**")
-        st.dataframe(
+        text_table(
             [
                 {
                     "Kitől": row["from"],
@@ -111,13 +121,11 @@ def data_flow_block(phase: dict) -> None:
                 }
                 for row in data_in
             ],
-            hide_index=True,
-            width="stretch",
         )
 
     if data_out:
         st.markdown("**Amit szolgáltatnod kell:**")
-        st.dataframe(
+        text_table(
             [
                 {
                     "Kinek": row["to"],
@@ -127,8 +135,6 @@ def data_flow_block(phase: dict) -> None:
                 }
                 for row in data_out
             ],
-            hide_index=True,
-            width="stretch",
         )
 
     if restricted:
@@ -346,7 +352,7 @@ def prince2_block(phase: dict) -> None:
 
         if block.get("products"):
             st.markdown("**PRINCE2 irányítási termékek ebben a fázisban:**")
-            st.dataframe(
+            text_table(
                 [
                     {
                         "PRINCE2 termék": row["name_hu"],
@@ -355,8 +361,6 @@ def prince2_block(phase: dict) -> None:
                     }
                     for row in block["products"]
                 ],
-                hide_index=True,
-                width="stretch",
             )
 
         st.caption(

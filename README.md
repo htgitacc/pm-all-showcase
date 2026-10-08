@@ -149,7 +149,7 @@ szerepel, és egy ilyen csomagban a hiba jellemzően nem egy dokumentumon belül
 hanem **a dokumentumok között** van.
 
 Ezért a számokat és a logikát **automatizált tesztek alá tettem** (`tests/`,
-144 db, GitHub Actions minden pushnál):
+152 db, GitHub Actions minden pushnál):
 
 - a költségvetést a fizetési ütemezéssel és a pénzügyi zárással,
 - az ütemtervet a munkaszüneti napokkal, a függőségekkel és a kritikus úttal,
@@ -232,7 +232,7 @@ pytest
 | `test_quality.py` | Követelmény-nyomonkövetés (követelmény → teszteset → átvételi kritérium → szerződéses feltétel), tesztkörök, minőségellenőrzés, beszerzési pontozás, oktatás, érintettek–RACI–kommunikáció, archiválási jegyzék |
 | `test_reports.py` | Riportok a kiadásuk napjára vetítve: státusz-, Steering- és kockázati riport, EVM-pont, eszkalációk, PRINCE2 highlight / exception / end stage report, hírlevelek, jegyzőkönyv-számozás |
 | `test_progress.py` | A checklist-haladás mentése, törlése, demó mód |
-| `test_pages.py` | Minden oldal hiba nélkül lefut; a letöltési csomag teljes |
+| `test_pages.py` | Minden oldal hiba nélkül lefut; a hosszú szöveges táblák tördelnek (nem vágódnak le); a letöltési csomag teljes |
 
 ### Demó mód (nyilvános telepítéshez)
 
