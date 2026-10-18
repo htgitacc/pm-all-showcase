@@ -1,0 +1,3 @@
+# Sorvégek: mindig LF (a repóhoz Windowsról is nyúltak; a showcase CRLF-fel került fel).
+* text=auto eol=lf
+*.png binary
