@@ -2,9 +2,10 @@
 
 from __future__ import annotations
 
+import itertools
 import re
 
-from conftest import ROOT, read_doc
+from conftest import ROOT, read_doc, sample_docs
 
 from pm_app import content
 
@@ -63,7 +64,7 @@ def test_no_orphan_markdown_files():
     referenced = {d["sample_file"] for d in _docs().values()}
     referenced |= {d["sample_file"] for d in prince2.get("documents", [])}
     referenced.add(prince2["primer_file"])
-    on_disk = {p.relative_to(ROOT).as_posix() for p in (ROOT / "docs").rglob("*.md")}
+    on_disk = {p.relative_to(ROOT).as_posix() for p in sample_docs()}
     assert on_disk - referenced == set()
 
 
@@ -128,7 +129,7 @@ def test_sample_headers_do_not_merge_into_one_paragraph():
     for path in sorted((ROOT / "docs").rglob("*.md")):
         lines = path.read_text(encoding="utf-8").split("\n")
         in_code = False
-        for cur, nxt in zip(lines, lines[1:]):
+        for cur, nxt in itertools.pairwise(lines):
             if cur.startswith("```"):
                 in_code = not in_code
             if in_code or not cur.strip() or block.match(cur):
@@ -136,3 +137,22 @@ def test_sample_headers_do_not_merge_into_one_paragraph():
             if label.match(nxt) and not cur.endswith(("\\", "  ")):
                 merged.append(f"{path.name}: {cur[:60]}")
     assert merged == []
+
+
+def test_requirements_are_pinned_exactly():
+    # Pontos verziók: a Streamlit Cloud minden Reboot-nál újratelepít,
+    # egy csak alsó korlátos sor csendben új főverziót húzna be az élő demó alá.
+    for name in ("requirements.txt", "requirements-dev.txt"):
+        lines = [l.split("#")[0].strip() for l in read_doc(name).splitlines()]
+        reqs = [l for l in lines if l and not l.startswith("-r ")]
+        assert reqs, name
+        for req in reqs:
+            assert re.fullmatch(r"[A-Za-z0-9_.\-]+==[0-9][0-9A-Za-z.]*", req), req
+
+
+def test_public_demo_hides_tracebacks():
+    # A nyilvános demón a hiba ne mutasson tracebacket fájlútvonalakkal (a konzolra így is kiíródik).
+    import tomllib
+
+    config = tomllib.loads(read_doc(".streamlit/config.toml"))
+    assert config["client"]["showErrorDetails"] in ("type", "none")

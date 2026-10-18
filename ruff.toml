@@ -1,0 +1,4 @@
+# Lint: ruff. Az alapértelmezett, válogatott szabálykészlet; a ruff
+# verziója a requirements-dev.txt-ben pinelve, így a szabályok nem változnak csendben.
+target-version = "py312"
+extend-exclude = ["showcase-draft"]

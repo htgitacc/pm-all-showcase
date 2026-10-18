@@ -11,8 +11,7 @@ import datetime as dt
 import re
 
 import pytest
-
-from conftest import ROOT, read_doc, section, tables
+from conftest import read_doc, sample_docs, section, tables
 
 SCHEDULE = "docs/2-planning/06-utemterv.md"
 YEAR = 2026
@@ -170,7 +169,7 @@ def test_milestone_dates_agree_across_documents():
     milestones = _milestones()
     pattern = re.compile(r"\|\s*\**(M\d{1,2})\**\s*\|[^|\n]*\|\s*\**(\d{4}\.\d\d\.\d\d\.)")
     mismatches = []
-    for path in sorted((ROOT / "docs").rglob("*.md")):
+    for path in sample_docs():
         if path.name == "06-utemterv.md":
             continue
         for line in path.read_text(encoding="utf-8").splitlines():

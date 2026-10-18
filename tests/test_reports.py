@@ -9,6 +9,7 @@ mutatnia, ami **a kiadásának napján** a nyilvántartásban állt — se több
 from __future__ import annotations
 
 import datetime as dt
+import itertools
 import re
 
 from conftest import ft, num, read_doc, section, tables
@@ -71,7 +72,7 @@ def _problems() -> dict[str, tuple[dt.date, dt.date | None]]:
     """P-azonosító → (felmerült, lezárva vagy None)."""
     text = read_doc(ISSUES)
     result = {}
-    for m in re.finditer(r"^### (P-\d+) — .*?\n(.*?)(?=^### |^## |\Z)", text, re.S | re.M):
+    for m in re.finditer(r"^### (P-\d+) — .*?\n(.*?)(?=^### |^## |\Z)", text, re.DOTALL | re.MULTILINE):
         kv = _kv(m.group(2))
         result[m.group(1)] = (_day(kv["Felmerült"]), _maybe_day(kv.get("Lezárva", "")))
     return result
@@ -92,7 +93,7 @@ def _ids(text: str, prefix: str) -> set[str]:
 def _risk_baseline() -> dict[str, int]:
     text = read_doc(RISKS)
     scores = {}
-    for m in re.finditer(r"^### (R\d+) — .*?\n(.*?)(?=^### |^## |\Z)", text, re.S | re.M):
+    for m in re.finditer(r"^### (R\d+) — .*?\n(.*?)(?=^### |^## |\Z)", text, re.DOTALL | re.MULTILINE):
         scores[m.group(1)] = int(re.search(r"= \*\*(\d)", _kv(m.group(2))["Valószínűség × hatás"]).group(1))
     for heading in ("3. Közepes", "4. Alacsony"):
         for r in tables(section(text, heading))[0]:
@@ -302,7 +303,7 @@ def test_ticket_figures_in_the_risk_report_were_known_when_it_was_issued():
 def _escalations() -> dict[str, dict]:
     text = read_doc(ESCALATIONS)
     result = {}
-    for m in re.finditer(r"^### (E-\d+) — .*?\n(.*?)(?=^### |^## |\Z)", text, re.S | re.M):
+    for m in re.finditer(r"^### (E-\d+) — .*?\n(.*?)(?=^### |^## |\Z)", text, re.DOTALL | re.MULTILINE):
         kv = _kv(m.group(2))
         result[m.group(1)] = {"sent": _day(kv["Mikor"]), "closed": _day(kv["Státusz"].split("—")[1])}
     return result
@@ -416,7 +417,7 @@ def test_newsletters_are_fortnightly_and_do_not_run_ahead():
     rows = tables(section(read_doc(COMMS), "2. A pilot hírlevél"))[0]
     days = [_day(r[1][5:]) for r in rows]
     assert all(d.weekday() == 3 for d in days)
-    assert all((b - a).days == 14 for a, b in zip(days, days[1:]))
+    assert all((b - a).days == 14 for a, b in itertools.pairwise(days))
     m7 = _schedule_milestones()["M7"]
     for d, r in zip(days, rows):
         if r[2].startswith("Mindenki élesben"):

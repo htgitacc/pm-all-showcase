@@ -15,8 +15,7 @@ from collections import Counter
 from pathlib import Path
 
 import pytest
-
-from conftest import ROOT, ft, num, read_doc, section, tables
+from conftest import ROOT, ft, num, read_doc, sample_docs, section, tables
 from test_registers import _acceptance, _kv, _plain
 from test_schedule import _tasks
 
@@ -257,7 +256,7 @@ def test_quality_control_log_summary_and_plan():
     assert summary["Eltérés nélkül megfelelt"] == len(clean)
     assert summary["Eltéréssel (kezelve és lezárva)"] == len(deviating)
     findings = tables(section(text, "8. Összesítés"))[1]
-    assert len(findings) == len(deviating) == len(re.findall(r"^### Feltárt (?:eltérés|hiány) — QC-", text, re.M))
+    assert len(findings) == len(deviating) == len(re.findall(r"^### Feltárt (?:eltérés|hiány) — QC-", text, re.MULTILINE))
 
     # A minőségterv dátumozott ellenőrzései pontosan így szerepelnek a jegyzőkönyvben.
     planned = {r[0]: r[1] for r in tables(section(read_doc(QUALITY), "3. Minőségellenőrzés"))[0]}
@@ -275,7 +274,7 @@ def test_qc02_lead_time_is_measured_to_the_main_rollout():
                  "docs/5-closure/07-eroforras-elengedes.md", "docs/prince2/02-highlight-report.md"):
         assert f"{lead} nappal" in read_doc(path), path
     assert f"{lead} nap volt hátra" in read_doc("docs/4-monitoring/09-eszkalacios-naplo.md")
-    for path in ROOT.joinpath("docs").rglob("*.md"):
+    for path in sample_docs():
         assert "teljes élesítés előtt" not in path.read_text(encoding="utf-8"), path
 
 

@@ -110,7 +110,7 @@ def test_resource_plan_adds_up():
 def _raci_rows():
     text = read_doc(RACI)
     blocks = {}
-    for number in re.findall(r"^## (\d)\. ", text, flags=re.M):
+    for number in re.findall(r"^## (\d)\. ", text, flags=re.MULTILINE):
         found = tables(section(text, f"{number}. "))
         blocks[number] = found[0] if found else []
     return text, blocks
@@ -136,7 +136,7 @@ def _register():
     text = read_doc(REGISTER)
     risks = {}
     high = section(text, "2. Magas besorolású")
-    for block in re.split(r"^### ", high, flags=re.M)[1:]:
+    for block in re.split(r"^### ", high, flags=re.MULTILINE)[1:]:
         rid = block.split()[0]
         p, i, score = map(int, re.search(r"(\d) × (\d) = \*\*(\d+)", block).groups())
         risks[rid] = ("magas", p, i, score)
@@ -175,7 +175,7 @@ def test_risk_report_overview_matches_its_tables():
 
     current = [int(re.findall(r"\d+", r[2].replace("*", ""))[-1]) for r in open_rows]
     levels = [_level(s) for s in current]
-    now = lambda key: _int(overview[key][2])  # noqa: E731
+    now = lambda key: _int(overview[key][2])
     assert now("Lezárva") == len(closed)
     assert now("Nyitott, magas (≥6)") == levels.count("magas")
     assert now("Nyitott, közepes (3–4)") == levels.count("közepes")
@@ -194,5 +194,5 @@ def test_closure_risk_statistics_add_up():
 def test_schedule_risk_ids_exist_in_register():
     _, risks = _register()
     schedule = read_doc("docs/2-planning/06-utemterv.md")
-    for rid in re.findall(r"^\| (R\d+) \|", section(schedule, "6. A legnagyobb ütemkockázatok"), flags=re.M):
+    for rid in re.findall(r"^\| (R\d+) \|", section(schedule, "6. A legnagyobb ütemkockázatok"), flags=re.MULTILINE):
         assert rid in risks, rid

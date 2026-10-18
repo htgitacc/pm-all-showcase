@@ -4,3 +4,11 @@ primaryColor = "#1f6feb"
 
 [browser]
 gatherUsageStats = false
+
+[client]
+# Nyilvános demón a hibánál csak a típus látszik, a traceback (fájlútvonalakkal) nem.
+showErrorDetails = "type"
+
+[server]
+# Az egyetlen feltöltés a haladásmentés (néhány KB): az alapértelmezett 200 MB helyett 1 MB.
+maxUploadSize = 1

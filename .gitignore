@@ -1,7 +1,14 @@
-__pycache__/
-*.pyc
+# A gép közös minimumkészlete (uj-projekt skill)
 .venv/
 venv/
-data/progress.json
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.env
 .streamlit/secrets.toml
+
+# A projekt saját kizárásai
+data/progress.json
+showcase-draft/
 .DS_Store

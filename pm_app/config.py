@@ -16,9 +16,26 @@ PROGRESS_FILE = DATA_DIR / "progress.json"
 # A pipák tárolása: "file" (helyi, tartós) vagy "session" (nyilvános demó,
 # látogatónként külön). Streamlit Community Cloudon a Secrets-ben megadott
 # PM_MINDENES_STORAGE = "session" sor környezeti változóként érkezik.
-STORAGE_MODE = os.environ.get("PM_MINDENES_STORAGE", "file").strip().lower()
-if STORAGE_MODE not in ("file", "session"):
-    STORAGE_MODE = "file"
+STORAGE_MODES = ("file", "session")
+
+# A Community Cloud a repót a /mount/src/<repó> alá klónozza.
+CLOUD_SOURCE_ROOT = Path("/mount/src")
+
+
+def storage_mode(environ=os.environ, root: Path = ROOT) -> str:
+    """A tárolási mód: a környezeti változó dönt, ha érvényes.
+
+    Ha hiányzik vagy elgépelt, a hely dönt: Community Cloudon "session",
+    különben "file". Így egy kimaradt Secrets-sor miatt sem írja minden
+    látogató ugyanazt a fájlt.
+    """
+    mode = environ.get("PM_MINDENES_STORAGE", "").strip().lower()
+    if mode in STORAGE_MODES:
+        return mode
+    return "session" if root.is_relative_to(CLOUD_SOURCE_ROOT) else "file"
+
+
+STORAGE_MODE = storage_mode()
 
 APP_TITLE = "PM-mindenes"
 APP_SUBTITLE = "Waterfall projektmenedzser checklist — Xyo Kft. mintaprojekttel"

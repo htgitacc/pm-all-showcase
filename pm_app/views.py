@@ -3,11 +3,11 @@
 from __future__ import annotations
 
 import functools
+from datetime import date
 
 import streamlit as st
 
 from pm_app import config, content, downloads, progress, render
-
 
 # --------------------------------------------------------------------------- áttekintés
 
@@ -41,7 +41,11 @@ def overview() -> None:
 
     st.divider()
     st.subheader("Hogyan használd?")
-    st.markdown(meta.get("how_to_use", ""))
+    # A 3. pont a tárolási módtól függ: demó módban nincs progress.json.
+    note = meta.get("storage_note", {}).get(config.STORAGE_MODE, "")
+    st.markdown(meta.get("how_to_use", "").replace("{storage_note}", note))
+
+    _progress_backup()
 
     with st.expander("Haladás visszaállítása"):
         st.caption(
@@ -49,9 +53,62 @@ def overview() -> None:
             if progress.persistent()
             else "Demó mód: a pipák csak ebben a böngészőmunkamenetben élnek."
         )
+        # Az üzenet a rerun utáni futásban jelenik meg — a rerun előtt kiírt elem elveszne.
+        if st.session_state.pop("reset_done", False):
+            st.success("A haladás törölve.")
         if st.button("Minden pipa törlése", icon=":material/restart_alt:"):
             progress.reset_all()
-            st.success("A haladás törölve.")
+            st.session_state.reset_done = True
+            st.rerun()
+
+
+def _progress_backup() -> None:
+    """Mentés JSON-fájlba és visszatöltés — demó módban csak így élik túl a pipák a lap
+    bezárását. A betöltés előtt előnézetet mutat, és csak gombnyomásra ír felül."""
+    with st.expander("Haladás mentése és visszatöltése"):
+        st.caption(
+            "A mentés egy kis JSON-fájl a bejelölt lépésekkel. Visszatöltéskor a mentett "
+            "állapot felülírja a mostani pipákat."
+        )
+        st.download_button(
+            "Haladás mentése (JSON)",
+            data=progress.export_json(),
+            file_name=f"pm-mindenes-haladas-{date.today().isoformat()}.json",
+            mime="application/json",
+            icon=":material/download:",
+        )
+        if notice := st.session_state.pop("import_done", None):
+            st.success(notice)
+        # A kulcs betöltésenként változik, így a feltöltő a betöltés után kiürül.
+        uploaded = st.file_uploader(
+            "Mentés visszatöltése", type=["json"], key=f"import-{st.session_state.get('import_round', 0)}"
+        )
+        if uploaded is None:
+            return
+        try:
+            # Legfeljebb a korlátnyit olvassuk be; a nagyobb fájlt a parse_import elutasítja.
+            preview = progress.parse_import(
+                uploaded.read(progress.MAX_IMPORT_BYTES + 1), progress.known_item_ids()
+            )
+        except progress.InvalidProgressFile as err:
+            st.error(str(err), icon=":material/error:")
+            return
+        # az app máshol is pontokkal írja a dátumot (2026.10.18.)
+        when = f" ({date.fromisoformat(preview.exported):%Y.%m.%d}-i mentés)" if preview.exported else ""
+        skipped = (
+            f" {preview.unknown} ismeretlen lépést kihagyok (régebbi tartalomverzióból)."
+            if preview.unknown
+            else ""
+        )
+        st.info(
+            f"A fájlban {len(preview.done)} bejelölt lépés van{when}.{skipped} "
+            "A betöltés felülírja a mostani pipákat.",
+            icon=":material/info:",
+        )
+        if st.button("Betöltés", type="primary", icon=":material/upload:"):
+            progress.apply_import(preview)
+            st.session_state.import_done = f"Betöltve: {len(preview.done)} bejelölt lépés."
+            st.session_state.import_round = st.session_state.get("import_round", 0) + 1
             st.rerun()
 
 
@@ -195,7 +252,7 @@ def doc_map() -> None:
             continue
         rows.append(
             {
-                "Fázis": f"{doc['phase_number']}. {doc['phase_title']}",
+                "Fázis": f"{doc['phase_number']}.\u00a0{doc['phase_title']}",  # nem törő szóköz: az „1." ne törjön külön sorba
                 "Dokumentum": doc.get("name_hu", ""),
                 "Angol név": doc.get("name_en", ""),
                 "Kötelező?": "kötelező" if doc.get("mandatory") else "ajánlott",
@@ -206,7 +263,8 @@ def doc_map() -> None:
         )
 
     st.caption(f"{len(rows)} dokumentum")
-    st.dataframe(rows, hide_index=True, width="stretch", height=420)
+    # A „Bemenete" / „Mihez bemenet" cellák akár 250 karakteresek: a rács levágná őket.
+    render.text_table(rows, height=420)
 
 
 def _neighbourhood(index: dict, phase_id: str) -> dict:

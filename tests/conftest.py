@@ -17,6 +17,19 @@ if str(ROOT) not in sys.path:
 logging.getLogger("streamlit").setLevel(logging.ERROR)
 
 
+def sample_docs() -> list[Path]:
+    """A mintadokumentumok: a `docs/` fázismappái és a `docs/prince2/`.
+
+    A `docs/` gyökerében és az `adr` almappájában (ha vannak) a projekt saját
+    fejlesztési dokumentációja él — az nem minta, ezért a tartalmi ellenőrzések kihagyják.
+    """
+    docs = ROOT / "docs"
+    return sorted(
+        p for p in docs.rglob("*.md")
+        if len(p.relative_to(docs).parts) > 1 and p.relative_to(docs).parts[0] != "adr"
+    )
+
+
 def read_doc(rel_path: str) -> str:
     return (ROOT / rel_path).read_text(encoding="utf-8")
 

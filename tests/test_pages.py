@@ -8,7 +8,7 @@ import zipfile
 import pytest
 from streamlit.testing.v1 import AppTest
 
-from pm_app import content, downloads
+from pm_app import content, downloads, render
 
 PAGES = ["overview", "sample_project", "doc_map", "downloads_page", "glossary", "prince2"]
 PHASES = ["initiation", "planning", "execution", "monitoring", "closure", "benefits"]
@@ -47,10 +47,12 @@ def test_full_zip_contains_every_sample():
 # Az `st.dataframe` rács-alapú: a hosszú cellaszöveget nem tördeli, hanem levágja
 # (a Mintaprojekt „Platform" és „Miért fontos" cellái így lógtak ki). A
 # szöveges táblák ezért `st.table`-lel (render.text_table) jelennek meg; az
-# `st.dataframe` csak a rövid, keresős leltárnak és a Gantt-mérföldköveknek marad.
+# `st.dataframe` csak a rövid Gantt-mérföldkő-táblának marad. A dokumentumleltár
+# „Bemenete" / „Mihez bemenet" cellái akár 250 karakteresek, ezért az is tördel.
 TEXT_TABLES = {
     "sample_project": 2,   # alapadatok, szerepkörök
     "prince2": None,       # fülenként: nem számoljuk, de nem lehet rács
+    "doc_map": 1,          # a teljes dokumentumleltár
 }
 
 
@@ -67,3 +69,40 @@ def test_text_tables_wrap_instead_of_clipping(page, expected, tmp_progress):
 def test_phase_text_tables_wrap_instead_of_clipping(phase_id, tmp_progress):
     at = _run(f"from pm_app import views\nviews.make_phase_view({phase_id!r})()\n")
     assert len(at.dataframe) == 0, f"{phase_id}: rács-alapú tábla szöveges tartalommal"
+
+
+@pytest.mark.parametrize(
+    "raw, shown",
+    [
+        ("1. Kezdeményezés", "1\\. Kezdeményezés"),  # különben <ol><li>Kezdeményezés</li></ol>
+        ("12. pont", "12\\. pont"),
+        ("- tétel", "\\- tétel"),
+        ("Fázis 1. lépése", "Fázis 1. lépése"),       # csak a sor eleje lehet lista
+        ("2026.03.13.", "2026.03.13."),
+        (42, 42),
+    ],
+)
+def test_table_cells_do_not_turn_into_markdown_lists(raw, shown):
+    assert render.table_cell(raw) == shown
+
+
+def test_doc_map_phase_column_is_not_a_numbered_list(tmp_progress):
+    at = _run("from pm_app import views\nviews.doc_map()\n")
+    phases = list(at.table[0].value["Fázis"])
+    assert len(phases) == 69
+    # escape-elt pont, utána nem törő szóköz: nem lista, és a szám nem törik külön sorba
+    assert all(p[0].isdigit() and "\\.\u00a0" in p for p in phases), phases[:3]
+
+
+def test_sidebar_starts_collapsed_on_mobile():
+    # "expanded" mellett mobilon az oldalsáv első betöltéskor eltakarja a tartalmat;
+    # "auto": asztalon nyitva, keskeny kijelzőn csukva.
+    import ast
+
+    tree = ast.parse((content.config.ROOT / "app.py").read_text(encoding="utf-8"))
+    call = next(
+        n for n in ast.walk(tree)
+        if isinstance(n, ast.Call) and getattr(n.func, "attr", "") == "set_page_config"
+    )
+    state = next(k.value.value for k in call.keywords if k.arg == "initial_sidebar_state")
+    assert state == "auto"

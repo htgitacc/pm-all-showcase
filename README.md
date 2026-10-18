@@ -1,7 +1,7 @@
 # PM-mindenes — munkakörnyezet waterfall projektekhez
 
 [![Tesztek](https://github.com/htgitacc/pm-all-showcase/actions/workflows/tests.yml/badge.svg)](https://github.com/htgitacc/pm-all-showcase/actions/workflows/tests.yml)
-![Python 3.13](https://img.shields.io/badge/python-3.13-blue)
+![Python 3.12 | 3.13](https://img.shields.io/badge/python-3.12%20%7C%203.13-blue)
 ![Streamlit](https://img.shields.io/badge/streamlit-1.57%2B-red)
 ![Licenc: MIT + CC BY 4.0](https://img.shields.io/badge/licenc-MIT%20%2B%20CC%20BY%204.0-green)
 
@@ -58,7 +58,8 @@ leképezhető vele.
 
 **▶ [Élő demó: pm-all-showcase.streamlit.app](https://pm-all-showcase.streamlit.app/)** —
 kipróbálható böngészőben, telepítés nélkül. A pipák csak a saját
-böngészőmunkamenetedben élnek. Az első betöltés lassabb lehet: az ingyenes
+böngészőmunkamenetedben élnek, de az Áttekintés oldalon fájlba mentheted és
+később visszatöltheted őket. Az első betöltés lassabb lehet: az ingyenes
 tárhely az inaktív appot alvó módba teszi.
 
 ![Áttekintés](docs/screenshots/01-attekintes.png)
@@ -100,6 +101,8 @@ tárhely az inaktív appot alvó módba teszi.
 - **Fázisonkénti checklist** kötelező / ajánlott jelöléssel; a pipák a
   `data/progress.json` fájlba mentődnek, tehát túlélik az újraindítást
   (demó módban csak a munkamenetben élnek).
+- **Haladás mentése és visszatöltése** az Áttekintés oldalon: a pipák JSON-fájlba
+  menthetők, és később visszatölthetők — a demón is.
 - **Dokumentumkártyák**: mire jó, mitől véd meg, mi a bemenete, mihez lesz bemenet,
   mi a tipikus hiba — és a kitöltött Xyo-minta olvasható és markdown formában.
 - **Dokumentumtérkép**: a doksik függőségi gráfja és a teljes, kereshető leltár.
@@ -149,7 +152,7 @@ szerepel, és egy ilyen csomagban a hiba jellemzően nem egy dokumentumon belül
 hanem **a dokumentumok között** van.
 
 Ezért a számokat és a logikát **automatizált tesztek alá tettem** (`tests/`,
-152 db, GitHub Actions minden pushnál):
+192 db, GitHub Actions minden pushnál, Python 3.12-n és 3.13-on, lint-ellenőrzéssel):
 
 - a költségvetést a fizetési ütemezéssel és a pénzügyi zárással,
 - az ütemtervet a munkaszüneti napokkal, a függőségekkel és a kritikus úttal,
@@ -218,21 +221,22 @@ pip install -r requirements-dev.txt
 
 ```bash
 pytest
+ruff check .
 ```
 
 | Fájl | Mit ellenőriz |
 |---|---|
-| `test_content.py` | A tartalom szerkezete: azonosítók, hivatkozások, mintafájlok, a README táblája, YAML- és markdown-csapdák |
+| `test_content.py` | A tartalom szerkezete: azonosítók, hivatkozások, mintafájlok, a README táblája, YAML- és markdown-csapdák, a függőségek pontos (`==`) verziója, a nyilvános demó nem mutat tracebacket |
 | `test_figures.py` | Pénzügy: költségvetés, havi költségbázis és fizetési ütemezés, pénzügyi zárás, EVM, célok, riportszám |
 | `test_benefits.py` | Mérési lánc: T0 → havi mérések → kérdőív → PIR → kiterjesztési javaslat, a sikerkritérium hézagmentessége |
 | `test_schedule.py` | Ütemterv: naptári napok, munkaszüneti napok, függőségek, kritikus út, dátumok összhangja |
 | `test_resources.py` | WBS-órák, erőforrásterv, RACI, kockázati pontszámok és darabszámok |
-| `test_gantt.py` | A Gantt-nézet: minden ütemtervsor és mérföldkő a dokumentum dátumaival, a tartalékok és munkaszüneti napok, minden nézetváltozat |
+| `test_gantt.py` | A Gantt-nézet: minden ütemtervsor és mérföldkő a dokumentum dátumaival, a tartalékok és munkaszüneti napok, minden nézetváltozat, a nézetkapcsolók nem hagyhatók üresen |
 | `test_registers.py` | Nyilvántartások: változásnapló és tartalékegyenleg, döntés-, probléma- és eszkalációs napló, hibalista, átvételi kritériumok, fizetési ütemezés és kötbér |
 | `test_quality.py` | Követelmény-nyomonkövetés (követelmény → teszteset → átvételi kritérium → szerződéses feltétel), tesztkörök, minőségellenőrzés, beszerzési pontozás, oktatás, érintettek–RACI–kommunikáció, archiválási jegyzék |
 | `test_reports.py` | Riportok a kiadásuk napjára vetítve: státusz-, Steering- és kockázati riport, EVM-pont, eszkalációk, PRINCE2 highlight / exception / end stage report, hírlevelek, jegyzőkönyv-számozás |
-| `test_progress.py` | A checklist-haladás mentése, törlése, demó mód |
-| `test_pages.py` | Minden oldal hiba nélkül lefut; a hosszú szöveges táblák tördelnek (nem vágódnak le); a letöltési csomag teljes |
+| `test_progress.py` | A checklist-haladás mentése, törlése, demó mód; a tárolási mód hiányzó vagy elgépelt beállításnál is biztonságos; megszakadt írás után is ép a haladásfájl; a mentés és visszatöltés, a hibás vagy idegen fájl elutasítása |
+| `test_pages.py` | Minden oldal hiba nélkül lefut; a hosszú szöveges táblák (a dokumentumleltár is) tördelnek, nem vágódnak le, és a cellák nem válnak markdown-listává; a letöltési csomag teljes |
 
 ### Demó mód (nyilvános telepítéshez)
 
@@ -246,6 +250,8 @@ PM_MINDENES_STORAGE=session streamlit run app.py
 ```
 
 Streamlit Community Cloudon ugyanez a Secrets-ben: `PM_MINDENES_STORAGE = "session"`.
+Ha ez a sor kimarad vagy elgépelt, az app a Cloudon (`/mount/src/…`) magától is
+demó módban indul, így a látogatók akkor sem írják egymás pipáit.
 
 ## Mappastruktúra
 

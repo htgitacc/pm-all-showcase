@@ -1,3 +1,4 @@
 -r requirements.txt
-pytest>=8.0
-websockets>=12.0  # tools/screenshots.py
+pytest==9.1.1
+ruff==0.17.1  # lint (ruff.toml); a CI is futtatja
+websockets==17.2  # tools/screenshots.py

@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import functools
+import re
 
 import streamlit as st
 
@@ -16,7 +17,21 @@ def text_table(rows: list[dict], height: int | None = None) -> None:
     az `st.table` HTML-táblát rajzol, amely a szűk oszlopban több sorba tör.
     A `height` görgethető, rögzített magasságú keretet ad (pl. a hosszú fogalomtárhoz).
     """
+    rows = [{key: table_cell(value) for key, value in row.items()} for row in rows]
     st.table(rows, hide_index=True, height=height if height else "content")
+
+
+_LIST_MARKER = re.compile(r"^(\s*)(\d+)\.(\s)|^(\s*)([-*+])(\s)")
+
+
+def table_cell(value):
+    """Az `st.table` a cellát markdownként rajzolja: az „1. Kezdeményezés" számozott
+    listává, a „- tétel" felsorolássá válna. A sor eleji listajelölőt escape-eljük."""
+    if not isinstance(value, str):
+        return value
+    return _LIST_MARKER.sub(
+        lambda m: f"{m[1]}{m[2]}\\.{m[3]}" if m[2] else f"{m[4]}\\{m[5]}{m[6]}", value, count=1
+    )
 
 
 # --------------------------------------------------------------------------- fejléc

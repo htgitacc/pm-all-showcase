@@ -5,9 +5,9 @@ Streamlit mellé telepített `websockets` csomaggal; új függőség nem kell.
 
 Használat (előtte a demó szerver fusson, hogy a pipálás ne írjon fájlba):
 
-    PM_MINDENES_STORAGE=session streamlit run app.py --server.port 8502
-    python tools/screenshots.py                    # → docs/screenshots/
-    python tools/screenshots.py --out kepek --only 06
+    PM_MINDENES_STORAGE=session .venv/bin/streamlit run app.py --server.address 127.0.0.1 --server.port 8531
+    .venv/bin/python tools/screenshots.py                    # → docs/screenshots/
+    .venv/bin/python tools/screenshots.py --out kepek --only 06
 
 Böngésző: a `--browser` kapcsoló, a BROWSER környezeti változó, vagy a szokásos
 Edge/Chrome útvonalak közül az első létező.
@@ -43,12 +43,13 @@ BROWSERS = [
 
 # --------------------------------------------------------------------- a képek listája
 # Minden lépés egy JavaScript-kifejezés, amely az oldalon fut; utána a szkript
-# megvárja, amíg a Streamlit újra lefut.
+# megvárja, amíg a Streamlit újra lefut. A checkboxot/kapcsolót a belső `input`-on
+# kattintjuk: a Streamlit 1.66-ban a `label.click()` már nem váltja át.
 
 def _click_label(text: str) -> str:
     return (
         "[...document.querySelectorAll('[data-testid=\"stCheckbox\"] label')]"
-        f".find(l => l.innerText.includes({json.dumps(text)})).click()"
+        f".find(l => l.innerText.includes({json.dumps(text)})).querySelector('input').click()"
     )
 
 
@@ -70,7 +71,8 @@ def _toggle_in_expander(expander: str, toggle: str) -> str:
     return (
         "[...[...document.querySelectorAll('[data-testid=\"stExpander\"]')]"
         f".find(e => e.querySelector('summary').innerText.includes({json.dumps(expander)}))"
-        f".querySelectorAll('label')].find(l => l.innerText.includes({json.dumps(toggle)})).click()"
+        f".querySelectorAll('label')].find(l => l.innerText.includes({json.dumps(toggle)}))"
+        ".querySelector('input').click()"
     )
 
 
@@ -164,8 +166,35 @@ def _find_browser(explicit: str | None) -> str:
             return candidate
     found = shutil.which("msedge") or shutil.which("chrome") or shutil.which("chromium")
     if not found:
-        raise SystemExit("Nem találok Edge-et vagy Chrome-ot; add meg: --browser <útvonal>")
+        found = _playwright_chromium()
+    if not found:
+        raise SystemExit(
+            "Nem találok Edge-et vagy Chrome-ot; add meg: --browser <útvonal>, "
+            "vagy headless Linuxon: pip install playwright && playwright install chromium"
+        )
     return found
+
+
+PLAYWRIGHT_CACHE = Path(os.environ.get("PLAYWRIGHT_BROWSERS_PATH") or Path.home() / ".cache" / "ms-playwright")
+
+
+def _playwright_chromium() -> str | None:
+    """A Playwright által letöltött Chromium (headless szerveren nincs rendszerböngésző).
+
+    A headless shell az első választás: a teljes Chrome-nak grafikus rendszerkönyvtárak
+    kellenének (libatk stb.), amelyek egy szerveren jellemzően hiányoznak.
+    Csoportonként a legfrissebb build (a mappanév végi szám szerint)."""
+    def build(path: Path) -> int:
+        tail = path.parent.parent.name.rsplit("-", 1)[-1]
+        return int(tail) if tail.isdigit() else 0
+
+    for pattern in ("chromium_headless_shell-*/*/chrome-headless-shell",
+                    "chromium_headless_shell-*/*/headless_shell",
+                    "chromium-*/chrome-linux*/chrome"):
+        found = sorted(PLAYWRIGHT_CACHE.glob(pattern), key=build)
+        if found:
+            return str(found[-1])
+    return None
 
 
 def _debugger_url(port: int) -> str:
@@ -182,44 +211,56 @@ def _debugger_url(port: int) -> str:
     raise SystemExit("A böngésző nem nyitotta meg a DevTools-portot")
 
 
-async def _capture(base_url: str, out_dir: Path, shots: list[dict], browser: str, port: int) -> None:
+def _launch_browser(browser: str, port: int) -> tuple[subprocess.Popen, str]:
+    """A headless böngésző indítása — szinkron, az async rész előtt (a Popen és a
+    DevTools-port várása blokkoló, az eseményhurokban nem futhat)."""
     profile = tempfile.mkdtemp(prefix="pm-screens-")
+    # A Playwright-Chromiumot a Playwright is sandbox nélkül indítja: újabb Ubuntun
+    # (AppArmor) a felhasználói névtér tiltva van, és enélkül el sem indul. Csak a
+    # saját, helyben futó appot nyitja meg.
+    no_sandbox = ["--no-sandbox"] if Path(browser).is_relative_to(PLAYWRIGHT_CACHE) else []
     proc = subprocess.Popen(
         [browser, "--headless=new", "--disable-gpu", "--hide-scrollbars", "--no-first-run",
+         *no_sandbox,
          f"--remote-debugging-port={port}", f"--user-data-dir={profile}",
          f"--window-size={WIDTH},{HEIGHT}", "about:blank"],
         stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,
     )
+    return proc, profile
+
+
+def _stop_browser(proc: subprocess.Popen, profile: str) -> None:
+    proc.terminate()
     try:
-        async with websockets.connect(_debugger_url(port), max_size=None) as ws:
-            page = Page(ws)
-            await page.call("Page.enable")
-            await page.call("Emulation.setDeviceMetricsOverride", width=WIDTH, height=HEIGHT,
-                            deviceScaleFactor=1, mobile=False)
-            await page.call("Emulation.setEmulatedMedia",
-                            features=[{"name": "prefers-color-scheme", "value": "light"}])
-            for shot in shots:
-                await page.call("Page.navigate", url=base_url.rstrip("/") + shot["path"])
+        proc.wait(timeout=10)
+    except subprocess.TimeoutExpired:
+        proc.kill()
+    shutil.rmtree(profile, ignore_errors=True)
+
+
+async def _capture(ws_url: str, base_url: str, out_dir: Path, shots: list[dict]) -> None:
+    async with websockets.connect(ws_url, max_size=None) as ws:
+        page = Page(ws)
+        await page.call("Page.enable")
+        await page.call("Emulation.setDeviceMetricsOverride", width=WIDTH, height=HEIGHT,
+                        deviceScaleFactor=1, mobile=False)
+        await page.call("Emulation.setEmulatedMedia",
+                        features=[{"name": "prefers-color-scheme", "value": "light"}])
+        for shot in shots:
+            await page.call("Page.navigate", url=base_url.rstrip("/") + shot["path"])
+            await page.settle()
+            for step in shot.get("steps", []):
+                await page.evaluate(step)
                 await page.settle()
-                for step in shot.get("steps", []):
-                    await page.evaluate(step)
-                    await page.settle()
-                data = await page.call("Page.captureScreenshot", format="png")
-                target = out_dir / shot["file"]
-                target.write_bytes(base64.b64decode(data["data"]))
-                print(f"kész: {target.relative_to(ROOT) if target.is_relative_to(ROOT) else target}")
-    finally:
-        proc.terminate()
-        try:
-            proc.wait(timeout=10)
-        except subprocess.TimeoutExpired:
-            proc.kill()
-        shutil.rmtree(profile, ignore_errors=True)
+            data = await page.call("Page.captureScreenshot", format="png")
+            target = out_dir / shot["file"]
+            target.write_bytes(base64.b64decode(data["data"]))
+            print(f"kész: {target.relative_to(ROOT) if target.is_relative_to(ROOT) else target}")
 
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    parser.add_argument("--url", default="http://localhost:8502", help="a futó (demó módú) app címe")
+    parser.add_argument("--url", default="http://127.0.0.1:8531", help="a futó (demó módú) app címe")
     parser.add_argument("--out", default=str(ROOT / "docs" / "screenshots"), help="célmappa")
     parser.add_argument("--only", nargs="*", help="csak ezek a képek (fájlnév-előtag, pl. 06)")
     parser.add_argument("--browser", help="az Edge/Chrome futtatható fájlja")
@@ -229,7 +270,11 @@ def main() -> None:
     shots = [s for s in SHOTS if not args.only or any(s["file"].startswith(p) for p in args.only)]
     out_dir = Path(args.out)
     out_dir.mkdir(parents=True, exist_ok=True)
-    asyncio.run(_capture(args.url, out_dir, shots, _find_browser(args.browser), args.port))
+    proc, profile = _launch_browser(_find_browser(args.browser), args.port)
+    try:
+        asyncio.run(_capture(_debugger_url(args.port), args.url, out_dir, shots))
+    finally:
+        _stop_browser(proc, profile)
 
 
 if __name__ == "__main__":

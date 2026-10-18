@@ -362,11 +362,15 @@ def view() -> None:
 
     controls = st.columns([2, 2, 3])
     with controls[0]:
+        # required=True: a kijelölés nem vehető le (különben üres kapcsoló mellett az alapnézet látszana)
         scope = st.segmented_control(
-            "Mit mutasson?", ["Teljes ütemterv", "Csak a kritikus út"], default="Teljes ütemterv"
+            "Mit mutasson?", ["Teljes ütemterv", "Csak a kritikus út"], default="Teljes ütemterv",
+            required=True,
         )
     with controls[1]:
-        order = st.segmented_control("Sorrend", ["Időrendben", "WBS szerint"], default="Időrendben")
+        order = st.segmented_control(
+            "Sorrend", ["Időrendben", "WBS szerint"], default="Időrendben", required=True
+        )
     with controls[2]:
         include_measurement = st.toggle(
             "A mérési szakasz is (M11 — PIR)",

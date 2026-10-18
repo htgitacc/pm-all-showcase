@@ -11,7 +11,7 @@ st.set_page_config(
     page_title=config.APP_TITLE,
     page_icon=":material/checklist:",
     layout="wide",
-    initial_sidebar_state="expanded",
+    initial_sidebar_state="auto",  # asztalon nyitva, mobilon csukva (különben eltakarja a tartalmat)
 )
 
 progress.state()  # a pipák betöltése fájlból az első futásnál

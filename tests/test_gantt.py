@@ -6,11 +6,11 @@ import datetime as dt
 import itertools
 
 import pytest
-from streamlit.testing.v1 import AppTest
-
 from conftest import read_doc, section, tables
-from pm_app import gantt
+from streamlit.testing.v1 import AppTest
 from test_schedule import HOLIDAYS, _milestones, _tasks
+
+from pm_app import gantt
 
 
 @pytest.fixture(scope="module")
@@ -98,3 +98,11 @@ def test_gantt_page_renders_and_reacts(tmp_progress):
     assert any("Gantt-nézet" in t.value for t in at.title)
     at.toggle[0].set_value(True).run()
     assert not at.exception, at.exception
+
+
+def test_view_switches_cannot_be_left_empty(tmp_progress):
+    # Levehető kijelölésnél a kapcsoló üres lenne, a diagram pedig csendben az alapnézetet mutatná.
+    at = AppTest.from_string("from pm_app import gantt\ngantt.view()\n", default_timeout=60).run()
+    switches = list(at.button_group)
+    assert len(switches) == 2
+    assert all(s.proto.required for s in switches)

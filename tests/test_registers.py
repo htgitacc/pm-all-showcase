@@ -181,14 +181,14 @@ def test_decision_log_statistics_partition_the_log():
 
 def test_issue_log_summary_matches_entries():
     text = read_doc(ISSUES)
-    closed = re.findall(r"^### (P-\d+)", section(text, "1. Lezárt"), re.M)
-    open_ = re.findall(r"^### (P-\d+)", section(text, "2. Nyitott"), re.M)
+    closed = re.findall(r"^### (P-\d+)", section(text, "1. Lezárt"), re.MULTILINE)
+    open_ = re.findall(r"^### (P-\d+)", section(text, "2. Nyitott"), re.MULTILINE)
     summary = {_plain(r[0]): r[1] for r in tables(section(text, "3. Összesítés"))[0]}
     assert _count(summary["Összes problémabejegyzés"]) == len(closed) + len(open_)
     assert _count(summary["Lezárva"]) == len(closed)
     assert _count(summary["Nyitva, elfogadott kezeléssel"]) == len(open_)
 
-    from_risk = sorted(re.findall(r"### (P-\d+)[^#]*?Kapcsolódó kockázat", text, re.S))
+    from_risk = sorted(re.findall(r"### (P-\d+)[^#]*?Kapcsolódó kockázat", text, re.DOTALL))
     assert sorted(_ids(summary["Ebből korábban azonosított kockázatból lett"], "P")) == from_risk
 
     closure = {_plain(r[0]): r[1] for r in tables(section(read_doc(CLOSURE), "7. Kockázatok"))[0]}
@@ -198,7 +198,7 @@ def test_issue_log_summary_matches_entries():
 
 def _escalations() -> dict[str, dict[str, str]]:
     text = section(read_doc(ESCALATIONS), "1. Eszkalációk")
-    blocks = re.split(r"^### (E-\d+)", text, flags=re.M)[1:]
+    blocks = re.split(r"^### (E-\d+)", text, flags=re.MULTILINE)[1:]
     return {blocks[i]: _kv(blocks[i + 1]) for i in range(0, len(blocks), 2)}
 
 
@@ -250,7 +250,7 @@ def test_e02_approval_round_workdays():
 def _defects() -> dict[str, str]:
     text = section(read_doc(TESTS), "4. Feltárt hibák")
     status = {}
-    for key, body in re.findall(r"^#### (H-\d+).*?\n(.*?)(?=^####|^###|\Z)", text, re.S | re.M):
+    for key, body in re.findall(r"^#### (H-\d+).*?\n(.*?)(?=^####|^###|\Z)", text, re.DOTALL | re.MULTILINE):
         status[key] = "javítva" if "Javítva" in body else "nyitva"
     for t in tables(text):
         for r in t:

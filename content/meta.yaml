@@ -18,11 +18,19 @@ how_to_use: |
      hivatkozik, így könnyebb követni, mint elvont sablonokat olvasni.
   2. **Menj végig a fázisokon sorban.** A checklist elemei sorrendben állnak; a
      :red-badge[kötelező] jelölésűek nélkül a fázis nem tekinthető lezártnak.
-  3. **Pipáld ki, ami kész.** A pipák a `data/progress.json` fájlba mentődnek, tehát
-     túlélik az app újraindítását.
+  3. **Pipáld ki, ami kész.** {storage_note}
   4. **Nézd meg a Dokumentumtérképet**, ha elakadsz azon, hogy „ehhez most mi kell".
      Ott látszik, melyik dokumentum miből áll össze.
   5. **A minták letölthetők** egyesével vagy fázisonként zip-ben, a Letöltések oldalról.
+
+# A „Hogyan használd?” 3. pontja a tárolási módtól függ (fájl vagy munkamenet): a
+# {storage_note} helyére a futó módnak megfelelő mondat kerül.
+storage_note:
+  file: >-
+    A pipák a `data/progress.json` fájlba mentődnek, tehát túlélik az app újraindítását.
+  session: >-
+    A pipák csak ebben a böngészőmunkamenetben élnek. Ha később folytatnád, mentsd el
+    őket fájlba lent, a „Haladás mentése és visszatöltése” blokkban.
 
 sample_project:
   name: Xyo Kft. — Cloud Pilot
