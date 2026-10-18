@@ -5,7 +5,7 @@ from __future__ import annotations
 import itertools
 import re
 
-from conftest import ROOT, read_doc, sample_docs
+from conftest import ROOT, example_docs, read_doc, sample_docs
 
 from pm_app import content
 
@@ -64,7 +64,9 @@ def test_no_orphan_markdown_files():
     referenced = {d["sample_file"] for d in _docs().values()}
     referenced |= {d["sample_file"] for d in prince2.get("documents", [])}
     referenced.add(prince2["primer_file"])
-    on_disk = {p.relative_to(ROOT).as_posix() for p in sample_docs()}
+    for doc in _docs().values():
+        referenced |= set((doc.get("examples") or {}).values())
+    on_disk = {p.relative_to(ROOT).as_posix() for p in sample_docs() + example_docs("koris")}
     assert on_disk - referenced == set()
 
 
@@ -156,3 +158,42 @@ def test_public_demo_hides_tracebacks():
 
     config = tomllib.loads(read_doc(".streamlit/config.toml"))
     assert config["client"]["showErrorDetails"] in ("type", "none")
+
+
+# ------------------------------------------------------------------ több mintaprojekt
+
+
+def test_the_first_sample_project_is_the_complete_one():
+    projects = content.sample_projects()
+    assert [p["id"] for p in projects] == ["xyo", "koris"]
+    assert all(p.get("short_name") and p["name"] and p["idea_doc"] for p in projects)
+    # az elsődleges projekt minden dokumentumához van minta (sample_file) — ez az alap
+    assert all(d.get("sample_file") for d in _docs().values())
+
+
+def test_doc_examples_lists_the_primary_first_and_only_existing_files():
+    idea = _docs()["project_idea"]
+    assert [e["id"] for e in content.doc_examples(idea)] == ["xyo", "koris"]
+    planning_doc = _docs()["scope_statement"]
+    assert [e["id"] for e in content.doc_examples(planning_doc)] == ["xyo"]   # a Kőrisnek még nincs 2. fázisa
+    broken = dict(idea, examples={"koris": "docs/peldak/koris/nincs-ilyen.md"})
+    assert [e["id"] for e in content.doc_examples(broken)] == ["xyo"]          # hiányzó fájl nem jelenik meg
+
+
+def test_validate_reports_a_broken_or_unknown_example(monkeypatch):
+    index = {key: dict(value) for key, value in content.load_doc_index().items()}
+    index["project_idea"]["examples"] = {"koris": "docs/peldak/koris/nincs-ilyen.md", "ismeretlen": "x.md"}
+    monkeypatch.setattr(content, "load_doc_index", lambda: index)
+    problems = content.validate.__wrapped__()
+    assert any("hiányzó koris-minta" in p for p in problems)
+    assert any("ismeretlen mintaprojekt" in p and "ismeretlen" in p for p in problems)
+
+
+def test_framework_texts_name_the_project_as_an_example():
+    # A keret szövegei nem állíthatják általános szabályként, ami csak a Xyo-ra igaz: a Xyo
+    # személyneveit csak zárójeles példa mellett, projekt-megjelöléssel használhatjuk.
+    text = read_doc("content/phases/1-initiation.yaml")
+    for name in ("Nagy Péter", "Kovács Anita", "Kiss Réka", "Varga Eszter", "Balogh Tamás", "Horváth Júlia"):
+        for line in text.splitlines():
+            if name in line:
+                assert "Xyo" in line or "Kőris" in line, f"projektjelölés nélküli név a keretben: {line.strip()}"

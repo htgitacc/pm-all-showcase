@@ -76,6 +76,16 @@ def _toggle_in_expander(expander: str, toggle: str) -> str:
     )
 
 
+def _choose_in_expander(expander: str, option: str) -> str:
+    """Egy rádiógomb-opció kiválasztása egy megnyitott kártyán belül (pl. a mintaprojekt)."""
+    return (
+        "[...[...document.querySelectorAll('[data-testid=\"stExpander\"]')]"
+        f".find(e => e.querySelector('summary').innerText.includes({json.dumps(expander)}))"
+        f".querySelectorAll('label')].find(l => l.innerText.trim() === {json.dumps(option)})"
+        ".querySelector('input').click()"
+    )
+
+
 def _scroll_to(selector: str, text: str, offset: int = 24) -> str:
     return (
         f"(() => {{ const el = [...document.querySelectorAll({json.dumps(selector)})]"
@@ -113,6 +123,16 @@ SHOTS = [
         "file": "06-gantt.png",
         "path": "/gantt",
         "steps": [_click_button("Csak a kritikus út"), _scroll_to("p, label", "Mit mutasson?", offset=90)],
+    },
+    {
+        "file": "07-masodik-mintaprojekt.png",
+        "path": "/fazis-1-initiation",
+        "steps": [
+            _open_expander("Üzleti indoklás"),
+            _choose_in_expander("Üzleti indoklás", "Kőris"),
+            _toggle_in_expander("Üzleti indoklás", "Kitöltött minta megjelenítése"),
+            _scroll_to("p", "Melyik mintaprojektből?", offset=150),
+        ],
     },
 ]
 

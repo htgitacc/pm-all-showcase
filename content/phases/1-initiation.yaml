@@ -29,7 +29,8 @@ pm_tasks:
   - text: Gyűjtsd össze az érintetteket, és beszélj velük egyesével.
     why: >
       Aki kimarad a listáról, az később problémaként vagy ellenállásként fog megjelenni.
-      A Service Deskkel és a HR-rel a legtöbb junior PM elfelejt beszélni.
+      A támogató és háttérfunkciókkal (pl. ügyfélszolgálat, HR, jog, üzemeltetés) a
+      legtöbb junior PM elfelejt beszélni.
   - text: Készítsd elő és írasd alá a Projektalapító okiratot.
     why: >
       Ez ad neked jogot arra, hogy emberek idejét és a cég pénzét használd. Ez a te
@@ -56,8 +57,8 @@ meetings:
     when: Az ötlet felmerülése után 1-2 héten belül, még bármilyen dokumentum előtt.
     duration: 60–90 perc
     participants:
-      - Az ötletgazda — a Xyo esetében Nagy Péter, IT osztályvezető
-      - A leendő szponzor — Kovács Anita, gazdasági igazgató
+      - Az ötletgazda (a Xyo-nál Nagy Péter, IT osztályvezető; a Kőrisnél Kertész Ágnes, ügyvezető)
+      - A leendő szponzor — a költségkeret gazdája (a Xyo-nál Kovács Anita, gazdasági igazgató)
       - Te, projektmenedzserként
     agenda:
       - 'Mi a probléma, amit meg akarunk oldani? (nem: milyen megoldást akarunk)'
@@ -77,7 +78,7 @@ meetings:
     duration: 30 perc / fő
     participants:
       - Minden azonosított kulcsérintett, külön-külön
-      - 'Kiemelten: Kiss Réka (Service Desk), Varga Eszter (HR), dr. Fekete Zsolt (DPO)'
+      - 'Kiemelten azok, akikről a legtöbben megfeledkeznek: a támogató és háttérfunkciók képviselői (a Xyo-nál Kiss Réka, Service Desk; Varga Eszter, HR; dr. Fekete Zsolt, DPO)'
     agenda:
       - Mit jelent neked ez a projekt? Mit nyersz vagy veszítesz vele?
       - Mit kell tőled kérnem, és mikor?
@@ -90,12 +91,12 @@ meetings:
   - name_hu: Charter-jóváhagyó egyeztetés
     name_en: Charter Approval Meeting
     purpose: A Projektalapító okirat átbeszélése és aláírása.
-    when: 2026.02.02 — a Kezdeményezés fázis utolsó eseménye.
+    when: A Kezdeményezés fázis utolsó eseménye (a Xyo-nál 2026.02.02.).
     duration: 60 perc
     participants:
-      - Kovács Anita, szponzor (ő ír alá)
-      - Horváth Júlia, ügyvezető
-      - Nagy Péter, IT osztályvezető
+      - A szponzor (ő ír alá; a Xyo-nál Kovács Anita)
+      - A felső vezetés képviselője (a Xyo-nál Horváth Júlia, ügyvezető)
+      - A szakmai vezető (a Xyo-nál Nagy Péter, IT osztályvezető)
       - Te, projektmenedzserként
     agenda:
       - A cél, a hatókör és a hatókörön kívüli elemek átbeszélése
@@ -112,13 +113,13 @@ meetings:
     purpose: >
       Mindenkinek egyszerre elmondani, mi a projekt célja, ki mit csinál, és mi
       következik. Ez a projekt hivatalos nyitánya.
-    when: 2026.02.09 — a Charter aláírása után egy héttel.
+    when: A Charter aláírása után egy héttel (a Xyo-nál 2026.02.09.).
     duration: 90 perc
     participants:
       - A teljes projektcsapat
-      - Kovács Anita szponzor (nyitóbeszéd — kérd meg rá!)
-      - A pilotban részt vevő szervezeti egységek vezetői
-      - A Service Desk és a HR képviselője
+      - A szponzor (nyitóbeszéd — kérd meg rá!)
+      - Az érintett szervezeti egységek vezetői
+      - A támogató és háttérfunkciók (pl. ügyfélszolgálat, HR) képviselője
     agenda:
       - A szponzor 5 perces nyitása — miért fontos ez a cégnek
       - A projekt célja, hatóköre és ami kimarad
@@ -132,33 +133,33 @@ meetings:
       veszi; ha nem jön el, mindenki azt olvassa ki belőle, hogy ez nem prioritás.
 
 data_in:
-  - from: Nagy Péter, IT osztályvezető
-    what: A jelenlegi géppark életkora, állapota és a következő 2 év csereigénye
+  - from: A szakmai vezető (a Xyo-nál Nagy Péter, IT osztályvezető)
+    what: A jelenlegi helyzet szakmai adatai és a következő évek igénye (a Xyo-nál a géppark életkora, állapota és csereigénye)
     used_in: business_case
     note: Számszerű lista, ne szöveges becslés — ez lesz a „mi történik, ha nem teszünk semmit" alapja.
-  - from: Balogh Tamás, pénzügyi kontroller
-    what: A jelenlegi IT üzemeltetési költségek (szerver, licenc, támogatás) éves bontásban
+  - from: A pénzügyi kontroller (a Xyo-nál Balogh Tamás)
+    what: 'A jelenlegi működési költségek éves bontásban (a Xyo-nál az IT üzemeltetés: szerver, licenc, támogatás)'
     used_in: business_case
     note: Ez adja a megtérülés-számítás viszonyítási alapját.
-  - from: Kovács Anita, szponzor
+  - from: A szponzor (a Xyo-nál Kovács Anita)
     what: A rendelkezésre álló keretösszeg és a jóváhagyási szint
     used_in: charter
     note: Kérd írásban — e-mail is elég, de legyen nyoma.
-  - from: Varga Eszter, HR vezető
-    what: A pilotban részt vevő 50 fő kijelölésének szempontjai, a home office szabályzat státusza
+  - from: A HR vezetője (a Xyo-nál Varga Eszter)
+    what: A projektben érintett személyek kijelölésének szempontjai és a vonatkozó szabályzatok státusza (a Xyo-nál a pilot 50 résztvevője és a home office szabályzat)
     used_in: charter
     note: A névsor még nem kell, csak a szempontrendszer és a szabályzat állapota.
-  - from: Kiss Réka, Service Desk vezető
-    what: A jelenlegi ticketszámok kategóriánként, az elmúlt 12 hónapra
+  - from: A támogató funkció vezetője (a Xyo-nál Kiss Réka, Service Desk)
+    what: A jelenlegi terhelés mérőszámai kategóriánként, az elmúlt 12 hónapra (a Xyo-nál a ticketszámok)
     used_in: benefits_plan
     note: Ez lesz a mérési alapérték (baseline) forrása — kérd be már most, ne a végén.
-  - from: dr. Fekete Zsolt, DPO
-    what: 'Előzetes állásfoglalás: kell-e adatvédelmi hatásvizsgálat a felhős tárolás miatt'
+  - from: Az adatvédelmi tisztviselő, ha van (a Xyo-nál dr. Fekete Zsolt, DPO)
+    what: 'Előzetes állásfoglalás: kell-e adatvédelmi hatásvizsgálat (a Xyo-nál a felhős tárolás miatt)'
     used_in: assumption_log
     note: Ha kell, az a Tervezés fázis egyik feladata lesz — jobb most tudni róla.
 
 data_out:
-  - to: Kovács Anita, szponzor
+  - to: A szponzor (a Xyo-nál Kovács Anita)
     what: Üzleti indoklás és a Projektalapító okirat tervezete
     when: A jóváhagyó egyeztetés előtt legalább 3 munkanappal
     note: Adj időt az olvasásra — a meetingen felolvasott dokumentumot senki nem hagy jóvá jól.
@@ -166,7 +167,7 @@ data_out:
     what: A projekt egyoldalas összefoglalója (cél, keret, ütem, fő kockázatok)
     when: A Charter aláírása után 1 héten belül
     note: Egy oldal. Vezetői szinten a hosszabb anyagot nem olvassák el.
-  - to: A teljes projektcsapat és a pilot résztvevői
+  - to: A teljes projektcsapat és az érintett munkatársak
     what: Kick-off jegyzőkönyv és a projekt céljának összefoglalója
     when: A kick-off után 2 munkanapon belül
     note: A hiányzóknak is küldd ki, ugyanabban a körlevélben.
@@ -209,7 +210,8 @@ responsibility:
         erőforrást kér vagy nemet mond egy kérésre.
     - what: Azért felelsz, hogy az érintettek köre teljes legyen.
       risk: >
-        A kimaradt érintett (klasszikusan: üzemi tanács, DPO, Service Desk) a
+        A kimaradt érintett (klasszikusan: üzemi tanács, adatvédelmi tisztviselő, ügyfélszolgálat,
+        a külső szerződő felek) a
         legrosszabb pillanatban, az Execution közepén jelenik meg vétójoggal.
     - what: Azért felelsz, hogy a siker mérőszámai már most rögzüljenek.
       risk: >
@@ -243,6 +245,8 @@ documents:
       Sok helyen ez a dokumentum egy szóbeli felvetés marad. Írasd le — akár te írod
       meg és küldöd vissza jóváhagyásra az ötletgazdának.
     sample_file: docs/1-initiation/01-projekt-otlet.md
+    examples:
+      koris: docs/peldak/koris/1-initiation/01-projekt-otlet.md
 
   - id: business_case
     order: 2
@@ -267,6 +271,8 @@ documents:
       A leggyakoribb hiba a haszon „puha" megfogalmazása („hatékonyabbak leszünk").
       Ha nem tudod számmal kifejezni, a hatodik fázisban nem tudod majd igazolni sem.
     sample_file: docs/1-initiation/02-uzleti-indoklas.md
+    examples:
+      koris: docs/peldak/koris/1-initiation/02-uzleti-indoklas.md
 
   - id: cost_benefit
     order: 3
@@ -287,24 +293,27 @@ documents:
     inputs: [business_case]
     feeds: [charter, budget]
     pitfall: >
-      Ne felejtsd el a folyó költségeket. A felhő nem egyszeri beruházás: az előfizetés
-      a projekt után is fut, és ezt sok junior PM kihagyja a számításból.
+      Ne felejtsd el a folyó költségeket: a projekt után is futnak (IT-nél az előfizetés,
+      költözésnél a bérleti és üzemeltetési díj), és ezt sok junior PM kihagyja a számításból.
     sample_file: docs/1-initiation/03-koltseg-haszon-elemzes.md
+    examples:
+      koris: docs/peldak/koris/1-initiation/03-koltseg-haszon-elemzes.md
 
   - id: feasibility
     order: 4
     name_hu: Megvalósíthatósági tanulmány
     name_en: Feasibility Study
     mandatory: false
-    owner: A PM koordinálja, a szakmai vezető (Nagy Péter) tölti meg tartalommal.
+    owner: A PM koordinálja, a szakmai vezető tölti meg tartalommal (a Xyo-nál Nagy Péter, a Kőrisnél Sipos Márk és a külső rendszergazda).
     why: >
       Azt vizsgálja, hogy a megoldás **egyáltalán megvalósítható-e** technikailag,
-      szervezetileg, jogilag és pénzügyileg. Akkor készül, ha a technológia új a
-      cégnek — a Xyo esetében pontosan ez a helyzet, ezért érdemes megcsinálni.
+      szervezetileg, jogilag és pénzügyileg. Akkor készül, ha a megoldás vagy a helyszín új
+      a cégnek (új technológia, új épület, új piac) — a Xyo-nál a felhő, a Kőrisnél az új
+      irodaház volt az ismeretlen, ezért érdemes volt megcsinálni.
     contents:
-      - Technikai megvalósíthatóság (van-e sávszélesség, kompetencia, kompatibilitás)
+      - 'Technikai megvalósíthatóság (alkalmas-e a megoldás vagy a helyszín: IT-nél sávszélesség, kompetencia, kompatibilitás; költözésnél alaprajz, hálózat, villamos teljesítmény)'
       - Szervezeti megvalósíthatóság (elfogadja-e a szervezet, van-e kapacitás)
-      - Jogi és megfelelőségi szempontok (GDPR, adattárolás helye)
+      - Jogi és megfelelőségi szempontok (pl. GDPR és adattárolás helye, bérleti és munkavédelmi előírások)
       - Pénzügyi megvalósíthatóság
       - Következtetés és feltételek
     inputs: [project_idea]
@@ -313,6 +322,8 @@ documents:
       Ha a tanulmány következtetése „megvalósítható", de van hozzá öt feltétel, azokat
       a feltételeket át kell emelni a Feltevés- és korlátnaplóba. Különben elvesznek.
     sample_file: docs/1-initiation/04-megvalosithatosagi-tanulmany.md
+    examples:
+      koris: docs/peldak/koris/1-initiation/04-megvalosithatosagi-tanulmany.md
 
   - id: charter
     order: 5
@@ -338,6 +349,8 @@ documents:
       A leggyakrabban kihagyott rész a **hatókörön kívüli elemek** felsorolása és a PM
       hatáskörének rögzítése. Pontosan ez a két rész véd meg később a legtöbb vitától.
     sample_file: docs/1-initiation/05-projektalapito-okirat.md
+    examples:
+      koris: docs/peldak/koris/1-initiation/05-projektalapito-okirat.md
 
   - id: stakeholder_register
     order: 6
@@ -358,9 +371,12 @@ documents:
     inputs: [charter]
     feeds: [stakeholder_analysis, comm_plan, raci, risk_register]
     pitfall: >
-      Ne csak vezetőket írj bele. A pilot végfelhasználói, a Service Desk és a
-      szállítók kapcsolattartói is érintettek — és gyakran ők döntik el a projekt sorsát.
+      Ne csak vezetőket írj bele. A végfelhasználók, a támogató funkciók (pl. Service Desk) és
+      a külső felek — szállítók, bérbeadók — kapcsolattartói is érintettek, és gyakran ők
+      döntik el a projekt sorsát.
     sample_file: docs/1-initiation/06-erintettek-nyilvantartasa.md
+    examples:
+      koris: docs/peldak/koris/1-initiation/06-erintettek-nyilvantartasa.md
 
   - id: stakeholder_analysis
     order: 7
@@ -382,6 +398,8 @@ documents:
       Ez érzékeny dokumentum — ne osszad meg tágabb körben. Senki nem szereti magáról
       olvasni, hogy „alacsony érdekeltségű, elég tájékoztatni".
     sample_file: docs/1-initiation/07-hatalom-erdek-matrix.md
+    examples:
+      koris: docs/peldak/koris/1-initiation/07-hatalom-erdek-matrix.md
 
   - id: assumption_log
     order: 8
@@ -405,6 +423,8 @@ documents:
       A napló akkor ér valamit, ha minden feltevéshez tartozik **ellenőrzési határidő
       és felelős**. Enélkül csak egy lista arról, hogy mit nem tudunk.
     sample_file: docs/1-initiation/08-feltevesek-korlatok-naploja.md
+    examples:
+      koris: docs/peldak/koris/1-initiation/08-feltevesek-korlatok-naploja.md
 
   - id: benefits_plan
     order: 9
@@ -428,6 +448,8 @@ documents:
       A baseline mérést **a projekt indulása előtt** kell elvégezni. Ha elfelejted, nem
       lesz mihez hasonlítani a végeredményt, és az egész mérés értelmét veszti.
     sample_file: docs/1-initiation/09-haszonrealizalasi-terv.md
+    examples:
+      koris: docs/peldak/koris/1-initiation/09-haszonrealizalasi-terv.md
 
   - id: kickoff_minutes
     order: 10
@@ -451,6 +473,8 @@ documents:
       A jegyzőkönyv nem szó szerinti leirat. A lényeg a **döntések, a nyitott kérdések
       és a felelősök** — ezt a három dolgot keresi benne mindenki.
     sample_file: docs/1-initiation/10-kick-off-jegyzokonyv.md
+    examples:
+      koris: docs/peldak/koris/1-initiation/10-kick-off-jegyzokonyv.md
 
   - id: project_glossary
     order: 11
@@ -472,6 +496,8 @@ documents:
       Csak azokat a fogalmakat vedd be, amelyek körül **tényleg volt félreértés**.
       A 200 elemes, senki által nem olvasott szótár rosszabb, mint a semmi.
     sample_file: docs/1-initiation/11-projektszotar.md
+    examples:
+      koris: docs/peldak/koris/1-initiation/11-projektszotar.md
 
 checklist:
   - id: init-01
@@ -482,7 +508,7 @@ checklist:
       Ez az első írásos nyom. Innentől van dátumod és nevesített ötletgazdád arra,
       hogy a projekt miért indult el.
     how:
-      - Ülj le az ötletgazdával (Nagy Péter) 60-90 percre.
+      - Ülj le az ötletgazdával (a Xyo-nál Nagy Péter) 60-90 percre.
       - Kérdezz a problémáról, ne a megoldásról.
       - Írd meg a dokumentumot, és küldd vissza neki jóváhagyásra.
     tip: >
@@ -507,12 +533,12 @@ checklist:
       Az Üzleti indoklás és a későbbi mérések alapja. Amit most nem gyűjtesz be, azt
       hat hónap múlva már nem tudod visszamenőleg előállítani.
     how:
-      - Géppark életkora és csereigénye — Nagy Pétertől.
-      - Éves IT üzemeltetési költségek — Balogh Tamástól.
-      - Service Desk ticketszámok az elmúlt 12 hónapra — Kiss Rékától.
+      - 'A jelenlegi helyzet szakmai adatai — a szakmai vezetőtől (a Xyo-nál: a géppark életkora és csereigénye, Nagy Pétertől; a Kőrisnél: az iroda kihasználtsága, a beléptetőrendszerből).'
+      - 'A jelenlegi működési költségek éves bontásban — a pénzügyi kontrollertől (a Xyo-nál: IT üzemeltetés, Balogh Tamástól; a Kőrisnél: bérleti és üzemeltetési díj).'
+      - 'A jelenlegi terhelés vagy elégedettség mérőszámai az elmúlt 12 hónapra (a Xyo-nál: Service Desk ticketszámok, Kiss Rékától; a Kőrisnél: munkatársi kérdőív).'
     tip: >
-      A ticketadatokat kérd be már most, akkor is, ha még nincs mérési terved.
-      Ez lesz a baseline, és később nehezebb hozzájutni.
+      A mérőszámokat (a Xyo-nál a ticketadatokat) kérd be már most, akkor is, ha még nincs
+      mérési terved. Ez lesz a baseline, és később nehezebb hozzájutni.
 
   - id: init-04
     text: Készítsd el az Üzleti indoklást, benne a „ne csináljunk semmit" változattal.
@@ -527,16 +553,16 @@ checklist:
       - Számold ki mindegyik költségét 3 éves távlatban.
 
   - id: init-05
-    text: Ha a technológia új a cégnek, készíts megvalósíthatósági tanulmányt.
+    text: Ha a megoldás vagy a helyszín új a cégnek, készíts megvalósíthatósági tanulmányt.
     mandatory: false
     doc_ref: feasibility
     why: >
-      A Xyo esetében a felhő teljesen új terület. Jobb most kideríteni, hogy a
-      mobilnetes sávszélesség vagy a kompetenciahiány gond lesz-e, mint az Execution
+      Jobb most kideríteni, hogy gond lesz-e (a Xyo-nál a mobilnetes sávszélesség vagy a
+      kompetenciahiány, a Kőrisnél a tervtár helye és az internet-bekötés), mint az Execution
       közepén.
     how:
-      - Kérj szakmai véleményt Nagy Pétertől és egy külső szakértőtől.
-      - 'Nézd meg a jogi oldalt is: hol tárolódnak az adatok, kell-e DPIA.'
+      - Kérj szakmai véleményt a szakmai vezetőtől és egy külső szakértőtől.
+      - 'Nézd meg a jogi oldalt is (pl. hol tárolódnak az adatok, kell-e DPIA; bérleti és munkavédelmi előírások).'
       - A tanulmány feltételeit vezesd át a Feltevés- és korlátnaplóba.
 
   - id: init-06
@@ -574,7 +600,7 @@ checklist:
       időpontban és nagyobb kárral.
     how:
       - Menj végig a szervezeti ábrán, aztán a folyamaton is (ki nyúl hozzá?).
-      - 'Ne feledd: Service Desk, HR, DPO, üzemi tanács, szállítók.'
+      - 'Ne feledd: támogató és háttérfunkciók (pl. Service Desk, HR), adatvédelmi tisztviselő, üzemi tanács, szállítók, bérbeadók.'
       - 30 perces interjúk, négyszemközt.
 
   - id: init-09
@@ -620,8 +646,8 @@ checklist:
       Ez az egyetlen alkalom, amikor a „projekt előtti" állapot mérhető. Ha elmulasztod,
       a hatodik fázis mérése értelmezhetetlen lesz.
     how:
-      - Ticketszámok, üzemeltetési költség, gépbeüzemelési idő rögzítése.
-      - Rövid elégedettségi kérdőív a leendő pilot résztvevőknek.
+      - A haszonrealizálási terv mérőszámainak rögzítése (a Xyo-nál ticketszámok, üzemeltetési költség, gépbeüzemelési idő; a Kőrisnél irodahasználat, tárgyalóütközés, irodaköltség).
+      - Rövid elégedettségi kérdőív a leendő érintetteknek.
     tip: >
       Ez a leggyakrabban kihagyott lépés az egész projektben. Ha csak egy dolgot
       viszel el ebből a fázisból, ez legyen az. A Kiindulási (T0) mérési
@@ -672,7 +698,7 @@ gate:
   criteria:
     - Aláírt Projektalapító okirat, benne a keretösszeggel és a PM hatáskörével.
     - Jóváhagyott Üzleti indoklás, amiben a „ne csináljunk semmit" változat is szerepel.
-    - Teljes Érintettek nyilvántartása, a Service Deskkel, a HR-rel és a DPO-val együtt.
+    - Teljes Érintettek nyilvántartása, a támogató és háttérfunkciókkal (pl. Service Desk, HR, DPO) együtt.
     - Haszonrealizálási terv mérőszámokkal, célértékekkel és nevesített felelősökkel.
     - Elvégzett és dokumentált kiindulási (baseline) mérések.
     - Kitűzött kick-off — időpont, meghívottak és napirend rögzítve, a meghívó kiküldve.

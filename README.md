@@ -86,6 +86,11 @@ tárhely az inaktív appot alvó módba teszi.
 | **Dokumentumtérkép** | **Gantt-nézet — a mintaprojekt kritikus útja** |
 | ![Dokumentumtérkép](docs/screenshots/04-dokumentumterkep.png) | ![Gantt-nézet](docs/screenshots/06-gantt.png) |
 
+**Második mintaprojekt:** a Kezdeményezés dokumentumai egy nem IT-s projektre is megvannak — itt
+a Kőris Tervező Kft. irodaköltözésének üzleti indoklása, a példaválasztóval.
+
+![Második mintaprojekt](docs/screenshots/07-masodik-mintaprojekt.png)
+
 ## Hogyan használható?
 
 | Mire kell | Hogyan használom |
@@ -104,12 +109,16 @@ tárhely az inaktív appot alvó módba teszi.
 - **Haladás mentése és visszatöltése** az Áttekintés oldalon: a pipák JSON-fájlba
   menthetők, és később visszatölthetők — a demón is.
 - **Dokumentumkártyák**: mire jó, mitől véd meg, mi a bemenete, mihez lesz bemenet,
-  mi a tipikus hiba — és a kitöltött Xyo-minta olvasható és markdown formában.
+  mi a tipikus hiba — és a kitöltött minta olvasható és markdown formában.
+- **Két mintaprojekt**: a Xyo (IT, teljes: 69 dokumentum) mellett a Kőris Tervező Kft.
+  irodaköltözése (nem IT-s, szándékosan az 1. fázis: 11 dokumentum). Az 1. fázis kártyáin
+  választható, melyik projekt mintáját nézed; a Mintaprojektek oldalon fülön látszanak.
 - **Dokumentumtérkép**: a doksik függőségi gráfja és a teljes, kereshető leltár.
 - **Gantt-nézet** *(kiegészítő)*: a mintaprojekt baseline ütemterve kritikus úttal,
   várakozási idővel, jelölt tartalékkal, munkaszüneti napokkal és a mérföldkövek
   terv–tény összevetésével — közvetlenül az Ütemterv mintadokumentumból rajzolva.
-- **Letöltések**: minták egyesével, fázisonként zip-ben, vagy teljes csomagként.
+- **Letöltések**: minták egyesével, fázisonként zip-ben, teljes csomagként, és a második
+  példa (Kőris) külön csomagban.
 - **Szótár**: magyar–angol PM fogalomtár junior magyarázatokkal.
 - **PRINCE2**: módszertani kiegészítés — kb. 10 oldalas összefoglaló, PMI↔PRINCE2
   fogalomtár, és négy PRINCE2-specifikus mintadokumentum a Xyo projekt adataival.
@@ -138,7 +147,18 @@ a fázisok szerkezete, a checklist és a dokumentumleírások maradnak.
 és `feeds` mezők adják a Dokumentumtérkép éleit; a hibás hivatkozásokat az app
 indításkor kiírja az oldalsávon.
 
-**AI és a minták.** A Xyo-mintákat AI-asszisztenssel készítettem, és ugyanígy
+**Második példa.** A keretet kipróbáltam egy másik, nem IT-s projekttel is: egy 42 fős
+tervezőiroda irodaköltözésével (Kőris Tervező Kft.). Az 1. fázis mind a 11 dokumentumát
+kitöltöttem hozzá, és a keret szerkezete változtatás nélkül működött. A kötelező
+kérdések itt is valódi problémákat hoztak felszínre: az üzleti indoklásban a „ne
+csináljunk semmit” változat összevetéséből kiderült, hogy **az általam ajánlott változat
+nem a legolcsóbb**, és ezt nyíltan indokolni kellett; az érzékenységvizsgálat pedig egy
+új korlátot adott (legalább 5 éves bérleti szerződés kell). A két példa a Mintaprojektek
+oldalon fülön látszik, az 1. fázis dokumentumkártyáin pedig választható. Egy újabb példa
+felvétele: saját mappa a `docs/peldak/` alatt, bejegyzés a `content/meta.yaml`
+`sample_projects` listájába, és `examples` a dokumentumon a fázis YAML-ban.
+
+**AI és a minták.** A Xyo- és a Kőris-mintákat AI-asszisztenssel készítettem, és ugyanígy
 készíthető hasonló csomag egy másik projekt valós adataiból. Az alkalmazáson
 belüli generálás és a szerkesztés a felületen **továbbfejlesztési irány, még
 nem kész funkció**.
@@ -152,7 +172,7 @@ szerepel, és egy ilyen csomagban a hiba jellemzően nem egy dokumentumon belül
 hanem **a dokumentumok között** van.
 
 Ezért a számokat és a logikát **automatizált tesztek alá tettem** (`tests/`,
-192 db, GitHub Actions minden pushnál, Python 3.12-n és 3.13-on, lint-ellenőrzéssel):
+228 db, GitHub Actions minden pushnál, Python 3.12-n és 3.13-on, lint-ellenőrzéssel):
 
 - a költségvetést a fizetési ütemezéssel és a pénzügyi zárással,
 - az ütemtervet a munkaszüneti napokkal, a függőségekkel és a kritikus úttal,
@@ -236,6 +256,7 @@ ruff check .
 | `test_quality.py` | Követelmény-nyomonkövetés (követelmény → teszteset → átvételi kritérium → szerződéses feltétel), tesztkörök, minőségellenőrzés, beszerzési pontozás, oktatás, érintettek–RACI–kommunikáció, archiválási jegyzék |
 | `test_reports.py` | Riportok a kiadásuk napjára vetítve: státusz-, Steering- és kockázati riport, EVM-pont, eszkalációk, PRINCE2 highlight / exception / end stage report, hírlevelek, jegyzőkönyv-számozás |
 | `test_progress.py` | A checklist-haladás mentése, törlése, demó mód; a tárolási mód hiányzó vagy elgépelt beállításnál is biztonságos; megszakadt írás után is ép a haladásfájl; a mentés és visszatöltés, a hibás vagy idegen fájl elutasítása |
+| `test_koris.py` | A Kőris-minta belső következetessége: a számok (egyszeri költség, tartalék, havi díjak, 5 éves összevetés, megtérülés, érzékenység), a dátumok (hétköznapok, munkaszüneti nap, határidők), az azonosítók, a baseline, az érintettek és a feltételek láncai |
 | `test_pages.py` | Minden oldal hiba nélkül lefut; a hosszú szöveges táblák (a dokumentumleltár is) tördelnek, nem vágódnak le, és a cellák nem válnak markdown-listává; a letöltési csomag teljes |
 
 ### Demó mód (nyilvános telepítéshez)
@@ -269,7 +290,8 @@ content/
   meta.yaml             bevezető, mintaprojekt adatai, szótár
   prince2.yaml          a PRINCE2 kiegészítő réteg tartalma
   phases/*.yaml         a hat fázis teljes tartalma (+ fázisonkénti prince2 blokk)
-docs/<fázis>/*.md       a kitöltött Xyo-minták
+docs/<fázis>/*.md       a kitöltött Xyo-minták (az elsődleges, teljes példa)
+docs/peldak/koris/      a második példa: Kőris Tervező Kft. irodaköltözése (az 1. fázis)
 docs/prince2/*.md       PRINCE2 összefoglaló + 4 mintadokumentum
 data/progress.json      a pipák állapota (git-ignorálva)
 tests/                  pytest: tartalom, számok, mérési lánc, ütemterv, Gantt-nézet, erőforrás és kockázat, nyilvántartások, követelmények, riportok, haladás, oldalak

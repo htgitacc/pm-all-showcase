@@ -18,16 +18,23 @@ logging.getLogger("streamlit").setLevel(logging.ERROR)
 
 
 def sample_docs() -> list[Path]:
-    """A mintadokumentumok: a `docs/` fázismappái és a `docs/prince2/`.
+    """Az elsődleges (Xyo) mintadokumentumok: a `docs/` fázismappái és a `docs/prince2/`.
 
-    A `docs/` gyökerében és az `adr` almappájában (ha vannak) a projekt saját
-    fejlesztési dokumentációja él — az nem minta, ezért a tartalmi ellenőrzések kihagyják.
+    Nem tartoznak ide a `docs/peldak/` alatti további mintaprojektek (azok saját belső
+    számokkal és dátumokkal élnek, lásd `example_docs`), és a `docs/` gyökerében meg az
+    `adr` almappájában (ha vannak) a projekt saját fejlesztési dokumentációja.
     """
     docs = ROOT / "docs"
     return sorted(
         p for p in docs.rglob("*.md")
-        if len(p.relative_to(docs).parts) > 1 and p.relative_to(docs).parts[0] != "adr"
+        if len(p.relative_to(docs).parts) > 1
+        and (p.relative_to(docs).parts[0][:1].isdigit() or p.relative_to(docs).parts[0] == "prince2")
     )
+
+
+def example_docs(project: str) -> list[Path]:
+    """Egy további mintaprojekt dokumentumai: `docs/peldak/<projekt>/<fázis>/*.md`."""
+    return sorted((ROOT / "docs" / "peldak" / project).rglob("*.md"))
 
 
 def read_doc(rel_path: str) -> str:

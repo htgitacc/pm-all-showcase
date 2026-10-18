@@ -12,3 +12,6 @@ __pycache__/
 data/progress.json
 showcase-draft/
 .DS_Store
+
+# A fejlesztőeszköz munkakönyvtárai (git worktree-k) — nem a repó részei
+.claude/worktrees/

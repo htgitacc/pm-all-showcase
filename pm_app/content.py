@@ -19,6 +19,25 @@ def load_meta() -> dict:
     return _read_yaml(config.META_FILE)
 
 
+def sample_projects() -> list[dict]:
+    """A mintaprojektek a meta.yaml-ból. Az első az elsődleges, teljes példa (minden
+    dokumentumhoz van mintája, `sample_file`); a többi csak ott ad mintát, ahol a
+    dokumentum `examples` mezője a projekt azonosítóját tartalmazza."""
+    return load_meta().get("sample_projects", [])
+
+
+def doc_examples(doc: dict) -> list[dict]:
+    """Egy dokumentum elérhető mintái: [{"id", "short", "path"}], az elsődleges projekt
+    elöl. Csak a lemezen létező fájlok szerepelnek."""
+    projects = sample_projects()
+    found = []
+    for index, project in enumerate(projects):
+        rel = doc.get("sample_file") if index == 0 else (doc.get("examples") or {}).get(project["id"])
+        if rel and (config.ROOT / rel).exists():
+            found.append({"id": project["id"], "short": project.get("short_name", project["id"]), "path": rel})
+    return found
+
+
 @st.cache_data(show_spinner=False)
 def load_prince2() -> dict:
     """A PRINCE2 kiegészítő réteg tartalma (content/prince2.yaml)."""
@@ -85,6 +104,12 @@ def validate() -> list[str]:
         sample = doc.get("sample_file")
         if sample and not (config.ROOT / sample).exists():
             problems.append(f"`{doc_id}`: hiányzó mintafájl → `{sample}`")
+        known_projects = {p["id"] for p in sample_projects()}
+        for project_id, rel in (doc.get("examples") or {}).items():
+            if project_id not in known_projects:
+                problems.append(f"`{doc_id}`: ismeretlen mintaprojekt az examples-ben → `{project_id}`")
+            elif not (config.ROOT / rel).exists():
+                problems.append(f"`{doc_id}`: hiányzó {project_id}-minta → `{rel}`")
 
     for phase in load_phases():
         for item in phase.get("checklist", []):

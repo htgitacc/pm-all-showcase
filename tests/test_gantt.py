@@ -106,3 +106,13 @@ def test_view_switches_cannot_be_left_empty(tmp_progress):
     switches = list(at.button_group)
     assert len(switches) == 2
     assert all(s.proto.required for s in switches)
+
+
+def test_label_column_shrinks_on_narrow_screens(data):
+    # Mobilon a fix 340 px-es feliratoszlop elvette a helyet a sávoktól (kb. 20 px maradt nekik):
+    # a szélesség a tárolóhoz igazodik, a heti dátumfeliratokat pedig a Vega ritkítja.
+    spec = gantt.build_chart(data).to_dict()
+    bars = next(layer for layer in spec["layer"] if layer["mark"]["type"] == "bar")
+    limit = bars["encoding"]["y"]["axis"]["labelLimit"]
+    assert limit == {"expr": gantt.LABEL_LIMIT_EXPR} and "containerSize()" in limit["expr"]
+    assert bars["encoding"]["x"]["axis"]["labelOverlap"] == "greedy"

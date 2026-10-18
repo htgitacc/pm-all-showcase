@@ -115,10 +115,25 @@ def _progress_backup() -> None:
 # ------------------------------------------------------------------------- mintaprojekt
 
 def sample_project() -> None:
-    meta = content.load_meta()
-    project = meta.get("sample_project", {})
+    projects = content.sample_projects()
 
-    st.title("Mintaprojekt — " + project.get("name", ""))
+    if len(projects) == 1:
+        st.title("Mintaprojekt — " + projects[0].get("name", ""))
+        _project_section(projects[0])
+        return
+
+    st.title("Mintaprojektek")
+    st.caption(
+        "Ugyanaz a keret két különböző projekten: az első teljes (minden fázishoz van minta), "
+        "a második egy nem IT-s projekt, szándékosan az 1. fázissal — azt mutatja meg, hogy a "
+        "keret más területen is működik."
+    )
+    for tab, project in zip(st.tabs([p["name"] for p in projects]), projects, strict=True):
+        with tab:
+            _project_section(project)
+
+
+def _project_section(project: dict) -> None:
     st.caption(project.get("tagline", ""))
     st.markdown(project.get("description", ""))
 
@@ -143,20 +158,22 @@ def sample_project() -> None:
         )
 
     idea_doc = content.load_doc_index().get(project.get("idea_doc", ""))
-    if idea_doc:
-        sample = content.load_sample(idea_doc.get("sample_file"))
-        if sample:
-            st.divider()
-            st.subheader("A projektet elindító dokumentum")
-            st.caption(
-                f"{idea_doc['name_hu']} ({idea_doc.get('name_en', '')}) — "
-                "innen indul a teljes dokumentumlánc."
-            )
-            tab_preview, tab_source = st.tabs(["Olvasható", "Markdown forrás"])
-            with tab_preview:
-                st.markdown(sample)
-            with tab_source:
-                st.code(sample, language="markdown")
+    if not idea_doc:
+        return
+    example = next((e for e in content.doc_examples(idea_doc) if e["id"] == project["id"]), None)
+    sample = content.load_sample(example["path"]) if example else None
+    if sample:
+        st.divider()
+        st.subheader("A projektet elindító dokumentum")
+        st.caption(
+            f"{idea_doc['name_hu']} ({idea_doc.get('name_en', '')}) — "
+            "innen indul a teljes dokumentumlánc."
+        )
+        tab_preview, tab_source = st.tabs(["Olvasható", "Markdown forrás"])
+        with tab_preview:
+            st.markdown(sample)
+        with tab_source:
+            st.code(sample, language="markdown")
 
 
 # ---------------------------------------------------------------------------- fázisoldal
@@ -193,7 +210,9 @@ def make_phase_view(phase_id: str):
 # ----------------------------------------------------------------------- dokumentumtérkép
 
 def doc_map() -> None:
-    st.title("Dokumentumtérkép")
+    # Feltételes elválasztójel (U+00AD): mobilon a hosszú szó „Dokumentum-” / „térkép” alakban
+    # törik, nem betűk között; asztalon láthatatlan.
+    st.title("Dokumentum\u00adtérkép")
     st.caption(
         "Melyik dokumentum miből áll össze és mit táplál. "
         "A nyíl a bemenet felől mutat a belőle készülő dokumentum felé. "
@@ -352,17 +371,39 @@ def downloads_page() -> None:
     all_docs = downloads.all_docs_with_samples()
     total_docs = len(content.load_doc_index())
 
-    st.metric("Elkészült minták", f"{len(all_docs)} / {total_docs}")
+    primary = content.sample_projects()[0]
+    st.metric(f"Elkészült minták — {primary['name']}", f"{len(all_docs)} / {total_docs}")
 
     if all_docs:
         st.download_button(
-            "Teljes csomag letöltése (zip)",
+            f"Teljes csomag letöltése — {primary.get('short_name', primary['name'])} (zip)",
             data=functools.partial(downloads.build_zip, all_docs),  # csak kattintáskor épül
             file_name="pm-mindenes-mintak.zip",
             mime="application/zip",
             icon=":material/folder_zip:",
             type="primary",
         )
+
+    # A további mintaprojektek egy-egy csomagot kapnak (a fázisonkénti lista az elsődlegesé).
+    for project in content.sample_projects()[1:]:
+        docs = downloads.example_docs(project["id"])
+        if not docs:
+            continue
+        with st.container(border=True):
+            st.markdown(f"**Második példa: {project['name']}**")
+            phases = sorted({d["phase_number"] for d in docs})
+            st.caption(
+                f"{len(docs)} minta, a(z) {', '.join(f'{n}.' for n in phases)} fázisból. "
+                "A fájlnevek a projekt azonosítójával kezdődnek."
+            )
+            st.download_button(
+                f"A {project.get('short_name', project['name'])}-minták letöltése (zip)",
+                data=functools.partial(downloads.build_example_zip, project["id"]),
+                file_name=f"pm-mindenes-{project['id']}-mintak.zip",
+                mime="application/zip",
+                key=f"zip-example-{project['id']}",
+                icon=":material/folder_zip:",
+            )
 
     st.divider()
     for phase in content.load_phases():

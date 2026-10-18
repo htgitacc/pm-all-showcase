@@ -11,7 +11,9 @@ intro: |
   nem értelmes, ott egyszerűen nem szerepel — nem töltjük ki üres szöveggel.
 
   Minden dokumentumhoz tartozik egy **valóséletű, kitöltött minta** a Xyo Kft.
-  mintaprojektből. A minták markdown formátumban másolhatók és letölthetők.
+  mintaprojektből (IT-projekt, mind a hat fázis). A Kezdeményezés dokumentumaihoz egy
+  második, nem IT-s példa is választható: a Kőris Tervező Kft. irodaköltözése. A minták
+  markdown formátumban másolhatók és letölthetők.
 
 how_to_use: |
   1. **Először olvasd végig a Mintaprojekt oldalt.** Minden példa erre a projektre
@@ -32,87 +34,151 @@ storage_note:
     A pipák csak ebben a böngészőmunkamenetben élnek. Ha később folytatnád, mentsd el
     őket fájlba lent, a „Haladás mentése és visszatöltése” blokkban.
 
-sample_project:
-  name: Xyo Kft. — Cloud Pilot
-  idea_doc: project_idea
-  tagline: Felhőalapú munkakörnyezet bevezetése 50 fő részére, migráció nélkül
-  description: |
-    A **Xyo Kft.** egy közepes méretű magyarországi vállalat. Az IT részleg cloud-first
-    irányt vesz: a cél egy **pilot környezet**, ahol 50 munkatárs élesben, kizárólag
-    felhőszolgáltatásokra támaszkodva dolgozik.
+sample_projects:
+  - id: xyo
+    name: Xyo Kft. — Cloud Pilot
+    short_name: Xyo
+    idea_doc: project_idea
+    tagline: Felhőalapú munkakörnyezet bevezetése 50 fő részére, migráció nélkül
+    description: |
+      A **Xyo Kft.** egy közepes méretű magyarországi vállalat. Az IT részleg cloud-first
+      irányt vesz: a cél egy **pilot környezet**, ahol 50 munkatárs élesben, kizárólag
+      felhőszolgáltatásokra támaszkodva dolgozik.
 
-    A projekt szándékosan **migráció nélküli**: nincs meglévő rendszer átköltöztetése,
-    minden elem új beszerzés. Ez jelentősen egyszerűsíti a tervezést — nincs
-    adatmigrációs kockázat, nincs párhuzamos üzem —, viszont a beszerzés és a
-    felhasználói felkészítés súlya megnő.
+      A projekt szándékosan **migráció nélküli**: nincs meglévő rendszer átköltöztetése,
+      minden elem új beszerzés. Ez jelentősen egyszerűsíti a tervezést — nincs
+      adatmigrációs kockázat, nincs párhuzamos üzem —, viszont a beszerzés és a
+      felhasználói felkészítés súlya megnő.
 
-    **Mi változik a résztvevőknek?** Az asztali gép helyett laptopot kapnak, hozzá egy
-    monitort haza (a cégnél már van). Otthonról mobilneten dolgoznak, aminek a
-    költségét a cég állja. A gépbe **Entra ID** azonosítóval lépnek be, a korábbi
-    fájlszervert **SharePoint és OneDrive** váltja ki, a távoli hozzáféréshez pedig
-    VPN áll rendelkezésre.
+      **Mi változik a résztvevőknek?** Az asztali gép helyett laptopot kapnak, hozzá egy
+      monitort haza (a cégnél már van). Otthonról mobilneten dolgoznak, aminek a
+      költségét a cég állja. A gépbe **Entra ID** azonosítóval lépnek be, a korábbi
+      fájlszervert **SharePoint és OneDrive** váltja ki, a távoli hozzáféréshez pedig
+      VPN áll rendelkezésre.
 
-    Ha a pilot beválik, a megoldás fokozatosan kiterjeszthető a cég többi részlegére —
-    ennek eldöntése a hatodik, mérési fázis feladata.
-  facts:
-    Projekt neve: Xyo Cloud Pilot
-    Projekt típusa: IT beszerzés és bevezetés (waterfall)
-    Érintett létszám: 50 fő (a teljes létszám kb. 240 fő)
-    Projekt időtartama: 2026.02.02 – 2026.06.30 (5 hónap)
-    Mérési időszak: 2026.07.01 – 2026.09.30 (3 hónap)
-    Jóváhagyott költségkeret: 52 000 000 Ft
-    Tervezett költség: 50 743 000 Ft (ebből tartalék 4 613 000 Ft)
-    Platform: Microsoft 365 Business Premium, Entra ID, Intune, SharePoint, OneDrive, Azure VPN Gateway
-    Migráció: nincs — minden elem új beszerzés
-  roles:
-    - name: Horváth Júlia
-      role: ügyvezető (CEO)
-      org: Xyo Kft.
-      note: A Projekt Irányító Bizottság (Steering Committee) elnöke, a fázis-kapuk döntéshozója.
-    - name: Kovács Anita
-      role: gazdasági igazgató (CFO), projektszponzor
-      org: Xyo Kft.
-      note: A költségkeret gazdája, ő írja alá a Projektalapító okiratot.
-    - name: Tóth Gergő
-      role: projektmenedzser
-      org: Xyo Kft.
-      note: A minta dokumentumokat végig ő jegyzi — ez a te szereped.
-    - name: Nagy Péter
-      role: IT osztályvezető, szakmai vezető
-      org: Xyo Kft.
-      note: A megoldás szakmai gazdája, az üzemeltetésbe vétel átvevője.
-    - name: Szabó Márk
-      role: rendszergazda (Microsoft 365 / Entra ID)
-      org: Xyo Kft.
-      note: A konfiguráció és a mérési adatok elsődleges forrása.
-    - name: Kiss Réka
-      role: Service Desk vezető
-      org: Xyo Kft.
-      note: A ticketadatok szolgáltatója, a támogatási folyamat gazdája.
-    - name: Varga Eszter
-      role: HR vezető
-      org: Xyo Kft.
-      note: A pilot résztvevőinek kijelölése, a home office szabályzat és az elégedettségmérés.
-    - name: Molnár Katalin
-      role: beszerzési vezető
-      org: Xyo Kft.
-      note: Az ajánlatkérés, a szállítóértékelés és a szerződéskötés felelőse.
-    - name: Balogh Tamás
-      role: pénzügyi kontroller
-      org: Xyo Kft.
-      note: A költségkövetés és a projekt pénzügyi zárásának felelőse.
-    - name: dr. Fekete Zsolt
-      role: adatvédelmi tisztviselő (DPO)
-      org: Xyo Kft.
-      note: A GDPR-megfelelés és az adatkezelési kérdések véleményezője.
-    - name: Cloudia Solutions Kft.
-      role: Microsoft CSP partner (bevezetés, licenc)
-      org: külső szállító
-      note: A felhőkörnyezet kialakítója, a licencek forgalmazója.
-    - name: TechLine Zrt.
-      role: hardverszállító (laptop, monitor, dokkoló)
-      org: külső szállító
-      note: Az eszközbeszerzés nyertes szállítója.
+      Ha a pilot beválik, a megoldás fokozatosan kiterjeszthető a cég többi részlegére —
+      ennek eldöntése a hatodik, mérési fázis feladata.
+    facts:
+      Projekt neve: Xyo Cloud Pilot
+      Projekt típusa: IT beszerzés és bevezetés (waterfall)
+      Érintett létszám: 50 fő (a teljes létszám kb. 240 fő)
+      Projekt időtartama: 2026.02.02 – 2026.06.30 (5 hónap)
+      Mérési időszak: 2026.07.01 – 2026.09.30 (3 hónap)
+      Jóváhagyott költségkeret: 52 000 000 Ft
+      Tervezett költség: 50 743 000 Ft (ebből tartalék 4 613 000 Ft)
+      Platform: Microsoft 365 Business Premium, Entra ID, Intune, SharePoint, OneDrive, Azure VPN Gateway
+      Migráció: nincs — minden elem új beszerzés
+    roles:
+      - name: Horváth Júlia
+        role: ügyvezető (CEO)
+        org: Xyo Kft.
+        note: A Projekt Irányító Bizottság (Steering Committee) elnöke, a fázis-kapuk döntéshozója.
+      - name: Kovács Anita
+        role: gazdasági igazgató (CFO), projektszponzor
+        org: Xyo Kft.
+        note: A költségkeret gazdája, ő írja alá a Projektalapító okiratot.
+      - name: Tóth Gergő
+        role: projektmenedzser
+        org: Xyo Kft.
+        note: A minta dokumentumokat végig ő jegyzi — ez a te szereped.
+      - name: Nagy Péter
+        role: IT osztályvezető, szakmai vezető
+        org: Xyo Kft.
+        note: A megoldás szakmai gazdája, az üzemeltetésbe vétel átvevője.
+      - name: Szabó Márk
+        role: rendszergazda (Microsoft 365 / Entra ID)
+        org: Xyo Kft.
+        note: A konfiguráció és a mérési adatok elsődleges forrása.
+      - name: Kiss Réka
+        role: Service Desk vezető
+        org: Xyo Kft.
+        note: A ticketadatok szolgáltatója, a támogatási folyamat gazdája.
+      - name: Varga Eszter
+        role: HR vezető
+        org: Xyo Kft.
+        note: A pilot résztvevőinek kijelölése, a home office szabályzat és az elégedettségmérés.
+      - name: Molnár Katalin
+        role: beszerzési vezető
+        org: Xyo Kft.
+        note: Az ajánlatkérés, a szállítóértékelés és a szerződéskötés felelőse.
+      - name: Balogh Tamás
+        role: pénzügyi kontroller
+        org: Xyo Kft.
+        note: A költségkövetés és a projekt pénzügyi zárásának felelőse.
+      - name: dr. Fekete Zsolt
+        role: adatvédelmi tisztviselő (DPO)
+        org: Xyo Kft.
+        note: A GDPR-megfelelés és az adatkezelési kérdések véleményezője.
+      - name: Cloudia Solutions Kft.
+        role: Microsoft CSP partner (bevezetés, licenc)
+        org: külső szállító
+        note: A felhőkörnyezet kialakítója, a licencek forgalmazója.
+      - name: TechLine Zrt.
+        role: hardverszállító (laptop, monitor, dokkoló)
+        org: külső szállító
+        note: Az eszközbeszerzés nyertes szállítója.
+  - id: koris
+    name: Kőris Tervező Kft. — irodaköltözés
+    short_name: Kőris
+    idea_doc: project_idea
+    tagline: Költözés egy kisebb, a hibrid munkához kialakított irodába a bérlet lejárta előtt
+    description: |
+      A **Kőris Tervező Kft.** 42 fős építészeti tervezőiroda Budapesten. A Váci úti bérlet
+      2027.03.31-én lejár, a bérbeadó hosszabbításkor 18%-os emelést jelzett, az iroda pedig
+      a hibrid munka miatt túl nagy: átlagosan csak 23 fő van bent.
+
+      A projekt célja, hogy a cég a bérlet lejártáig átköltözzön a Duna Irodaház 430 m²-es
+      egységébe: kevesebb, megosztott asztallal, több tárgyalóval és csendes fókuszszobákkal.
+      A költözés évente 16,8 millió Ft-ot takarít meg a hosszabbításhoz képest.
+
+      **Miért csak az 1. fázis?** Ez a második példa azt mutatja meg, hogy a keret egy
+      egészen más területen is működik. Ehhez a Kezdeményezés a legerősebb próba: itt dől el,
+      legyen-e projekt, mennyibe kerül, és ki a felelőse. A teljes dokumentumláncot (mind a hat
+      fázist) a Xyo-minta mutatja be.
+    facts:
+      Projekt neve: Kőris irodaköltözés
+      Projekt típusa: irodaköltözés, bérlés és kialakítás (waterfall)
+      Érintett létszám: 42 fő
+      Projekt időtartama: 2026.10.29 – 2027.04.30
+      Jóváhagyott költségkeret: 42 081 600 Ft (ebből tartalék 3 825 600 Ft)
+      Havi megtakarítás: 1 399 840 Ft a hosszabbításhoz képest
+    roles:
+      - name: Kertész Ágnes
+        role: ügyvezető, projektszponzor
+        org: Kőris Tervező Kft.
+        note: A keret gazdája, ő írja alá az okiratot és a bérleti szerződést.
+      - name: Szűcs Dóra
+        role: irodavezető, projektmenedzser
+        org: Kőris Tervező Kft.
+        note: A minta dokumentumokat végig ő jegyzi — ez a te szereped.
+      - name: Lakatos Péter
+        role: pénzügyi vezető
+        org: Kőris Tervező Kft.
+        note: A költség-haszon elemzés ellenőre, a szerződések pénzügyi átnézője.
+      - name: Sipos Márk
+        role: vezető tervező
+        org: Kőris Tervező Kft.
+        note: A tervezők képviselője; az asztalmegosztás legfőbb kritikusa.
+      - name: Fehér Lilla
+        role: HR és belső kommunikáció
+        org: Kőris Tervező Kft.
+        note: A munkatársi kérdőív és a költözési kommunikáció gazdája.
+      - name: Bárány Zsolt
+        role: külső rendszergazda
+        org: Netkapu Bt.
+        note: Hálózat, internet-szolgáltatók, tárgyalótechnika.
+      - name: Rácz Gábor
+        role: ingatlanügynök
+        org: Cityloft Ingatlan Kft.
+        note: A piaci ajánlatok begyűjtője, a bérleti tárgyalás segítője.
+      - name: Orosz Eszter
+        role: bérlői kapcsolattartó
+        org: Duna Irodaház Zrt. (új bérbeadó)
+        note: A kialakítás és az átadás kapcsolattartója.
+      - name: Tamás Bálint
+        role: kapcsolattartó
+        org: Váci Office Kft. (régi bérbeadó)
+        note: A régi iroda helyreállításának és visszavételének felelőse.
 
 glossary:
   - hu: Projektalapító okirat

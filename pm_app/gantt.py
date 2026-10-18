@@ -45,6 +45,8 @@ CATEGORIES = {
     BUFFER: "#3f9e8a",
 }
 MILESTONE_COLOR = "#e0a030"
+# A feladatnevek oszlopának szélessége a diagram tárolójához igazodva (lásd build_chart).
+LABEL_LIMIT_EXPR = "max(110, min(340, containerSize()[0] * 0.36))"
 HOLIDAY_COLOR = "#9aa0a6"
 
 
@@ -274,8 +276,14 @@ def build_chart(data: dict, critical_only: bool = False, include_measurement: bo
     )
 
     x_scale = alt.Scale(domain=[pd.Timestamp(first - dt.timedelta(days=2)), pd.Timestamp(last + dt.timedelta(days=3))])
-    x_axis = alt.Axis(format="%m.%d.", tickCount="week", title=None, labelAngle=0, grid=True, orient="top")
-    y = alt.Y("Sor:N", sort=ordered, title=None, axis=alt.Axis(labelLimit=340))
+    # Keskeny kijelzőn a heti dátumfeliratok egymásra csúsznának: a Vega maga ritkítja őket.
+    x_axis = alt.Axis(format="%m.%d.", tickCount="week", title=None, labelAngle=0, grid=True, orient="top",
+                      labelOverlap="greedy")
+    # A feladatnevek oszlopa a tároló szélességéhez igazodik: asztalon 340 px, mobilon kb. a
+    # szélesség harmada — különben a hosszú nevek elveszik a helyet a sávoktól (a teljes név a
+    # tooltipben látszik).
+    y = alt.Y("Sor:N", sort=ordered, title=None,
+              axis=alt.Axis(labelLimit=alt.ExprRef(expr=LABEL_LIMIT_EXPR)))
 
     holiday_layer = alt.Chart(holidays).mark_rect(color=HOLIDAY_COLOR, opacity=0.35).encode(
         x=alt.X("Kezdés:T", scale=x_scale, axis=x_axis),

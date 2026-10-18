@@ -38,7 +38,7 @@ def storage_mode(environ=os.environ, root: Path = ROOT) -> str:
 STORAGE_MODE = storage_mode()
 
 APP_TITLE = "PM-mindenes"
-APP_SUBTITLE = "Waterfall projektmenedzser checklist — Xyo Kft. mintaprojekttel"
+APP_SUBTITLE = "Waterfall projektmenedzser checklist — kitöltött mintaprojektekkel"
 
 # Jelölések a felületen
 BADGE_MANDATORY = ":red-badge[kötelező]"

@@ -51,7 +51,7 @@ navigation = st.navigation(
             ),
             st.Page(
                 views.sample_project,
-                title="Mintaprojekt — Xyo Kft.",
+                title="Mintaprojektek",
                 url_path="mintaprojekt",
                 icon=":material/business:",
             ),
@@ -98,7 +98,8 @@ navigation = st.navigation(
 with st.sidebar:
     st.markdown(f"### {config.APP_TITLE}")
     st.progress(progress.overall_ratio(), text=f"Haladás: {progress.overall_ratio():.0%}")
-    st.caption("Mintaprojekt: Xyo Kft. — cloud-first pilot")
+    names = " · ".join(p.get("short_name", p["name"]) for p in content.sample_projects())
+    st.caption(f"Mintaprojektek: {names}")
     if not progress.persistent():
         st.caption(":material/info: Demó mód: a pipák csak ebben a munkamenetben élnek.")
 

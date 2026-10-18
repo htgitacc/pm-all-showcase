@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import functools
 import re
+from pathlib import Path
 
 import streamlit as st
 
@@ -199,15 +200,14 @@ def documents_block(phase: dict) -> None:
     for doc in docs:
         entry = index[doc["id"]]
         badge = config.BADGE_MANDATORY if doc.get("mandatory") else config.BADGE_OPTIONAL
-        sample = content.load_sample(doc.get("sample_file"))
-        marker = "" if sample else "  ·  _minta még készül_"
+        marker = "" if content.doc_examples(entry) else "  ·  _minta még készül_"
         label = f"{badge} **{doc['name_hu']}** ({doc.get('name_en', '')}){marker}"
 
         with st.expander(label):
-            _document_body(entry, sample)
+            _document_body(entry)
 
 
-def _document_body(doc: dict, sample: str | None) -> None:
+def _document_body(doc: dict) -> None:
     if doc.get("why"):
         st.markdown(f"**Mire jó, és mitől véd meg?**  \n{doc['why']}")
 
@@ -238,19 +238,39 @@ def _document_body(doc: dict, sample: str | None) -> None:
     if doc.get("pitfall"):
         st.warning(f"**Tipikus hiba:** {doc['pitfall']}", icon=":material/warning:")
 
-    if sample is None:
+    examples = content.doc_examples(doc)
+    if not examples:
         st.info(
-            "Ehhez a dokumentumhoz a kitöltött Xyo-minta még nem készült el.",
+            "Ehhez a dokumentumhoz a kitöltött minta még nem készült el.",
             icon=":material/hourglass_empty:",
         )
         return
 
     st.divider()
 
+    if len(examples) > 1:
+        # Több mintaprojekt is van: ugyanaz a dokumentum két különböző projektben.
+        chosen = st.radio(
+            "Melyik mintaprojektből?",
+            [e["id"] for e in examples],
+            format_func=lambda pid: next(e["short"] for e in examples if e["id"] == pid),
+            horizontal=True,
+            key=f"ex-{doc['id']}",
+        )
+        example = next(e for e in examples if e["id"] == chosen)
+    else:
+        example = examples[0]
+    sample = content.load_sample(example["path"])
+
+    # A nem elsődleges projekt azonos nevű fájljai ne ütközzenek a letöltéskor.
+    file_name = Path(example["path"]).name
+    if example["id"] != content.sample_projects()[0]["id"]:
+        file_name = f"{example['id']}-{file_name}"
+
     left, right = st.columns([2, 1])
     with left:
         show = st.toggle(
-            "Kitöltött minta megjelenítése — Xyo Kft.",
+            f"Kitöltött minta megjelenítése — {example['short']}",
             key=f"show-{doc['id']}",
             help="A minta csak igény szerint töltődik be, hogy az oldal gyors maradjon.",
         )
@@ -258,9 +278,9 @@ def _document_body(doc: dict, sample: str | None) -> None:
         st.download_button(
             "Letöltés md fájlként",
             data=sample.encode("utf-8"),
-            file_name=downloads.sample_filename(doc),
+            file_name=file_name,
             mime="text/markdown",
-            key=f"dl-{doc['id']}",
+            key=f"dl-{doc['id']}-{example['id']}",
             icon=":material/download:",
         )
 
