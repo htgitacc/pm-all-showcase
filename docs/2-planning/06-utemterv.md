@@ -62,21 +62,62 @@
 | 7.2 | Második hullám — 20 fő | 06.03. | 06.05. | 3 | újratesztelés; 40 gép (05.29.) | ✔ |
 | 7.3 | Harmadik hullám — 20 fő | 06.10. | 06.12. | 3 | 7.2 | ✔ |
 | 6.4 | UAT-zárás és elfogadás aláírva | 06.15. | 06.19. | 5 | 7.3 | ✔ |
-| 3.5 | As-built dokumentáció | 05.11. | 06.19. | 40 | M5 | |
+| 3.5 | As-built dokumentáció | 05.11. | 06.19. | 40 | M5; 6.4 (BB) | |
 | 8.1 | KPI-adatlapok | 06.01. | 06.19. | 19 | M3 | |
 | 1.3 | Üzemeltetésbe adás és zárás | 06.22. | 06.30. | 9 | M8, 3.5 | ✔ |
-| 8.3 | Mérési felelősségek átadása | 06.24. | 06.30. | 7 | 8.1 | |
+| 8.3 | Mérési felelősségek átadása | 06.24. | 06.30. | 7 | 8.1; 1.3 (KK +2 mn) | |
 | 7.4 | Hypercare (3 hét) | 06.15. | 07.03. | 19 | 7.3 | |
 | 1.2 | Státuszriportálás és kontroll | 03.16. | 06.30. | 107 | M3 | |
 
-*KU = kritikus úton van. A függőség alapesetben **befejezés–kezdés**: a feladat
-a megelőző befejezése után indul. **KK = kezdés–kezdés**: a feladat a megelőző
-elindulása után kezdődhet, és vele párhuzamosan fut (pl. a Service Desk
-felkészítése az oktatási anyag első változatával már indulhat).*
+*KU = kritikus úton van. A „Függ ettől” oszlop jelöléseit a következő alpont
+magyarázza; jelölés nélkül a függőség **befejezés–kezdés**.*
 
 *Munkaszüneti napok a projektidőszakban: 04.03. (Nagypéntek), 04.06.
 (Húsvéthétfő), 05.01., 05.25. (Pünkösdhétfő). Határidő és bontás ezekre nem
 eshet.*
+
+### Függőségtípusok, késleltetés, előrehozás
+
+| Jelölés | Típus | Jelentése | Példa ebből a tervből |
+|---|---|---|---|
+| *(nincs)* | **BK** — befejezés–kezdés (Finish-to-Start, FS) | A feladat a megelőző befejezése után indul | 3.2.2 Autopilot ← 3.2.1 Intune-profilok |
+| `(KK)` | **KK** — kezdés–kezdés (Start-to-Start, SS) | A feladat a megelőző elindulása után kezdődhet, és vele párhuzamosan fut | 5.3 Service Desk felkészítés ← 5.1 oktatási anyag; 6.3 UAT ← 7.1 első hullám |
+| `(BB)` | **BB** — befejezés–befejezés (Finish-to-Finish, FF) | A feladat nem fejeződhet be a megelőző befejezése előtt | 3.5 As-built dokumentáció ← 6.4 UAT-zárás |
+| `(KB)` | **KB** — kezdés–befejezés (Start-to-Finish, SF) | A feladat nem fejeződhet be, amíg a megelőző el nem indul | ebben a tervben nincs — lásd lent |
+| `+N mn` | **késleltetés** (lag) | Kötelező várakozás a függőség után, munkanapban | 8.3 Mérési felelősségek átadása ← 1.3 (KK +2 mn) |
+| `−N mn` | **előrehozás** (lead) | A feladat ennyi munkanappal a függőség előtt indulhat | ebben a tervben KK-ként szerepel — lásd lent |
+
+**Miért BB az as-built dokumentáció?** Az M5-tel indul, de nem zárható le az UAT-zárás előtt: az
+utolsó hibajavítások még módosítják a konfigurációt, a leírásnak pedig a végleges állapotot kell
+rögzítenie. Ezért a két feladat ugyanazon a napon (06.19.) fejeződik be. A BB nem az indulást
+köti, hanem a lezárást.
+
+**Miért +2 munkanap a mérési felelősségek átadásánál?** Az üzemeltetés előbb átveszi a
+környezetet (1.3, 06.22-től), és a mérés gazdáit csak ezután lehet a saját üzemeltetési
+szerepükben kijelölni (06.24-től). A két nap nem tartalék: ha elhagynánk, a mérés gazdái egy még
+át nem vett környezetért felelnének.
+
+**Előrehozás vagy KK?** A Service Desk felkészítése (5.3) felírható lett volna úgy is, hogy
+„5.1 −14 mn”: két héttel az oktatási anyag elkészülte előtt indul. A KK-t választottuk, mert az
+előrehozás a megelőző feladat *befejezéséhez* méri az indulást. Ha az anyag elkészülése csúszik,
+a −14 mn a felkészítést is tolná, pedig ahhoz már az anyag első változata elég. A KK azt rögzíti,
+ami valóban igaz: amint az anyag készülni kezd, a felkészítés is indulhat.
+
+**Miért nincs KB?** A kezdés–befejezés ritka, jellemzően váltásnál fordul elő: a régi megoldás
+nem állhat le, amíg az új el nem indult. Ebben a projektben ilyen a régi asztali gép készenléte:
+a visszaállási terv szerint a felhasználó visszaülhet a régi gépéhez, ezért a régi gép
+készenléte csak akkor érhet véget, ha az illető az új gépen élesben dolgozik. Ez nem
+projektfeladat — a régi gépek sorsáról az üzemeltetés dönt (selejtezés: átadás-átvételi
+jegyzőkönyv, NY-2) —, ezért nincs sor a táblában. A KB-t ne erőltesd: ha a tervedben sok van
+belőle, többnyire egy rosszul megfogalmazott BK áll mögötte.
+
+> **A késleltetés nem tartalék.** A 7.2 és 7.3 hullám közötti 4 nap **tartalék** (5. pont):
+> felhasználható, és ha az első hullám gördülékeny, a két hullám összevonható. A késleltetés
+> viszont a logika része, nem lehet „elhasználni”. Ha a kettőt összemosod, vagy a tartalékot
+> kezeled kötelezőnek, és nem mered felhasználni, vagy a kötelező várakozást hiszed
+> tartaléknak, és lerövidíted. A hosszú várakozásokat (ajánlati határidő, belső jóváhagyás,
+> hardverszállítás) ebben a tervben **külön feladatként** vettük fel, nem késleltetésként: így
+> látszanak a Gantt-diagramon és a kritikus úton (7. pont).
 
 ## 3. A kritikus út
 

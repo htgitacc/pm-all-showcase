@@ -1,8 +1,9 @@
 """Az ütemterv belső logikája és a dátumok összhangja a dokumentumok között.
 
 Ellenőrzi a naptári napokat, a munkaszüneti napokat, a függőségeket (befejezés–
-kezdés és kezdés–kezdés), a kritikus út folytonosságát és azt, hogy a
-mérföldkövek és a beszerzési dátumok mindenhol ugyanazok.
+kezdés, kezdés–kezdés, befejezés–befejezés, kezdés–befejezés, késleltetéssel és
+előrehozással), a kritikus út folytonosságát és azt, hogy a mérföldkövek és a
+beszerzési dátumok mindenhol ugyanazok.
 """
 
 from __future__ import annotations
@@ -12,6 +13,8 @@ import re
 
 import pytest
 from conftest import read_doc, sample_docs, section, tables
+
+from pm_app.dependencies import parse_dependencies, parse_dependency
 
 SCHEDULE = "docs/2-planning/06-utemterv.md"
 YEAR = 2026
@@ -37,6 +40,26 @@ def _workday(day: dt.date) -> bool:
 def _workdays_between(a: dt.date, b: dt.date) -> int:
     """Munkanapok a és b között, a végpontok nélkül."""
     return sum(_workday(a + dt.timedelta(i)) for i in range(1, (b - a).days))
+
+
+def _shift_workdays(day: dt.date, n: int) -> dt.date:
+    """A nap n munkanappal később (n < 0: korábban)."""
+    step = 1 if n > 0 else -1
+    while n:
+        day += dt.timedelta(step)
+        if _workday(day):
+            n -= step
+    return day
+
+
+def _dep(raw: str) -> tuple[str, str, int]:
+    """Egy függőség → (név, típus, késleltetés munkanapban); jelölés nélkül befejezés–kezdés."""
+    dep = parse_dependency(raw)
+    return dep.target, dep.kind, dep.lag
+
+
+def _deps(task: dict) -> list[tuple[str, str, int]]:
+    return [(d.target, d.kind, d.lag) for d in parse_dependencies(task["deps"])]
 
 
 def _milestones() -> dict[str, dict]:
@@ -94,17 +117,66 @@ def test_no_task_or_milestone_on_a_day_off():
 def test_dependencies_are_respected():
     tasks, milestones = _tasks(), _milestones()
     for t in tasks:
-        for raw in re.split(r"[;,]", t["deps"]):
-            if not raw.strip():
-                continue
-            start_to_start = "(KK)" in raw
-            name, d_start, d_end, _ = _resolve(raw.replace("(KK)", ""), tasks, milestones)
-            if start_to_start:
-                assert t["start"] >= d_start, (t["id"], name, "KK")
+        for raw, kind, lag in _deps(t):
+            name, d_start, d_end, _ = _resolve(raw, tasks, milestones)
+            where = (t["id"], name, kind, lag)
+            if kind == "KK":
+                assert t["start"] >= _shift_workdays(d_start, lag), where
+            elif kind == "BB":
+                assert t["end"] >= _shift_workdays(d_end, lag), where
+            elif kind == "KB":
+                assert t["end"] >= _shift_workdays(d_start, lag), where
             elif re.search(r"\(\d\d\.\d\d\.[^)]*\)", raw):
-                assert t["end"] >= d_end, (t["id"], name, "a dátumhoz kötött bemenet a feladat vége előtt van")
+                assert t["end"] >= d_end, (*where, "a dátumhoz kötött bemenet a feladat vége előtt van")
+            elif lag:
+                assert t["start"] >= _shift_workdays(d_end, 1 + lag), where
             else:
-                assert t["start"] > d_end, (t["id"], name, "befejezés–kezdés")
+                assert t["start"] > d_end, (*where, "befejezés–kezdés")
+
+
+def test_dependency_notation_is_understood():
+    """Zárójeles jelölés csak dátum vagy ismert függőségtípus/késleltetés lehet — egy elírt
+    „(FF)” vagy „(KK+2)” különben csendben befejezés–kezdésnek számítana."""
+    for t in _tasks():
+        for raw in re.split(r"[;,]", t["deps"]):
+            if re.search(r"\([^)]*\)\s*$", raw) and not re.search(r"\(\d\d\.\d\d\.", raw):
+                _, kind, lag = _dep(raw)
+                assert kind != "BK" or lag, (t["id"], raw)
+
+
+def test_dependency_types_are_explained_and_used():
+    """Az alpont mind a négy típust és a ±N mn jelölést magyarázza; amit a tábla használ, az ott van."""
+    doc = read_doc(SCHEDULE)
+    explained = tables(section(doc, "Függőségtípusok, késleltetés, előrehozás"))[0]
+    kinds = " ".join(r[1] for r in explained)
+    for kind in ("BK", "KK", "BB", "KB", "késleltetés", "előrehozás"):
+        assert f"**{kind}**" in kinds, kind
+    used = {(kind, bool(lag)) for t in _tasks() for _, kind, lag in _deps(t)}
+    assert {("KK", False), ("BB", False), ("KK", True)} <= used, used
+    examples = " ".join(r[3] for r in explained)
+    for t in _tasks():
+        for raw, kind, lag in _deps(t):
+            if kind == "BB" or lag:
+                assert t["id"] in examples, (t["id"], "a példák között kell szerepelnie")
+
+
+def test_lead_example_in_the_text_is_right():
+    """Az alpont szerint az 5.3 előrehozással is felírható lett volna („5.1 −14 mn”): a szám stimmel."""
+    assert "„5.1 −14 mn”" in read_doc(SCHEDULE)
+    assert _dep("5.1 (−14 mn)") == ("5.1", "BK", -14)
+    tasks = {t["id"]: t for t in _tasks()}
+    assert _shift_workdays(tasks["5.1"]["end"], 1 - 14) == tasks["5.3"]["start"]
+
+
+def _drives(kind: str, lag: int, pred: dict, succ: dict) -> bool:
+    """Hézag nélkül hajtja-e az előd az utódot (a késleltetést is beleértve)."""
+    if kind == "KK":
+        return succ["start"] == _shift_workdays(pred["start"], lag)
+    if kind == "BB":
+        return succ["end"] == _shift_workdays(pred["end"], lag)
+    if kind == "KB":
+        return succ["end"] == _shift_workdays(pred["start"], lag)
+    return _workdays_between(pred["end"], succ["start"]) == lag
 
 
 def test_critical_path_is_continuous():
@@ -112,16 +184,16 @@ def test_critical_path_is_continuous():
     tasks, milestones = _tasks(), _milestones()
     for t in (t for t in tasks if t["ku"]):
         preds = []
-        for raw in re.split(r"[;,]", t["deps"]):
-            if raw.strip() and "(KK)" not in raw:
-                preds.append(_resolve(raw, tasks, milestones))
+        for raw, kind, lag in _deps(t):
+            if kind == "BK":
+                preds.append((*_resolve(raw, tasks, milestones), lag))
         if not preds:
             continue
-        name, _, end, ku = max(preds, key=lambda p: p[2])
+        name, _, end, ku, lag = max(preds, key=lambda p: p[2])
         assert ku, (t["id"], f"kritikus, de a döntő elődje ({name}) nem az")
         gap = _workdays_between(end, t["start"])
         if (name, t["id"]) not in DOCUMENTED_BUFFERS:
-            assert gap == 0, (t["id"], name, f"{gap} munkanap rejtett tartalék a kritikus úton")
+            assert gap == lag, (t["id"], name, f"{gap - lag} munkanap rejtett tartalék a kritikus úton")
 
 
 def test_every_critical_task_drives_a_critical_successor():
@@ -131,10 +203,8 @@ def test_every_critical_task_drives_a_critical_successor():
     critical_dates = {m["date"] for m in milestones.values() if m["ku"]}
     driving = set()
     for succ in (t for t in tasks if t["ku"]):
-        for raw in re.split(r"[;,]", succ["deps"]):
-            start_to_start = "(KK)" in raw
-            raw = raw.replace("(KK)", "").strip()
-            if not raw or raw in milestones:
+        for raw, kind, lag in _deps(succ):
+            if raw in milestones:
                 continue
             explicit = re.search(r"\((\d\d\.\d\d\.)[^)]*\)", raw)
             if raw.endswith(".x"):
@@ -145,8 +215,7 @@ def test_every_critical_task_drives_a_critical_successor():
                 name = _resolve(raw, tasks, milestones)[0]
                 preds = [t for t in tasks if t["id"] == name]
             for pred in preds:
-                gap = _workdays_between(pred["end"], succ["start"])
-                if start_to_start or gap == 0 or (pred["id"], succ["id"]) in DOCUMENTED_BUFFERS:
+                if _drives(kind, lag, pred, succ) or (pred["id"], succ["id"]) in DOCUMENTED_BUFFERS:
                     driving.add(pred["id"])
     for t in (t for t in tasks if t["ku"]):
         assert t["id"] in driving or t["end"] in critical_dates, (t["id"], "kritikusnak jelölve, de van tartaléka")

@@ -5,7 +5,7 @@ Streamlit mellé telepített `websockets` csomaggal; új függőség nem kell.
 
 Használat (előtte a demó szerver fusson, hogy a pipálás ne írjon fájlba):
 
-    PM_MINDENES_STORAGE=session .venv/bin/streamlit run app.py --server.address 127.0.0.1 --server.port 8531
+    PM_MINDENES_STORAGE=session .venv/bin/streamlit run app.py --server.address 127.0.0.1 --server.port 8503
     .venv/bin/python tools/screenshots.py                    # → docs/screenshots/
     .venv/bin/python tools/screenshots.py --out kepek --only 06
 
@@ -50,6 +50,13 @@ def _click_label(text: str) -> str:
     return (
         "[...document.querySelectorAll('[data-testid=\"stCheckbox\"] label')]"
         f".find(l => l.innerText.includes({json.dumps(text)})).querySelector('input').click()"
+    )
+
+
+def _click_tab(text: str) -> str:
+    return (
+        "[...document.querySelectorAll('[role=\"tab\"]')]"
+        f".find(t => t.innerText.trim() === {json.dumps(text)}).click()"
     )
 
 
@@ -133,6 +140,16 @@ SHOTS = [
             _toggle_in_expander("Üzleti indoklás", "Kitöltött minta megjelenítése"),
             _scroll_to("p", "Melyik mintaprojektből?", offset=150),
         ],
+    },
+    {
+        "file": "08-wbs-fa.png",
+        "path": "/wbs",
+        "steps": [_open_expander("3. Felhőkörnyezet"), _scroll_to("summary", "3. Felhőkörnyezet", offset=110)],
+    },
+    {
+        "file": "09-wbs-fuggosegek.png",
+        "path": "/wbs",
+        "steps": [_click_tab("Függőségek"), _scroll_to("h4", "3.5", offset=140)],
     },
 ]
 
@@ -280,7 +297,7 @@ async def _capture(ws_url: str, base_url: str, out_dir: Path, shots: list[dict])
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    parser.add_argument("--url", default="http://127.0.0.1:8531", help="a futó (demó módú) app címe")
+    parser.add_argument("--url", default="http://127.0.0.1:8503", help="a futó (demó módú) app címe")
     parser.add_argument("--out", default=str(ROOT / "docs" / "screenshots"), help="célmappa")
     parser.add_argument("--only", nargs="*", help="csak ezek a képek (fájlnév-előtag, pl. 06)")
     parser.add_argument("--browser", help="az Edge/Chrome futtatható fájlja")

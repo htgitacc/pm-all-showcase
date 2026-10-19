@@ -219,6 +219,31 @@ glossary:
       A jóváhagyott hatókör, ütemterv és költségvetés **befagyasztott** változata.
       Ehhez méred később az eltérést. Csak jóváhagyott változáskéréssel módosítható.
     example: A 2026.03.13-i Planning-kapun jóváhagyott ütem- és költségbázis.
+  - hu: Kritikus út és tartalékidő
+    en: Critical Path, Float / Buffer
+    meaning: |
+      A kritikus út az egymásra épülő feladatok leghosszabb lánca: ha ezek közül bármelyik
+      csúszik, a projekt vége is csúszik. A többi feladatnak van **tartalékideje** (float):
+      ennyit csúszhat a határidő veszélyeztetése nélkül. A **projektpuffer** ettől külön,
+      tudatosan betervezett és jelölt tartalék — nem a feladatok hosszába rejtve.
+    example: A Xyo kritikus útján nincs rejtett puffer; a tartalék jelölten a hibajavításban és a 7.2–7.3 hullám között van.
+  - hu: Függőségtípus
+    en: Dependency Type (FS, SS, FF, SF)
+    meaning: |
+      Megmondja, két feladat melyik vége köti a másikat. **BK** (befejezés–kezdés, FS): az
+      utód az előd befejezése után indul — ez az alapeset. **KK** (kezdés–kezdés, SS): az utód
+      az előd indulása után kezdhet, és vele párhuzamosan fut. **BB** (befejezés–befejezés,
+      FF): az utód nem zárulhat az előd előtt. **KB** (kezdés–befejezés, SF): ritka, jellemzően
+      váltásnál fordul elő.
+    example: Az UAT az első hullámmal együtt indul (KK); az as-built dokumentáció az UAT-zárással együtt zárul (BB).
+  - hu: Késleltetés és előrehozás
+    en: Lag and Lead
+    meaning: |
+      A függőség eltolása munkanapban. A **késleltetés** (+N) kötelező várakozás, a logika
+      része: nem tartalék, nem lehet „elhasználni". Az **előrehozás** (−N) azt jelenti, hogy
+      az utód ennyivel az előd vége előtt indulhat. A hosszú várakozást (szállítás,
+      jóváhagyás) inkább külön feladatként vedd fel: úgy látszik a kritikus úton.
+    example: A mérési felelősségek átadása az üzemeltetésbe adás indulása után 2 munkanappal kezdődik (KK +2 mn).
   - hu: Kockázatnyilvántartás
     en: Risk Register
     meaning: |

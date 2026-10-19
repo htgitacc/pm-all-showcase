@@ -126,6 +126,10 @@ XYO-CP  Xyo Cloud Pilot
 | 8.3 | Átadott mérési felelősségek | Tóth Gergő | 8 óra | belső |
 | | **Összesen** | | **1 260 óra** | |
 
+*A 8–80 órás elvtől egy munkacsomag tér el: az **1.2** (120 óra) folyamatos, ütemhez kötött tevékenység — a
+havi státuszriportálás és kontroll —, amelynek nincs kézzelfogható köztes eredménye, ezért nem bontható
+tovább. Minden más csomag 8 és 80 óra között van.*
+
 **Ebből:**
 
 | | Óra | Megjegyzés |

@@ -10,6 +10,24 @@ import streamlit as st
 
 from pm_app import config, content, downloads, progress
 
+# Keskeny kijelzőn a mintadokumentumok széles markdown-táblái túllógnának a kártyán, és az utolsó
+# oszlop levágódna: a tábla saját vízszintes görgetést kap. A kártyán belüli mintadokumentum
+# címei (44/36 px) a hosszú összetett szavakat szó közben törnék („munkacsomagonké-nt”): kisebbek.
+# Asztali szélességen nem változik semmi.
+NARROW_SCREEN_CSS = """<style>
+@media (max-width: 640px) {
+  [data-testid="stMarkdownContainer"] table { display: block; max-width: 100%; overflow-x: auto; }
+  [data-testid="stExpander"] [data-testid="stMarkdownContainer"] h1 { font-size: 1.45rem; }
+  [data-testid="stExpander"] [data-testid="stMarkdownContainer"] h2 { font-size: 1.25rem; }
+  [data-testid="stExpander"] [data-testid="stMarkdownContainer"] h3 { font-size: 1.1rem; }
+}
+</style>"""
+
+
+def page_css() -> None:
+    """Az alkalmazás saját stílusai; csak `<style>`, ezért a Streamlit nem rajzol hozzá elemet."""
+    st.html(NARROW_SCREEN_CSS)
+
 
 def text_table(rows: list[dict], height: int | None = None) -> None:
     """Hosszabb szöveget tartalmazó tábla.

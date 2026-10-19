@@ -339,7 +339,7 @@ documents:
       csúszás komoly és melyik nem.
     contents:
       - Feladatok a WBS alapján, időtartammal
-      - Függőségek a feladatok között
+      - Függőségek és típusuk (BK, KK, BB, KB), késleltetéssel és előrehozással
       - Kritikus út megjelölése
       - Mérföldkövek dátummal
       - Puffer / tartalékidő megjelölése
@@ -718,6 +718,10 @@ checklist:
       - A becsléseket a munkacsomag-felelősöktől kérd, ne te találd ki.
       - A szállítási időket és a jóváhagyási köröket is vedd fel feladatként.
       - Számolj visszafelé a kemény határidőktől.
+      - >
+        A függőség alapesetben befejezés–kezdés (BK). KK-t vagy BB-t akkor írj, ha a két
+        feladat részben párhuzamosan futhat; a kötelező várakozást (+N munkanap) jelöld,
+        ne rejtsd el a feladat hosszában.
     tip: >
       Az ütemtervben legyen látható puffer. A rejtett puffer (mindenhova +20%) nem
       kezelhető, és a csapat úgyis rájön.

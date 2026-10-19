@@ -396,7 +396,8 @@ def view() -> None:
     )
     st.caption(
         "A ◆ mérföldkő, a szürke sáv munkaszüneti nap. A sávra mutatva a függőségeket is "
-        "látod; a diagram jobb felső sarkában teljes képernyőre nagyíthatod."
+        "látod (jelölés nélkül befejezés–kezdés; a KK, BB és a +N mn késleltetés jelentését az "
+        "Ütemterv dokumentum magyarázza); a diagram jobb felső sarkában teljes képernyőre nagyíthatod."
     )
 
     by_key = {m["key"]: m for m in milestones}

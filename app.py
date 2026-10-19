@@ -5,7 +5,7 @@ Indítás:  streamlit run app.py
 
 import streamlit as st
 
-from pm_app import config, content, gantt, progress, views
+from pm_app import config, content, gantt, progress, render, views, wbs
 
 st.set_page_config(
     page_title=config.APP_TITLE,
@@ -15,6 +15,7 @@ st.set_page_config(
 )
 
 progress.state()  # a pipák betöltése fájlból az első futásnál
+render.page_css()
 
 PHASE_ICONS = {
     1: ":material/rocket_launch:",
@@ -63,6 +64,12 @@ navigation = st.navigation(
                 title="Dokumentumtérkép",
                 url_path="dokumentumterkep",
                 icon=":material/account_tree:",
+            ),
+            st.Page(
+                wbs.view,
+                title="WBS",
+                url_path="wbs",
+                icon=":material/schema:",
             ),
             st.Page(
                 gantt.view,

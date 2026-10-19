@@ -35,6 +35,19 @@ def test_full_app_renders(tmp_progress):
     assert not at.exception, at.exception
 
 
+def test_narrow_screen_tables_scroll_instead_of_overflowing(tmp_progress):
+    """Mobilon a széles mintadokumentum-tábla saját görgetést kap, a kártyán belüli címek kisebbek
+    (különben szó közben törnek); asztalon nem változik semmi (csak a médialekérdezésen belül)."""
+    css = render.NARROW_SCREEN_CSS
+    body = css.split("@media (max-width: 640px) {", 1)[1]
+    assert '[data-testid="stMarkdownContainer"] table' in body and "overflow-x: auto" in body
+    for heading in ("h1", "h2", "h3"):
+        assert f'[data-testid="stExpander"] [data-testid="stMarkdownContainer"] {heading} {{ font-size:' in body
+    assert css.split("@media", 1)[0].strip() == "<style>", "médialekérdezésen kívüli szabály az asztalt is érintené"
+    at = AppTest.from_file("../app.py", default_timeout=60).run()
+    assert any(css in str(getattr(el.proto, "body", "")) for el in at.get("html")), "a CSS nincs az oldalon"
+
+
 def test_full_zip_contains_every_sample():
     docs = downloads.all_docs_with_samples()
     archive = zipfile.ZipFile(io.BytesIO(downloads.build_zip(docs)))

@@ -41,7 +41,7 @@
 | **Mit NEM tartalmaz** | A pilot körön kívüli felhasználók MFA-ját |
 | **Kész-definíció** | Az Entra ID riport **100% MFA-lefedettséget** mutat a pilot körben; a feltételes hozzáférési szabályok jelentés-módban legalább 5 munkanapig futottak hiba nélkül; a break-glass fiók dokumentálva és tesztelve |
 | **Becsült ráfordítás** | 32 óra |
-| **Függőség** | 3.1.1 (fiókok léteznek) |
+| **Függőség** | 3.1.1 (fiókok léteznek); 4.3 (KK — a biztonsági alapkonfiguráció már fut, a szabályok ezt követik) |
 | **Kockázat** | Rosszul beállított szabály kizárhatja a felhasználókat — ezért kötelező a jelentés-mód |
 
 ## 3.3.2 — Megőrzési és mentési szabályok, visszaállítási teszt
@@ -66,9 +66,9 @@
 | **Felelős** | Kiss Réka |
 | **Mit tartalmaz** | Hibakezelési útmutató az új környezethez, a leggyakoribb 15 hibatípus megoldásával; a hypercare időszak kapacitástervezése; a Service Desk munkatársainak felkészítése |
 | **Mit NEM tartalmaz** | A végfelhasználói oktatást (5.2) |
-| **Kész-definíció** | Az útmutató elkészült és a Service Desk mindhárom munkatársa **átvette és végigment rajta**; a hypercare kapacitás írásban egyeztetve; a felkészítés **legalább 2 héttel az első élesítés előtt** megtörtént |
+| **Kész-definíció** | Az útmutató elkészült és a Service Desk mindhárom munkatársa **átvette és végigment rajta**; a hypercare kapacitás írásban egyeztetve; az útmutatót a Service Desk **legalább 2 héttel az első élesítés előtt (04.27-ig)** megkapta, a felkészítés az élesítés előtt lezárult (AK-22) |
 | **Becsült ráfordítás** | 24 óra |
-| **Függőség** | 3.5 (as-built), 5.1 (oktatási anyag) |
+| **Függőség** | 5.1 (KK — az oktatási anyag első változata); 3.5 (as-built — csak a tervezett konfiguráció, a végleges leírás a felkészítés után készül) |
 | **Kockázat** | R5 — felhasználói ellenállás, ha a támogatás nem működik |
 
 ## 6.3 — Felhasználói átvételi teszt (UAT)
@@ -106,7 +106,7 @@
 | **Mit tartalmaz** | A haszonrealizálási terv, a KPI-adatlapok és a T0 adatok átadása a mérési felelősöknek; a havi adatszolgáltatás rendjének rögzítése |
 | **Kész-definíció** | Minden mérőszámhoz **nevesített felelős**, aki írásban visszaigazolta a feladatot; az első havi adatszolgáltatás időpontja rögzítve |
 | **Becsült ráfordítás** | 8 óra |
-| **Függőség** | 8.1, 8.2 |
+| **Függőség** | 8.1, 8.2; 1.3 (KK +2 mn — az üzemeltetés átvétele után két munkanappal) |
 | **Kockázat** | Gazdátlan mérés nem történik meg — ez a projektzárás feltétele |
 
 ---
@@ -118,7 +118,7 @@
 | 2.3.1 | 50 gép leltárban + 50 gép az Autopilot listában + aláírt teljesítésigazolás |
 | 3.1.2 | 100% MFA + 5 nap hibátlan jelentés-mód + tesztelt break-glass fiók |
 | 3.3.2 | Sikeres, jegyzőkönyvezett fájl- és könyvtár-visszaállítás |
-| 5.3 | Átvett útmutató + egyeztetett kapacitás + 2 héttel az élesítés előtt |
+| 5.3 | Útmutató 2 héttel az élesítés előtt átadva + egyeztetett kapacitás + lezárult felkészítés |
 | 6.3 | ≥95% teszteset megfelelt + nincs nyitott kritikus hiba |
 | 7.4 | Hibaszám 2 hete a normál 150%-a alatt + maradék hibák átadva |
 | 8.3 | Minden mérőszámnak nevesített, visszaigazolt felelőse van |

@@ -91,6 +91,13 @@ a Kőris Tervező Kft. irodaköltözésének üzleti indoklása, a példaválasz
 
 ![Második mintaprojekt](docs/screenshots/07-masodik-mintaprojekt.png)
 
+**WBS-nézet:** a Xyo-projekt munkalebontása böngészhetően — fa, táblázat, függőségek típussal és
+késleltetéssel (BK, KK, BB, KB), ráfordítás ágak szerint.
+
+| Fa | Függőségek |
+|---|---|
+| ![WBS-fa](docs/screenshots/08-wbs-fa.png) | ![WBS-függőségek](docs/screenshots/09-wbs-fuggosegek.png) |
+
 ## Hogyan használható?
 
 | Mire kell | Hogyan használom |
@@ -117,6 +124,9 @@ a Kőris Tervező Kft. irodaköltözésének üzleti indoklása, a példaválasz
 - **Gantt-nézet** *(kiegészítő)*: a mintaprojekt baseline ütemterve kritikus úttal,
   várakozási idővel, jelölt tartalékkal, munkaszüneti napokkal és a mérföldkövek
   terv–tény összevetésével — közvetlenül az Ütemterv mintadokumentumból rajzolva.
+- **WBS-nézet** *(kiegészítő)*: a mintaprojekt munkalebontása fában, táblázatban, csomagonkénti
+  függőségekkel (típus, késleltetés) és ráfordítással — a WBS, a WBS-szótár és az Ütemterv
+  mintadokumentumból rajzolva.
 - **Letöltések**: minták egyesével, fázisonként zip-ben, teljes csomagként, és a második
   példa (Kőris) külön csomagban.
 - **Szótár**: magyar–angol PM fogalomtár junior magyarázatokkal.
@@ -172,7 +182,7 @@ szerepel, és egy ilyen csomagban a hiba jellemzően nem egy dokumentumon belül
 hanem **a dokumentumok között** van.
 
 Ezért a számokat és a logikát **automatizált tesztek alá tettem** (`tests/`,
-228 db, GitHub Actions minden pushnál, Python 3.12-n és 3.13-on, lint-ellenőrzéssel):
+276 db, GitHub Actions minden pushnál, Python 3.12-n és 3.13-on, lint-ellenőrzéssel):
 
 - a költségvetést a fizetési ütemezéssel és a pénzügyi zárással,
 - az ütemtervet a munkaszüneti napokkal, a függőségekkel és a kritikus úttal,
@@ -252,6 +262,8 @@ ruff check .
 | `test_schedule.py` | Ütemterv: naptári napok, munkaszüneti napok, függőségek, kritikus út, dátumok összhangja |
 | `test_resources.py` | WBS-órák, erőforrásterv, RACI, kockázati pontszámok és darabszámok |
 | `test_gantt.py` | A Gantt-nézet: minden ütemtervsor és mérföldkő a dokumentum dátumaival, a tartalékok és munkaszüneti napok, minden nézetváltozat, a nézetkapcsolók nem hagyhatók üresen |
+| `test_wbs.py` | A WBS-nézet: a fa, a munkacsomag-tábla, a szótár és az ütemterv összhangja (órák, felelősök, dátumok, függőségek, körmentesség), az oldal mind a négy füle |
+| `test_dependencies.py` | A függőségjelölés értelmezője: típus, késleltetés, előrehozás, elírt jelölés |
 | `test_registers.py` | Nyilvántartások: változásnapló és tartalékegyenleg, döntés-, probléma- és eszkalációs napló, hibalista, átvételi kritériumok, fizetési ütemezés és kötbér |
 | `test_quality.py` | Követelmény-nyomonkövetés (követelmény → teszteset → átvételi kritérium → szerződéses feltétel), tesztkörök, minőségellenőrzés, beszerzési pontozás, oktatás, érintettek–RACI–kommunikáció, archiválási jegyzék |
 | `test_reports.py` | Riportok a kiadásuk napjára vetítve: státusz-, Steering- és kockázati riport, EVM-pont, eszkalációk, PRINCE2 highlight / exception / end stage report, hírlevelek, jegyzőkönyv-számozás |
@@ -286,6 +298,8 @@ pm_app/
   views.py              az egyes oldalak
   downloads.py          md letöltés és zip csomagolás
   gantt.py              a Gantt-nézet (kiegészítő, egy lépésben eltávolítható)
+  wbs.py                a WBS-nézet (kiegészítő, egy lépésben eltávolítható)
+  dependencies.py       az ütemterv függőségjelölésének értelmezője (típus, késleltetés)
 content/
   meta.yaml             bevezető, mintaprojekt adatai, szótár
   prince2.yaml          a PRINCE2 kiegészítő réteg tartalma
@@ -294,7 +308,7 @@ docs/<fázis>/*.md       a kitöltött Xyo-minták (az elsődleges, teljes péld
 docs/peldak/koris/      a második példa: Kőris Tervező Kft. irodaköltözése (az 1. fázis)
 docs/prince2/*.md       PRINCE2 összefoglaló + 4 mintadokumentum
 data/progress.json      a pipák állapota (git-ignorálva)
-tests/                  pytest: tartalom, számok, mérési lánc, ütemterv, Gantt-nézet, erőforrás és kockázat, nyilvántartások, követelmények, riportok, haladás, oldalak
+tests/                  pytest: tartalom, számok, mérési lánc, ütemterv, Gantt-nézet, WBS-nézet, erőforrás és kockázat, nyilvántartások, követelmények, riportok, haladás, oldalak
 .github/workflows/      CI: a tesztek futtatása minden pushnál
 pm-initial.md           a termék eredeti koncepciója
 docs/screenshots/       a README képernyőképei (újragyártás: tools/screenshots.py)
@@ -356,6 +370,24 @@ Szűrhető a kritikus útra, rendezhető időrendben vagy WBS-áganként, és a 
 szakasz (PIR) is bekapcsolható. A PMI-gerincet nem módosítja; eltávolítás egy
 lépésben: `pm_app/gantt.py`, az `app.py` „Gantt-nézet" oldala és a
 `tests/test_gantt.py`.
+
+## WBS-nézet
+
+A **Segédletek → WBS** oldal a mintaprojekt munkalebontását mutatja böngészhetően.
+Nincs saját adata: a *WBS* (fa és munkacsomagok), a *WBS-szótár* (kész-definíciók) és az
+*Ütemterv* (dátum, kritikus út, függőségek) mintadokumentumot olvassa, ezért nem térhet el
+tőlük — és a `tests/test_wbs.py` a három dokumentum összhangját is őrzi.
+
+| Fül | Mit mutat |
+|---|---|
+| Fa | A 8 főág lenyitható, beágyazott lebontásban: munkacsomag, felelős, óra, belső/külső, ütem, kritikus út jelölése |
+| Táblázat | Mind a 37 munkacsomag; szűrhető ág, ki végzi és kritikus út szerint |
+| Függőségek | Egy munkacsomag elődei és utódai a típussal (BK, KK, BB, KB) és a késleltetéssel (+N mn); a szótári lap; kapcsolóval a teljes háló |
+| Ráfordítás | 1 260 óra: belső és külső, ágak szerint |
+
+A függőségjelölés (`06-utemterv.md`, „Függőségtípusok, késleltetés, előrehozás") értelmezője a
+`pm_app/dependencies.py`; a tesztek és az oldal ugyanazt használják. A PMI-gerincet nem módosítja;
+eltávolítás egy lépésben: `pm_app/wbs.py`, az `app.py` „WBS" oldala és a `tests/test_wbs.py`.
 
 ## Tartalmi elvek
 
