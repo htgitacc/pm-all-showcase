@@ -7,14 +7,20 @@ from datetime import date
 
 import streamlit as st
 
-from pm_app import config, content, downloads, progress, render
+from pm_app import config, content, downloads, itil4, progress, render, theme
 
 # --------------------------------------------------------------------------- áttekintés
 
 def overview() -> None:
     meta = content.load_meta()
-    st.title(config.APP_TITLE)
-    st.caption(config.APP_SUBTITLE)
+    phases = content.load_phases()
+    stats = [
+        (len(phases), "fázis"),
+        (sum(len(p.get("checklist", [])) for p in phases), "lépés"),
+        (len(content.load_doc_index()), "kitöltött minta"),
+        (len(content.sample_projects()), "mintaprojekt"),
+    ]
+    st.html(theme.hero_html(config.APP_TITLE, config.APP_SUBTITLE, stats))
 
     st.markdown(meta.get("intro", ""))
 
@@ -24,13 +30,12 @@ def overview() -> None:
     )
 
     st.subheader("A projekt fázisai")
-    phases = content.load_phases()
     for row_start in range(0, len(phases), 3):
         columns = st.columns(3)
         for column, phase in zip(columns, phases[row_start : row_start + 3]):
-            with column, st.container(border=True):
+            with column, st.container(border=True, key=f"fazis-kartya-{phase['number']}"):
                 stats = progress.phase_stats(phase)
-                st.markdown(f"**{phase['number']}. {phase['title_hu']}**")
+                st.html(theme.card_head_html(phase["number"], phase["title_hu"]))
                 st.caption(phase.get("title_en", ""))
                 st.progress(stats["ratio"])
                 st.caption(
@@ -194,6 +199,7 @@ def make_phase_view(phase_id: str):
         render.responsibility_block(phase)
         render.phase_gate(phase)
         render.prince2_block(phase)
+        itil4.phase_block(phase)
 
         with st.expander("Ennek a fázisnak a pipáit törlöm"):
             if st.button(

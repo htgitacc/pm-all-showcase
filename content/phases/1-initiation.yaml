@@ -758,3 +758,28 @@ prince2:
     - name_hu: Tanulságok naplója
       name_en: Lessons Log
       pmi: Tanulságok naplója — de PRINCE2-ben már itt megnyílik
+
+# ITIL 4 — módszertani kiegészítés (jelölt réteg, lásd content/itil4.yaml)
+itil4:
+  activities: [engage, plan]
+  practices: [relationship_management, service_level_management]
+  other_practices: [Portfóliómenedzsment, Szolgáltatási pénzügyi menedzsment, Üzleti elemzés]
+  summary: >
+    A Kezdeményezés az ITIL-ben a **Bevonás** és a **Tervezés**: az igény megértése és a döntés a
+    befektetésről. A Xyo dokumentumai ezt jól lefedik — a haszonrealizálási terv eleve
+    **eredményeket** mér (munkába állási idő, megoldási idő, elégedettség), nem kimeneteket.
+  adds:
+    - what: A szolgáltatásgazda kijelölése már a Charterben
+      why: >
+        A Xyo-ban Nagy Péter szakmai vezetőként és átvevőként szerepel. ITIL-szemmel ő a leendő szolgáltatás
+        gazdája is — ha ez az elején kimondva, az átadás nem a projekt végén kezdődik.
+    - what: A Service Desk mint a szolgáltatás gazdája, nem csak végrehajtója
+      why: >
+        A Xyo-ban Kiss Réka az érintettelemzésben „kezdetben ellenálló” volt (E5), a kezelése „bevonás, nem
+        tájékoztatás”. Az ITIL ezt a szolgáltatás tervezésének részeként kezeli, nem kommunikációs
+        feladatként.
+    - what: Az SLA-jelöltek megjelölése a haszonmérésben
+      why: >
+        A megoldási idő (M2), a rendelkezésre állás (M9) és az elégedettség (M11) a mérési szakasz
+        után is mérendő. Ha már itt jelölt, a PIR után nem vész el.
+  who: Xyo — Horváth Júlia (megrendelő), Kovács Anita (szponzor), Nagy Péter (leendő szolgáltatásgazda), Kiss Réka

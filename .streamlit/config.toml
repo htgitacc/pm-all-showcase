@@ -1,6 +1,24 @@
 [theme]
 base = "light"
-primaryColor = "#1f6feb"
+# Őszi, visszafogott színvilág egyetlen témában (pm_app/theme.py): meleg papírszín háttér,
+# sötétbarna szöveg, terrakotta kiemelés. Nem vakít, félhomályban is olvasható.
+primaryColor = "#a14a2c"
+linkColor = "#a14a2c"
+textColor = "#2a2420"
+backgroundColor = "#f3eee7"
+secondaryBackgroundColor = "#e9e1d6"
+borderColor = "#d9cfc2"
+baseRadius = "0.6rem"
+# Az „info” dobozok hideg ellenpontja: palakék-zöld a meleg háttéren
+blueTextColor = "#2f5560"
+blueBackgroundColor = "#e1e8e4"
+redTextColor = "#9b2c22"
+redBackgroundColor = "#f3dcd3"
+orangeTextColor = "#8a4b0f"
+orangeBackgroundColor = "#f3e3cc"
+
+[theme.sidebar]
+backgroundColor = "#ebe3d8"
 
 [browser]
 gatherUsageStats = false

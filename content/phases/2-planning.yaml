@@ -977,3 +977,28 @@ prince2:
     - name_hu: Kommunikációkezelési megközelítés
       name_en: Communication Management Approach
       pmi: Kommunikációs terv
+
+# ITIL 4 — módszertani kiegészítés (jelölt réteg, lásd content/itil4.yaml)
+itil4:
+  activities: [plan, design_transition]
+  practices: [service_level_management, information_security_management, supplier_management, change_enablement]
+  other_practices: [Szolgáltatástervezés, Rendelkezésre állás menedzsment, Szolgáltatásfolytonosság-menedzsment]
+  summary: >
+    A Tervezés ITIL-szemmel a **Kialakítás és átadás** első fele: mit és milyen minőségben kell
+    átadni. A biztonsági alapkonfiguráció, a visszaállási terv és a minőségterv már ide tartozik.
+    **A hiány:** a követelménymátrix funkciókat ír le, de **szolgáltatásszint-követelményt nem** —
+    nincs benne rendelkezésre állás vagy megoldási idő.
+  adds:
+    - what: Szolgáltatásszint-követelmények a követelménymátrixban
+      why: >
+        Például megoldási idő, rendelkezésre állás, Service Desk-elérhetőség. Ezekből lesz a zárásnál
+        a belső SLA — és ezek alapján lehet a szállítói vállalásokat is ellenőrizni.
+    - what: Szolgáltatási elfogadási kritériumok az átvételi kritériumok mellé
+      why: >
+        Nem csak „működik-e”, hanem „üzemeltethető-e”: kész a runbook, átadták a jogosultságokat,
+        a Service Desk felkészült, az ismert hibák kerülőmegoldással dokumentáltak.
+    - what: Az üzemeltetési változásmodell előkészítése
+      why: >
+        Már tervezéskor eldönthető, mely változások lesznek szabványosak (új belépő, kilépő), és ki
+        engedélyezi a többit. A projekt változáskezelési eljárása ezt nem fedi le.
+  who: Xyo — Tóth Gergő, Nagy Péter, Kiss Réka, Szabó Márk, Molnár Katalin, dr. Fekete Zsolt

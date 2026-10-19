@@ -42,7 +42,7 @@ def test_narrow_screen_tables_scroll_instead_of_overflowing(tmp_progress):
     body = css.split("@media (max-width: 640px) {", 1)[1]
     assert '[data-testid="stMarkdownContainer"] table' in body and "overflow-x: auto" in body
     for heading in ("h1", "h2", "h3"):
-        assert f'[data-testid="stExpander"] [data-testid="stMarkdownContainer"] {heading} {{ font-size:' in body
+        assert f':is([data-testid="stExpander"], [data-testid="stTabs"]) [data-testid="stMarkdownContainer"] {heading} {{ font-size:' in body
     assert css.split("@media", 1)[0].strip() == "<style>", "médialekérdezésen kívüli szabály az asztalt is érintené"
     at = AppTest.from_file("../app.py", default_timeout=60).run()
     assert any(css in str(getattr(el.proto, "body", "")) for el in at.get("html")), "a CSS nincs az oldalon"
@@ -97,6 +97,15 @@ def test_phase_text_tables_wrap_instead_of_clipping(phase_id, tmp_progress):
 )
 def test_table_cells_do_not_turn_into_markdown_lists(raw, shown):
     assert render.table_cell(raw) == shown
+
+
+def test_hash_table_header_is_not_an_empty_heading():
+    # a „#” fejléc markdownként üres címsor lenne (a PRINCE2-oldal szakasztáblája ezt használja)
+    assert render.table_header("#") == "\\#" and render.table_header("Szakasz") == "Szakasz"
+    at = AppTest.from_string(
+        "from pm_app import render\nrender.text_table([{'#': 1, 'Név': 'a'}])\n", default_timeout=30
+    ).run()
+    assert list(at.table[0].value.columns) == ["\\#", "Név"]
 
 
 def test_doc_map_phase_column_is_not_a_numbered_list(tmp_progress):

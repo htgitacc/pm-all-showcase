@@ -18,7 +18,7 @@ logging.getLogger("streamlit").setLevel(logging.ERROR)
 
 
 def sample_docs() -> list[Path]:
-    """Az elsődleges (Xyo) mintadokumentumok: a `docs/` fázismappái és a `docs/prince2/`.
+    """Az elsődleges (Xyo) mintadokumentumok: a `docs/` fázismappái, a `docs/prince2/` és a `docs/itil4/`.
 
     Nem tartoznak ide a `docs/peldak/` alatti további mintaprojektek (azok saját belső
     számokkal és dátumokkal élnek, lásd `example_docs`), és a `docs/` gyökerében meg az
@@ -28,7 +28,7 @@ def sample_docs() -> list[Path]:
     return sorted(
         p for p in docs.rglob("*.md")
         if len(p.relative_to(docs).parts) > 1
-        and (p.relative_to(docs).parts[0][:1].isdigit() or p.relative_to(docs).parts[0] == "prince2")
+        and (p.relative_to(docs).parts[0][:1].isdigit() or p.relative_to(docs).parts[0] in ("prince2", "itil4"))
     )
 
 

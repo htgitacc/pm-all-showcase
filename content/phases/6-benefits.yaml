@@ -552,3 +552,27 @@ prince2:
     - name_hu: Projekt utáni haszonértékelés
       name_en: Post-project benefits review
       pmi: Utólagos értékelés (PIR)
+
+# ITIL 4 — módszertani kiegészítés (jelölt réteg, lásd content/itil4.yaml)
+itil4:
+  activities: [improve, engage]
+  practices: [continual_improvement, service_level_management, relationship_management]
+  other_practices: [Mérés és jelentés, Portfóliómenedzsment]
+  summary: >
+    A haszonmérés ITIL-szemmel a **Fejlesztés** és a **Bevonás**: a PIR lényegében az első
+    **szolgáltatásfelülvizsgálat**. A Xyo mérési lánca (T0 → havi mérések → kérdőív → PIR) erős —
+    a gyengéje, hogy a PIR után nincs folytatása.
+  adds:
+    - what: Folyamatos fejlesztési nyilvántartás gazdával
+      why: >
+        A tanulságok, a PIR nyitott pontjai és a kiterjesztés előfeltételei (F1–F5) egy
+        nyilvántartásba kerülnek, prioritással és felelőssel — Nagy Péternél.
+    - what: Negyedéves szolgáltatásfelülvizsgálat
+      why: >
+        Az SLA-célok, az incidens- és problématrend, a felhasználói visszajelzés — a megrendelővel.
+        Ez a fórum, ahol a H-09 négy hónap után döntést kapna.
+    - what: A mérőszámokból SLA, a célokból SLA-célszint
+      why: >
+        A mérési szakasz után is mérendő mutatók (M2, M9, M11) átkerülnek a belső SLA-ba, a PIR
+        eredményei a kiinduló célszintek.
+  who: Xyo — Nagy Péter, Kiss Réka, Varga Eszter, Horváth Júlia

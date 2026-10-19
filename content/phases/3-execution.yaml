@@ -709,3 +709,28 @@ prince2:
     - name_hu: Problémanyilvántartás
       name_en: Issue Register
       pmi: Problémanapló + Változásnapló együtt
+
+# ITIL 4 — módszertani kiegészítés (jelölt réteg, lásd content/itil4.yaml)
+itil4:
+  activities: [obtain_build, design_transition]
+  practices: [change_enablement, release_management, deployment_management, service_configuration_management, it_asset_management]
+  other_practices: [Szolgáltatásvalidálás és -tesztelés, Tudásmenedzsment]
+  summary: >
+    A Megvalósítás a **Beszerzés és építés** és a **Kialakítás és átadás** második fele. Az ITIL
+    nyelvén a három élesítési hullám három **kiadás**, az Autopilot-beüzemelés **telepítés**, az
+    as-built dokumentáció a **konfiguráció** leírása. A projekt ezeket jól csinálta — az ITIL itt
+    főleg nevet ad, és két ponton hozzátesz.
+  adds:
+    - what: Éles változásengedélyezés a hullámok alatt
+      why: >
+        Amikor az első hullám élesben dolgozik, a további konfigurációs módosítás már éles változás.
+        A P-05 (három tesztelő kizárása egy feltételes hozzáférési szabály miatt) pontosan ilyen eset.
+    - what: Tudáscikkek a Service Desknek menet közben
+      why: >
+        A runbook 15 leggyakoribb esete a hullámok tapasztalatából állt össze. ITIL-szemmel ez
+        tudásmenedzsment: minden új megoldás azonnal cikk, nem a zárásnál összegyűjtött lista.
+    - what: A konfiguráció alapállapota
+      why: >
+        Az as-built a hullámok végén rögzített állapot. Ha ez a „bázis”, a későbbi változások ehhez
+        mérhetők — enélkül fél év múlva senki nem tudja, mi az eredeti beállítás.
+  who: Xyo — Tóth Gergő, Szabó Márk, Cloudia Solutions Kft., Nagy Péter

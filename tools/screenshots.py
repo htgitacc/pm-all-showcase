@@ -151,6 +151,16 @@ SHOTS = [
         "path": "/wbs",
         "steps": [_click_tab("Függőségek"), _scroll_to("h4", "3.5", offset=140)],
     },
+    {
+        "file": "10-itil4-erteklanc.png",
+        "path": "/itil4",
+        "steps": [_click_tab("Értéklánc"), _scroll_to("h3", "A szolgáltatási értéklánc", offset=90)],
+    },
+    {
+        "file": "11-itil4-merheto-eredmeny.png",
+        "path": "/itil4",
+        "steps": [_click_tab("Mérhető eredmény"), _scroll_to("h4", "A Xyo 12 mérőszáma", offset=90)],
+    },
 ]
 
 # ------------------------------------------------------------------ DevTools-vezérlés

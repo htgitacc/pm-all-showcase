@@ -5,7 +5,7 @@ Indítás:  streamlit run app.py
 
 import streamlit as st
 
-from pm_app import config, content, gantt, progress, render, views, wbs
+from pm_app import config, content, gantt, itil4, progress, render, views, wbs
 
 st.set_page_config(
     page_title=config.APP_TITLE,
@@ -96,6 +96,12 @@ navigation = st.navigation(
                 title="PRINCE2",
                 url_path="prince2",
                 icon=":material/compare_arrows:",
+            ),
+            st.Page(
+                itil4.view,
+                title="ITIL 4",
+                url_path="itil4",
+                icon=":material/support_agent:",
             ),
         ],
     },

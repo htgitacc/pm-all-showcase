@@ -580,3 +580,27 @@ prince2:
     - name_hu: Problémajelentés
       name_en: Issue Report
       pmi: Változáskérelem
+
+# ITIL 4 — módszertani kiegészítés (jelölt réteg, lásd content/itil4.yaml)
+itil4:
+  activities: [improve, plan]
+  practices: [incident_management, problem_management, monitoring_event_management, continual_improvement]
+  other_practices: [Mérés és jelentés, Kockázatmenedzsment]
+  summary: >
+    A Felügyelet a projekt saját **Fejlesztés**-köre. Egy szolgáltatásbevezetésnél azonban az első
+    hullám élesítésétől (2026.05.11.) már **szolgáltatás is fut**: a felhasználói bejelentések
+    incidensek, nem projekt-issue-k. Ettől a naptól két világ él egymás mellett.
+  adds:
+    - what: Világos határ a projekt-issue és az incidens között
+      why: >
+        A tesztben és a hullámok előkészítésében talált hiba projekt-issue (problémanapló); az
+        élesben dolgozó felhasználó bejelentése incidens, amit a Service Desk kezel.
+    - what: Incidenstrend a státuszriportban
+      why: >
+        A pilot terhelése hullámról hullámra 3,4 → 2,1 → 1,5 ticket/fő volt. Ez a szám a
+        státuszriportban a hullámok minőségét mutatja meg — ITIL-szemmel ez a legjobb korai jelzés.
+    - what: Problémajelölt az ismétlődő hibákra
+      why: >
+        Ami a hullámokban többször visszajön (például a késő MFA-értesítés, H-09), az problémajelölt
+        — gazdával és kiváltó feltétellel, nem „figyelés alatt”.
+  who: Xyo — Tóth Gergő, Kiss Réka, Szabó Márk

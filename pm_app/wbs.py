@@ -23,6 +23,7 @@ from pm_app.dependencies import parse_dependencies
 from pm_app.gantt import (
     CATEGORIES,
     CRITICAL,
+    MILESTONE_COLOR,
     NORMAL,
     _first_table,
     _plain,
@@ -437,7 +438,7 @@ def _effort_tab(data: dict) -> None:
     frame = pd.DataFrame(
         [{"Ág": f"{b['id']}. {b['name']}", "Belső": b["internal"], "Külső": b["external"]} for b in data["branches"]]
     ).set_index("Ág")
-    st.bar_chart(frame, horizontal=True, stack=True, color=[CATEGORIES[NORMAL], "#e0a030"], height=320)
+    st.bar_chart(frame, horizontal=True, stack=True, color=[CATEGORIES[NORMAL], MILESTONE_COLOR], height=320)
     st.caption(
         "A vegyes munkacsomagok (3.3.1, 3.4.2, 3.5, 5.2) órái a WBS-dokumentum lábjegyzete szerint oszlanak "
         "meg belső és külső között."

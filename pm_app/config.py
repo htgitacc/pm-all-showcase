@@ -9,6 +9,7 @@ CONTENT_DIR = ROOT / "content"
 PHASES_DIR = CONTENT_DIR / "phases"
 META_FILE = CONTENT_DIR / "meta.yaml"
 PRINCE2_FILE = CONTENT_DIR / "prince2.yaml"
+ITIL4_FILE = CONTENT_DIR / "itil4.yaml"
 DOCS_DIR = ROOT / "docs"
 DATA_DIR = ROOT / "data"
 PROGRESS_FILE = DATA_DIR / "progress.json"
@@ -49,6 +50,17 @@ BADGE_PRINCE2 = ":violet-badge[PRINCE2]"
 PRINCE2_NOTE = (
     "Ez a blokk **módszertani kiegészítés**. A fázis PMI szerinti tartalmát "
     "nem módosítja — azt mutatja meg, hogyan nézne ki ugyanez PRINCE2-ben."
+)
+
+# Az ITIL 4-réteg jelölése — a PRINCE2-höz hasonlóan végig ugyanaz
+BADGE_ITIL4 = ":orange-badge[ITIL 4]"
+ITIL4_NOTE = (
+    "Ez a blokk **módszertani kiegészítés**. A fázis PMI szerinti tartalmát nem módosítja — "
+    "azt mutatja meg, hová esik a fázis az ITIL 4 szolgáltatási értékláncában, és mit tenne hozzá."
+)
+ITIL4_TRADEMARK = (
+    "Az ITIL® a PeopleCert bejegyzett védjegye. A réteg szövege saját megfogalmazás, "
+    "nem a hivatalos kiadvány részlete."
 )
 
 # A dokumentumkártyák magyarázata az "ajánlott" kategóriához

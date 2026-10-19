@@ -37,14 +37,15 @@ CRITICAL_WAIT = "Kritikus út — várakozás"
 NORMAL = "Nem kritikus"
 NORMAL_WAIT = "Nem kritikus — várakozás"
 BUFFER = "Jelölt tartalék"
+# Az őszi arculat színei (pm_app/theme.py): a kritikus út téglavörös, a többi palakék, a tartalék olíva
 CATEGORIES = {
-    CRITICAL: "#d1453b",
-    CRITICAL_WAIT: "#eda39c",
-    NORMAL: "#4f7fc9",
-    NORMAL_WAIT: "#a9c0e6",
-    BUFFER: "#3f9e8a",
+    CRITICAL: "#a8432e",
+    CRITICAL_WAIT: "#e3b6a8",
+    NORMAL: "#4d7280",
+    NORMAL_WAIT: "#b8ccd2",
+    BUFFER: "#6f7d32",
 }
-MILESTONE_COLOR = "#e0a030"
+MILESTONE_COLOR = "#d39a2c"
 # A feladatnevek oszlopának szélessége a diagram tárolójához igazodva (lásd build_chart).
 LABEL_LIMIT_EXPR = "max(110, min(340, containerSize()[0] * 0.36))"
 HOLIDAY_COLOR = "#9aa0a6"

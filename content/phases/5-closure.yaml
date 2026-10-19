@@ -575,3 +575,28 @@ prince2:
     - name_hu: Utókövetési javaslatok
       name_en: Follow-on Action Recommendations
       pmi: (a záró jelentés nyitott pontjai)
+
+# ITIL 4 — módszertani kiegészítés (jelölt réteg, lásd content/itil4.yaml)
+itil4:
+  activities: [design_transition, deliver_support]
+  practices: [service_level_management, service_desk, problem_management, service_request_management, supplier_management]
+  other_practices: [Tudásmenedzsment, Szolgáltatáskatalógus-menedzsment]
+  summary: >
+    A Zárás az a pillanat, amikor a szolgáltatás a **Kialakítás és átadás**-ból a
+    **Szolgáltatásnyújtás és támogatás**-ba kerül. A Xyo átadása erős volt: runbook, ellenőrzött
+    jogosultság-átadás, a szállítói hozzáférés megszüntetése, a hypercare mérhető kilépési
+    feltétellel. Ami hiányzott: a megállapodás arról, **milyen szinten** kell működnie.
+  adds:
+    - what: Belső SLA és OLA aláírva
+      why: >
+        A szolgáltatásgazda és a megrendelő megállapodik a célszintekben (a mért adatokból), a Service
+        Desk és a rendszergazda pedig a belső továbbadás idejében.
+    - what: Az ismert hibák átadása a problémagazdának
+      why: >
+        A nyitva hagyott hibák (H-06, H-08, H-09, H-13) ismert hibák — kerülőmegoldással, gazdával és
+        kiváltó feltétellel, nem egy lista a jegyzőkönyv végén.
+    - what: Szolgáltatáskatalógus-bejegyzés és kéréskatalógus
+      why: >
+        Mit kap a felhasználó, és mit kérhet (új belépő, kilépő, jelszó). A runbook ezt az
+        üzemeltetésnek írja le — a katalógus a felhasználónak.
+  who: Xyo — Tóth Gergő, Nagy Péter, Kiss Réka, Szabó Márk, Horváth Júlia

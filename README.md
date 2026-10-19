@@ -16,7 +16,9 @@ kontroll, zárás), amit egy hatodik, haszonrealizálási és mérési szakassza
 egészítettem ki. Ehhez egy külön, jelölt **PRINCE2-réteg** is társul: a PMI-gerincet
 nem módosítja, hanem megmutatja, hogyan feleltethető meg ugyanaz a projekt a
 PRINCE2 folyamatainak és irányítási termékeinek. A réteg egy lépésben
-eltávolítható, a PMI-gerinc ettől nem változik.
+eltávolítható, a PMI-gerinc ettől nem változik. Ugyanígy egy **ITIL 4-réteg** is: azt
+mutatja meg, mi történik a projekt *után* — hogyan lesz a projekt eredményéből
+működő szolgáltatás, és mit kell ehhez a projektnek átadnia.
 
 Többféleképpen használom:
 
@@ -44,7 +46,10 @@ leképezhető vele.
 > description, a template and a filled-in example. It is built on PMI/PMBOK
 > and follows its five process groups, extended with a sixth benefits-realisation
 > phase; a separate, clearly marked PRINCE2 layer maps the same project to
-> PRINCE2 processes and management products without altering the PMI backbone.
+> PRINCE2 processes and management products without altering the PMI backbone,
+> and an ITIL 4 layer shows the service-management side: the value chain, the 15
+> Foundation practices on the project, six service-management documents built from
+> the project's own data, and the move to ITIL 5.
 > I use it as a checklist, a
 > quick reminder, a template library and a learning aid: every step combines
 > theory (why it matters, what it protects you from, the typical mistake) with
@@ -77,6 +82,7 @@ tárhely az inaktív appot alvó módba teszi.
 | Zárás | Átadás-átvétel, pénzügyi zárás, tanulságok, archiválás | [Projektzáró jelentés](docs/5-closure/03-projektzaro-jelentes.md) |
 | Haszonrealizálás | T0 kiindulási mérés a projekt előtt, havi mérések, utólagos értékelés (PIR), kiterjesztési javaslat | [PIR](docs/6-benefits/06-pir.md) |
 | Módszertani rálátás | PRINCE2-leképezés: PID, Highlight, Exception és End Stage Report | [PRINCE2 összefoglaló](docs/prince2/00-prince2-osszefoglalo.md) |
+| Szolgáltatásmenedzsment | ITIL 4-réteg: hol kapcsolódik a projekt a szolgáltatáshoz, SLA a mért adatokból, változásengedélyezés, ismert hibák, átvezetés az ITIL 5-re | [ITIL 4 összefoglaló](docs/itil4/00-itil4-osszefoglalo.md), [SLA és OLA](docs/itil4/02-sla-ola.md) |
 
 ## Képernyőképek
 
@@ -97,6 +103,13 @@ késleltetéssel (BK, KK, BB, KB), ráfordítás ágak szerint.
 | Fa | Függőségek |
 |---|---|
 | ![WBS-fa](docs/screenshots/08-wbs-fa.png) | ![WBS-függőségek](docs/screenshots/09-wbs-fuggosegek.png) |
+
+**ITIL 4-réteg:** a projekt a szolgáltatás felől nézve — hová esnek a fázisok az ITIL
+értékláncában, és mit jelent a Xyo 12 mérőszáma ITIL-szemmel.
+
+| Értéklánc | Mérhető eredmény |
+|---|---|
+| ![ITIL 4 értéklánc](docs/screenshots/10-itil4-erteklanc.png) | ![ITIL 4 mérhető eredmény](docs/screenshots/11-itil4-merheto-eredmeny.png) |
 
 ## Hogyan használható?
 
@@ -132,6 +145,12 @@ késleltetéssel (BK, KK, BB, KB), ráfordítás ágak szerint.
 - **Szótár**: magyar–angol PM fogalomtár junior magyarázatokkal.
 - **PRINCE2**: módszertani kiegészítés — kb. 10 oldalas összefoglaló, PMI↔PRINCE2
   fogalomtár, és négy PRINCE2-specifikus mintadokumentum a Xyo projekt adataival.
+- **ITIL 4**: módszertani kiegészítés — kb. 12 oldalas összefoglaló; nyolc fül arról, hol
+  kapcsolódik a projekt a szolgáltatáshoz, kell-e új ember, kihez kell igazodni, hogyan
+  működik együtt a PMI, a PRINCE2 és az ITIL, és hoz-e mérhető eredményt; haladó szint és
+  átvezetés az ITIL 5-re; hat ITIL-mintadokumentum a Xyo adataival (szolgáltatásleírás,
+  SLA/OLA, változásengedélyezés, incidens–probléma–ismert hiba, szolgáltatási elfogadás és
+  hypercare, folyamatos fejlesztési nyilvántartás).
 
 ## Saját projekt a keretben
 
@@ -182,7 +201,7 @@ szerepel, és egy ilyen csomagban a hiba jellemzően nem egy dokumentumon belül
 hanem **a dokumentumok között** van.
 
 Ezért a számokat és a logikát **automatizált tesztek alá tettem** (`tests/`,
-276 db, GitHub Actions minden pushnál, Python 3.12-n és 3.13-on, lint-ellenőrzéssel):
+343 db, GitHub Actions minden pushnál, Python 3.12-n és 3.13-on, lint-ellenőrzéssel):
 
 - a költségvetést a fizetési ütemezéssel és a pénzügyi zárással,
 - az ütemtervet a munkaszüneti napokkal, a függőségekkel és a kritikus úttal,
@@ -192,7 +211,9 @@ Ezért a számokat és a logikát **automatizált tesztek alá tettem** (`tests/
   összesítőikkel,
 - a követelményeket a teszteseteken és az átvételi kritériumokon át a
   szerződéses feltételekig,
-- a riportokat azzal, ami a kiadásuk napján a nyilvántartásokban állt.
+- a riportokat azzal, ami a kiadásuk napján a nyilvántartásokban állt,
+- az ITIL-mintákat (SLA, ismert hibák, hypercare, fejlesztési nyilvántartás) a projekt
+  dokumentumaival, amelyekből készültek.
 
 A tartalmat hét körben, területenként átvizsgáltam. A tesztek erejét mutációs
 próbával ellenőriztem: szándékosan elrontott számokon el kell bukniuk — és el
@@ -269,6 +290,8 @@ ruff check .
 | `test_reports.py` | Riportok a kiadásuk napjára vetítve: státusz-, Steering- és kockázati riport, EVM-pont, eszkalációk, PRINCE2 highlight / exception / end stage report, hírlevelek, jegyzőkönyv-számozás |
 | `test_progress.py` | A checklist-haladás mentése, törlése, demó mód; a tárolási mód hiányzó vagy elgépelt beállításnál is biztonságos; megszakadt írás után is ép a haladásfájl; a mentés és visszatöltés, a hibás vagy idegen fájl elutasítása |
 | `test_koris.py` | A Kőris-minta belső következetessége: a számok (egyszeri költség, tartalék, havi díjak, 5 éves összevetés, megtérülés, érzékenység), a dátumok (hétköznapok, munkaszüneti nap, határidők), az azonosítók, a baseline, az érintettek és a feltételek láncai |
+| `test_itil4.py` | Az ITIL 4-réteg: a szerkezet a hivatalos ITIL 4-felépítés szerint (7 irányelv, 4 dimenzió, értéklánc, 34 gyakorlat, a Practice Manager-csomagok), a Xyo-példák és a hat ITIL-minta minden száma, dátuma és szereplője a forrásdokumentumokból, az SLA beszállítói láncának újraszámolása, a fül- és fázisblokkok |
+| `test_theme.py` | Az arculat: a színek kontrasztja WCAG szerint számolva (a szöveg ≥ 7:1 minden felületen, a kiemelő- és fázisszínek ≥ 4,5:1 fehér szöveggel és a háttéren), a téma és a modul egyezése, a kezdősáv számai a tartalomból, a sávok escape-elnek, minden fázis a saját színét és kulcsos kártyáját kapja |
 | `test_pages.py` | Minden oldal hiba nélkül lefut; a hosszú szöveges táblák (a dokumentumleltár is) tördelnek, nem vágódnak le, és a cellák nem válnak markdown-listává; a letöltési csomag teljes |
 
 ### Demó mód (nyilvános telepítéshez)
@@ -300,15 +323,19 @@ pm_app/
   gantt.py              a Gantt-nézet (kiegészítő, egy lépésben eltávolítható)
   wbs.py                a WBS-nézet (kiegészítő, egy lépésben eltávolítható)
   dependencies.py       az ütemterv függőségjelölésének értelmezője (típus, késleltetés)
+  theme.py              az arculat: színek, fázisszínek, a kezdő- és a fázissáv, a kiemelések CSS-e
+  itil4.py              az ITIL 4-réteg oldala és fázisblokkja (kiegészítő, egy lépésben eltávolítható)
 content/
   meta.yaml             bevezető, mintaprojekt adatai, szótár
   prince2.yaml          a PRINCE2 kiegészítő réteg tartalma
-  phases/*.yaml         a hat fázis teljes tartalma (+ fázisonkénti prince2 blokk)
+  itil4.yaml            az ITIL 4 kiegészítő réteg tartalma
+  phases/*.yaml         a hat fázis teljes tartalma (+ fázisonkénti prince2 és itil4 blokk)
 docs/<fázis>/*.md       a kitöltött Xyo-minták (az elsődleges, teljes példa)
 docs/peldak/koris/      a második példa: Kőris Tervező Kft. irodaköltözése (az 1. fázis)
 docs/prince2/*.md       PRINCE2 összefoglaló + 4 mintadokumentum
+docs/itil4/*.md         ITIL 4 összefoglaló + 6 mintadokumentum
 data/progress.json      a pipák állapota (git-ignorálva)
-tests/                  pytest: tartalom, számok, mérési lánc, ütemterv, Gantt-nézet, WBS-nézet, erőforrás és kockázat, nyilvántartások, követelmények, riportok, haladás, oldalak
+tests/                  pytest: tartalom, számok, mérési lánc, ütemterv, Gantt-nézet, WBS-nézet, ITIL 4-réteg, erőforrás és kockázat, nyilvántartások, követelmények, riportok, haladás, oldalak
 .github/workflows/      CI: a tesztek futtatása minden pushnál
 pm-initial.md           a termék eredeti koncepciója
 docs/screenshots/       a README képernyőképei (újragyártás: tools/screenshots.py)

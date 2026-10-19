@@ -1,0 +1,1415 @@
+# ITIL 4 — módszertani kiegészítés (csak a Xyo projektre).
+# Ez a réteg NEM módosítja a PMI-gerincet és a Xyo-dokumentumokat: azt mutatja meg,
+# hol kapcsolódik a projekt a szolgáltatásmenedzsmenthez, és mit tenne hozzá az ITIL 4.
+# A szöveg saját megfogalmazás; az ITIL® a PeopleCert bejegyzett védjegye.
+
+primer_file: docs/itil4/00-itil4-osszefoglalo.md
+primer_caption: >
+  Kb. 12 oldal: mi az ITIL 4, a Foundation minden fogalma a hivatalos angol névvel, hogyan
+  kapcsolódik a projekthez, a Xyo ITIL-szemmel, a magyar szabályozási környezet és az ITIL 5.
+
+# A mintadokumentumok: amit a Xyo-projekt nem készített el, a Xyo saját adataival.
+# A `sources` a dokumentum-index azonosítói (a validálás ellenőrzi), a `practices` a
+# Foundation-gyakorlatok azonosítói.
+documents_caption: >
+  Amit a Xyo-projekt nem készített el, de egy ITIL-szemléletű átadás része lenne — a Xyo saját
+  adataival, szereplőivel és dátumaival. Mindegyik azt is megmutatja, miben más, mint a projekt
+  hasonló dokumentuma.
+documents:
+  - id: itil_service_description
+    order: 1
+    name_hu: Szolgáltatásleírás és katalógus-bejegyzés
+    name_en: Service description and service catalogue entry
+    why: >
+      A projekt végén a termékből szolgáltatás lesz. A Run-book azt írja le, mit kell üzemeltetni; a
+      szolgáltatásleírás azt, mit kap a felhasználó és a cég — és mit nem. Itt válnak szét a Run-book
+      „15 leggyakoribb esetében” a hibák és a kérések (10 incidens, 5 szolgáltatáskérés).
+    teaches: haszon és garancia, szolgáltatásajánlat, kéréskatalógus, kizárások
+    practices: [service_request_management, service_level_management, service_desk]
+    sources: [operational_handover, as_built, user_guide, change_log, kpi_sheet, pir]
+    sample_file: docs/itil4/01-szolgaltatasleiras.md
+  - id: itil_sla_ola
+    order: 2
+    name_hu: SLA, OLA és alátámasztó szerződések
+    name_en: Service level agreement, operational level agreement, underpinning contracts
+    why: >
+      A haszonmérés céljai a mérési szakasz végén lejárnak; az SLA tartós vállalássá alakítja őket —
+      a négy mérési pont adataiból, nem hasból. Kiszámolja azt is, hol a Xyo határa: a három
+      Microsoft-szolgáltatás együtt megengedett kiesése (69,1 perc) több, mint amennyit a belső
+      99,5%-os cél egy szeptemberi hónapban megenged (62,7 perc).
+    teaches: célszint adatból, súlyosság és prioritás, OLA a belső átadásokra, a beszállítói lánc
+    practices: [service_level_management, supplier_management, service_desk]
+    sources: [kpi_sheet, monthly_measurement_report, pir, operational_handover, contract, quality_plan]
+    sample_file: docs/itil4/02-sla-ola.md
+  - id: itil_change_model
+    order: 3
+    name_hu: Változásengedélyezési modell
+    name_en: Change enablement — standard, normal and emergency change models
+    why: >
+      A Xyo változáskezelési eljárása a projekt hatókörét védi; az éles konfigurációra nincs
+      szabálya. A modell szétválasztja a két kérdést („megéri-e?” és „biztonságos-e?”), a
+      Változásnapló öt nem-CR módosítását besorolja, és a P-05 esetén megmutatja, hol előzte volna
+      meg a hibát — és hol nem tett volna hozzá semmit.
+    teaches: projekt-változáskezelés ≠ változásengedélyezés, szabványos változás, változásengedélyező
+    practices: [change_enablement, service_configuration_management]
+    sources: [change_procedure, change_log, issue_log, as_built, operational_handover, decision_log]
+    sample_file: docs/itil4/03-valtozasengedelyezes.md
+  - id: itil_incident_problem
+    order: 4
+    name_hu: Incidens → probléma → ismert hiba
+    name_en: Incident, problem and known error — case tracking and records
+    why: >
+      A projekt a nyitott hibáit három helyen, három azonosítóval tartotta nyilván (H-xx, P-xx,
+      Run-book eset). A minta összeköti őket, ismerthiba-nyilvántartást épít belőlük (négyből
+      három lezárva a PIR-ig), a késő MFA-értesítésnek problémarekordot nyit mérhető kiváltó
+      feltétellel, és pótolja a Run-bookból hiányzó kiemeltincidens-eljárást.
+    teaches: a három fogalom határa, a névütközés, ismert hiba és kerülőmegoldás, kiemelt incidens
+    practices: [incident_management, problem_management, service_desk]
+    sources: [test_report, issue_log, operational_handover, rollback_plan, final_acceptance, user_survey, pir]
+    sample_file: docs/itil4/04-incidens-problema-ismert-hiba.md
+  - id: itil_acceptance_els
+    order: 5
+    name_hu: Szolgáltatási elfogadás és korai életszakasz-támogatás
+    name_en: Service acceptance and early life support (hypercare)
+    why: >
+      A Xyo 26 átvételi kritériumából 11 a garanciáról, 4 az üzemeltethetőségről szólt — ez
+      kiemelkedő. A minta hozzáteszi a szolgáltatási elfogadás tíz kritériumát (nyolc teljesült),
+      számmal adja meg a hypercare kilépési küszöbét, és megmutatja, mit nem rögzítettek a
+      projekt dokumentumai a kilépéskor.
+    teaches: projekt kész ≠ szolgáltatás kész, ki dönt az üzembe vételről, mérhető ELS-kilépés
+    practices: [release_management, service_desk, service_level_management]
+    sources: [final_acceptance, operational_handover, wbs_dictionary, training_plan, raci, baseline_report, change_log]
+    sample_file: docs/itil4/05-szolgaltatasi-elfogadas-els.md
+  - id: itil_cir
+    order: 6
+    name_hu: Folyamatos fejlesztési nyilvántartás
+    name_en: Continual improvement register (CIR)
+    why: >
+      A tanulságok a következő projektnek szólnak; a futó szolgáltatás fejlesztéseinek a zárás
+      után nincs gazdája. A minta 11 tételt vesz fel gazdával, határidővel és mérőszámmal (a PIR,
+      a kiterjesztési előfeltételek és az ITIL-minták nyitott pontjaiból), elválasztja a projektbe
+      való fejlesztéseket, és egy tételen végigvezeti a hétlépéses fejlesztési modellt.
+    teaches: tanulság ≠ fejlesztés, prioritás érték és ráfordítás szerint, a hétlépéses modell
+    practices: [continual_improvement, relationship_management]
+    sources: [lessons_learned, pir, rollout_recommendation, monthly_measurement_report]
+    sample_file: docs/itil4/06-folyamatos-fejlesztesi-nyilvantartas.md
+
+intro: |
+  Az **ITIL 4** az IT-szolgáltatásmenedzsment legelterjedtebb keretrendszere. Nem
+  projektmódszertan: azt írja le, **hogyan hoz létre egy szervezet értéket a szolgáltatásain
+  keresztül** — a kialakítástól az üzemeltetésen át a folyamatos fejlesztésig.
+
+  **Miért kell egy projektmenedzsernek?** Mert a projekt egyszer véget ér, a szolgáltatás nem.
+  A Xyo Cloud Pilot 2026.06.30-án lezárult, de a felhőalapú munkahely azóta is működik, és
+  minden nap valaki üzemelteti, támogatja és fejleszti. Az ITIL arról szól, ami a projekt
+  *után* történik — és arról, hogy a projekt mit adjon át ahhoz, hogy ez jól menjen.
+
+  > **Ez a felület PMI/PMBOK alapú.** Az ITIL 4 itt **kiegészítő rétegként** jelenik meg, a
+  > PRINCE2-höz hasonlóan: külön oldalon és a fázisoldalak jelölt blokkjaiban. A PMI-gerinc és
+  > a Xyo-dokumentumok változatlanok.
+
+how_to_read: |
+  1. **Alapok:** a Foundation-szint fogalmai — mit jelent az érték, a szolgáltatás, a négy
+     dimenzió és a hét irányelv —, mindegyik a Xyo projekten megmutatva.
+  2. **Értéklánc:** hová esik a projekt az ITIL szolgáltatási értékláncában, és két valós
+     értékáram a Xyo-ból, lépésről lépésre.
+  3. **Gyakorlatok:** a Foundation 15 gyakorlata — melyik volt jelen a Xyo projektben, és
+     melyik hiányzott.
+  4. **Szerepek és igazodás:** kell-e új ember, ki hozza a szakértelmet, kihez és mihez kell
+     igazodni, és mit változtat ez a projekten.
+  5. **Együtt:** hogyan működik a PMI, a PRINCE2 és az ITIL 4 egymás mellett — fogalomtár,
+     átadási pontok, ütközések, és egy valós hiba útja a három módszertanon át.
+  6. **Mérhető eredmény:** a Xyo 12 mérőszáma ITIL-szemmel, a belőlük levezetett SLA-célok, és
+     amit eddig nem lehetett mérni — célként, nem kitalált eredményként.
+  7. **Haladó szint és ITIL 5:** a haladó ITIL 4-modulok a Xyo-n, érettségi önbecslés
+     gyakorlatonként, ISO-szabványok, az ITIL 5 változásai és tanúsítási rendje — és az ítélet.
+  8. **Összefoglaló és minták:** letölthető, kb. 12 oldalas összefoglaló, és hat mintadokumentum
+     a Xyo adataival — amit a projekt nem készített el, de egy ITIL-szemléletű átadás része lenne.
+
+key_concepts:
+  intro: >
+    Az ITIL 4 alapgondolata: az értéket **nem a szolgáltató állítja elő és adja át**, hanem a
+    szolgáltató és a fogyasztó **közösen hozza létre** (value co-creation). Egy laptop önmagában
+    nem érték — az érték az, hogy a munkatárs otthonról is el tudja végezni a munkáját.
+  items:
+    - term_hu: Szolgáltatás
+      term_en: Service
+      text: >
+        Az értékteremtés közös létrehozását lehetővé tevő eszköz: a fogyasztó által kívánt
+        eredményeket segíti elő, anélkül hogy a fogyasztónak bizonyos költségeket és
+        kockázatokat magának kellene kezelnie.
+      xyo: >
+        A „felhőalapú munkahely” szolgáltatás: a pénzügyes munkatárs dolgozhat otthonról, és
+        nem kell törődnie a gép karbantartásával, a mentéssel vagy a jogosultságokkal.
+    - term_hu: Kimenet és eredmény
+      term_en: Output, outcome
+      text: >
+        A **kimenet** az, amit egy tevékenység előállít (kézzelfogható vagy nem). Az
+        **eredmény** az, amit az érintett a kimenet segítségével elér. A szolgáltató
+        kimeneteket ad; a fogyasztó eredményeket akar.
+      xyo: >
+        Kimenet: 50 beállított laptop, 50 Entra ID fiók. Eredmény: az új belépő 3,5 munkanap
+        helyett 0,8 munkanap alatt áll munkába (M5, PIR).
+    - term_hu: Haszon és garancia
+      term_en: Utility, warranty
+      text: >
+        A **haszon** (célnak megfelelés) azt mondja meg, *mit* tud a szolgáltatás; a
+        **garancia** (használatra alkalmasság) azt, hogy *mennyire megbízhatóan*: rendelkezésre
+        állás, kapacitás, biztonság, folytonosság. Az értékhez mindkettő kell.
+      xyo: >
+        Haszon: közös dokumentumkezelés SharePointon, távoli elérés VPN-en. Garancia: 99,6%-os
+        rendelkezésre állás (M9), 100%-os MFA-lefedettség (M8), nulla adatvesztés (M10).
+    - term_hu: Költségek és kockázatok
+      term_en: Costs, risks
+      text: >
+        Egy szolgáltatás egyes költségeket és kockázatokat **levesz** a fogyasztóról, másokat
+        **rárak**. A jó szolgáltatásban a levett teher nagyobb, mint a rárakott.
+      xyo: >
+        Levett költség: az elavuló asztali géppark cseréje és karbantartása. Rárakott költség:
+        a mobilnet és a licencek. Levett kockázat: az adatvesztés (M10: 0,75 → 0 eset
+        negyedévente). Rárakott kockázat: a kizárás egy rossz feltételes hozzáférési szabály
+        miatt (P-05).
+    - term_hu: Szolgáltatásajánlat
+      term_en: Service offering
+      text: >
+        Egy vagy több szolgáltatás formális leírása egy fogyasztói csoport számára. Három
+        összetevője lehet: **javak** (átkerülnek a fogyasztóhoz), **hozzáférés erőforráshoz**
+        (a tulajdon a szolgáltatónál marad) és **szolgáltatási tevékenységek** (amit a
+        szolgáltató a fogyasztóért tesz).
+      xyo: >
+        Javak: laptop, dokkoló, otthoni monitor. Hozzáférés: Microsoft 365 licenc, SharePoint,
+        VPN. Szolgáltatási tevékenységek: Service Desk, gépbeüzemelés, jelszó-visszaállítás.
+    - term_hu: Szolgáltatási kapcsolat
+      term_en: Service relationship
+      text: >
+        A szolgáltató és a fogyasztó együttműködése. Három része van: a **szolgáltatásnyújtás**,
+        a **szolgáltatásigénybevétel** és a **kapcsolat kezelése**. A Xyo-ban egyszerre több
+        kapcsolat él egymás mögött.
+      xyo: >
+        Az IT osztály szolgáltat a pilot-résztvevőknek, közben maga is fogyasztó: a Microsofttól
+        (felhőszolgáltatás), a Cloudia Solutionstől (bevezetés, szavatosság) és a TechLine
+        Zrt.-től (hardver, garanciális szerviz).
+    - term_hu: Érintett szerepek a fogyasztói oldalon
+      term_en: Customer, user, sponsor
+      text: >
+        A **megrendelő** (customer) határozza meg az igényt és felel az eredményért, a
+        **felhasználó** használja a szolgáltatást, a **szponzor** engedélyezi a költséget.
+        Lehet ugyanaz a személy, de gyakran nem az — és mást várnak.
+      xyo: >
+        Megrendelő: Horváth Júlia ügyvezető, a Projekt Irányító Bizottság elnöke. Felhasználók: az 50
+        pilot-résztvevő. Szponzor: Kovács Anita gazdasági igazgató.
+
+dimensions:
+  intro: >
+    Az ITIL szerint minden szolgáltatást négy nézőpontból kell egyszerre végiggondolni. Ha
+    bármelyik kimarad, a szolgáltatás valahol akadozni fog — akkor is, ha a technika hibátlan.
+  items:
+    - name_hu: Szervezetek és emberek
+      name_en: Organizations and people
+      text: >
+        Szervezeti felépítés, szerepek, kompetenciák, kultúra — ki csinálja, és tudja-e.
+      xyo: >
+        A Service Desk felkészítése (5.3), az oktatások (5 csoport), a home office szabályzat
+        (HR), az üzemi tanács véleményezése. A PIR szerint a home office arány azért maradt a cél
+        alatt (M6: 37% a ≥ 40% helyett), mert a vezetők nem egységesen alkalmazták a szabályzatot —
+        ez ennek a dimenziónak a hiánya, nem technikai hiba.
+    - name_hu: Információ és technológia
+      name_en: Information and technology
+      text: >
+        Az információ, amit a szolgáltatás kezel, és a technológia, amire épül — beleértve az
+        üzemeltetéshez szükséges tudást is.
+      xyo: >
+        Microsoft 365, Entra ID, Intune, SharePoint, Azure VPN; a konfiguráció leírása az
+        as-built dokumentációban; a ticketadatok mint mérési forrás.
+    - name_hu: Partnerek és beszállítók
+      name_en: Partners and suppliers
+      text: >
+        A szervezet kapcsolatai más szervezetekkel, amelyek részt vesznek a szolgáltatás
+        kialakításában, nyújtásában és fejlesztésében.
+      xyo: >
+        Microsoft (felhőszolgáltatás, CSP-n keresztül), Cloudia Solutions Kft. (bevezetés,
+        szavatosság), TechLine Zrt. (laptopok, garanciális szerviz), a mobilszolgáltató.
+    - name_hu: Értékáramok és folyamatok
+      name_en: Value streams and processes
+      text: >
+        Hogyan működnek együtt a szervezet részei: milyen lépésekben jut el egy igény az
+        értékig, és milyen tevékenységekből áll egy-egy munkafolyamat.
+      xyo: >
+        Az új belépő munkába állítása, a kilépő fiókjának lezárása, egy elveszett laptop
+        kezelése — mindegyik végigmegy a HR-en, a Service Deskn és a rendszergazdán.
+  external:
+    intro: >
+      A négy dimenzióra külső tényezők hatnak. Az ITIL a PESTLE-modellt használja: politikai,
+      gazdasági, társadalmi, technológiai, jogi és környezeti tényezők.
+    factors:
+      - factor: Politikai
+        xyo: A cloud-first irányt az IT részleg kezdeményezte, de a döntés a vezetésé (Steering, fázis-kapuk).
+      - factor: Gazdasági
+        xyo: A régi gépek elavulása, a folyó IT-költség (M12) és a licencárak alakulása.
+      - factor: Társadalmi
+        xyo: A home office elvárássá vált a munkaerőpiacon; a felhasználói ellenállás kockázata.
+      - factor: Technológiai
+        xyo: A Microsoft szolgáltatásainak folyamatos változása, amit a Xyo nem irányít.
+      - factor: Jogi
+        xyo: GDPR és adatvédelmi hatásvizsgálat, a munka törvénykönyve a távmunkáról, az EU-s adattárolás.
+      - factor: Környezeti
+        xyo: Kevesebb ingázás; a régi gépek szabályos selejtezése.
+
+svs:
+  intro: >
+    A **Szolgáltatásérték-rendszer** (Service Value System, SVS) azt írja le, hogyan alakul át
+    egy **lehetőség vagy igény** a szervezetben **értékké**. Öt eleme van; ezek közül a
+    szolgáltatási értéklánc a gerinc.
+  components:
+    - name_hu: Irányelvek
+      name_en: Guiding principles
+      text: Mindig érvényes ajánlások, amelyek minden döntést vezérelnek (lásd lent, hét darab).
+    - name_hu: Irányítás
+      name_en: Governance
+      text: >
+        Az a mód, ahogy a szervezetet vezetik: értékel, irányt szab, figyel. A Xyo-ban az
+        ügyvezetés és — a projekt idején — a Projekt Irányító Bizottság.
+    - name_hu: Szolgáltatási értéklánc
+      name_en: Service value chain
+      text: >
+        Hat összekapcsolt tevékenység, amelyekből az értékáramok felépülnek (lásd az Értéklánc
+        fülön).
+    - name_hu: Gyakorlatok
+      name_en: Practices
+      text: >
+        Szervezeti erőforrások együttesei egy-egy feladat elvégzésére: emberek, folyamatok,
+        eszközök, információ. Az ITIL 4 34 gyakorlatot ír le (lásd a Gyakorlatok fülön).
+    - name_hu: Folyamatos fejlesztés
+      name_en: Continual improvement
+      text: >
+        A szervezet minden szintjén zajló, visszatérő tevékenység, hogy a szolgáltatások és a
+        gyakorlatok lépést tartsanak a változó igényekkel.
+
+principles:
+  - name_hu: Az értékre összpontosíts
+    name_en: Focus on value
+    text: >
+      Mindennek, amit a szervezet tesz, közvetlenül vagy közvetve értéket kell teremtenie az
+      érintetteknek. Ehhez tudni kell, ki a fogyasztó, és neki mi az érték.
+    xyo: >
+      A projekt célja nem 50 laptop kiosztása volt, hanem a hely-független munka és a gyorsabb
+      munkába állás. Ezért mérte a haszonrealizálási terv az eredményeket (M1–M12), nem a
+      kiosztott gépeket.
+  - name_hu: Kezdd ott, ahol vagy
+    name_en: Start where you are
+    text: >
+      Ne kezdj mindent elölről: mérd fel, ami már működik, és építs rá. Az elhamarkodott
+      „tiszta lap” elpazarolja a meglévő értéket.
+    xyo: >
+      A T0 mérés (2026.01.30., még a Charter aláírása előtt) rögzítette a kiinduló állapotot, a meglévő Service Desk kapta a
+      támogatást, nem egy új csapat. Az ITIL-bevezetés is így indulna: a runbook és a
+      KPI-adatlap már megvan, ezekre lehet építeni.
+  - name_hu: Haladj lépésenként, visszajelzéssel
+    name_en: Progress iteratively with feedback
+    text: >
+      Bontsd a munkát kezelhető lépésekre, és minden lépés után kérj visszajelzést. Egy lépés
+      is legyen önmagában értékes.
+    xyo: >
+      Három élesítési hullám (10, 20, 20 fő) az UAT visszajelzéseivel; maga a pilot is egy lépés
+      a 190 fős kiterjesztés előtt.
+  - name_hu: Működj együtt, és tedd láthatóvá a munkát
+    name_en: Collaborate and promote visibility
+    text: >
+      A jó megoldás együttműködésből születik, és csak az látható munkára lehet jó döntést
+      építeni. A rejtett munka rejtett kockázat.
+    xyo: >
+      A WBS közös workshopon készült (három csomag csak ott került elő), a runbook hibakezelési
+      részét a Service Desk-vezetővel közösen írták, a pilot-kör kéthetente hírlevelet kapott.
+  - name_hu: Gondolkodj és dolgozz egészben
+    name_en: Think and work holistically
+    text: >
+      Egy szolgáltatás sem önálló: a négy dimenzió és a többi szolgáltatás együtt határozza
+      meg, mi működik. A részek optimalizálása nem optimalizálja az egészet.
+    xyo: >
+      A projekt nem csak technika volt: HR-szabályzat, üzemi tanács, adatvédelem, mobilnet és
+      oktatás is része lett. Ahol ez nem sikerült teljesen (a home office szabályzat vezetői
+      alkalmazása), ott maradt el a haszon.
+  - name_hu: Legyen egyszerű és gyakorlatias
+    name_en: Keep it simple and practical
+    text: >
+      Ha egy lépés, szabály vagy dokumentum nem teremt értéket, hagyd el. Kevesebb lépés,
+      kevesebb hiba.
+    xyo: >
+      Egy 50 fős pilotnál nem kell külön változástestületi ülés: elég egy heti tizenöt perces
+      egyeztetés Nagy Péter és Szabó Márk között. Az ITIL-réteg minden javaslatát ehhez a
+      mérethez szabjuk.
+  - name_hu: Optimalizálj és automatizálj
+    name_en: Optimize and automate
+    text: >
+      Előbb tedd egyszerűvé és hatékonnyá a munkát, és csak utána automatizáld. Egy rossz
+      folyamat automatizálva csak gyorsabban rossz.
+    xyo: >
+      Az Autopilot a gépbeüzemelést 6,5 óráról 1,4 órára vitte le (M4), az önkiszolgáló
+      jelszó-visszaállítás a hozzáférési ticketek arányát 41%-ról 17%-ra (M3). Egyik sem
+      „magától” lett gyors: az Autopilot-folyamat külön munkacsomag volt (3.2.2), az
+      önkiszolgáló visszaállítás pedig csak a P-03 javítása után működött (MFA nélkül nem ment).
+
+value_chain:
+  intro: >
+    A **szolgáltatási értéklánc** hat tevékenységből áll. Nem sorrend, hanem építőkockák: egy
+    **értékáram** (value stream) a tevékenységeket abban a sorrendben fűzi össze, ahogy egy
+    adott igény eljut az értékig. Minden tevékenység több gyakorlatot is használhat.
+  activities:
+    - id: plan
+      name_hu: Tervezés
+      name_en: Plan
+      text: Közös megértés a jövőképről, az állapotról és az irányról — a szolgáltatások és a gyakorlatok szintjén.
+      xyo: A cloud-first irány, az üzleti indoklás, a projektterv és a kiterjesztési javaslat.
+    - id: improve
+      name_hu: Fejlesztés
+      name_en: Improve
+      text: A termékek, szolgáltatások és gyakorlatok folyamatos javítása minden értéklánc-tevékenységben.
+      xyo: A havi mérések, a PIR és a tanulságok naplója.
+    - id: engage
+      name_hu: Bevonás
+      name_en: Engage
+      text: Az érintettek igényeinek megértése, átlátható együttműködés és jó kapcsolat velük.
+      xyo: Az érintettelemzés, a kommunikációs terv, a hírlevelek, a Service Desk mint egyetlen kapcsolódási pont.
+    - id: design_transition
+      name_hu: Kialakítás és átadás
+      name_en: Design and transition
+      text: Gondoskodik róla, hogy a szolgáltatások folyamatosan megfeleljenek az elvárt minőségnek, költségnek és piaci időnek.
+      xyo: A követelmények, a biztonsági alapkonfiguráció, a tesztek, a hullámok és az üzemeltetésbe adás.
+    - id: obtain_build
+      name_hu: Beszerzés és építés
+      name_en: Obtain/build
+      text: A szolgáltatás összetevőinek beszerzése vagy elkészítése, amikor és ahol szükséges.
+      xyo: Az ajánlatkérés, a szerződések, a laptopok átvétele, a felhőkörnyezet konfigurálása.
+    - id: deliver_support
+      name_hu: Szolgáltatásnyújtás és támogatás
+      name_en: Deliver and support
+      text: A szolgáltatás nyújtása és támogatása a megállapodott előírások és az érintettek elvárásai szerint.
+      xyo: A Service Desk, a hibakezelés, a rendszeres üzemeltetési feladatok — 2026.06.26-tól az üzemeltetés kezében.
+  phase_map:
+    intro: >
+      A Xyo projekt hat fázisa így esik az értéklánc tevékenységeire. A projekt maga az ITIL
+      **projektmenedzsment-gyakorlata** — a 34 gyakorlat egyike —, és főként a *Kialakítás és
+      átadás*, valamint a *Beszerzés és építés* tevékenységet szolgálja.
+    rows:
+      - phase: initiation
+        activities: [engage, plan]
+        note: Az igény és a lehetőség megfogalmazása, az érintettek bevonása, a döntés a befektetésről.
+      - phase: planning
+        activities: [plan, design_transition]
+        note: Mit és milyen minőségben kell átadni — a követelmények, az elfogadási kritériumok és a biztonsági alap.
+      - phase: execution
+        activities: [obtain_build, design_transition]
+        note: Beszerzés, konfigurálás, tesztelés és a hullámokban történő átadás.
+      - phase: monitoring
+        activities: [improve, plan]
+        note: Eltérések észlelése és korrekció — a projekt saját fejlesztési köre.
+      - phase: closure
+        activities: [design_transition, deliver_support]
+        note: Az átadás pillanata — innen a szolgáltatás a Szolgáltatásnyújtás és támogatás része.
+      - phase: benefits
+        activities: [improve, engage]
+        note: A haszon mérése és a tanulságok visszaforgatása; a kiterjesztés új Tervezés-kört indít.
+
+value_streams:
+  intro: >
+    Két valós értékáram a Xyo üzemeltetéséből. Mindkettő több szervezeti egységen fut át —
+    ezért egyetlen osztály folyamata sem írja le önmagában.
+  items:
+    - id: onboarding
+      name: Új belépő munkába állítása
+      trigger: A HR jelzi, hogy új munkatárs lép be (Varga Eszter).
+      outcome: Az új munkatárs az első munkanapján dolgozni tud.
+      metric: >
+        M5 — munkába állásig eltelt idő: T0-ban 3,5 munkanap, a mérési szakasz végén 0,8
+        munkanap (cél ≤ 1,0).
+      steps:
+        - activity: engage
+          step: A HR szolgáltatáskérést rögzít a Service Desknél (név, szervezeti egység, kezdőnap).
+          who: Varga Eszter → Kiss Réka
+        - activity: obtain_build
+          step: Fiók létrehozása az Entra ID-ban, licenc és csoporttagság hozzárendelése.
+          who: Szabó Márk
+        - activity: obtain_build
+          step: Gép regisztrálása az Autopilotba, hozzárendelés a felhasználóhoz (kb. 1,5 óra).
+          who: Szabó Márk
+        - activity: design_transition
+          step: Ellenőrzés — a jogosultságok a szervezeti egységnek megfelelők, a gép megfelelőségi állapota zöld.
+          who: Szabó Márk
+        - activity: deliver_support
+          step: Átadás az első napon — első bejelentkezés, MFA-regisztráció, gyorssegédlet.
+          who: Service Desk
+        - activity: improve
+          step: Az átfutási idő rögzítése (M5), és ha a cél fölött van, az ok megkeresése.
+          who: Varga Eszter, Kiss Réka
+      lesson: >
+        Ez **szolgáltatáskérés**, nem incidens: előre tervezhető, szabványos lépésekből áll.
+        Ha a ticketrendszer ugyanúgy számolja, mint a hibákat, a statisztika torz lesz.
+    - id: lost_laptop
+      name: Elveszett vagy ellopott laptop
+      trigger: A munkatárs bejelenti, hogy a gépe elveszett vagy ellopták.
+      outcome: Az adatok nem kerülnek illetéktelen kézbe, a munkatárs mielőbb újra dolgozik.
+      metric: >
+        A hozzáférés távoli visszavonása kb. 8 perc (runbook 10. eset); egy új gép beüzemelése
+        kb. 1,5 óra (M4).
+      steps:
+        - activity: engage
+          step: A bejelentés a Service Desken (belső 4200) — azonnal kiemelt kezelés.
+          who: Kiss Réka
+        - activity: deliver_support
+          step: Távoli hozzáférés-visszavonás és -törlés az Intune-ban, a fiók munkameneteinek lezárása.
+          who: Szabó Márk
+        - activity: engage
+          step: Azonnali értesítés — Nagy Péter és az adatvédelmi tisztviselő (dr. Fekete Zsolt).
+          who: Service Desk
+        - activity: deliver_support
+          step: Az adatvédelmi tisztviselő eldönti, adatvédelmi incidens-e, és kell-e 72 órán belül bejelenteni a NAIH-nak.
+          who: dr. Fekete Zsolt
+        - activity: obtain_build
+          step: Csere-laptop beüzemelése Autopilottal.
+          who: Szabó Márk
+        - activity: improve
+          step: Jegyzőkönyv és tanulság — ha ismétlődik, problémaként kell kezelni.
+          who: Nagy Péter
+      lesson: >
+        Ez **biztonsági incidens**, más eszkalációval, mint egy hétköznapi hiba. Az ITIL
+        szóhasználatában ehhez a *kiemelt incidens* és az *információbiztonsági menedzsment*
+        gyakorlat tartozik — a Xyo runbookja ezt már jól kezeli.
+
+practices:
+  intro: >
+    Az ITIL 4 **34 gyakorlatot** ír le, három csoportban: 14 általános menedzsment-, 17
+    szolgáltatásmenedzsment- és 3 technikai menedzsment-gyakorlatot. A Foundation-vizsga ebből
+    **15-öt** kér: 7-et részletesen, 8-at a céljuk szintjén. Lent mindegyiknél: hol volt jelen a
+    Xyo projektben, és mit tenne hozzá az ITIL.
+  groups:
+    general: Általános menedzsment
+    service: Szolgáltatásmenedzsment
+    technical: Technikai menedzsment
+  foundation:
+    - id: continual_improvement
+      name_hu: Folyamatos fejlesztés
+      name_en: Continual improvement
+      group: general
+      depth: részletes
+      purpose: >
+        A szolgáltatások és a gyakorlatok összehangolása a változó üzleti igényekkel — folyamatos,
+        kis lépésekben, mindenkinek a feladataként.
+      xyo: >
+        A tanulságok naplója (19 tanulság, 14 menet közben), a havi mérési riportok és a PIR.
+      adds: >
+        A projekt végén a fejlesztési ötleteknek nincs gazdája. Az ITIL egy **folyamatos
+        fejlesztési nyilvántartást** (CIR) és egy felelőst adna, aki a PIR után is viszi.
+      gap: közepes
+      docs: [lessons_learned, pir, monthly_measurement_report]
+    - id: change_enablement
+      name_hu: Változásengedélyezés
+      name_en: Change enablement
+      group: service
+      depth: részletes
+      purpose: >
+        Az éles szolgáltatások és környezetek változásainak sikeressége: a kockázatok helyes
+        felmérése, a változás engedélyezése és a változási ütemterv kezelése. (Korábbi neve:
+        change control.)
+      xyo: >
+        A változáskezelési eljárás a **projekt** hatókörének változásait kezeli. Az éles
+        konfiguráció változtatására — például egy feltételes hozzáférési szabály módosítására —
+        nincs szabály.
+      adds: >
+        Változásmodellek: **szabványos** (előre engedélyezett, pl. új belépő), **normál**
+        (értékelés és engedély) és **sürgős** változás. A P-05 (három tesztelő kizárása egy
+        feltételes hozzáférési szabály miatt) pontosan az a hiba, amit ez megelőz.
+      gap: nagy
+      docs: [change_procedure, change_log, issue_log]
+    - id: incident_management
+      name_hu: Incidenskezelés
+      name_en: Incident management
+      group: service
+      depth: részletes
+      purpose: >
+        Az incidensek negatív hatásának csökkentése a szolgáltatás mielőbbi helyreállításával.
+        Incidens: a szolgáltatás nem tervezett megszakadása vagy minőségének romlása.
+      xyo: >
+        A Service Desk, a runbook 15 leggyakoribb esete és a négyszintű eszkalációs út.
+      adds: >
+        **Prioritás** a hatás és a sürgősség alapján, és prioritásonként célidő. A kiemelt
+        (major) incidensnek csak az adatvédelmi ága van leírva — a szolgáltatáskiesésé nincs.
+      gap: közepes
+      docs: [operational_handover, rollback_plan]
+    - id: problem_management
+      name_hu: Problémakezelés
+      name_en: Problem management
+      group: service
+      depth: részletes
+      purpose: >
+        Az incidensek valószínűségének és hatásának csökkentése: a kiváltó okok feltárása,
+        kerülőmegoldások és ismert hibák kezelése. Probléma: egy vagy több incidens oka.
+      xyo: >
+        Vigyázat, névütközés: a „Problémanapló” a PMI *issue log*-ja — projektakadályok
+        nyilvántartása, nem ITIL-problémák. A runbook 7. pontja (ismert korlátok, nyitott
+        hibák) viszont már egy kezdetleges ismerthiba-lista.
+      adds: >
+        Az ismétlődő incidensek (pl. a késő MFA-értesítés) problémaként kezelése, gazdával;
+        **ismerthiba-nyilvántartás** kerülőmegoldással, amit a Service Desk használ.
+      gap: közepes
+      docs: [issue_log, operational_handover, test_report]
+    - id: service_request_management
+      name_hu: Szolgáltatáskérés-kezelés
+      name_en: Service request management
+      group: service
+      depth: részletes
+      purpose: >
+        Az előre meghatározott, felhasználó által kezdeményezett kérések hatékony és
+        felhasználóbarát teljesítése: információkérés, hozzáférés, szabványos változás.
+      xyo: >
+        Az új belépő és a kilépő kezelése (runbook 12–13. eset), az önkiszolgáló
+        jelszó-visszaállítás. A ticketstatisztika (M1) azonban nem választja szét a kéréseket és
+        a hibákat.
+      adds: >
+        **Kéréskatalógus** és külön számlálás. Ha a kérés és a hiba egy kalap alá kerül, egy
+        létszámbővülés hibaszám-növekedésnek látszik.
+      gap: közepes
+      docs: [operational_handover, kpi_sheet]
+    - id: service_desk
+      name_hu: Service Desk
+      name_en: Service desk
+      group: service
+      depth: részletes
+      purpose: >
+        Az incidensek és a szolgáltatáskérések befogadása; egyetlen, egyértelmű kapcsolódási
+        pont a szolgáltató és a felhasználók között.
+      xyo: >
+        Kiss Réka és két munkatárs, belső 4200 és `servicedesk@xyo.hu`; az útmutatót 2 héttel az
+        élesítés előtt megkapták, a hypercare-kapacitás egyeztetve volt.
+      adds: >
+        Kevés: ez a Xyo egyik legjobban működő része. A kiterjesztésnél (190 fő) a kapacitás
+        válik kérdéssé — ezt a kiterjesztési javaslat F4 előfeltétele már kimondja.
+      gap: kicsi
+      docs: [operational_handover, wbs_dictionary, rollout_recommendation]
+    - id: service_level_management
+      name_hu: Szolgáltatásszint-kezelés
+      name_en: Service level management
+      group: service
+      depth: részletes
+      purpose: >
+        Világos, üzleti alapú célok a szolgáltatás teljesítményére, és azok rendszeres
+        mérése, áttekintése és jelentése.
+      xyo: >
+        Vannak célok — MTTR ≤ 6,0 óra (M2), rendelkezésre állás ≥ 99,5% (M9), elégedettség ≥ 4,0
+        (M11) —, de haszonmérésként, a mérési szakasz végéig. Belső SLA nincs; „SLA” csak a
+        Microsoft-szerződésnél szerepel.
+      adds: >
+        **Belső SLA** a mért adatokból levezetett célokkal, **OLA** a Service Desk és a
+        rendszergazda között, és negyedéves **szolgáltatásfelülvizsgálat** a megrendelővel.
+      gap: nagy
+      docs: [kpi_sheet, pir, operational_handover]
+    - id: information_security_management
+      name_hu: Információbiztonsági menedzsment
+      name_en: Information security management
+      group: general
+      depth: cél
+      purpose: >
+        A szervezet üzletmenetéhez szükséges információ védelme: bizalmasság, sértetlenség,
+        rendelkezésre állás, hitelesség és letagadhatatlanság.
+      xyo: >
+        A biztonsági alapkonfiguráció, az adatvédelmi hatásvizsgálat, a 100%-os MFA, a
+        break-glass fiókok rendje.
+      adds: >
+        Kevés — a kiterjesztési javaslat a behatolástesztet (F3) és az adatvesztés-megelőzést (F2)
+        már előfeltételnek tette.
+      gap: kicsi
+      docs: [security_baseline, dpia, operational_handover]
+    - id: relationship_management
+      name_hu: Kapcsolatkezelés
+      name_en: Relationship management
+      group: general
+      depth: cél
+      purpose: >
+        A szervezet és az érintettjei közötti kapcsolat kiépítése és ápolása stratégiai és
+        taktikai szinten.
+      xyo: Az érintett-nyilvántartás, a hatalom–érdek mátrix és a kommunikációs terv.
+      adds: >
+        A projekt után a kapcsolatnak nincs gazdája. Az ITIL-ben a szolgáltatásgazda (Nagy Péter)
+        viszi tovább, a szolgáltatásfelülvizsgálattal.
+      gap: kicsi
+      docs: [stakeholder_register, stakeholder_analysis, comm_plan]
+    - id: supplier_management
+      name_hu: Beszállítókezelés
+      name_en: Supplier management
+      group: general
+      depth: cél
+      purpose: >
+        A beszállítók és teljesítményük megfelelő kezelése, hogy a termékek és szolgáltatások
+        zökkenőmentesen működjenek.
+      xyo: >
+        A beszerzési terv, a szállítóértékelés, a szerződések és a teljesítésigazolások; a
+        runbook a szavatossági és garanciális utakat is rögzíti.
+      adds: >
+        A szerződéses szolgáltatási szintek (Cloudia, TechLine, Microsoft) összekötése a belső
+        SLA-val, hogy a külső vállalás ne legyen gyengébb a belsőnél.
+      gap: kicsi
+      docs: [procurement_plan, contract, operational_handover]
+    - id: it_asset_management
+      name_hu: IT-eszközgazdálkodás
+      name_en: IT asset management
+      group: service
+      depth: cél
+      purpose: >
+        Az IT-eszközök teljes életciklusának tervezése és kezelése — érték maximalizálása,
+        költség és kockázat kordában tartása.
+      xyo: >
+        Az 50 laptop leltárszámmal és Autopilot-regisztrációval átvéve (2.3.1); a régi gépek
+        selejtezése az üzemeltetésnél maradt.
+      adds: >
+        Életciklus-terv a gépekre (csereidő, garancia vége), és a licencek nyilvántartása a
+        megújítási dátummal.
+      gap: kicsi
+      docs: [wbs_dictionary, final_acceptance, operational_handover]
+    - id: monitoring_event_management
+      name_hu: Monitorozás és eseménykezelés
+      name_en: Monitoring and event management
+      group: service
+      depth: cél
+      purpose: >
+        A szolgáltatások és összetevőik rendszeres megfigyelése, az állapotváltozások
+        (események) rögzítése és a megfelelő válasz kiválasztása.
+      xyo: >
+        A rendelkezésre állás a Microsoft szolgáltatásállapot-jelentéséből származik (M9); a
+        break-glass bejelentkezés azonnali riasztást küld.
+      adds: >
+        Ki figyel mit, milyen küszöbnél, és mi a teendő — ma ez egy ember fejében van.
+      gap: közepes
+      docs: [kpi_sheet, operational_handover]
+    - id: release_management
+      name_hu: Kiadáskezelés
+      name_en: Release management
+      group: service
+      depth: cél
+      purpose: >
+        Új és módosított szolgáltatások és funkciók elérhetővé tétele a felhasználók számára.
+      xyo: >
+        A három élesítési hullám (10, 20, 20 fő) lényegében három kiadás volt, előre tervezett
+        tartalommal és visszaállási lehetőséggel.
+      adds: Kevés — a projekt ezt jól csinálta; az ITIL csak a nevét adja.
+      gap: kicsi
+      docs: [schedule, rollback_plan]
+    - id: service_configuration_management
+      name_hu: Szolgáltatáskonfiguráció-kezelés
+      name_en: Service configuration management
+      group: service
+      depth: cél
+      purpose: >
+        Pontos és megbízható információ a szolgáltatások konfigurációjáról és az azokat
+        alkotó konfigurációs tételekről — amikor és ahol szükség van rá.
+      xyo: >
+        Az as-built dokumentáció (XYO-CP-206) a konfigurációt egy időpontban rögzíti; a
+        változásokkal nem frissül automatikusan.
+      adds: >
+        Ki és mikor frissíti a konfigurációs leírást egy változás után — enélkül az as-built
+        fél év múlva elavult.
+      gap: közepes
+      docs: [as_built, operational_handover]
+    - id: deployment_management
+      name_hu: Telepítéskezelés
+      name_en: Deployment management
+      group: technical
+      depth: cél
+      purpose: >
+        Új vagy módosított hardver, szoftver, dokumentáció és folyamatok éles környezetbe
+        juttatása.
+      xyo: Az Autopilot-gépbeüzemelés és az Intune-alkalmazáscsomagok.
+      adds: Kevés — az automatizált telepítés eleve dokumentált és megismételhető.
+      gap: kicsi
+      docs: [as_built, wbs_dictionary]
+  others:
+    - {name_hu: Architektúramenedzsment, name_en: Architecture management, group: general}
+    - {name_hu: Tudásmenedzsment, name_en: Knowledge management, group: general}
+    - {name_hu: Mérés és jelentés, name_en: Measurement and reporting, group: general}
+    - {name_hu: Szervezeti változásmenedzsment, name_en: Organizational change management, group: general}
+    - {name_hu: Portfóliómenedzsment, name_en: Portfolio management, group: general}
+    - {name_hu: Projektmenedzsment, name_en: Project management, group: general}
+    - {name_hu: Kockázatmenedzsment, name_en: Risk management, group: general}
+    - {name_hu: Szolgáltatási pénzügyi menedzsment, name_en: Service financial management, group: general}
+    - {name_hu: Stratégiamenedzsment, name_en: Strategy management, group: general}
+    - {name_hu: Munkaerő- és tehetségmenedzsment, name_en: Workforce and talent management, group: general}
+    - {name_hu: Rendelkezésre állás menedzsment, name_en: Availability management, group: service}
+    - {name_hu: Üzleti elemzés, name_en: Business analysis, group: service}
+    - {name_hu: Kapacitás- és teljesítménymenedzsment, name_en: Capacity and performance management, group: service}
+    - {name_hu: Szolgáltatáskatalógus-menedzsment, name_en: Service catalogue management, group: service}
+    - {name_hu: Szolgáltatásfolytonosság-menedzsment, name_en: Service continuity management, group: service}
+    - {name_hu: Szolgáltatástervezés, name_en: Service design, group: service}
+    - {name_hu: Szolgáltatásvalidálás és -tesztelés, name_en: Service validation and testing, group: service}
+    - {name_hu: Infrastruktúra- és platformmenedzsment, name_en: Infrastructure and platform management, group: technical}
+    - {name_hu: Szoftverfejlesztés és -menedzsment, name_en: Software development and management, group: technical}
+  project_note: >
+    **A projektmenedzsment maga is ITIL-gyakorlat.** Az ITIL 4 nem versenyez a PMI-val vagy a
+    PRINCE2-vel: a projektmenedzsment az általános menedzsment-gyakorlatok egyike, és arra
+    számít, hogy a módszert egy projektmódszertan adja. A Xyo projekt tehát az ITIL szemében
+    ennek a gyakorlatnak egy példánya, amely a szolgáltatás kialakítását és átadását szolgálta.
+
+roles:
+  intro: >
+    **Kell-e új ember, ha ITIL szerint dolgozunk? A Xyo méreténél nem.** Az ITIL 4 nem ír elő
+    szervezeti felépítést és nem nevez meg kötelező munkaköröket: azt mondja, hogy minden
+    gyakorlatnak legyen gazdája, és mindenki tudja, miért felel. Egy 240 fős cég kis IT-csapatánál
+    ezek **szerepek („kalapok”)**, amelyeket a meglévő emberek viselnek — a projekt alatt és utána is.
+  items:
+    - role: Szolgáltatásgazda
+      role_en: Service owner
+      who: Nagy Péter
+      what: >
+        A „felhőalapú munkahely” szolgáltatás egészéért felel: értékéért, költségéért, fejlesztéséért.
+        Ő ül le a megrendelővel a szolgáltatásfelülvizsgálaton.
+      load: negyedévente egy felülvizsgálat, havonta a riport átnézése
+    - role: Szolgáltatásszint-felelős
+      role_en: Service level manager
+      who: Kiss Réka
+      what: >
+        Az SLA célszintjeinek mérése és havi jelentése; a ticketadatok már most nála vannak (M1–M3).
+      load: havonta egy riport — a mérési szakaszban már ugyanezt csinálta
+    - role: Service Desk vezető
+      role_en: Service desk manager
+      who: Kiss Réka
+      what: Az egyetlen kapcsolódási pont, a bejelentések befogadása, besorolása és első szintű megoldása.
+      load: a mostani munkaköre
+    - role: Problémagazda
+      role_en: Problem manager
+      who: Szabó Márk
+      what: >
+        Az ismétlődő incidensek kiváltó okának felderítése, az ismerthiba-nyilvántartás vezetése,
+        szükség esetén szállítói bejelentés.
+      load: havonta egy-két óra, ha a probléma nyitott
+    - role: Változásengedélyező
+      role_en: Change authority
+      who: Nagy Péter (normál és sürgős), előre engedélyezve Szabó Márk (szabványos)
+      what: >
+        Az éles környezet változásainak engedélyezése. A szabványos változásokat (pl. új belépő)
+        nem kell egyenként engedélyezni.
+      load: heti tizenöt perces egyeztetés; sürgős esetben azonnal
+    - role: Konfigurációs tételek gazdája
+      role_en: Configuration management
+      who: Szabó Márk
+      what: Az as-built dokumentáció frissen tartása minden változás után.
+      load: változásonként néhány perc, ha a változás lezárásának feltétele
+    - role: Beszállítókezelő
+      role_en: Supplier manager
+      who: Molnár Katalin (szerződés), Nagy Péter (szakmai teljesítés)
+      what: A Microsoft (CSP), a Cloudia Solutions és a TechLine Zrt. szerződéseinek és teljesítésének figyelése.
+      load: negyedévente, a szolgáltatásfelülvizsgálat előtt
+    - role: Információbiztonsági felelős
+      role_en: Information security management
+      who: Szabó Márk (technikai), dr. Fekete Zsolt (adatvédelem)
+      what: >
+        A biztonsági alapkonfiguráció betartása, a biztonsági események kezelése. Az adatvédelmi
+        tisztviselő nem azonos az információbiztonsági felelőssel — a Xyo-ban ketten osztoznak.
+      load: eseményalapú; félévente a break-glass teszt
+    - role: Folyamatos fejlesztés gazdája
+      role_en: Continual improvement
+      who: Nagy Péter (a projekt végén átadja neki Tóth Gergő)
+      what: A fejlesztési nyilvántartás vezetése és a javaslatok sorba állítása.
+      load: havonta egy rövid átnézés
+  concentration: >
+    **A valódi kockázat nem a létszám, hanem a koncentráció.** Szabó Márk négy kalapot visel
+    (problémagazda, szabványos változások, konfiguráció, technikai biztonság), és a projekt idején is
+    ő volt a szűk keresztmetszet (R4 kockázat: belső kapacitáshiány). Az ITIL itt nem új embert
+    kér, hanem azt, hogy a szerepek legyenek leírva — így látszik, hol kell helyettes.
+  when_new_people: >
+    **Mikor kell mégis új ember?** A 190 fős kiterjesztésnél. A pilot Service Desk-terhelése
+    hullámonként 3,4 → 2,1 → 1,5 ticket/fő volt; a kiterjesztési javaslat ebből +1 fő tartós Service
+    Desk kapacitást számolt (F4 előfeltétel). Ez nem ITIL-követelmény, hanem kapacitásszámítás —
+    az ITIL csak azt teszi láthatóvá, hogy a szolgáltatásszint enélkül nem tartható.
+
+expertise:
+  intro: >
+    **Ki hozza a szakértelmet?** Egy kis csapatban nem egy ITIL-szakértő „hozza be” a módszert,
+    hanem a meglévő emberek tanulják meg, és egy-két külső forrás segít az elején.
+  items:
+    - source: Képzés
+      who: Nagy Péter, Kiss Réka, Szabó Márk
+      what: >
+        ITIL 4 Foundation — a közös nyelv. Nem kell mindenkinek; annak kell, aki gyakorlatot visz.
+    - source: A projektmenedzser mint híd
+      who: Tóth Gergő
+      what: >
+        A projekt alatt ő köti össze a két világot: a követelmények közé felveszi a
+        szolgáltatásszint-követelményeket, és az átadást elfogadási kritériumokhoz köti.
+    - source: A bevezető partner
+      who: Cloudia Solutions Kft.
+      what: >
+        A Microsoft-környezet üzemeltetési tapasztalata: mit érdemes monitorozni, mik a tipikus
+        ismert hibák. A szerződésben kérhető, hogy az átadás része legyen.
+    - source: Külső felmérés (opcionális)
+      who: független tanácsadó
+      what: >
+        Egy egyszeri érettségi felmérés a kiterjesztés előtt — „kezdd ott, ahol vagy”. A pilotnál
+        aránytalan lenne.
+    - source: A meglévő anyagok
+      who: Xyo
+      what: >
+        A runbook, a KPI-adatlap és a tanulságok naplója már most ITIL-alapanyag: nem újat kell írni,
+        hanem ezeket a gyakorlatokhoz rendelni.
+
+alignment:
+  intro: >
+    **Kihez és mihez kell igazodni a projekt alatt?** Egy szolgáltatást bevezető projekt nem csak a
+    saját tervéhez igazodik. Az ITIL négy dimenziója itt ellenőrzőlistaként működik.
+  items:
+    - who: Az üzemeltetés (Nagy Péter, Szabó Márk, Service Desk)
+      why: >
+        Ők viszik tovább a szolgáltatást. Ha az átadás nem az ő elfogadási kritériumaik szerint
+        történik, a projekt a saját határidejét teljesíti, de a szolgáltatás akadozik.
+    - who: A megrendelő és a felhasználók
+      why: >
+        A Steering a projekt alatt dönt; utána a szolgáltatásfelülvizsgálat a fórum. A felhasználók
+        elvárása a gyorsaság (a kérdőívben a K4 lett a leggyengébb, 3,8).
+    - who: A Microsoft szolgáltatása
+      why: >
+        A felhőben a felelősség megosztott: a platform rendelkezésre állása a Microsofté, a
+        konfiguráció és a felhasználók a Xyo-é. A belső SLA nem ígérhet többet, mint amit a
+        szolgáltató vállal.
+    - who: A szállítói szerződések
+      why: >
+        A Cloudia Solutions szavatossága és a TechLine következő munkanapos garanciális szervize
+        határozza meg, mit lehet belül megígérni.
+    - who: Jogszabályok és belső szabályzatok
+      why: >
+        GDPR és az adatvédelmi tisztviselő (adatvédelmi incidensnél 72 órán belül NAIH-bejelentés),
+        a távmunka szabályai, a home office szabályzat, az üzemi tanács véleményezési joga. Ágazattól
+        és mérettől függően a kiberbiztonsági törvény is (lásd az összefoglaló magyar fejezetét).
+    - who: A cég IT- és biztonsági szabályai
+      why: >
+        A biztonsági alapkonfiguráció és a break-glass rend nem a projekté — a projekt csak
+        bevezeti, az üzemeltetés tartja be.
+
+measurable:
+  intro: >
+    **Hozhat-e mérhető eredményt az ITIL? Igen — és a Xyo-nál a mérés nagy része már megvan.** Az
+    ITIL 4 a szolgáltatás értékét három dolog egyenlegeként írja le: **eredmények** (amit a
+    felhasználó és a cég elér), **költségek** és **kockázatok**. A Xyo haszonmérése mindhármat
+    mérte — csak nem így nevezte. Az ITIL három dolgot ad hozzá: a mérőszámokat a gyakorlatokhoz
+    köti, a projekt után is mért vállalássá teszi őket (SLA), és megmutatja, mit nem lehetett
+    eddig mérni.
+  kinds:
+    eredmény: Amit a felhasználó vagy a cég elér (outcome)
+    teljesítmény: Hogyan működik a szolgáltatásnyújtás (output)
+    kockázat: Mit véd ki a szolgáltatás
+    költség: Mibe kerül
+  kpis:
+    - {id: M1, name: Ticket / hó, kind: teljesítmény, itil: "Service Desk — kereslet, nem szolgáltatási szint; ezért nem SLA-cél", t0: "103", t3: "74"}
+    - {id: M2, name: Átlagos megoldási idő, kind: teljesítmény, itil: "Incidenskezelés — SLA-célszint", practice: incident_management, t0: "11,4 óra", t3: "5,1 óra"}
+    - {id: M3, name: Hozzáférési ticketek aránya, kind: teljesítmény, itil: "Szolgáltatáskérés-kezelés — az önkiszolgálás hatása", practice: service_request_management, t0: "41%", t3: "17%"}
+    - {id: M4, name: Gépbeüzemelés, kind: teljesítmény, itil: "Telepítéskezelés — automatizált, megismételhető", practice: deployment_management, t0: "6,5 óra", t3: "1,4 óra"}
+    - {id: M5, name: Új belépő munkába állása, kind: eredmény, itil: "Értékáram — az „új belépő munkába állítása” elejétől a végéig", t0: "3,5 munkanap", t3: "0,8 munkanap"}
+    - {id: M6, name: Home office arány, kind: eredmény, itil: "Üzleti eredmény — a szolgáltatás lehetővé teszi, a kihasználás a szervezeten múlik", t0: "0%", t3: "37%"}
+    - {id: M7, name: Adaptáció, kind: eredmény, itil: "Értékrealizálás — használják-e, amit kaptak", t0: "0%", t3: "94%"}
+    - {id: M8, name: MFA-lefedettség, kind: kockázat, itil: "Információbiztonsági menedzsment — garancia", practice: information_security_management, t0: "0%", t3: "100%"}
+    - {id: M9, name: Rendelkezésre állás, kind: teljesítmény, itil: "Szolgáltatásszint-kezelés — SLA-célszint", practice: service_level_management, t0: "97,8%", t3: "99,6%"}
+    - {id: M10, name: Adatvesztés / negyedév, kind: kockázat, itil: "Információbiztonság és folytonosság — SLA-célszint", practice: information_security_management, t0: "0,75", t3: "0"}
+    - {id: M11, name: Elégedettség, kind: eredmény, itil: "Szolgáltatásszint- és kapcsolatkezelés — a „dinnye-effektus” ellenszere", practice: relationship_management, t0: "3,1", t3: "4,2"}
+    - {id: M12, name: Fajlagos költség, kind: költség, itil: "A szolgáltatás pénzügyei — a megrendelő ebből dönt", t0: "12 667 Ft", t3: "17 633 Ft"}
+  sla: >
+    **A négy SLA-célszint ezekből jön** — rendelkezésre állás (M9), megoldási idő (M2),
+    adatvesztés (M10), elégedettség (M11) —, a mért sorozat alapján. A rendelkezésre állás célja
+    mindhárom mért hónapban teljesült; a megoldási időé csak szeptemberben, ezért azon nem
+    szigorítottunk. Részletesen: *SLA, OLA és alátámasztó szerződések* (XYO-ITIL-002).
+  new_metrics_intro: >
+    **Amit eddig nem lehetett mérni.** Ezekhez nincs adat, mert a ticketrendszer nem rögzítette őket
+    — a célszámot ezért nem találjuk ki, hanem az első két hónap mérése után rögzítjük, ahol nincs
+    más forrás.
+  new_metrics:
+    - metric: Kérések aránya az összes ticketben
+      practice: service_request_management
+      why: Az M1 elmaradásának egy része használati kérdés volt — kérés, nem hiba
+      data: „Típus” mező a ticketrendszerben (CI-01)
+      target: az első két hónap után rögzítjük
+    - metric: Célidőn belül megoldott ticketek aránya prioritásonként
+      practice: service_level_management
+      why: Az átlag elrejti a kiugró eseteket
+      data: Prioritás mező minden ticketen (CI-07)
+      target: az első negyedév után rögzítjük
+    - metric: Első kapcsolatfelvételkor megoldott bejelentések aránya
+      practice: service_desk
+      why: Megmutatja, mennyit old meg a Service Desk eszkaláció nélkül — és mennyi jut Szabó Márkra
+      data: „1. szinten megoldva” jelölés
+      target: az első két hónap után rögzítjük
+    - metric: Problémához kötött incidensek száma havonta
+      practice: problem_management
+      why: Enélkül a PIR csak azt írhatja, hogy a késő MFA-értesítés „részben” okozta az M1 elmaradását
+      data: A ticket összekötése a PR-01-gyel (XYO-ITIL-004)
+      target: kiváltó feltétel — havi öt kapcsolódó bejelentésnél a probléma prioritása magasra emelkedik
+    - metric: Sikeres változások aránya
+      practice: change_enablement
+      why: A változásengedélyezés fő mércéje
+      data: Változási nyilvántartás (XYO-ITIL-003)
+      target: legalább 95%
+    - metric: Sürgős változások aránya
+      practice: change_enablement
+      why: Ha sok a sürgős, a tervezés gyenge
+      data: Változási nyilvántartás (XYO-ITIL-003)
+      target: legfeljebb 10%
+    - metric: Lezárt fejlesztések, mért hatással
+      practice: continual_improvement
+      why: A fejlesztés akkor kész, ha a hatását megmérték
+      data: Folyamatos fejlesztési nyilvántartás (XYO-ITIL-006)
+      target: negyedévente bemutatva a felülvizsgálaton
+  not_claimed: >
+    **Amit nem állítunk.** Az ITIL-réteg nem javította a Xyo számait — azok a projekt eredményei.
+    Az sem igaz, hogy ITIL-lel a kapacitás-haszon pénzzé válna: a PIR helyesen írja, hogy a
+    felszabaduló idő csak akkor haszon, ha értékteremtő munkára fordítják. Az ITIL annyit ígér,
+    hogy **a mérés a projekt után is megmarad, gazdája lesz, és a hiányzó mérőszámok bekerülnek.**
+  verdict: >
+    **Ítélet:** mérhető eredményt az ITIL a Xyo-nál nem a számok javításával hoz, hanem azzal,
+    hogy a projekt mérési fegyelme — pontos definíciók, előre rögzített torzító tényezők, T0 és
+    T+3 — **tartós szolgáltatásmenedzsmentté** válik. A 190 fős kiterjesztésnél ez a különbség
+    a „sikeres pilot” és a „működő szolgáltatás” között.
+
+advanced:
+  intro: >
+    A Foundation a belépő: a fogalmakat és a gyakorlatok célját adja. Aki szolgáltatást vezet,
+    tervez vagy fejleszt, annak a haladó szintek szólnak. Ez a fül megmutatja, **mire jók a haladó
+    ITIL 4-modulok a Xyo-n**, mennyire érett ma a Xyo szolgáltatásmenedzsmentje, és mi változik az
+    **ITIL 5-tel** — hivatalos forrásból ellenőrizve.
+  itil4_modules:
+    - code: CDS
+      name_en: "ITIL 4 Specialist: Create, Deliver and Support"
+      focus: Értékáramok tervezése, csapatok és csapatkultúra, a munka sorba állítása és priorizálása.
+      xyo: >
+        Az „új belépő munkába állítása” értékáram végig tervezve, a HR-igénytől a munkára kész gépig
+        (M5: 3,5 → 0,8 munkanap); a Service Desk és a rendszergazda közös munkasora a P1–P4 prioritással.
+      who: Kiss Réka, Szabó Márk
+    - code: DSV
+      name_en: "ITIL 4 Specialist: Drive Stakeholder Value"
+      focus: Az ügyfélút a feltárástól az érték realizálásáig; a szolgáltatási kapcsolat és az élmény.
+      xyo: >
+        A felhasználó útja az oktatástól a T+3 kérdőívig — ahol a sebesség (K4) lett a leggyengébb
+        (3,8), és ahol a „mindig elérhető” elvárás megjelent. A kiterjesztés kommunikációja (190 fő).
+      who: Nagy Péter, Varga Eszter
+    - code: HVIT
+      name_en: "ITIL 4 Specialist: High-velocity IT"
+      focus: Gyors, digitális szállítás — agilis és DevOps-módszerek, automatizálás.
+      xyo: >
+        **A Xyo-nál a legkevésbé releváns:** nincs saját fejlesztés, a platform SaaS. Ami átvehető:
+        az automatizálás (Autopilot, Intune) mint a megismételhető telepítés alapja a három
+        kiterjesztési hullámnál.
+      who: Szabó Márk
+    - code: DPI
+      name_en: "ITIL 4 Strategist: Direct, Plan and Improve"
+      focus: Irányítás, értékelés és tervezés, mérés és jelentés, folyamatos fejlesztés, szervezeti változás.
+      xyo: >
+        **A PM-nek ez a legközelebbi modul.** A Xyo mérési fegyelme (KPI-adatlap, T0, T+3, PIR) és a
+        folyamatos fejlesztési nyilvántartás pontosan ennek a modulnak a témája.
+      who: Nagy Péter, Tóth Gergő
+    - code: DITS
+      name_en: "ITIL 4 Leader: Digital and IT Strategy"
+      focus: Digitális és IT-stratégia, alkalmazkodás a gyorsan változó környezethez.
+      xyo: >
+        A pilot maga stratégiai kísérlet volt: kb. 45 M Ft-ért kiderült, megéri-e kb. 133 M Ft-ot
+        költeni a teljes szervezetre. A kiterjesztési döntés (2026.10.09.) stratégiai döntés.
+      who: Horváth Júlia, Kovács Anita, Nagy Péter
+  itil4_designations:
+    - name: ITIL 4 Managing Professional
+      requires: [CDS, DSV, HVIT, DPI]
+      note: Négy modul — a szolgáltatás tervezésétől a működtetésig.
+    - name: ITIL 4 Strategic Leader
+      requires: [DPI, DITS]
+      note: A DPI mindkét úton szerepel, egyszer kell letenni.
+    - name: ITIL 4 Practice Manager
+      requires: [CDS]
+      note: A CDS mellé öt egyéni gyakorlatmodul, vagy egy csomagolt modul (MSF, PIC vagy CAI).
+  practice_bundles:
+    intro: >
+      A Practice Manager csomagolt moduljai öt-öt gyakorlatot fognak össze — **együtt pontosan a
+      Foundation 15 gyakorlatát**, amit a Gyakorlatok fül a Xyo-n bemutat. Az ITIL 5 Practice
+      Manager moduljai ugyanezt a három csomagot viszik tovább.
+    items:
+      - code: MSF
+        name_en: Monitor, Support and Fulfil
+        name_hu: Figyelés, támogatás, teljesítés
+        practices: [service_desk, incident_management, problem_management, service_request_management, monitoring_event_management]
+        xyo: Kiss Réka szerepköre — a Xyo-ban a legérettebb terület, a problémakezelés kivételével.
+      - code: PIC
+        name_en: Plan, Implement and Control
+        name_hu: Tervezés, megvalósítás, kontroll
+        practices: [change_enablement, deployment_management, release_management, service_configuration_management, it_asset_management]
+        xyo: Szabó Márk szerepköre — a telepítés kiváló, a változásengedélyezés hiányzott.
+      - code: CAI
+        name_en: Collaborate, Assure and Improve
+        name_hu: Együttműködés, biztosítás, fejlesztés
+        practices: [relationship_management, supplier_management, service_level_management, continual_improvement, information_security_management]
+        xyo: Nagy Péter szerepköre — itt van a legnagyobb hiány (SLA) és a legjobb alap (mérés).
+  maturity:
+    intro: >
+      **Érettségi önbecslés gyakorlatonként, ötfokú képességskálán.** Ez saját, egyszerűsített
+      értékelés a dokumentumok alapján — nem hivatalos ITIL-érettségfelmérés, azt akkreditált
+      értékelő végzi. Arra jó, hogy látsszon: hol áll a Xyo, és hová reális eljutni.
+    scale:
+      - level: 1
+        text: Eseti — a gyakorlat céljai részben teljesülnek, egy-egy ember tudására építve
+      - level: 2
+        text: Ismételhető — az alaptevékenységek leírtak és rendszeresen megtörténnek
+      - level: 3
+        text: Meghatározott — egységes, gazdája van, mérik és jelentik
+      - level: 4
+        text: Irányított — a mérőszámok alapján vezérelt, előre jelezhető
+      - level: 5
+        text: Folyamatosan fejlesztett — a teljesítményt rendszeresen optimalizálják
+    ceiling: >
+      **A cél sehol nem magasabb a 3-as szintnél.** Egy 240 fős cég kis IT-csapatánál a „meghatározott,
+      mért, gazdás” szint a reális és elég — a 4–5. szint mérési és irányítási apparátusa itt
+      aránytalan volna. Ez maga is ITIL-irányelv: **kezdd ott, ahol vagy**, és **maradj egyszerű és
+      gyakorlatias**.
+    items:
+      - practice: continual_improvement
+        now: 2
+        target: 3
+        why: Kiváló tanulságnapló és PIR, de a projekt után gazdátlan — a CIR adja a 3-as szintet.
+      - practice: change_enablement
+        now: 1
+        target: 2
+        why: Az éles változásokra nem volt szabály; a változásengedélyezési modell leírt alapot ad.
+      - practice: incident_management
+        now: 2
+        target: 3
+        why: A Run-book 15 esete és az eszkalációs út megvan; prioritás és kiemelt incidens hiányzott.
+      - practice: problem_management
+        now: 2
+        target: 3
+        why: Egy problémát a projekt megoldott (lassú első nap); a késő MFA-értesítés döntés nélkül maradt.
+      - practice: service_request_management
+        now: 2
+        target: 3
+        why: A belépő és a kilépő kezelése leírt; a kérések nincsenek külön számolva.
+      - practice: service_desk
+        now: 3
+        target: 3
+        why: Felkészített, mért, gazdás — a Xyo egyik legjobban működő része.
+      - practice: service_level_management
+        now: 1
+        target: 2
+        why: Célok vannak, de csak haszonmérésként; az SLA leírt alapot ad, a mérés még indul.
+      - practice: information_security_management
+        now: 3
+        target: 3
+        why: Biztonsági alapkonfiguráció, adatvédelmi hatásvizsgálat, 100% MFA, break-glass rend.
+      - practice: relationship_management
+        now: 2
+        target: 3
+        why: Az érintettkezelés a projektben kiváló volt; a szolgáltatás-felülvizsgálat viszi tovább.
+      - practice: supplier_management
+        now: 3
+        target: 3
+        why: Szerződéses kikötések, amelyek bajban megtérültek (helyettesítés, Run-book mint feltétel).
+      - practice: it_asset_management
+        now: 2
+        target: 2
+        why: Leltár és Autopilot-regisztráció megvan; életciklus-terv a kiterjesztésnél kell.
+      - practice: monitoring_event_management
+        now: 1
+        target: 2
+        why: Havi ellenőrzések vannak, riasztás csak a break-glass belépésre — egy ember fejében van.
+      - practice: release_management
+        now: 3
+        target: 3
+        why: A három élesítési hullám tervezett tartalommal és visszaállási lehetőséggel.
+      - practice: service_configuration_management
+        now: 2
+        target: 3
+        why: Az as-built pontos, de magától nem frissül; a változás lezárásának feltétele lesz.
+      - practice: deployment_management
+        now: 3
+        target: 3
+        why: Automatizált, megismételhető, mért telepítés (Autopilot, 1 óra 22 perc).
+  standards:
+    - name: ISO/IEC 20000-1
+      what: A szolgáltatásmenedzsment-rendszer követelményei — szervezet tanúsítható szerinte.
+      xyo: >
+        Egy 240 fős, nem IT-szolgáltató cégnél nem szükséges. Akkor kell, ha a Xyo IT-ja
+        szolgáltatóként külső ügyfélnek nyújtana szolgáltatást, vagy egy megrendelő megköveteli.
+    - name: ISO/IEC 27001
+      what: Az információbiztonsági irányítási rendszer követelményei — szervezet tanúsítható szerinte.
+      xyo: >
+        A biztonsági alapkonfiguráció, az adatvédelmi hatásvizsgálat és a kiterjesztés DLP- és
+        behatolásteszt-előfeltétele (F2, F3) jó alap; a tanúsításhoz irányítási rendszer is kell.
+    - name: Az ITIL maga
+      what: Keretrendszer, nem szabvány — szervezetet nem lehet ITIL szerint tanúsítani, csak személyeket.
+      xyo: Egy „ITIL-megfelelőnek” nevezett szervezet valójában ISO/IEC 20000-1 szerint tanúsított.
+  itil5:
+    intro: >
+      **Az ITIL (Version 5) 2026-ban jelent meg.** A PeopleCert megfogalmazásában nem újrakezdés,
+      hanem továbbfejlesztés: az ITIL 4 tudása és tanúsítványai érvényesek maradnak.
+    changes:
+      - topic: Termék és szolgáltatás együtt
+        what: >
+          A keretrendszer a digitális termékek és szolgáltatások teljes életciklusát kezeli, nem csak a
+          szolgáltatásokét.
+        xyo: >
+          A „Felhőalapú munkahely” egyszerre termék (a beállított környezet, 50 laptop) és szolgáltatás
+          (támogatás, SLA) — a Xyo-n ez a kettősség már most látszik.
+      - topic: AI-natív
+        what: >
+          A gyakorlatok, értékáramok és szerepek úgy épülnek fel, hogy a mesterséges intelligencia
+          beilleszthető legyen; külön modul szól az MI felelős irányításáról (ITIL AI Governance).
+        xyo: A pilotban nem volt MI-elem; a kiterjesztésnél is csak akkor kérdés, ha bevezetnek ilyet.
+      - topic: A digitális élmény
+        what: A felhasználói élmény a keretrendszer központi témája lett.
+        xyo: A Xyo mérte az élményt (M11, kérdőív) — ez a mérés ITIL 5-ben fő helyre kerül.
+      - topic: Ami megmarad
+        what: >
+          A szolgáltatásérték-rendszer és a hét irányelv megmarad; a 34 gyakorlat nagyrészt változatlan,
+          két csoportban: termék- és szolgáltatásmenedzsment-, illetve általános menedzsmentgyakorlatok.
+        xyo: Minden, ami ezen az oldalon a Xyo-ról szól, ITIL 5-ben is érvényes.
+    scheme:
+      - name: ITIL Foundation (Version 5)
+        requires: belépő — zárt könyves, feleletválasztós vizsga
+      - name: ITIL Practice Manager
+        requires: Foundation + egy Practice Manager modul (MSF, PIC vagy CAI) + ITIL Transformation
+      - name: ITIL Managing Professional
+        requires: Foundation + ITIL Product, ITIL Service, ITIL Experience + ITIL Transformation
+      - name: ITIL Strategic Leader
+        requires: Foundation + ITIL Strategy + ITIL Transformation
+      - name: ITIL Master
+        requires: mindhárom fenti cím
+      - name: ITIL AI Governance
+        requires: kiegészítő modul, előfeltétel nélkül; egyik címhez sem tartozik
+    facts:
+      - Az ITIL 4-modulok kivezetése a PeopleCert jelenlegi terve szerint **2027.12.31.**
+      - Az ITIL 4-tanúsítványok **érvényes előfeltételei** az ITIL 5 haladó moduljainak; a Foundationt nem kell újra letenni.
+      - Az **ITIL Foundation Bridge (Version 5)** egynapos frissítő az ITIL 4 Foundation birtokosainak; ez is 2027.12.31-ig érhető el.
+      - A haladó vizsgák **nyitott könyvesek** (a Practice Manager-moduloknál ez a jelenlegi terv); a Foundation és az MI-irányítási modul kivételével akkreditált képzés kötelező.
+      - Az ITIL 5-tanúsítványok **három évre** szólnak; megújítani továbbképzési pontokkal vagy újabb vizsgával lehet — egy ITIL 5-vizsga a meglévő ITIL 4-tanúsítványt is megújítja.
+      - Az ITIL Foundation (Version 5) és a Bridge vizsga kilenc nyelven érhető el (angol, spanyol, brazil portugál, kínai, német, francia, lengyel, olasz, japán) — **magyarul még nem.**
+    advice: >
+      **Mit jelent ez egy magyar jelöltnek 2026 végén?** A hazai hirdetések ma ITIL 4-et kérnek, és
+      az ITIL 5 Foundation magyarul még nem érhető el. Az **ITIL 4 Foundation** ezért ma is jó
+      választás: 2027 végéig letehető, és érvényes előfeltétel az ITIL 5 haladó moduljaihoz. Később
+      egy egynapos Bridge-dzsel vagy egy ITIL 5 haladó modullal frissíthető.
+    sources:
+      - "PeopleCert: ITIL (Version 5) — FAQ — https://www.peoplecert.org/help-and-support/faq-itil"
+      - "PeopleCert: New ITIL explained — https://www.peoplecert.org/news-and-announcements/itil-version-5-explained"
+      - "ITIL.com: ITIL 4 Managing Professional — https://www.itil.com/professionals/certifications/itil-4-managing-professional"
+      - "ITIL.com: ITIL 4 Practice Manager — https://www.itil.com/professionals/certifications/itil-4-practice-manager"
+  verdict: |
+    **Megérte volna a Xyo projektet ITIL 4-gyel kiegészíteni? A pilotnál részben, a kiterjesztésnél igen.**
+
+    Egy 50 fős pilotnál a teljes ITIL-apparátus — testület, sok szerep, érettségi program —
+    **aránytalan lett volna**. A projekt nagy részét amúgy is jól csinálta: Service Desk-bevonás,
+    Run-book, hypercare mérhető kilépéssel, szállítói kikötések.
+
+    **Ami kis ráfordítással megérte volna, már a pilotnál:** a belső **SLA** a meglévő KPI-kból, a
+    **változásengedélyezés** egyszerű modellje (a P-05 megelőzésére), és az **ismert hibák**
+    határidővel vagy kiváltó feltétellel (a késő MFA-értesítés ne maradjon négy hónapig döntés nélkül).
+    Ez a hat mintadokumentum közül három — néhány nap munka.
+
+    **A kiterjesztésnél** (190 fő, három hullám, 2027 januártól szeptemberig) ezek már nem
+    választhatók: a Service Desk-kapacitás (F4), a hullámonkénti hypercare és a 240 fős szolgáltatás
+    SLA nélkül nem vezethető.
+
+    **A PM szerepe:** a projektmenedzsernek a **Foundation-szint elég**, de azt értenie kell — a
+    projekt átadása ezen a nyelven értelmezhető. A haladó szint (DPI, CDS) a szolgáltatás
+    vezetőjének, Nagy Péternek szól. **ITIL 4 + PRINCE2 + Waterfall együtt működik**, ha mindegyik
+    a saját kérdésére felel: a PMI a technikára, a PRINCE2 a kormányzásra, az ITIL a projekt utáni
+    életre.
+
+project_changes:
+  intro: >
+    **Mit változtat a projekten, ha ITIL-szemlélettel visszük?** Nem a módszertant cseréli le —
+    a PMI-technikák és a fázisok maradnak —, hanem öt ponton bővíti, és mindegyik a szolgáltatás
+    átadhatóságát szolgálja.
+  items:
+    - what: A szolgáltatásgazda az első naptól ott van
+      detail: Nagy Péter a Steering tagja volt — ITIL-szemmel szolgáltatásgazdaként is, aki az átadást előre átveszi.
+    - what: A követelmények közé bekerülnek a garancia-követelmények
+      detail: Nem csak az, *mit* tud a rendszer, hanem hogy milyen rendelkezésre állással, megoldási idővel és támogatással.
+    - what: Az átadás elfogadási kritériumokhoz kötött
+      detail: A runbook mellé szolgáltatási elfogadási kritériumok és a korai életszakasz-támogatás (a hypercare) kilépési feltétele.
+    - what: Az éles változásokat a hullámok alatt is engedélyezni kell
+      detail: A projekt hatókör-változása és az éles konfiguráció változása két külön döntés.
+    - what: A zárás nem a vég, hanem az átadás
+      detail: Aláírt belső SLA, átadott ismerthiba-lista és folyamatos fejlesztési nyilvántartás gazdával.
+
+together:
+  intro: |
+    **Működhet együtt a PMI, a PRINCE2 és az ITIL 4? Igen — mert nem ugyanarra a kérdésre felelnek.**
+    A három módszertan három réteg ugyanazon a munkán. A gyakorlatban így dolgoznak együtt a magyar
+    nagyvállalati és közszférás IT-projektek többségében is: a projektet PMI-technikákkal tervezik,
+    PRINCE2-szerű irányítással vezetik, és az eredményt ITIL szerint üzemeltetik.
+  layers:
+    - question: Mire válaszol?
+      pmi: Mit tudjon a projektmenedzser? — technikák
+      prince2: Hogyan irányítsuk a projektet? — kormányzás
+      itil: Hogyan teremtsen értéket a szolgáltatás? — életciklus
+    - question: Meddig tart?
+      pmi: A projekt végéig
+      prince2: A projekt végéig
+      itil: Amíg a szolgáltatás él
+    - question: Ki dönt?
+      pmi: Szponzor, Steering Committee
+      prince2: Project Board (Executive)
+      itil: Szolgáltatásgazda és megrendelő, a szolgáltatásfelülvizsgálaton
+    - question: Mi a siker?
+      pmi: Határidő, költség, hatókör, minőség
+      prince2: Az üzleti indokoltság fennáll, a toleranciákon belül maradtunk
+      itil: A fogyasztó eléri a kívánt eredményt — mérve, folyamatosan
+    - question: A Xyo-ban
+      pmi: A 69 dokumentum, a checklist, a Gantt és a WBS
+      prince2: A PRINCE2-réteg — szakaszok, toleranciák, kivételjelentés
+      itil: Ez a réteg — szolgáltatás, SLA, változásengedélyezés, problémakezelés
+  concept_map:
+    - pmi: Project Charter
+      prince2: PID (a része)
+      itil: Szolgáltatásleírás
+      note: A Charter a projektet indítja; a szolgáltatásleírás azt, ami utána marad.
+    - pmi: Sponsor, Steering Committee
+      prince2: Executive, Project Board
+      itil: Megrendelő, szolgáltatásgazda
+      note: A projekt döntéshozói a zárással szerepüket vesztik; a szolgáltatásé megmarad.
+    - pmi: Deliverable
+      prince2: Product
+      itil: Kimenet (output), szolgáltatásajánlat
+      note: Az ITIL a kimenet helyett az eredményt (outcome) méri.
+    - pmi: Acceptance criteria
+      prince2: Quality criteria (termékleírás)
+      itil: Szolgáltatási elfogadási kritériumok, szolgáltatásszint-követelmények
+      note: A projekt „kész”-e kérdése mellett az is, hogy „üzemeltethető”-e.
+    - pmi: Change Request (hatókör)
+      prince2: Issue — Request for Change
+      itil: Változás (change) — változásengedélyezés
+      note: A projekt a terv változását kezeli, az ITIL az éles környezetét. Két külön döntés.
+    - pmi: Issue Log (problémanapló)
+      prince2: Issue Register
+      itil: Incidens, probléma, ismert hiba
+      note: Névütközés — a PMI „problémanaplója” nem ITIL-probléma.
+    - pmi: Defect (hiba a tesztben)
+      prince2: Off-specification, concession
+      itil: Ismert hiba kerülőmegoldással
+      note: Az élesítéskor nyitva hagyott hiba az üzemeltetésben ismert hibaként él tovább.
+    - pmi: Status Report
+      prince2: Highlight Report
+      itil: Szolgáltatásszint-riport, szolgáltatásfelülvizsgálat
+      note: A projekt a tervhez, az ITIL a megállapodott szolgáltatási szinthez méri az állapotot.
+    - pmi: Hypercare
+      prince2: (nincs)
+      itil: Korai életszakasz-támogatás (early life support)
+      note: Ugyanaz a gondolat; az ITIL a kilépési feltételt is kéri.
+    - pmi: Lessons Learned Register
+      prince2: Lessons Log, Lessons Report
+      itil: Folyamatos fejlesztési nyilvántartás (CIR)
+      note: A tanulság a projekt végén lezárul; a fejlesztési javaslat gazdát kap.
+    - pmi: Benefits Realisation Plan
+      prince2: Benefits Management Approach
+      itil: Érték, eredmények, mérés és jelentés
+      note: A Xyo haszonmérése (M1–M12) lényegében már ITIL-szemléletű.
+    - pmi: Risk Register
+      prince2: Risk Register
+      itil: Kockázatmenedzsment-gyakorlat
+      note: Azonos gondolat; az ITIL-ben a projekt után is él.
+  handover_points:
+    intro: >
+      A projekt és a szolgáltatás hét ponton ér össze. Mindegyiknél az a kérdés, ki adja és ki veszi át.
+    items:
+      - when: Tervezés
+        what: Szolgáltatásszint-követelmények a követelménymátrixban
+        from: Tóth Gergő
+        to: Nagy Péter, Kiss Réka
+      - when: Megvalósítás
+        what: A szabványos változások listája (pl. új belépő, kilépő)
+        from: Cloudia Solutions, Szabó Márk
+        to: Nagy Péter (változásengedélyező)
+      - when: Minden élesítési hullám előtt
+        what: Go / no-go döntés — projektdöntés és éles változás egyszerre
+        from: Tóth Gergő
+        to: Nagy Péter
+      - when: Zárás
+        what: Nyitott hibák átadása ismert hibaként, kerülőmegoldással
+        from: Projekt (tesztjegyzőkönyv)
+        to: Szabó Márk (problémagazda), Service Desk
+      - when: Zárás
+        what: A korai életszakasz-támogatás (hypercare) kilépési feltétele
+        from: Tóth Gergő
+        to: Kiss Réka
+      - when: Zárás
+        what: Belső SLA és OLA aláírva
+        from: Tóth Gergő
+        to: Nagy Péter (szolgáltatásgazda), Horváth Júlia (megrendelő)
+      - when: A haszonmérés végén
+        what: Folyamatos fejlesztési nyilvántartás gazdával
+        from: Tóth Gergő
+        to: Nagy Péter
+  conflicts:
+    - topic: Projekt-változáskérelem vagy üzemeltetési változás?
+      resolution: >
+        A projekt hatóköréről a projekt dönt (a Xyo változáskezelési eljárása szerint), az éles
+        konfigurációról a változásengedélyező. A hullámok alatt mindkettő él: egy jóváhagyott
+        projekt-változáskérelem nem engedélyezi automatikusan az éles módosítást.
+    - topic: Projekt-issue, incidens vagy probléma?
+      resolution: >
+        Amíg a projekt fut, a hullámokban talált hibák projekt-issue-k (problémanapló). Az élesben
+        dolgozó felhasználó bejelentése viszont már incidens — a Service Desk kezeli, akkor is, ha a
+        projekt még nem zárult le. Ha ugyanaz az ok többször visszajön, problémarekord kell.
+    - topic: Steering vagy szolgáltatásfelülvizsgálat?
+      resolution: >
+        A projekt végéig a Steering dönt; az átadástól a szolgáltatásgazda és a megrendelő
+        negyedéves felülvizsgálata. A kettő a zárás hónapjában fedi egymást — ezért kell az
+        átadásnak dátuma.
+    - topic: Projekt-siker vagy szolgáltatás-siker?
+      resolution: >
+        A Xyo projekt határidőre, a keret alatt zárult (2026.06.30.). Hogy a szolgáltatás értéket
+        teremt-e, azt a PIR mondta meg három hónappal később. Az ITIL azt kéri, hogy ez a kérdés a
+        PIR után se szűnjön meg.
+
+error_journey:
+  title: Egy hiba útja a három módszertanon át — a késő MFA-értesítés (H-09 / P-13)
+  intro: >
+    Egy valós, kicsi hiba a Xyo projektből. Végigkövetve megmutatja, hol áll meg a projekt
+    felelőssége, és hol kezdődik a szolgáltatásé — és miért maradt nyitva négy hónap után is.
+  steps:
+    - when: 2026. május, tesztelés
+      what: Az Authenticator-értesítés néha 30+ másodperces késéssel érkezik.
+      pmi: Hiba a tesztjegyzőkönyvben (H-09, S3 — zavaró), szolgáltatói oldali, „figyelés alatt”.
+      prince2: Off-specification; a toleranciát nem érinti (S1 hibából nulla a tűrés).
+      itil: Még nincs éles szolgáltatás — de már most látszik egy várható incidensforrás.
+    - when: 2026.06.04.
+      what: A második hullám élesítésének hetében a hiba bekerül a projekt problémanaplójába.
+      pmi: Bekerül a problémanaplóba (P-13), felelős Szabó Márk, „ha rendszeressé válik, szolgáltatói bejelentés”.
+      prince2: Issue a nyilvántartásban; a Board-nak nem kell döntenie.
+      itil: >
+        Minden felhasználói bejelentés **incidens**. Az ismétlődés miatt **probléma** kellene,
+        mérhető kiváltó feltétellel — a „ha rendszeressé válik” nem az.
+    - when: 2026.06.19., UAT-zárás
+      what: A hiba nyitott ponttal átkerül az elfogadásba.
+      pmi: Elfogadott kezeléssel nyitva hagyott hiba az átadás-átvételi jegyzőkönyvben.
+      prince2: Engedmény (concession) — a Board tudatosan elfogadja.
+      itil: Az átadáskor **ismert hibává** válik, kerülőmegoldással.
+    - when: 2026.06.26., üzemeltetésbe adás
+      what: A runbook leírja a kerülőmegoldást (az Authenticator kézi megnyitása, egy perc után kódos belépés).
+      pmi: A projekt átadta a tudást — a felelőssége itt véget ér.
+      prince2: A projektzárással az issue lezárul a projekt szempontjából.
+      itil: >
+        Az **ismerthiba-rekord** él: a Service Desk a kerülőmegoldást adja. Gazdája Szabó Márk mint
+        problémagazda.
+    - when: 2026. szeptember, felhasználói kérdőív
+      what: A 44 válaszadóból 12 említi, hogy lassan jön az MFA-értesítés; a sebesség (K4) lett a leggyengébb eredmény (3,8).
+      pmi: A haszonmérés jelzi — de a projekt már lezárult.
+      prince2: (a projekt után nincs fórum)
+      itil: >
+        A szolgáltatásszint-riport és a felülvizsgálat fóruma ez. A probléma prioritása nő, mert a
+        felhasználói elégedettséget rontja.
+    - when: 2026.10.09., PIR
+      what: A hét nyitott pontból egyedül a H-09 maradt nyitva; az M1 cél részben emiatt nem teljesült.
+      pmi: A PIR rögzíti, „üzemeltetési figyelés alatt”.
+      prince2: (a projekt után nincs fórum)
+      itil: >
+        A probléma négy hónapja „figyelés alatt” van, szállítói bejelentés nélkül. A
+        problémakezelés itt egy döntést kényszerítene ki: szállítói ügy nyitása a Microsoftnál a
+        CSP-partneren (Cloudia Solutions) keresztül — és a fejlesztési nyilvántartásba vétel.
+  lessons:
+    - >
+      **A projekt jól csinálta a dolgát:** dokumentálta, felelőst adott, átadta, leírta a
+      kerülőmegoldást. A hiány nem a projekté, hanem a projekt utáni gazdátlanságé.
+    - >
+      **A „figyelés alatt” nem állapot, hanem halasztás.** Az ITIL kérdése: mi a kiváltó feltétel,
+      és ki dönt, ha teljesül? Például: ha egy hónapban öt ticket ehhez kapcsolódik, szállítói
+      bejelentés.
+    - >
+      **Mérhető lett volna:** ha az incidenseket a problémához kötik, a PIR nem azt írná, hogy az
+      M1 „részben” emiatt maradt el, hanem hogy hány ticket. Ezt a ticketrendszerben egyetlen mező
+      adja.

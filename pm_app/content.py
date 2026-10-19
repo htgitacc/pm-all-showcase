@@ -45,6 +45,12 @@ def load_prince2() -> dict:
 
 
 @st.cache_data(show_spinner=False)
+def load_itil4() -> dict:
+    """Az ITIL 4 kiegészítő réteg tartalma (content/itil4.yaml)."""
+    return _read_yaml(config.ITIL4_FILE)
+
+
+@st.cache_data(show_spinner=False)
 def load_phases() -> list[dict]:
     """Minden fázis YAML-ja, `number` szerint rendezve."""
     phases = []
@@ -137,6 +143,27 @@ def validate() -> list[str]:
         sample = doc.get("sample_file")
         if sample and not (config.ROOT / sample).exists():
             problems.append(f"PRINCE2 `{doc['id']}`: hiányzó mintafájl → `{sample}`")
+
+    # Az ITIL 4-réteg mintafájljai és dokumentum-hivatkozásai
+    itil4 = load_itil4()
+    rel = itil4.get("primer_file")
+    if rel and not (config.ROOT / rel).exists():
+        problems.append(f"ITIL 4 `primer_file`: hiányzó fájl → `{rel}`")
+    practice_ids = {p["id"] for p in itil4.get("practices", {}).get("foundation", [])}
+    for doc in itil4.get("documents", []):
+        sample = doc.get("sample_file")
+        if sample and not (config.ROOT / sample).exists():
+            problems.append(f"ITIL 4 `{doc['id']}`: hiányzó mintafájl → `{sample}`")
+        for ref in doc.get("sources", []):
+            if ref not in index:
+                problems.append(f"ITIL 4 `{doc['id']}`: ismeretlen forrásdokumentum → `{ref}`")
+        for ref in doc.get("practices", []):
+            if ref not in practice_ids:
+                problems.append(f"ITIL 4 `{doc['id']}`: ismeretlen gyakorlat → `{ref}`")
+    for practice in itil4.get("practices", {}).get("foundation", []):
+        for ref in practice.get("docs", []):
+            if ref not in index:
+                problems.append(f"ITIL 4 `{practice['id']}`: ismeretlen dokumentum-hivatkozás → `{ref}`")
     return problems
 
 

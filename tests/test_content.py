@@ -64,6 +64,9 @@ def test_no_orphan_markdown_files():
     referenced = {d["sample_file"] for d in _docs().values()}
     referenced |= {d["sample_file"] for d in prince2.get("documents", [])}
     referenced.add(prince2["primer_file"])
+    itil4 = content.load_itil4()
+    referenced |= {d["sample_file"] for d in itil4.get("documents", [])}
+    referenced.add(itil4["primer_file"])
     for doc in _docs().values():
         referenced |= set((doc.get("examples") or {}).values())
     on_disk = {p.relative_to(ROOT).as_posix() for p in sample_docs() + example_docs("koris")}

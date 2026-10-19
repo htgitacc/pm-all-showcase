@@ -9,7 +9,7 @@ import pytest
 from conftest import read_doc, section, tables
 from test_schedule import _tasks
 
-from pm_app import wbs
+from pm_app import gantt, wbs
 from pm_app.dependencies import parse_dependencies
 
 # Az ütemterv nem tartalmaz sort ezekhez: a hardverszállítás ott WBS-azonosító nélküli
@@ -202,7 +202,7 @@ def test_dot_contains_every_edge_and_marks_the_critical_path(data):
     assert '"8.3"' in dot and 'label="KK +2 mn"' in dot
     in_graph = {pid for a, b, _ in wbs.edges(data) for pid in (a, b)}
     critical = next(p for p in data["packages"] if p["critical"] and p["id"] in in_graph)
-    assert re.search(rf'"{re.escape(critical["id"])}" \[[^\]]*color="#d1453b"', dot)
+    assert re.search(rf'"{re.escape(critical["id"])}" \[[^\]]*color="{gantt.CATEGORIES[gantt.CRITICAL]}"', dot)
     assert dot.count("subgraph cluster_") >= 5
 
 

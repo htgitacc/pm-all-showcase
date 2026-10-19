@@ -8,25 +8,25 @@ from pathlib import Path
 
 import streamlit as st
 
-from pm_app import config, content, downloads, progress
+from pm_app import config, content, downloads, progress, theme
 
 # Keskeny kijelzőn a mintadokumentumok széles markdown-táblái túllógnának a kártyán, és az utolsó
-# oszlop levágódna: a tábla saját vízszintes görgetést kap. A kártyán belüli mintadokumentum
-# címei (44/36 px) a hosszú összetett szavakat szó közben törnék („munkacsomagonké-nt”): kisebbek.
+# oszlop levágódna: a tábla saját vízszintes görgetést kap. A kártyán és fülön belüli mintadokumentum
+# (és összefoglaló) címei (44/36 px) a hosszú összetett szavakat szó közben törnék („munkacsomagonké-nt”): kisebbek.
 # Asztali szélességen nem változik semmi.
 NARROW_SCREEN_CSS = """<style>
 @media (max-width: 640px) {
   [data-testid="stMarkdownContainer"] table { display: block; max-width: 100%; overflow-x: auto; }
-  [data-testid="stExpander"] [data-testid="stMarkdownContainer"] h1 { font-size: 1.45rem; }
-  [data-testid="stExpander"] [data-testid="stMarkdownContainer"] h2 { font-size: 1.25rem; }
-  [data-testid="stExpander"] [data-testid="stMarkdownContainer"] h3 { font-size: 1.1rem; }
+  :is([data-testid="stExpander"], [data-testid="stTabs"]) [data-testid="stMarkdownContainer"] h1 { font-size: 1.45rem; }
+  :is([data-testid="stExpander"], [data-testid="stTabs"]) [data-testid="stMarkdownContainer"] h2 { font-size: 1.25rem; }
+  :is([data-testid="stExpander"], [data-testid="stTabs"]) [data-testid="stMarkdownContainer"] h3 { font-size: 1.1rem; }
 }
 </style>"""
 
 
 def page_css() -> None:
     """Az alkalmazás saját stílusai; csak `<style>`, ezért a Streamlit nem rajzol hozzá elemet."""
-    st.html(NARROW_SCREEN_CSS)
+    st.html(NARROW_SCREEN_CSS + theme.css([p["number"] for p in content.load_phases()]))
 
 
 def text_table(rows: list[dict], height: int | None = None) -> None:
@@ -36,8 +36,13 @@ def text_table(rows: list[dict], height: int | None = None) -> None:
     az `st.table` HTML-táblát rajzol, amely a szűk oszlopban több sorba tör.
     A `height` görgethető, rögzített magasságú keretet ad (pl. a hosszú fogalomtárhoz).
     """
-    rows = [{key: table_cell(value) for key, value in row.items()} for row in rows]
+    rows = [{table_header(key): table_cell(value) for key, value in row.items()} for row in rows]
     st.table(rows, hide_index=True, height=height if height else "content")
+
+
+def table_header(key: str) -> str:
+    """A fejléc is markdown: a „#” üres címsorrá válna, ezért escape-eljük."""
+    return "\\" + key if key.startswith("#") else key
 
 
 _LIST_MARKER = re.compile(r"^(\s*)(\d+)\.(\s)|^(\s*)([-*+])(\s)")
@@ -57,8 +62,7 @@ def table_cell(value):
 
 def phase_header(phase: dict) -> None:
     stats = progress.phase_stats(phase)
-    st.title(f"{phase['number']}. {phase['title_hu']}")
-    st.caption(f"{phase.get('title_en', '')} · {phase.get('tagline', '')}")
+    st.html(theme.phase_band_html(phase["number"], phase["title_hu"], phase.get("title_en", ""), phase.get("tagline", "")))
 
     st.progress(
         stats["ratio"],
@@ -80,11 +84,11 @@ def phase_gate(phase: dict) -> None:
     if not gate:
         return
     st.subheader("Fázis-kapu (Phase Gate) — mit kell felmutatni a továbblépéshez")
-    st.warning(gate.get("summary", ""), icon=":material/flag:")
-    for crit in gate.get("criteria", []):
-        st.markdown(f"- {crit}")
-    if gate.get("decision_by"):
-        st.caption(f"A döntést hozza: {gate['decision_by']}")
+    with st.container(border=True, key=f"fazis-kapu-{phase['number']}"):
+        st.markdown(f":material/flag: **{' '.join(gate.get('summary', '').split())}**")
+        st.markdown("\n".join(f"- {crit}" for crit in gate.get("criteria", [])))
+        if gate.get("decision_by"):
+            st.caption(f"A döntést hozza: {gate['decision_by']}")
 
 
 # ---------------------------------------------------------------------- 1. PM feladatai
